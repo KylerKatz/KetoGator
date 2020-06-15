@@ -9,7 +9,6 @@ class PatientIcons():
 
 
 
-
 root = tk.Tk()
 root.title("Keto Gator")
 root.geometry("1280x720")
@@ -36,19 +35,17 @@ addpatient.place(x=30, y=115)
 seconddivider = ttk.Separator(sidebar)
 seconddivider.place(x=0, y=150, relwidth=1)
 
-
-
 # All Topbar Widgets 
 topbar = tk.Frame(root, width=500, bg='#0C4CAD', height=100)
 topbar.pack(expand=False, fill='both', side='top')
 topbar.pack_propagate(0)
 
-textbar = tk.Entry(topbar, width=50, justify='center')
+textbar = ttk.Entry(topbar, width=50, justify='center')
 textbar.insert(10, "Patient Search")
 textbar.place(relx=0.4, rely=0.5)
 
 # All Center Widgets
-middle = tk.Frame(root, width=500, bg='#d6d4d0', height=660)
+middle = tk.Canvas(root, width=500, bg='#d6d4d0', height=660)
 middle.pack(expand=False, fill='both')
 
 
@@ -75,14 +72,15 @@ addpatient.bind("<Enter>",hover)
 addpatient.bind("<Leave>",leave)
 
 def displaypatients():
-    x = 10
+    x = 50
     y = 10
     for i in range(8):
         patienticonslist.append(PatientIcons(x,y))
         x += 250
-        if(x%1010 == 0):
+        if(x%1050 == 0):
             y += 300
-            x = 10
+            x = 50
+            i=i
 
 patienticonslist = []
 displaypatients()
