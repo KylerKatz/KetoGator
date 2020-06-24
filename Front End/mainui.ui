@@ -73,7 +73,7 @@
        <x>-140</x>
        <y>-70</y>
        <width>531</width>
-       <height>241</height>
+       <height>231</height>
       </rect>
      </property>
      <property name="cursor">
@@ -88,82 +88,6 @@
      <property name="scaledContents">
       <bool>true</bool>
      </property>
-    </widget>
-    <widget class="QListWidget" name="graphslist">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>190</y>
-       <width>171</width>
-       <height>241</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="cursor" stdset="0">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border:none;
-color:white;</string>
-     </property>
-     <property name="alternatingRowColors">
-      <bool>false</bool>
-     </property>
-     <item>
-      <property name="text">
-       <string>Graph 1</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Graph 2</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Graph 3</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Graph 4</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Graph 5</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Graph 6</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Graph 7</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Graph 8</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Graph 9</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Graph 10</string>
-      </property>
-     </item>
     </widget>
     <widget class="QLabel" name="newpatientbutton">
      <property name="geometry">
@@ -219,7 +143,6 @@ dropshadow:(black, 5)</string>
     </widget>
     <zorder>logo</zorder>
     <zorder>firstlinebreak</zorder>
-    <zorder>graphslist</zorder>
     <zorder>newpatientbutton</zorder>
     <zorder>firstlinebreak_2</zorder>
    </widget>
@@ -273,7 +196,7 @@ dropshadow:(black, 5)</string>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color:rgb(255, 255, 255);
-color:black</string>
+ border-radius: 10px;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -303,7 +226,13 @@ color:black</string>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(209, 102, 24);
-color:white</string>
+color:white;
+border-radius: 10px;
+
+hover
+{
+   background-color:white;
+}</string>
      </property>
      <property name="text">
       <string>Confirm</string>
