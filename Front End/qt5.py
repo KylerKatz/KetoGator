@@ -1,25 +1,28 @@
 import sys
 import os
-from PyQt5 import QtWidgets, uic, QtSql, QtCore, QtGui, Qt
+from PyQt5 import QtWidgets, uic, QtSql, QtCore, QtGui
 from PyQt5.QtGui import QPixmap, QFont
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
 
 
 
 
-class Login(QtWidgets.QMainWindow):
+class Login (QWidget):
     def __init__(self):
-        super(Login, self).__init__()
-        login_path = os.path.dirname(os.path.abspath(__file__))
-        uic.loadUi(os.path.join(login_path, "login.ui"), self) 
+        super().__init__()
 
-        self.loginbutton = self.findChild(QtWidgets.QPushButton,"loginbutton")
-        self.usernamefield = self.findChild(QtWidgets.QLineEdit, "usernamefield")
-        self.passwordfield = self.findChild(QtWidgets.QLineEdit, "passwordfield")
+    
+        # login_path = os.path.dirname(os.path.abspath(__file__))
+        # uic.loadUi(os.path.join(login_path, "login.ui"), self) 
+
+        # self.loginbutton = self.findChild(QtWidgets.QPushButton,"loginbutton")
+        # self.usernamefield = self.findChild(QtWidgets.QLineEdit, "usernamefield")
+        # self.passwordfield = self.findChild(QtWidgets.QLineEdit, "passwordfield")
 
 
 
-        self.loginbutton.mousePressEvent = self.handlelogin
+        # self.loginbutton.mousePressEvent = self.handlelogin
     def handlelogin(self,event):
     
         # Do credential checking here 
@@ -44,6 +47,7 @@ class Test (QWidget):
         super().__init__()
 
         self.setGeometry(300,200,1280,720)
+        self.setMinimumWidth(1280)
 
         ################### Side Bar ###################
         self.line1 = QFrame(self)
@@ -75,13 +79,10 @@ class Test (QWidget):
         self.newpatientbuttion.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         
         self.graphlist = QListWidget(self)
-        temp = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine","Ten", "Eleven", "Twelve","One", "Two", "Three"]
-        self.graphlist.addItems(temp)
         self.graphlist.setGeometry(8,190,191,400)
         self.graphlist.setStyleSheet("background-color: rgb(209, 102, 24); border:none; color:white")
         self.graphlist.setFont(QtGui.QFont("Ariel", 14))
         self.graphlist.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        
 
         ################### Top Bar ###################
         self.topbar = QtWidgets.QFrame(self)
@@ -91,69 +92,116 @@ class Test (QWidget):
         self.searchbar = QtWidgets.QLineEdit(self)
         self.searchbar.setPlaceholderText("Patient Search")
         self.searchbar.setStyleSheet("background-color:rgb(255, 255, 255);border-radius: 10px;")
-        
-        self.logoutbutton = QtWidgets.QLabel("Log Out",self)
-        self.logoutbutton.setStyleSheet("color:white")
+
+        self.logoutbutton = QtWidgets.QPushButton("Log Out",self)
+        self.logoutbutton.setStyleSheet("background-color: rgb(209, 102, 24);color:white; border-radius: 10px; padding-left: 15px; padding-right: 15px; padding-top:10px; padding-bottom:10px")
         self.logoutbutton.setFont(QtGui.QFont("Ariel", 14))
         self.logoutbutton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         self.confirmbutton = QtWidgets.QPushButton("Confirm",self)
-        self.confirmbutton.setStyleSheet("background-color: rgb(209, 102, 24);color:white; border-radius: 10px; padding-left: 15px; padding-right: 15px; padding-top:10px; padding-bottom:10px ")
+        self.confirmbutton.setStyleSheet("background-color: rgb(209, 102, 24);color:white; border-radius: 10px; padding-left: 15px; padding-right: 15px; padding-top:10px; padding-bottom:10px; font-weight:bold; ")
         self.confirmbutton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
-        ################### Middle ###################
-        self.one = QtWidgets.QLabel("one",self)
-        self.two = QtWidgets.QLabel("two",self)
-        self.three = QtWidgets.QLabel("three",self)
-        self.four = QtWidgets.QLabel("four",self)
-        self.five = QtWidgets.QLabel("five",self)
+        ################### Middle DashBoard ###################
+       
+        self.dashboardtext = QLabel("Current Patients")
+        self.dashboardtext.setFont(QtGui.QFont("Ariel", 14))
 
-        self.one.resize(5,5)
-        self.one.setStyleSheet("background: black")
+        ################### Middle Profile ###################
+        self.patientname = QLabel("Patient Name")
+        self.patientname.setFont(QtGui.QFont("Ariel", 35))
+
+        self.patientage = QLabel("Age: ")
+        self.patientage.setFont(QtGui.QFont("Ariel", 14))
+
+        self.updateinfobutton = QPushButton("Update")
+        self.updateinfobutton.setStyleSheet("background-color: rgb(12, 76, 173);color:white; border-radius: 10px; padding-left: 15px; padding-right: 15px; padding-top:10px; padding-bottom:10px; font-weight: bold ")
+        self.updateinfobutton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
+        ################### Add New Patient ###################
+        self.newtip = QLabel("Complete The Form Below To Add A New Patient")
+        
+        self.namelabel = QLabel("Name:")
+        self.nameinput = QLineEdit()
+
+        self.agelabel = QLabel("Age:")
+        self.ageinput = QLineEdit()
+        
+
 
         ################### Layouts ###################
-        mainlayout = QHBoxLayout()
-        rightlayout = QVBoxLayout()
-        topbar = QHBoxLayout()
-        sidebar = QVBoxLayout()
-        middle = QGridLayout()
+        self.mainlayout = QHBoxLayout()
+        self.rightlayout = QVBoxLayout()
+        self.topbar = QHBoxLayout()
+        self.sidebar = QVBoxLayout()
+        self.middle = QVBoxLayout()
+        self.middlegrid = QGridLayout()
+        self.groupbox = QGroupBox()
+        self.profiletop = QHBoxLayout()
+        self.newpatientform = QFormLayout()
+
+
+
+        self.groupbox.setLayout(self.middlegrid)
+        self.groupbox.setContentsMargins(0,0,0,0)
+
+        self.middlescrollarea = QScrollArea(self)
+        self.middlescrollarea.setWidget(self.groupbox)
+        self.middlescrollarea.setWidgetResizable(True)
+
+        self.topbarmid1 = QVBoxLayout()
+        self.topbarmid2 = QHBoxLayout()
+
+        self.topbarmid1.addWidget(self.searchbar)
+        self.topbarmid1.addLayout(self.topbarmid2)
+        self.topbarmid1.setContentsMargins(350,0,300,0)
+
+        self.topbarmid2.addStretch()
+        self.topbarmid2.addWidget(self.confirmbutton)
+
+        self.topbar.addLayout(self.topbarmid1)
+        self.topbar.addWidget(self.logoutbutton)
+        self.topbar.setContentsMargins(0,50,50,20)
+        self.topbar.setAlignment(QtCore.Qt.AlignTop)
+
+        ################### Middle DashBoard ###################
+        self.middle.addWidget(self.dashboardtext)
+        self.middle.addWidget(self.middlescrollarea)
         
-        middle.addWidget(self.one)
-        middle.addWidget(self.two)
-        middle.addWidget(self.three)
-        middle.addWidget(self.four)
-        middle.addWidget(self.five)
-
-        topbarmid1 = QVBoxLayout()
-        topbarmid2 = QHBoxLayout()
-        topbarmid3 = QHBoxLayout()
-        topbarmid4 = QVBoxLayout()
-
-        topbarmid1.addWidget(self.searchbar)
-        topbarmid1.addLayout(topbarmid2)
-        topbarmid1.setContentsMargins(300,30,350,0)
-
-        topbarmid2.addStretch()
-        topbarmid2.addWidget(self.confirmbutton)
+        ################### Middle Profile ###################
+        self.profiletop.addWidget(self.patientname)
+        self.profiletop.addWidget(self.updateinfobutton)
 
 
-        topbarmid4.addWidget(self.logoutbutton)
+        self.middle.addLayout(self.profiletop)
+        self.middle.addWidget(self.patientage)
         
-        topbarmid3.addLayout(topbarmid4)
-        topbarmid3.addLayout(topbarmid1)
 
-        topbar.addLayout(topbarmid3)
-        # topbar.addWidget(self.topbar)
+        ################### Add New Patient ###################
+        
+        self.newpatientform.setContentsMargins(200,0,200,0)
+        self.newpatientform.addRow(self.namelabel,self.nameinput)
+        self.newpatientform.addRow(self.agelabel,self.ageinput)
+        
+        self.middle.addWidget(self.newtip)
+        self.middle.addLayout(self.newpatientform)
+        
+        
+        
+        self.middle.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
 
-        rightlayout.addLayout(topbar, 20)
-        rightlayout.addLayout(middle,80)
+        self.rightlayout.addLayout(self.topbar,10)
+        self.rightlayout.addLayout(self.middle,90)
 
-        middle.setContentsMargins(10,50,10,10)
+        self.sidebar.setContentsMargins(0,0,200,0)
 
-        mainlayout.addLayout(sidebar,17)
-        mainlayout.addLayout(rightlayout,83)
+        # self.middlegrid.addWidget(self.middlescrollarea)
 
-        self.setLayout(mainlayout)
+        self.mainlayout.addLayout(self.sidebar,10)
+        self.mainlayout.addLayout(self.rightlayout,90)
+
+        self.setLayout(self.mainlayout)
+
 
         ################### Event Calling ###################
         self.logo.mousePressEvent = self.handlelogo
@@ -162,12 +210,25 @@ class Test (QWidget):
 
         self.confirmbutton.mousePressEvent = self.handlesearch
         self.logoutbutton.mousePressEvent = self.handlelogout
+        
+        self.updateinfobutton.mousePressEvent = self.handleupdate
+
+        self.loadpatients()
+        self.closeprofile()
+        self.closenewpatient()
+
+        # self.closedashboard()
+
+
 
 
 ################### Event Handling ###################
 
     def handlelogo(self,event):
         print("Logo Clicked")
+        self.opendashboard()
+        self.closeprofile()
+        self.closenewpatient()
         
     def handlelist(self,item):
         print(item.text())
@@ -183,7 +244,73 @@ class Test (QWidget):
     
     def handlenewpatient (self,event):
         print("New Patient Clicked")
+        
+        # Close everything else
+        self.closedashboard()
+        self.closeprofile()
+        self.opennewpatient()
+
+    def handleupdate(self, event):
+        pass
+
+
         # self.confirmbutton.close()
+
+    def loadpatients(self):
+        for i in range (0,30):
+            for j in range (0,5):
+                self.patientbtn = QPushButton("Name:{}{}\n ID: ".format(i,j))
+                self.patientbtn.setFont(QtGui.QFont("Ariel", 12))
+                self.patientbtn.setStyleSheet("font-weight: bold;")
+
+                self.middlegrid.addWidget(self.patientbtn,i,j)
+                self.patientbtn.clicked.connect(self.openprofile)
+    
+    def loadgraphnames(self):
+        
+        newlist = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine","Ten", "Eleven", "Twelve","One", "Two", "Three"]
+        temp = []
+        temp.clear()
+        temp.extend(newlist)
+        self.graphlist.clear()
+        self.graphlist.addItems(newlist)
+        return temp
+        
+
+    def closedashboard(self):
+        self.dashboardtext.close()
+        self.middlescrollarea.close()
+
+    def opendashboard(self):
+        self.dashboardtext.show()
+        self.middlescrollarea.show()
+
+    def openprofile(self):
+        print(self.sender().text())
+        self.loadgraphnames()
+        self.closedashboard()
+        self.patientname.show()
+        self.patientage.show()
+        self.updateinfobutton.show()
+        
+    def closeprofile(self):
+        self.patientname.close()
+        self.patientage.close()
+        self.updateinfobutton.close()
+
+    def opennewpatient(self):
+        self.newtip.show()
+        self.namelabel.show()
+        self.nameinput.show()
+        self.agelabel.show()
+        self.ageinput.show()
+
+    def closenewpatient(self):
+        self.newtip.close()
+        self.namelabel.close()
+        self.nameinput.close()
+        self.agelabel.close()
+        self.ageinput.close()
 
 
 def main():
