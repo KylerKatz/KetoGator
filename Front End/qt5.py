@@ -47,6 +47,7 @@ class Test (QWidget):
         super().__init__()
 
         self.setGeometry(300,200,1280,720)
+        self.setWindowTitle("Keto Gator")
         self.setMinimumWidth(1280)
 
         ################### Side Bar ###################
@@ -114,7 +115,7 @@ class Test (QWidget):
         self.patientage = QLabel("Age: ")
         self.patientage.setFont(QtGui.QFont("Ariel", 14))
 
-        self.updateinfobutton = QPushButton("Update")
+        self.updateinfobutton = QPushButton("Enter New Data")
         self.updateinfobutton.setStyleSheet("background-color: rgb(12, 76, 173);color:white; border-radius: 10px; padding-left: 15px; padding-right: 15px; padding-top:10px; padding-bottom:10px; font-weight: bold ")
         self.updateinfobutton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
@@ -126,9 +127,106 @@ class Test (QWidget):
 
         self.agelabel = QLabel("Age:")
         self.ageinput = QLineEdit()
+
+
+        ################### Update Data ###################
+        self.selectgraph = QLabel("Select a Graph Type:")
+        self.graphselector = QComboBox()
+        self.graphselector.addItems(["", "Alertness","Anthropometrics","Daily Intake","Diet RX Source","Med Load","Seizure Data","Seizure Load","Urine Kt SG Source","Vitals"])
+
+        ################### Update Data - Anthropometrics ###################
+        self.AnthropometricsMRNumberL = QLabel("Medical Record Number:")
+        self.AnthropometricsMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.AnthropometricsMRNumberF = QLineEdit()
+        # self.AnthropometricsMRNumberD = QLabel("Definition")
+        # self.AnthropometricsMRNumberD.setFont(QtGui.QFont("Ariel", 13))
+
+        self.AnthropometricsDateL = QLabel("Date:")
+        self.AnthropometricsDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsDateF = QLineEdit()
+
+        self.AnthropometricsDayTypeL = QLabel("Day Type:")
+        self.AnthropometricsDayTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsDayTypeF = QLineEdit()
+
+        self.AnthropometricsSourceL = QLabel("Source:")
+        self.AnthropometricsSourceL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsSoruceF = QLineEdit()
+
+        self.AnthropometricsCPL = QLabel("Cerebral Palsy Energy Factor:")
+        self.AnthropometricsCPL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsCPF = QLineEdit()
+
+        self.AnthropometricsPAL = QLabel("Physical Activity Coefficient:")
+        self.AnthropometricsPAL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsPAF = QLineEdit()
+
+        self.AnthropometricsHtL = QLabel("Height:")
+        self.AnthropometricsHtL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsHtF = QLineEdit()
+
+        self.AnthropometricsWtL = QLabel("Weight:")
+        self.AnthropometricsWtL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsWtF = QLineEdit()
+
+        self.AnthropometricsHCL = QLabel("Head Circumference:")
+        self.AnthropometricsHCL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsHCF = QLineEdit()
+
+        self.AnthropometricsUACL = QLabel("Upper Arm Circumference:")
+        self.AnthropometricsUACL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsUACF = QLineEdit()
+
+        self.AnthropometricsTSFL = QLabel("Triceps Skinfold:")
+        self.AnthropometricsTSFL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsTSFF = QLineEdit()
+
+        self.AnthropometricsSSFL = QLabel("Subscapular Skinfold:")
+        self.AnthropometricsSSFL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsSSFF = QLineEdit()
+
+        self.AnthropometricsUSFL = QLabel("Umbilicus Skinfold:")
+        self.AnthropometricsUSFL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsUSFF = QLineEdit()
+
+        self.AnthropometricsSISFL = QLabel("Suprailiac Skinfold:")
+        self.AnthropometricsSISFL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsSISFF = QLineEdit()
+
+        self.AnthropometricsMBSFL = QLabel("Midback Skinfold:")
+        self.AnthropometricsMBSFL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsMBSFF = QLineEdit()
+
+        self.AnthropometricsUCL = QLabel("Umbilical Circumference:")
+        self.AnthropometricsUCL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsUCF = QLineEdit()
+
+        self.AnthropometricsRL = QLabel("Resistance:")
+        self.AnthropometricsRL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsRF = QLineEdit()
+
+        self.AnthropometricsXL = QLabel("Reactance:")
+        self.AnthropometricsXL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsXF = QLineEdit()
+
+        self.AnthropometricsEnteredL = QLabel("Entered:")
+        self.AnthropometricsEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsEnteredF = QLineEdit()
+
+        self.AnthropometricsAuditedL = QLabel("Audited:")
+        self.AnthropometricsAuditedL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsAuditedF = QLineEdit()
+
+        self.AnthropometricsCommentsL = QLabel("Comments:")
+        self.AnthropometricsCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsCommentsF = QLineEdit()
+
+        self.AnthropometricsSaveButton = QPushButton("Save")
+
+        self.closeanthropometrics()
         
-
-
+        
         ################### Layouts ###################
         self.mainlayout = QHBoxLayout()
         self.rightlayout = QVBoxLayout()
@@ -139,6 +237,8 @@ class Test (QWidget):
         self.groupbox = QGroupBox()
         self.profiletop = QHBoxLayout()
         self.newpatientform = QFormLayout()
+        self.graphinputformtop = QFormLayout()
+        self.graphinputformanthropometrics = QGridLayout()
 
 
 
@@ -186,6 +286,68 @@ class Test (QWidget):
         self.middle.addWidget(self.newtip)
         self.middle.addLayout(self.newpatientform)
         
+
+        ################### Update Data Anthropometrics ###################
+        
+        self.graphinputformtop.addRow(self.selectgraph,self.graphselector)
+        # self.graphinputformanthropometrics.setColumnStretch(3,3)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsMRNumberL,0,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsMRNumberF,0,1)
+        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsMRNumberD,0,2)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsDateL,1,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsDateF,1,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsDayTypeL,2,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsDayTypeF,2,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsSourceL,3,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsSoruceF,3,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsCPL,4,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsCPF,4,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsPAL,5,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsPAF,5,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsHtL,6,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsHtF,6,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsWtL,7,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsWtF,7,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsHCL,8,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsHCF,8,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsUACL,9,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsUACF,9,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsTSFL,10,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsTSFF,10,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsSSFL,11,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsSSFF,11,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsUSFL,12,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsUSFF,12,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsSISFL,13,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsSISFF,13,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsMBSFL,14,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsMBSFF,14,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsUCL,15,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsUCF,15,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsRL,16,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsRF,16,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsXL,17,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsXF,17,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsEnteredL,18,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsEnteredF,18,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsAuditedL,19,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsAuditedF,19,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsCommentsL,20,0)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsCommentsF,20,1)
+        
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsSaveButton,21,1)
+
+       
+
+        self.middle.addLayout(self.graphinputformtop)
+        # self.middle.addLayout(self.graphinputformanthropometrics)
+        # self.middle.removeItem(self.graphinputformanthropometrics)
+        
+        
+        
+
+
+
         
         
         self.middle.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
@@ -210,12 +372,17 @@ class Test (QWidget):
 
         self.confirmbutton.mousePressEvent = self.handlesearch
         self.logoutbutton.mousePressEvent = self.handlelogout
-        
+    
         self.updateinfobutton.mousePressEvent = self.handleupdate
+
+        self.graphselector.currentIndexChanged.connect (self.handlegraphselection)
 
         self.loadpatients()
         self.closeprofile()
         self.closenewpatient()
+        self.graphselector.close()
+        self.selectgraph.close()
+        self.closeanthropometrics()
 
         # self.closedashboard()
 
@@ -229,6 +396,14 @@ class Test (QWidget):
         self.opendashboard()
         self.closeprofile()
         self.closenewpatient()
+        
+        self.graphselector.setCurrentIndex(0)
+        self.graphselector.close()
+        self.selectgraph.close()
+        self.closeanthropometrics()
+        self.middle.removeItem(self.graphinputformtop)
+        self.middle.removeItem(self.graphinputformanthropometrics)
+
         
     def handlelist(self,item):
         print(item.text())
@@ -249,12 +424,32 @@ class Test (QWidget):
         self.closedashboard()
         self.closeprofile()
         self.opennewpatient()
+        self.graphselector.close()
+        self.selectgraph.close()
+        self.closeanthropometrics()
+        
+
 
     def handleupdate(self, event):
-        pass
+        self.closeprofile()
+        self.middle.addLayout(self.graphinputformtop)
+
+        self.graphselector.show()
+        self.selectgraph.show()
 
 
         # self.confirmbutton.close()
+
+
+    def handlegraphselection(self, event):
+        selection = (self.graphselector.currentText())
+
+        if (selection == "Anthropometrics"):
+            self.middle.addLayout(self.graphinputformanthropometrics)
+            self.graphinputformanthropometrics.setContentsMargins(200,0,200,0)
+            self.openanthropometrics()
+
+
 
     def loadpatients(self):
         for i in range (0,30):
@@ -262,6 +457,8 @@ class Test (QWidget):
                 self.patientbtn = QPushButton("Name:{}{}\n ID: ".format(i,j))
                 self.patientbtn.setFont(QtGui.QFont("Ariel", 12))
                 self.patientbtn.setStyleSheet("font-weight: bold;")
+                self.patientbtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
 
                 self.middlegrid.addWidget(self.patientbtn,i,j)
                 self.patientbtn.clicked.connect(self.openprofile)
@@ -311,6 +508,95 @@ class Test (QWidget):
         self.nameinput.close()
         self.agelabel.close()
         self.ageinput.close()
+
+    def closeanthropometrics(self):
+        
+        self.AnthropometricsMRNumberL.close()
+        self.AnthropometricsMRNumberF.close()
+        self.AnthropometricsDateL.close()
+        self.AnthropometricsDateF.close()
+        self.AnthropometricsDayTypeL.close()
+        self.AnthropometricsDayTypeF.close()
+        self.AnthropometricsSourceL.close()
+        self.AnthropometricsSoruceF.close()
+        self.AnthropometricsCPL.close()
+        self.AnthropometricsCPF.close()
+        self.AnthropometricsPAL.close()
+        self.AnthropometricsPAF.close()
+        self.AnthropometricsHtL.close()
+        self.AnthropometricsHtF.close()
+        self.AnthropometricsWtL.close()
+        self.AnthropometricsWtF.close()
+        self.AnthropometricsHCL.close()
+        self.AnthropometricsHCF.close()
+        self.AnthropometricsUACL.close()
+        self.AnthropometricsUACF.close()
+        self.AnthropometricsTSFL.close()
+        self.AnthropometricsTSFF.close()
+        self.AnthropometricsSSFL.close()
+        self.AnthropometricsSSFF.close()
+        self.AnthropometricsUSFL.close()
+        self.AnthropometricsUSFF.close()
+        self.AnthropometricsSISFL.close()
+        self.AnthropometricsSISFF.close()
+        self.AnthropometricsMBSFL.close()
+        self.AnthropometricsMBSFF.close()
+        self.AnthropometricsUCL.close()
+        self.AnthropometricsUCF.close()
+        self.AnthropometricsRL.close()
+        self.AnthropometricsRF.close()
+        self.AnthropometricsXL.close()
+        self.AnthropometricsXF.close()
+        self.AnthropometricsEnteredL.close()
+        self.AnthropometricsEnteredF.close()
+        self.AnthropometricsAuditedL.close()
+        self.AnthropometricsAuditedF.close()
+        self.AnthropometricsCommentsL.close()
+        self.AnthropometricsCommentsF.close()
+
+    def openanthropometrics(self):
+        self.AnthropometricsMRNumberL.show()
+        self.AnthropometricsMRNumberF.show()
+        self.AnthropometricsDateL.show()
+        self.AnthropometricsDateF.show()
+        self.AnthropometricsDayTypeL.show()
+        self.AnthropometricsDayTypeF.show()
+        self.AnthropometricsSourceL.show()
+        self.AnthropometricsSoruceF.show()
+        self.AnthropometricsCPL.show()
+        self.AnthropometricsCPF.show()
+        self.AnthropometricsPAL.show()
+        self.AnthropometricsPAF.show()
+        self.AnthropometricsHtL.show()
+        self.AnthropometricsHtF.show()
+        self.AnthropometricsWtL.show()
+        self.AnthropometricsWtF.show()
+        self.AnthropometricsHCL.show()
+        self.AnthropometricsHCF.show()
+        self.AnthropometricsUACL.show()
+        self.AnthropometricsUACF.show()
+        self.AnthropometricsTSFL.show()
+        self.AnthropometricsTSFF.show()
+        self.AnthropometricsSSFL.show()
+        self.AnthropometricsSSFF.show()
+        self.AnthropometricsUSFL.show()
+        self.AnthropometricsUSFF.show()
+        self.AnthropometricsSISFL.show()
+        self.AnthropometricsSISFF.show()
+        self.AnthropometricsMBSFL.show()
+        self.AnthropometricsMBSFF.show()
+        self.AnthropometricsUCL.show()
+        self.AnthropometricsUCF.show()
+        self.AnthropometricsRL.show()
+        self.AnthropometricsRF.show()
+        self.AnthropometricsXL.show()
+        self.AnthropometricsXF.show()
+        self.AnthropometricsEnteredL.show()
+        self.AnthropometricsEnteredF.show()
+        self.AnthropometricsAuditedL.show()
+        self.AnthropometricsAuditedF.show()
+        self.AnthropometricsCommentsL.show()
+        self.AnthropometricsCommentsF.show()
 
 
 def main():
