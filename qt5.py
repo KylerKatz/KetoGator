@@ -3,9 +3,8 @@ import os
 from PyQt5 import QtWidgets, uic, QtSql, QtCore, QtGui
 from PyQt5.QtGui import QPixmap, QFont
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import Qt
 
-
+from SpreadSheetAccess import *
 
 
 class Login (QWidget):
@@ -456,7 +455,7 @@ class Test (QWidget):
 
     def loadpatients(self):
 
-        self.allpatients = ["56", "85", "12", "36", "45"]
+        self.allpatients = getAllPatients()
         
         i = 0
         j = 0
