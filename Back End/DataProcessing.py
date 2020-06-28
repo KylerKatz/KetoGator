@@ -34,7 +34,7 @@ def loadcsv(patient, files):
 
 
 def main():
-    patient = input("Type the ID of the patient whose tabels you would like to see: ")
+    patient = input("Type the ID of the patient whose tables you would like to see: ")
     files = getpatientfiles(patient)
     print(files)
     loadcsv(patient,files)
