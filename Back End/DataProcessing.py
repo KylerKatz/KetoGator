@@ -10,7 +10,7 @@ import pandas as pd
 def getpatientfiles(patient):
     
     try:
-        mypath = os.path.abspath("C://Users//Owner//University of Florida//FSHN Borum Lab Clinical Data - KetoPatients//D18//Clinic//Patient Folders//Current Patients//"+patient+"//Databases//Data")
+        mypath = os.path.abspath("C://Users//Owner//University of Florida//FSHN Borum Lab Clinical Data - KetoPatients//D18//Clinic//Patient Folders//Current Patients//"+patient+"//Databases//Data//")
         files = []
         stage1files = [f for f in listdir(mypath) if isfile(join(mypath, f))]
         for file in stage1files:
@@ -24,7 +24,7 @@ def getpatientfiles(patient):
 # Still trying to figure out how to make changes to it without saving it locally. Currently, this is commented out and only prints the names  
 
 def loadcsv(patient, files):
-    mypath = os.path.abspath("C://Users//Owner//University of Florida//FSHN Borum Lab Clinical Data - KetoPatients//D18//Clinic//Patient Folders//Current Patients//"+patient+"//Databases//Data")
+    mypath = os.path.abspath("C://Users//Owner//University of Florida//FSHN Borum Lab Clinical Data - KetoPatients//D18//Clinic//Patient Folders//Current Patients//"+patient+"//Databases//Data//")
 
     for file in files:
         # dataframe = pd.ExcelFile(mypath+"//"+file)

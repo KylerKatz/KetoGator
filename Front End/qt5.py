@@ -105,11 +105,11 @@ class Test (QWidget):
 
         ################### Middle DashBoard ###################
        
-        self.dashboardtext = QLabel("Current Patients")
-        self.dashboardtext.setFont(QtGui.QFont("Ariel", 14))
+        self.currentpatienttext = QLabel()
+        self.currentpatienttext.setFont(QtGui.QFont("Ariel", 14))
 
         ################### Middle Profile ###################
-        self.patientname = QLabel("Patient Name")
+        self.patientname = QLabel()
         self.patientname.setFont(QtGui.QFont("Ariel", 35))
 
         self.patientage = QLabel("Age: ")
@@ -139,12 +139,13 @@ class Test (QWidget):
         self.AnthropometricsMRNumberL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
         self.AnthropometricsMRNumberF = QLineEdit()
-        # self.AnthropometricsMRNumberD = QLabel("Definition")
-        # self.AnthropometricsMRNumberD.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsMRNumberF.setMaxLength(10)
+
 
         self.AnthropometricsDateL = QLabel("Date:")
         self.AnthropometricsDateL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsDateF = QLineEdit()
+        self.AnthropometricsDateF.setMaxLength(10)
 
         self.AnthropometricsDayTypeL = QLabel("Day Type:")
         self.AnthropometricsDayTypeL.setFont(QtGui.QFont("Ariel", 13))
@@ -202,30 +203,32 @@ class Test (QWidget):
         self.AnthropometricsUCL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsUCF = QLineEdit()
 
-        self.AnthropometricsRL = QLabel("Resistance:")
-        self.AnthropometricsRL.setFont(QtGui.QFont("Ariel", 13))
-        self.AnthropometricsRF = QLineEdit()
+        # self.AnthropometricsRL = QLabel("Resistance:")
+        # self.AnthropometricsRL.setFont(QtGui.QFont("Ariel", 13))
+        # self.AnthropometricsRF = QLineEdit()
 
-        self.AnthropometricsXL = QLabel("Reactance:")
-        self.AnthropometricsXL.setFont(QtGui.QFont("Ariel", 13))
-        self.AnthropometricsXF = QLineEdit()
+        # self.AnthropometricsXL = QLabel("Reactance:")
+        # self.AnthropometricsXL.setFont(QtGui.QFont("Ariel", 13))
+        # self.AnthropometricsXF = QLineEdit()
 
         self.AnthropometricsEnteredL = QLabel("Entered:")
         self.AnthropometricsEnteredL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsEnteredF = QLineEdit()
 
-        self.AnthropometricsAuditedL = QLabel("Audited:")
-        self.AnthropometricsAuditedL.setFont(QtGui.QFont("Ariel", 13))
-        self.AnthropometricsAuditedF = QLineEdit()
+        # self.AnthropometricsAuditedL = QLabel("Audited:")
+        # self.AnthropometricsAuditedL.setFont(QtGui.QFont("Ariel", 13))
+        # self.AnthropometricsAuditedF = QLineEdit()
 
         self.AnthropometricsCommentsL = QLabel("Comments:")
         self.AnthropometricsCommentsL.setFont(QtGui.QFont("Ariel", 13))
-        self.AnthropometricsCommentsF = QLineEdit()
+        self.AnthropometricsCommentsF = QTextEdit()
 
         self.AnthropometricsSaveButton = QPushButton("Save")
 
         self.closeanthropometrics()
         
+        self.currentpatient =""
+        self.currentpatientMR =""
         
         ################### Layouts ###################
         self.mainlayout = QHBoxLayout()
@@ -265,7 +268,7 @@ class Test (QWidget):
         self.topbar.setAlignment(QtCore.Qt.AlignTop)
 
         ################### Middle DashBoard ###################
-        self.middle.addWidget(self.dashboardtext)
+        self.middle.addWidget(self.currentpatienttext)
         self.middle.addWidget(self.middlescrollarea)
         
         ################### Middle Profile ###################
@@ -324,14 +327,14 @@ class Test (QWidget):
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsMBSFF,14,1)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsUCL,15,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsUCF,15,1)
-        self.graphinputformanthropometrics.addWidget(self.AnthropometricsRL,16,0)
-        self.graphinputformanthropometrics.addWidget(self.AnthropometricsRF,16,1)
-        self.graphinputformanthropometrics.addWidget(self.AnthropometricsXL,17,0)
-        self.graphinputformanthropometrics.addWidget(self.AnthropometricsXF,17,1)
+        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsRL,16,0)
+        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsRF,16,1)
+        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsXL,17,0)
+        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsXF,17,1)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsEnteredL,18,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsEnteredF,18,1)
-        self.graphinputformanthropometrics.addWidget(self.AnthropometricsAuditedL,19,0)
-        self.graphinputformanthropometrics.addWidget(self.AnthropometricsAuditedF,19,1)
+        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsAuditedL,19,0)
+        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsAuditedF,19,1)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsCommentsL,20,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsCommentsF,20,1)
         
@@ -452,16 +455,38 @@ class Test (QWidget):
 
 
     def loadpatients(self):
-        for i in range (0,30):
-            for j in range (0,5):
-                self.patientbtn = QPushButton("Name:{}{}\n ID: ".format(i,j))
-                self.patientbtn.setFont(QtGui.QFont("Ariel", 12))
-                self.patientbtn.setStyleSheet("font-weight: bold;")
-                self.patientbtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
+        self.allpatients = ["56", "85", "12", "36", "45"]
+        
+        i = 0
+        j = 0
+
+        for patient in self.allpatients:
+            self.patientbtn = QPushButton("MRN: " + patient)
+            self.middlegrid.addWidget(self.patientbtn,i,j)
+            self.patientbtn.clicked.connect(self.openprofile)
+
+            j+=1
 
 
-                self.middlegrid.addWidget(self.patientbtn,i,j)
-                self.patientbtn.clicked.connect(self.openprofile)
+            if(j%5 == 0):
+                i+=1
+                j=0
+           
+
+        
+        # for patient in self.allpatients:
+        #     for j in range (0,5):
+                                
+        #         self.patientbtn = QPushButton("Name: " + patient)
+        #         self.middlegrid.addWidget(self.patientbtn,0,j)
+        #         print(patient)
+                
+                # self.patientbtn.setFont(QtGui.QFont("Ariel", 12))
+                # self.patientbtn.setStyleSheet("font-weight: bold;")
+                # self.patientbtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
+
     
     def loadgraphnames(self):
         
@@ -475,15 +500,27 @@ class Test (QWidget):
         
 
     def closedashboard(self):
-        self.dashboardtext.close()
+        self.currentpatienttext.close()
         self.middlescrollarea.close()
 
     def opendashboard(self):
-        self.dashboardtext.show()
+        self.currentpatienttext.show()
         self.middlescrollarea.show()
 
     def openprofile(self):
-        print(self.sender().text())
+        # temp = self.sender().text()
+        # temp = temp[5:]
+        # temp1 = temp.split("\n")
+        # self.currentpatient = temp1[0][1:]
+        # self.currentpatientMR = temp1[1][5:]
+        
+        self.currentpatient = self.sender().text()[5:]
+               
+        self.currentpatienttext.setText("Selected Patient: " + self.currentpatient) 
+
+        self.patientname.setText(self.currentpatient)
+
+        print(self.currentpatient)
         self.loadgraphnames()
         self.closedashboard()
         self.patientname.show()
@@ -543,16 +580,17 @@ class Test (QWidget):
         self.AnthropometricsMBSFF.close()
         self.AnthropometricsUCL.close()
         self.AnthropometricsUCF.close()
-        self.AnthropometricsRL.close()
-        self.AnthropometricsRF.close()
-        self.AnthropometricsXL.close()
-        self.AnthropometricsXF.close()
+        # self.AnthropometricsRL.close()
+        # self.AnthropometricsRF.close()
+        # self.AnthropometricsXL.close()
+        # self.AnthropometricsXF.close()
         self.AnthropometricsEnteredL.close()
         self.AnthropometricsEnteredF.close()
-        self.AnthropometricsAuditedL.close()
-        self.AnthropometricsAuditedF.close()
+        # self.AnthropometricsAuditedL.close()
+        # self.AnthropometricsAuditedF.close()
         self.AnthropometricsCommentsL.close()
         self.AnthropometricsCommentsF.close()
+        self.AnthropometricsSaveButton.close()
 
     def openanthropometrics(self):
         self.AnthropometricsMRNumberL.show()
@@ -587,16 +625,20 @@ class Test (QWidget):
         self.AnthropometricsMBSFF.show()
         self.AnthropometricsUCL.show()
         self.AnthropometricsUCF.show()
-        self.AnthropometricsRL.show()
-        self.AnthropometricsRF.show()
-        self.AnthropometricsXL.show()
-        self.AnthropometricsXF.show()
+        # self.AnthropometricsRL.show()
+        # self.AnthropometricsRF.show()
+        # self.AnthropometricsXL.show()
+        # self.AnthropometricsXF.show()
         self.AnthropometricsEnteredL.show()
         self.AnthropometricsEnteredF.show()
-        self.AnthropometricsAuditedL.show()
-        self.AnthropometricsAuditedF.show()
+        # self.AnthropometricsAuditedL.show()
+        # self.AnthropometricsAuditedF.show()
         self.AnthropometricsCommentsL.show()
         self.AnthropometricsCommentsF.show()
+        self.AnthropometricsSaveButton.show()
+
+        def resetinputs():
+            self.searchbar.setText("")
 
 
 def main():
@@ -614,3 +656,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+class NewAnthropometrics():
+    def __init__(self, MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC,TSF,SSF,USF,SIS,MBSF,UC,Entered,Comments):
+        pass
