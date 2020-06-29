@@ -1,6 +1,7 @@
 import xlrd # used to read from excel document
 from openpyxl import *
 import os
+import pandas
 
 # Returns sheet that has the specified patients anthropometric sheet
 def getPatientAnthropometrics(patient):
@@ -27,3 +28,9 @@ def saveAnthropometrics(patient, MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC
     ws.append([MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC,TSF,SSF,USF,SIS,MBSF,UC, '', '', Entered, '', Comments])
 
     wb.save(path)
+
+def getAnthropometricsDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Anthropometrics_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+
+    return dataframe
