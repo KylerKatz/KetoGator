@@ -81,7 +81,7 @@ class Test (QWidget):
         self.graphlist = QListWidget(self)
         self.graphlist.setGeometry(8,190,191,400)
         self.graphlist.setStyleSheet("background-color: rgb(209, 102, 24); border:none; color:white")
-        self.graphlist.setFont(QtGui.QFont("Ariel", 14))
+        # self.graphlist.setFont(QtGui.QFont("Ariel", 14))
         self.graphlist.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         ################### Top Bar ###################
@@ -202,27 +202,16 @@ class Test (QWidget):
         self.AnthropometricsUCL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsUCF = QLineEdit()
 
-        # self.AnthropometricsRL = QLabel("Resistance:")
-        # self.AnthropometricsRL.setFont(QtGui.QFont("Ariel", 13))
-        # self.AnthropometricsRF = QLineEdit()
-
-        # self.AnthropometricsXL = QLabel("Reactance:")
-        # self.AnthropometricsXL.setFont(QtGui.QFont("Ariel", 13))
-        # self.AnthropometricsXF = QLineEdit()
-
         self.AnthropometricsEnteredL = QLabel("Entered:")
         self.AnthropometricsEnteredL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsEnteredF = QLineEdit()
-
-        # self.AnthropometricsAuditedL = QLabel("Audited:")
-        # self.AnthropometricsAuditedL.setFont(QtGui.QFont("Ariel", 13))
-        # self.AnthropometricsAuditedF = QLineEdit()
 
         self.AnthropometricsCommentsL = QLabel("Comments:")
         self.AnthropometricsCommentsL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsCommentsF = QTextEdit()
 
         self.AnthropometricsSaveButton = QPushButton("Save")
+        
 
         self.closeanthropometrics()
         
@@ -379,6 +368,8 @@ class Test (QWidget):
 
         self.graphselector.currentIndexChanged.connect (self.handlegraphselection)
 
+        self.AnthropometricsSaveButton.mousePressEvent = self.submitAnthropometrics
+
         self.loadpatients()
         self.closeprofile()
         self.closenewpatient()
@@ -405,6 +396,8 @@ class Test (QWidget):
         self.closeanthropometrics()
         self.middle.removeItem(self.graphinputformtop)
         self.middle.removeItem(self.graphinputformanthropometrics)
+        self.resetinputs()
+
 
         
     def handlelist(self,item):
@@ -489,7 +482,8 @@ class Test (QWidget):
     
     def loadgraphnames(self):
         
-        newlist = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine","Ten", "Eleven", "Twelve","One", "Two", "Three"]
+        # newlist = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine","Ten", "Eleven", "Twelve","One", "Two", "Three"]
+        newlist = getPatientGraphs(self.currentpatient)
         temp = []
         temp.clear()
         temp.extend(newlist)
@@ -624,21 +618,56 @@ class Test (QWidget):
         self.AnthropometricsMBSFF.show()
         self.AnthropometricsUCL.show()
         self.AnthropometricsUCF.show()
-        # self.AnthropometricsRL.show()
-        # self.AnthropometricsRF.show()
-        # self.AnthropometricsXL.show()
-        # self.AnthropometricsXF.show()
         self.AnthropometricsEnteredL.show()
         self.AnthropometricsEnteredF.show()
-        # self.AnthropometricsAuditedL.show()
-        # self.AnthropometricsAuditedF.show()
         self.AnthropometricsCommentsL.show()
         self.AnthropometricsCommentsF.show()
         self.AnthropometricsSaveButton.show()
 
-        def resetinputs():
-            self.searchbar.setText("")
+    def resetinputs(self):
+        self.AnthropometricsMRNumberF.setText(""),
+        self.AnthropometricsDateF.setText(""),
+        self.AnthropometricsDayTypeF.setText(""),
+        self.AnthropometricsSoruceF.setText(""),
+        self.AnthropometricsCPF.setText(""),
+        self.AnthropometricsPAF.setText(""),
+        self.AnthropometricsHtF.setText(""),
+        self.AnthropometricsWtF.setText(""),
+        self.AnthropometricsHCF.setText(""),
+        self.AnthropometricsUACF.setText(""), 
+        self.AnthropometricsTSFF.setText(""),
+        self.AnthropometricsSSFF.setText(""),
+        self.AnthropometricsUSFF.setText(""),
+        self.AnthropometricsSISFF.setText(""),
+        self.AnthropometricsMBSFF.setText(""),
+        self.AnthropometricsUCF.setText(""),
+        self.AnthropometricsEnteredF.setText(""),
+        self.AnthropometricsCommentsF.setText(""), 
 
+
+    def submitAnthropometrics(self,event):
+        saveAnthropometrics(
+            self.AnthropometricsMRNumberF.text(),
+            self.AnthropometricsDateF.text(),
+            self.AnthropometricsDayTypeF.text(),
+            self.AnthropometricsSoruceF.text(),
+            self.AnthropometricsCPF.text(),
+            self.AnthropometricsPAF.text(),
+            self.AnthropometricsHtF.text(),
+            self.AnthropometricsWtF.text(),
+            self.AnthropometricsHCF.text(),
+            self.AnthropometricsUACF.text(), 
+            self.AnthropometricsTSFF.text(),
+            self.AnthropometricsSSFF.text(),
+            self.AnthropometricsUSFF.text(),
+            self.AnthropometricsSISFF.text(),
+            self.AnthropometricsMBSFF.text(),
+            self.AnthropometricsUCF.text(),
+            self.AnthropometricsEnteredF.text(),
+            self.AnthropometricsCommentsF.toPlainText(), 
+            )
+
+        self.resetinputs()
 
 def main():
     app = QApplication(sys.argv)

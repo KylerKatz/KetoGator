@@ -15,3 +15,8 @@ def getPatientAnthropometrics(patient):
 def getAllPatients():
     return(os.listdir("./Current Patients"))
 
+def getPatientGraphs(patient):
+    return (os.listdir("./Current Patients/"+patient+"/DataBases/Data/"))
+
+def saveAnthropometrics(MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC,TSF,SSF,USF,SIS,MBSF,UC,Entered,Comments):
+    print(MrNumber)
