@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: keto-gator
+Version: 1.0.0
+Summary: Data entry and retrieval
+Home-page: https://github.com/KylerKatz/KetoGator
+Author: KGTeam
+Author-email: 
+License: UNKNOWN
+Description: # KetoGator
+        
+        ## Current dependencies 
+        ### PyQt5: 
+        pip install PyQt5
+        ### Pandas:
+        pip install pandas
+        ### Excel for Pandas:
+        pip install xlrd
+        
+Platform: UNKNOWN
+Requires-Python: >=3.8, <4
+Description-Content-Type: text/markdown
