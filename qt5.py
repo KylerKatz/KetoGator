@@ -159,11 +159,12 @@ class Test (QWidget):
         ################### Add New Patient ###################
         self.newtip = QLabel("Complete The Form Below To Add A New Patient")
         
-        self.namelabel = QLabel("Name:")
+        self.namelabel = QLabel("Medical Record Number:")
         self.nameinput = QLineEdit()
 
-        self.agelabel = QLabel("Age:")
-        self.ageinput = QLineEdit()
+   
+
+        self.addpatientbutton = QPushButton("Add New Patient")
 
 
         ################### Update Data ###################
@@ -360,10 +361,11 @@ class Test (QWidget):
         
         self.newpatientform.setContentsMargins(200,0,200,0)
         self.newpatientform.addRow(self.namelabel,self.nameinput)
-        self.newpatientform.addRow(self.agelabel,self.ageinput)
+
         
         self.middle.addWidget(self.newtip)
         self.middle.addLayout(self.newpatientform)
+        self.middle.addWidget(self.addpatientbutton)
         
 
         ################### Update Data Anthropometrics ###################
@@ -372,7 +374,6 @@ class Test (QWidget):
         # self.graphinputformanthropometrics.setColumnStretch(3,3)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsMRNumberL,0,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsMRNumberF,0,1)
-        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsMRNumberD,0,2)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsDateL,1,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsDateF,1,1)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsDayTypeL,2,0)
@@ -436,6 +437,7 @@ class Test (QWidget):
         ################### Event Calling ###################
         self.logo.mousePressEvent = self.handlelogo
         self.newpatientbuttion.mousePressEvent = self.handlenewpatient
+        self.addpatientbutton.mousePressEvent = self.addnewpatient
         self.graphlist.itemClicked.connect(self.handlelist)    
 
         self.confirmbutton.mousePressEvent = self.handlesearch
@@ -456,6 +458,9 @@ class Test (QWidget):
         self.closeanthropometrics()
 
         # self.closedashboard()
+
+        self.foundpatients = [] 
+        self.foundpatientbuttons = []
 
 
 
@@ -486,43 +491,40 @@ class Test (QWidget):
         search = self.searchbar.text()
         i = 0
         j = 0
-        
-        self.foundpatients = [] 
-        self.foundpatientbuttons = []
-        self.foundpatientbuttons.clear()
-
+       
         if search != "":
             
+            #### Close All Patient Buttons & Delete them ####
             num = 1
             # Close full list  
             for p in self.allpatientbuttons:
-                print("All = " +p.text())
-                print("Closing")
+                print(str(num) +p.text())
                 p.close()
-                print("All = " +p.text())
-                print (num)
                 num += 1
             
-            # Close Found Patients if Previous Ones exist
-            for f in self.foundpatientbuttons:
-                f.close()
-                        
-            # Clear Found Patients list
-            self.foundpatientbuttons.clear()
-           
+            self.allpatientbuttons.clear()
 
+            #### Close Found Patients if Previous Ones exist ####
+            if(len(self.foundpatientbuttons) > 0):
+                print("Deleting Previous Found Buttons")
+                for f in self.foundpatientbuttons:
+                    print("Closing "+ f.text())
+                    self.middlegrid.removeWidget(f)
+                    f.close()
+                    self.foundpatientbuttons.clear()  
+            
+            # Clear Found Patients list
+            self.foundpatients.clear()
+                      
+            #### Search for Matches ####
+        
             for p in self.allpatients:
                 if (p.find(search) > -1):
                     self.foundpatients.append(p)
-
-            self.allpatientbuttons.clear()
-
-            for x in self.foundpatients:
-                    print (x + " Matches")
                     
-            # Show Patients that meet search
+            #### Create Buttons For Each Match ####
             for patient in self.foundpatients:
-                print("jhefsf " + patient)
+                print("Created New Button for " + patient)
                 self.patientbtn2 = QPushButton("MRN: " + patient)
                 self.middlegrid.addWidget(self.patientbtn2,i,j)
                 self.patientbtn2.clicked.connect(self.openprofile)
@@ -535,6 +537,24 @@ class Test (QWidget):
                     j=0
             
             
+            print("All Patients")
+            for m in self.allpatientbuttons:
+                print(m.text())
+            
+            self.middlescrollarea.close()
+            self.middlescrollarea.show()
+
+            print("Total Patients " + str(len(self.allpatients)))
+            print("Total old buttons " + str(len(self.allpatientbuttons)))
+
+            print("Total Patients found that match " + str(len(self.foundpatients)))
+            print("Number of new buttons " + str(len(self.foundpatientbuttons)))
+  
+            
+            # print("All of the found patient buttons")
+            # for t in self.foundpatientbuttons:
+            #     print(t.text())
+
 
         self.searchbar.setText("")
     
@@ -550,11 +570,21 @@ class Test (QWidget):
         self.closedashboard()
         self.closeprofile()
         self.opennewpatient()
+        self.graphselector.setCurrentIndex(0)
         self.graphselector.close()
         self.selectgraph.close()
         self.closeanthropometrics()
-        
+        self.middle.removeItem(self.graphinputformtop)
+        self.middle.removeItem(self.graphinputformanthropometrics)
+        self.resetinputs()
+                
+    def addnewpatient(self,event):
+        if (self.nameinput.text != ''):
+            setNewPatient(self.nameinput.text())
+            self.nameinput.setText('')
 
+        # Eventually I need to make sure it can only be 10 chars, but for now this is ok 
+      
     def handleupdate(self, event):
         self.closeprofile()
         self.middle.addLayout(self.graphinputformtop)
@@ -562,10 +592,6 @@ class Test (QWidget):
         self.graphselector.show()
         self.selectgraph.show()
         
-
-
-        # self.confirmbutton.close()
-
 
     def handlegraphselection(self, event):
         selection = (self.graphselector.currentText())
@@ -586,6 +612,8 @@ class Test (QWidget):
         i = 0
         j = 0
         self.allpatientbuttons = []
+        self.allpatientbuttons.clear()
+
         for patient in self.allpatients:
             self.patientbtn = QPushButton("MRN: " + patient)
             self.middlegrid.addWidget(self.patientbtn,i,j)
@@ -645,15 +673,15 @@ class Test (QWidget):
         self.newtip.show()
         self.namelabel.show()
         self.nameinput.show()
-        self.agelabel.show()
-        self.ageinput.show()
+
+        self.addpatientbutton.show()
 
     def closenewpatient(self):
         self.newtip.close()
         self.namelabel.close()
         self.nameinput.close()
-        self.agelabel.close()
-        self.ageinput.close()
+
+        self.addpatientbutton.close()
 
     def closeanthropometrics(self):
         
@@ -764,7 +792,7 @@ class Test (QWidget):
        
         saveAnthropometrics(
             self.currentpatient,
-            int(self.AnthropometricsMRNumberF.text()),
+            self.AnthropometricsMRNumberF.text(),
             self.AnthropometricsDateF.text(),
             int(self.AnthropometricsDayTypeF.currentText()[:1]),
             int(self.AnthropometricsSoruceF.currentText()[:1]),
@@ -785,6 +813,7 @@ class Test (QWidget):
             )
 
         self.resetinputs()
+        self.loadgraphnames()
 
 def main():
     app = QApplication(sys.argv)
