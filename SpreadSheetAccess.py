@@ -21,6 +21,16 @@ def getPatientGraphs(patient):
     return (os.listdir("./Current Patients/"+patient+"/DataBases/Data/"))
 
 def saveAnthropometrics(patient, MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC,TSF,SSF,USF,SIS,MBSF,UC,Entered,Comments):
+    
+    # Do a check to see if the Patient has an Anthropoemtics tabel 
+
+    # If not, create one with the naming scheme MrNumber_Anthropometrics_Source.xlsx
+
+    # Add the columns at the top 
+
+    # Then input the data
+
+    # If so, this is fine 
     path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Anthropometrics_Source.xlsx"
     wb = load_workbook(path)
     ws = wb['Anthropometrics']
@@ -34,3 +44,8 @@ def getAnthropometricsDataFrame(patient):
     dataframe = pandas.read_excel(path)
 
     return dataframe
+
+def setNewPatient(MrNum):
+    # Create a new Folder for this patient 
+
+    # Create the DataBases and Data Folders 

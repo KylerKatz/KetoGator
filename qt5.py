@@ -440,6 +440,7 @@ class Test (QWidget):
 
         self.confirmbutton.mousePressEvent = self.handlesearch
         self.logoutbutton.mousePressEvent = self.handlelogout
+        # self.searchbar.textChanged.connect(self.handlesearch)
     
         self.updateinfobutton.mousePressEvent = self.handleupdate
 
@@ -466,6 +467,7 @@ class Test (QWidget):
         self.opendashboard()
         self.closeprofile()
         self.closenewpatient()
+        self.loadpatients()
         
         self.graphselector.setCurrentIndex(0)
         self.graphselector.close()
@@ -482,8 +484,58 @@ class Test (QWidget):
 
     def handlesearch(self,event):
         search = self.searchbar.text()
+        i = 0
+        j = 0
+        
+        self.foundpatients = [] 
+        self.foundpatientbuttons = []
+        self.foundpatientbuttons.clear()
+
         if search != "":
-            print(search)
+            
+            num = 1
+            # Close full list  
+            for p in self.allpatientbuttons:
+                print("All = " +p.text())
+                print("Closing")
+                p.close()
+                print("All = " +p.text())
+                print (num)
+                num += 1
+            
+            # Close Found Patients if Previous Ones exist
+            for f in self.foundpatientbuttons:
+                f.close()
+                        
+            # Clear Found Patients list
+            self.foundpatientbuttons.clear()
+           
+
+            for p in self.allpatients:
+                if (p.find(search) > -1):
+                    self.foundpatients.append(p)
+
+            self.allpatientbuttons.clear()
+
+            for x in self.foundpatients:
+                    print (x + " Matches")
+                    
+            # Show Patients that meet search
+            for patient in self.foundpatients:
+                print("jhefsf " + patient)
+                self.patientbtn2 = QPushButton("MRN: " + patient)
+                self.middlegrid.addWidget(self.patientbtn2,i,j)
+                self.patientbtn2.clicked.connect(self.openprofile)
+                self.foundpatientbuttons.append(self.patientbtn2)
+
+                j+=1
+
+                if(j%5 == 0):
+                    i+=1
+                    j=0
+            
+            
+
         self.searchbar.setText("")
     
     def handlelogout(self,event):
@@ -529,16 +581,18 @@ class Test (QWidget):
             self.AnthropometricsPAF2.setCurrentIndex(0)
 
     def loadpatients(self):
-
         self.allpatients = getAllPatients()
         
         i = 0
         j = 0
-
+        self.allpatientbuttons = []
         for patient in self.allpatients:
             self.patientbtn = QPushButton("MRN: " + patient)
             self.middlegrid.addWidget(self.patientbtn,i,j)
             self.patientbtn.clicked.connect(self.openprofile)
+
+            
+            self.allpatientbuttons.append(self.patientbtn)
 
             j+=1
 
@@ -735,12 +789,12 @@ class Test (QWidget):
 def main():
     app = QApplication(sys.argv)
     
-    loginwindow = Login()
-    loginwindow.show()
+    # loginwindow = Login()
+    # loginwindow.show()
 
     
-    # test = Test()
-    # test.show()
+    test = Test()
+    test.show()
     app.exec_()
 
 
