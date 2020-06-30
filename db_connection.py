@@ -26,3 +26,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+self.currentpatienttext.close()
+self.patientname.close()
+self.patientage.close()
+self.updateinfobutton.close()
+self.newtip.close()
+self.namelabel.close()
+self.nameinput.close()
+self.agelabel.close()
+self.ageinput.close()

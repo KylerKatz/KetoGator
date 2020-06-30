@@ -11,36 +11,75 @@ class Login (QWidget):
     def __init__(self):
         super().__init__()
 
+        self.setGeometry(300,200,1280,720)
+        self.setWindowTitle("Keto Gator")
+        self.setMinimumWidth(1280)
+
+        self.usernamelabel = QLabel("Username")
+        self.usernameform = QLineEdit()
+        
+        self.passwordlabel = QLabel("Password")
+        self.passwordform = QLineEdit()
+        self.passwordform.setEchoMode(QLineEdit.Password)
+
+        self.loginbutton = QPushButton("Submit")
+
+        self.middlebackground = QFrame()
+        self.middlebackground.setStyleSheet("background-color:rgb(12, 76, 173); border:none; color:black")
     
-        # login_path = os.path.dirname(os.path.abspath(__file__))
-        # uic.loadUi(os.path.join(login_path, "login.ui"), self) 
-
-        # self.loginbutton = self.findChild(QtWidgets.QPushButton,"loginbutton")
-        # self.usernamefield = self.findChild(QtWidgets.QLineEdit, "usernamefield")
-        # self.passwordfield = self.findChild(QtWidgets.QLineEdit, "passwordfield")
+        self.logo = QLabel()
+        ui_path = os.path.dirname(os.path.abspath(__file__))
+        img_path = os.path.join(ui_path, "Keto-Gator-V3.png")
+        self.logo.setPixmap(QPixmap(img_path)) 
 
 
+        
+        self.mainlayout = QVBoxLayout()
+        self.logolayout = QHBoxLayout()
 
-        # self.loginbutton.mousePressEvent = self.handlelogin
+        self.formlayout = QFormLayout()
+        self.formlayout.setRowWrapPolicy(QFormLayout.WrapAllRows)
+        self.formlayout.setContentsMargins(0,0,0,0)
+
+        self.loginbuttonlayout = QHBoxLayout()
+        
+        self.formlayout.addRow(self.usernamelabel,self.usernameform)
+        self.formlayout.addRow(self.passwordlabel,self.passwordform)
+        
+        self.logolayout.addWidget(self.logo)
+        self.logolayout.setAlignment(QtCore.Qt.AlignHCenter)
+        
+        self.loginbuttonlayout.addWidget(self.loginbutton)
+        self.loginbuttonlayout.setContentsMargins(0,0,0,0)
+        
+        self.mainlayout.addLayout(self.logolayout)
+        self.mainlayout.addLayout(self.formlayout)
+        self.mainlayout.addWidget(self.middlebackground)
+        self.mainlayout.addLayout(self.loginbuttonlayout)
+        self.mainlayout.addWidget(self.loginbutton)
+        self.mainlayout.setContentsMargins(400,0,400,0)
+        self.mainlayout.setAlignment(QtCore.Qt.AlignVCenter | QtCore.Qt.AlignHCenter )
+        
+        self.setLayout (self.mainlayout)
+
+        self.loginbutton.mousePressEvent = self.handlelogin
+
     def handlelogin(self,event):
-    
-        # Do credential checking here 
-        print("Hello")
-        # window = MainUI()
-        # window.show()
-        # If they are vaild, show MainUI
+        if(self.usernameform.text().lower() == 'user' and self.passwordform.text().lower() == 'pass'):
+            self.close()
+            temp = Test()
+            temp.show()
 
+        elif(self.usernameform.text()!= '' and self.passwordform.text()!= ''):
+            self.popup = QMessageBox.question(self,"Warning","Incorrect Credentials", QMessageBox.Retry | QMessageBox.Close)
             
-        
-class PatientLabel(QtWidgets.QLabel):
-    def __init__(self):
-        super(PatientLabel,self).__init__()
-        self.label = QtWidgets.QLabel("test dsfsff sdfsd fdsfsdf sfs fsdfsfsf",self)
-        self.label.setGeometry(500,200,200,200)
-        self.label.setStyleSheet("background-color: black; border-radius: 10px")
-        
+            if self.popup==QMessageBox.Retry:
+                self.usernameform.setText('')
+                self.passwordform.setText('')
+            if self.popup==QMessageBox.Close:
+                sys.exit()
 
-
+    
 class Test (QWidget):
     def __init__(self):
         super().__init__()
@@ -48,7 +87,7 @@ class Test (QWidget):
         self.setGeometry(300,200,1280,720)
         self.setWindowTitle("Keto Gator")
         self.setMinimumWidth(1280)
-
+        
         ################### Side Bar ###################
         self.line1 = QFrame(self)
         self.line1.setGeometry(0,135,200,1)
@@ -67,7 +106,6 @@ class Test (QWidget):
         self.logo.setGeometry(10,17,180,98)
         ui_path = os.path.dirname(os.path.abspath(__file__))
         img_path = os.path.join(ui_path, "Keto-Gator-V3.png")
-        print(img_path)
         self.logo.setPixmap(QPixmap(img_path)) 
         self.logo.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
@@ -103,7 +141,7 @@ class Test (QWidget):
         self.confirmbutton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         ################### Middle DashBoard ###################
-       
+    
         self.currentpatienttext = QLabel()
         self.currentpatienttext.setFont(QtGui.QFont("Ariel", 14))
 
@@ -134,80 +172,130 @@ class Test (QWidget):
         self.graphselector.addItems(["", "Alertness","Anthropometrics","Daily Intake","Diet RX Source","Med Load","Seizure Data","Seizure Load","Urine Kt SG Source","Vitals"])
 
         ################### Update Data - Anthropometrics ###################
-        self.AnthropometricsMRNumberL = QLabel("Medical Record Number:")
+        self.AnthropometricsMRNumberL = QLabel("Medical Record Number")
         self.AnthropometricsMRNumberL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
         self.AnthropometricsMRNumberF = QLineEdit()
         self.AnthropometricsMRNumberF.setMaxLength(10)
 
 
-        self.AnthropometricsDateL = QLabel("Date:")
+        self.AnthropometricsDateL = QLabel("Date - (MM/DD/YYYY)")
         self.AnthropometricsDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsDateL.setToolTip("Date of collection pertaining to the table or parameter")
         self.AnthropometricsDateF = QLineEdit()
         self.AnthropometricsDateF.setMaxLength(10)
 
-        self.AnthropometricsDayTypeL = QLabel("Day Type:")
+        self.AnthropometricsDayTypeL = QLabel("Day Type")
         self.AnthropometricsDayTypeL.setFont(QtGui.QFont("Ariel", 13))
-        self.AnthropometricsDayTypeF = QLineEdit()
+        self.AnthropometricsDayTypeL.setToolTip("Description of date of collection, see list in column I \"Option for categorical variables\" for categorical variables")
+        self.AnthropometricsDayTypeF = QComboBox()
+        self.AnthropometricsDayTypeF.addItems(['','1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
 
-        self.AnthropometricsSourceL = QLabel("Source:")
+
+        self.AnthropometricsSourceL = QLabel("Source")
         self.AnthropometricsSourceL.setFont(QtGui.QFont("Ariel", 13))
-        self.AnthropometricsSoruceF = QLineEdit()
+        self.AnthropometricsSourceL.setToolTip("Description of location for data collection which indicates quality of data. The categorical value for this can be found in column I \"Options for categorical variables.\"  \nPatients on the prospective study can have 1,2, or 3 as options. Patients before the prospective study only have 2 and 3 as options. ")
+        self.AnthropometricsSoruceF = QComboBox()
+        self.AnthropometricsSoruceF.addItems(['', '1 = CRC', '2 = Clinic', '3 = Other (e.g home,school)'])
 
-        self.AnthropometricsCPL = QLabel("Cerebral Palsy Energy Factor:")
+        self.AnthropometricsCPL = QLabel("Cerebral Palsy Energy Factor")
         self.AnthropometricsCPL.setFont(QtGui.QFont("Ariel", 13))
-        self.AnthropometricsCPF = QLineEdit()
+        self.AnthropometricsCPL.setToolTip("Ratio used to determine dietary energy needs in neurologically impaired children. Based on energy needs for height. \nThe catgorical value for this can be found incolumn I \"option for categorical variables.\" ")
+        self.AnthropometricsCPF = QComboBox()
+        self.AnthropometricsCPF.addItems(['', '15 = Children without motor dysfunction', '14 = Children with motor dysfunction who are ambulator','11 = Children who are nonambulatory'])
 
-        self.AnthropometricsPAL = QLabel("Physical Activity Coefficient:")
+        self.AnthropometricsPAL = QLabel("Physical Activity Coefficient")
         self.AnthropometricsPAL.setFont(QtGui.QFont("Ariel", 13))
-        self.AnthropometricsPAF = QLineEdit()
+        self.AnthropometricsPAL.setToolTip("The physical activity coefficients are used in the EER equations to estimate energy requirements and are based on ranges of physical activity levels. There are 4 coefficients to describe physcial activity: 1) sedentary=non-ambulatory, mild physical therapy, does not do long periods (30 minutes or more) of physical activities; 2)low-active=physical therapy, ambulatory or active non-ambulatory, performs low intensity activities for 30 minutes or less.  Such activities include leisure walking, playing a musical instrument, or horseback riding (walking); 3) active=walks or runs as means of mobility, brisk walking for 30 minutes or longer, intense physical therapy more than twice a week, playing sports, swimming, etc.; 4) very active=constantly doing physical activities, dancing, climbing hills, jogging, tennis, skating, jumping rope, walking (5 mph).  Values for the categorical variable will be in column I \"Option for categorical variables\"  ")
+        
+        self.model = QtGui.QStandardItemModel()
+        
+        self.AnthropometricsPAF = QComboBox()
+        self.AnthropometricsPAF.setModel(self.model)
+        
+        
+        self.AnthropometricsPAF2 = QComboBox()
+        self.AnthropometricsPAF2.setModel(self.model)
+        self.AnthropometricsPAF2.setFixedSize(120,20)
 
-        self.AnthropometricsHtL = QLabel("Height:")
+        
+        self.PA = {
+            '':[''],
+        'Males 3-18 years':['1.00 = Sedentary','1.13 = Low Active','1.26 = Active','1.42 = Very Active'], 
+        'Males ≥19 years':['1.00 = Sedentary', '1.11 = low Active', '1.25 = Active','1.48 = Very Active'],
+        'Females 3-18 years':['1.00 = Sedentary','1.16 = Low Active', '1.31 = Active','1.56 = Very Active'],
+        'Females ≥19 years':['1.00 = Sedentary','1.12 = Low Active', '1.27 = Active', '1.45 = Very Active']}
+
+
+
+        for k, vals in self.PA.items():
+            self.person = QtGui.QStandardItem(k)
+            self.model.appendRow(self.person)
+            for value in vals:
+                self.activity = QtGui.QStandardItem(value)
+                self.person.appendRow(self.activity)
+        
+        self.AnthropometricsPAF.currentIndexChanged.connect(self.updateStateCombo)
+        self.updateStateCombo(0)    
+
+        self.AnthropometricsHtL = QLabel("Height - cm")
         self.AnthropometricsHtL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsHtL.setToolTip("Measure of linear growth. It is collected in one of 3 ways for patients: 1) patient standing measured using a stadiometer; 2) \nlying down straight measured from head to heel using measuring tape; 3) lying down segmental measured using measuring tape (head to shoulder, shoulder to hip, hip to knee, knee to heel). \nFor patients lying down, the measurement may be taken on the left or right side of the body depending on the patient, but is most routinely collected on the right side of the body.   ")
         self.AnthropometricsHtF = QLineEdit()
 
-        self.AnthropometricsWtL = QLabel("Weight:")
+        self.AnthropometricsWtL = QLabel("Weight - kg")
         self.AnthropometricsWtL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsWtL.setToolTip("Measure of ponderal growth. It is collected in one of 2 ways for patients: 1) patient standing on a scale; 2) patient is weighed with wheelchair and wheelchair weight is subtracted from first weight.")
         self.AnthropometricsWtF = QLineEdit()
 
-        self.AnthropometricsHCL = QLabel("Head Circumference:")
+        self.AnthropometricsHCL = QLabel("Head Circumference - cm")
         self.AnthropometricsHCL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsHCL.setToolTip("Measurement of the head around its largest area. It measures the distance from above the eyebrows and ears and around the back of the head. The average of 3 readings is recorded.")
         self.AnthropometricsHCF = QLineEdit()
 
-        self.AnthropometricsUACL = QLabel("Upper Arm Circumference:")
+        self.AnthropometricsUACL = QLabel("Upper Arm Circumference - cm")
         self.AnthropometricsUACL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsUACL.setToolTip("The circumference of the upper right arm. Measured at the mid-point between the tip of the shoulder and the tip of the elbow (olecranon process and the acromium). \nPatient's elbow should be flexed to 90 degrees with the palm facing superiorly. The average of 3 readings is recorded.")
         self.AnthropometricsUACF = QLineEdit()
 
-        self.AnthropometricsTSFL = QLabel("Triceps Skinfold:")
+        self.AnthropometricsTSFL = QLabel("Triceps Skinfold - mm")
         self.AnthropometricsTSFL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsTSFL.setToolTip("Triceps skinfold thickness measured with a skinfold caliper. Measured at the back of the midpoint of the upper right arm. \nPatient should stand or lie down with right arm hanging loosely by the side. The average of 3 readings is recorded.")
         self.AnthropometricsTSFF = QLineEdit()
 
-        self.AnthropometricsSSFL = QLabel("Subscapular Skinfold:")
+        self.AnthropometricsSSFL = QLabel("Subscapular Skinfold - mm")
         self.AnthropometricsSSFL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsSSFL.setToolTip("Subscapular skinfold thickness measured with a skinfold caliper. Measured 1 cm below the inferior angle of the right scapula (shoulder blade). The average of 3 readings is recorded.")
         self.AnthropometricsSSFF = QLineEdit()
 
-        self.AnthropometricsUSFL = QLabel("Umbilicus Skinfold:")
+        self.AnthropometricsUSFL = QLabel("Umbilicus Skinfold - mm")
         self.AnthropometricsUSFL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsUSFL.setToolTip("Umbilicus skinfold thickness measured with a skinfold caliper. The vertical umbilicus skinfold is measured by pinching the abdominal fat fold vertically \nabout 2.5 cm to the right of the patient’s umbilicus. The average of 3 readings is recorded.")
         self.AnthropometricsUSFF = QLineEdit()
 
-        self.AnthropometricsSISFL = QLabel("Suprailiac Skinfold:")
+        self.AnthropometricsSISFL = QLabel("Suprailiac Skinfold - mm")
         self.AnthropometricsSISFL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsSISFL.setToolTip("Suprailiac skinfold thickness measured with a skinfold caliper. The vertical supra iliac skinfolds are measured by pinching the side fatfolds vertically \nat the mid-axilary line and at the level of the umbilicus. The average of 3 readings is recorded.")
         self.AnthropometricsSISFF = QLineEdit()
 
-        self.AnthropometricsMBSFL = QLabel("Midback Skinfold:")
+        self.AnthropometricsMBSFL = QLabel("Midback Skinfold - mm")
         self.AnthropometricsMBSFL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsMBSFL.setToolTip("Mid back skinfold thickness measured with a skinfold caliper. The vertical mid-back skinfold is measured by pinching the back fat fold about 2.5 cm to the \nright of the spinal column at the level of the umbilicus. The average of 3 readings is recorded.")
         self.AnthropometricsMBSFF = QLineEdit()
 
-        self.AnthropometricsUCL = QLabel("Umbilical Circumference:")
+        self.AnthropometricsUCL = QLabel("Umbilical Circumference - cm")
         self.AnthropometricsUCL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsUCL.setToolTip("Circumference of the mid-section of the body at the umbilicus (belly button), perpendicular to the long axis of the body. The average of 3 readings is recorded.")
         self.AnthropometricsUCF = QLineEdit()
 
-        self.AnthropometricsEnteredL = QLabel("Entered:")
+        self.AnthropometricsEnteredL = QLabel("Entered")
         self.AnthropometricsEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
         self.AnthropometricsEnteredF = QLineEdit()
 
-        self.AnthropometricsCommentsL = QLabel("Comments:")
+        self.AnthropometricsCommentsL = QLabel("Comments")
         self.AnthropometricsCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.AnthropometricsCommentsL.setToolTip("Additional comments pertaining to the date and data")
         self.AnthropometricsCommentsF = QTextEdit()
 
         self.AnthropometricsSaveButton = QPushButton("Save")
@@ -295,6 +383,7 @@ class Test (QWidget):
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsCPF,4,1)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsPAL,5,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsPAF,5,1)
+        self.graphinputformanthropometrics.addWidget(self.AnthropometricsPAF2,5,2)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsHtL,6,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsHtF,6,1)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsWtL,7,0)
@@ -315,30 +404,18 @@ class Test (QWidget):
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsMBSFF,14,1)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsUCL,15,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsUCF,15,1)
-        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsRL,16,0)
-        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsRF,16,1)
-        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsXL,17,0)
-        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsXF,17,1)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsEnteredL,18,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsEnteredF,18,1)
-        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsAuditedL,19,0)
-        # self.graphinputformanthropometrics.addWidget(self.AnthropometricsAuditedF,19,1)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsCommentsL,20,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsCommentsF,20,1)
         
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsSaveButton,21,1)
 
-       
+    
 
         self.middle.addLayout(self.graphinputformtop)
         # self.middle.addLayout(self.graphinputformanthropometrics)
         # self.middle.removeItem(self.graphinputformanthropometrics)
-        
-        
-        
-
-
-
         
         
         self.middle.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
@@ -410,7 +487,9 @@ class Test (QWidget):
         self.searchbar.setText("")
     
     def handlelogout(self,event):
-        print("Log Out Clicked")
+        log = Login()
+        self.close()
+        log.show()
     
     def handlenewpatient (self,event):
         print("New Patient Clicked")
@@ -424,13 +503,13 @@ class Test (QWidget):
         self.closeanthropometrics()
         
 
-
     def handleupdate(self, event):
         self.closeprofile()
         self.middle.addLayout(self.graphinputformtop)
-
+        self.currentpatienttext.show()
         self.graphselector.show()
         self.selectgraph.show()
+        
 
 
         # self.confirmbutton.close()
@@ -444,7 +523,10 @@ class Test (QWidget):
             self.graphinputformanthropometrics.setContentsMargins(200,0,200,0)
             self.openanthropometrics()
 
-
+    def updateStateCombo(self, index):
+            indx = self.model.index(index, 0, self.AnthropometricsPAF.rootModelIndex())
+            self.AnthropometricsPAF2.setRootModelIndex(indx)
+            self.AnthropometricsPAF2.setCurrentIndex(0)
 
     def loadpatients(self):
 
@@ -460,30 +542,15 @@ class Test (QWidget):
 
             j+=1
 
-
             if(j%5 == 0):
                 i+=1
                 j=0
-           
-
-        
-        # for patient in self.allpatients:
-        #     for j in range (0,5):
-                                
-        #         self.patientbtn = QPushButton("Name: " + patient)
-        #         self.middlegrid.addWidget(self.patientbtn,0,j)
-        #         print(patient)
-                
-                # self.patientbtn.setFont(QtGui.QFont("Ariel", 12))
-                # self.patientbtn.setStyleSheet("font-weight: bold;")
-                # self.patientbtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
 
     
     def loadgraphnames(self):
-        
-        # newlist = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine","Ten", "Eleven", "Twelve","One", "Two", "Three"]
         newlist = getPatientGraphs(self.currentpatient)
+        print(newlist)
         temp = []
         temp.clear()
         temp.extend(newlist)
@@ -501,12 +568,7 @@ class Test (QWidget):
         self.middlescrollarea.show()
 
     def openprofile(self):
-        # temp = self.sender().text()
-        # temp = temp[5:]
-        # temp1 = temp.split("\n")
-        # self.currentpatient = temp1[0][1:]
-        # self.currentpatientMR = temp1[1][5:]
-        
+      
         self.currentpatient = self.sender().text()[5:]
                
         self.currentpatienttext.setText("Selected Patient: " + self.currentpatient) 
@@ -553,6 +615,7 @@ class Test (QWidget):
         self.AnthropometricsCPF.close()
         self.AnthropometricsPAL.close()
         self.AnthropometricsPAF.close()
+        self.AnthropometricsPAF2.close()
         self.AnthropometricsHtL.close()
         self.AnthropometricsHtF.close()
         self.AnthropometricsWtL.close()
@@ -573,14 +636,8 @@ class Test (QWidget):
         self.AnthropometricsMBSFF.close()
         self.AnthropometricsUCL.close()
         self.AnthropometricsUCF.close()
-        # self.AnthropometricsRL.close()
-        # self.AnthropometricsRF.close()
-        # self.AnthropometricsXL.close()
-        # self.AnthropometricsXF.close()
         self.AnthropometricsEnteredL.close()
         self.AnthropometricsEnteredF.close()
-        # self.AnthropometricsAuditedL.close()
-        # self.AnthropometricsAuditedF.close()
         self.AnthropometricsCommentsL.close()
         self.AnthropometricsCommentsF.close()
         self.AnthropometricsSaveButton.close()
@@ -597,7 +654,8 @@ class Test (QWidget):
         self.AnthropometricsCPL.show()
         self.AnthropometricsCPF.show()
         self.AnthropometricsPAL.show()
-        self.AnthropometricsPAF.show()
+        self.AnthropometricsPAF.show()          
+        self.AnthropometricsPAF2.show()
         self.AnthropometricsHtL.show()
         self.AnthropometricsHtF.show()
         self.AnthropometricsWtL.show()
@@ -627,10 +685,11 @@ class Test (QWidget):
     def resetinputs(self):
         self.AnthropometricsMRNumberF.setText(""),
         self.AnthropometricsDateF.setText(""),
-        self.AnthropometricsDayTypeF.setText(""),
-        self.AnthropometricsSoruceF.setText(""),
-        self.AnthropometricsCPF.setText(""),
-        self.AnthropometricsPAF.setText(""),
+        self.AnthropometricsDayTypeF.setCurrentIndex(0),
+        self.AnthropometricsSoruceF.setCurrentIndex(0),
+        self.AnthropometricsCPF.setCurrentIndex(0),
+        self.AnthropometricsPAF.setCurrentIndex(0),
+        self.AnthropometricsPAF2.setCurrentIndex(0),
         self.AnthropometricsHtF.setText(""),
         self.AnthropometricsWtF.setText(""),
         self.AnthropometricsHCF.setText(""),
@@ -646,14 +705,17 @@ class Test (QWidget):
 
 
     def submitAnthropometrics(self,event):
+       
+        print(self.AnthropometricsPAF2.currentText()[:4])
+       
         saveAnthropometrics(
             self.currentpatient,
             int(self.AnthropometricsMRNumberF.text()),
             self.AnthropometricsDateF.text(),
-            int(self.AnthropometricsDayTypeF.text()),
-            int(self.AnthropometricsSoruceF.text()),
-            float(self.AnthropometricsCPF.text()),
-            float(self.AnthropometricsPAF.text()),
+            int(self.AnthropometricsDayTypeF.currentText()[:1]),
+            int(self.AnthropometricsSoruceF.currentText()[:1]),
+            float(self.AnthropometricsCPF.currentText()[:2]),
+            float(self.AnthropometricsPAF2.currentText()[:4]),
             float(self.AnthropometricsHtF.text()),
             float(self.AnthropometricsWtF.text()),
             float(self.AnthropometricsHCF.text()),
@@ -673,20 +735,14 @@ class Test (QWidget):
 def main():
     app = QApplication(sys.argv)
     
-    # login = Login()
-    # login.show()
+    loginwindow = Login()
+    loginwindow.show()
+
     
-    # window = MainUI()
-    # window.show()
-    test = Test()
-    test.show()
+    # test = Test()
+    # test.show()
     app.exec_()
 
 
 if __name__ == "__main__":
     main()
-
-
-class NewAnthropometrics():
-    def __init__(self, MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC,TSF,SSF,USF,SIS,MBSF,UC,Entered,Comments):
-        pass
