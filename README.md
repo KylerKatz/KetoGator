@@ -11,6 +11,8 @@ pip install xlrd
 pip install xlwt
 ### For connecting to MySQL databases
 pip install mysql-connector-python
+### For Excel sheet editing:
+pip install openpyxl
 
-## Configuration File
+## Configuration File (LATER)
 The MySQL connector looks for a configuration file called mysql.conf. It should specify host, database, user, password, and port information for the target database.

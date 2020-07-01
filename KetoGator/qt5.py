@@ -3,9 +3,8 @@ import os
 from PyQt5 import QtWidgets, uic, QtSql, QtCore, QtGui
 from PyQt5.QtGui import QPixmap, QFont
 from PyQt5.QtWidgets import *
-
-from SpreadSheetAccess import *
-
+from . import SpreadSheetAccess
+#from SpreadSheetAccess import *
 
 class Login (QWidget):
     def __init__(self):
@@ -580,7 +579,7 @@ class Test (QWidget):
                 
     def addnewpatient(self,event):
         if (self.nameinput.text != ''):
-            setNewPatient(self.nameinput.text())
+            SpreadSheetAccess.setNewPatient(self.nameinput.text())
             self.nameinput.setText('')
 
         # Eventually I need to make sure it can only be 10 chars, but for now this is ok 
@@ -607,7 +606,7 @@ class Test (QWidget):
             self.AnthropometricsPAF2.setCurrentIndex(0)
 
     def loadpatients(self):
-        self.allpatients = getAllPatients()
+        self.allpatients = SpreadSheetAccess.getAllPatients()
         
         i = 0
         j = 0
@@ -631,7 +630,7 @@ class Test (QWidget):
 
     
     def loadgraphnames(self):
-        newlist = getPatientGraphs(self.currentpatient)
+        newlist = SpreadSheetAccess.getPatientGraphs(self.currentpatient)
         print(newlist)
         temp = []
         temp.clear()
@@ -790,7 +789,7 @@ class Test (QWidget):
        
         print(self.AnthropometricsPAF2.currentText()[:4])
        
-        saveAnthropometrics(
+        SpreadSheetAccess.saveAnthropometrics(
             self.currentpatient,
             self.AnthropometricsMRNumberF.text(),
             self.AnthropometricsDateF.text(),

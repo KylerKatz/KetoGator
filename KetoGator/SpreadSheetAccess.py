@@ -15,10 +15,10 @@ def getPatientAnthropometrics(patient):
 
 # Returns list of all patients
 def getAllPatients():
-    return(os.listdir("./Current Patients"))
+    return(os.listdir("./KetoGator/Current Patients"))
 
 def getPatientGraphs(patient):
-    return (os.listdir("./Current Patients/"+patient+"/DataBases/Data/"))
+    return (os.listdir("./KetoGator/Current Patients/"+patient+"/DataBases/Data/"))
 
 # Do a check to see if the Patient has an Anthropoemtics table
 # If not, create one with the naming scheme MrNumber_Anthropometrics_Source.xlsx
