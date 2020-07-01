@@ -19,12 +19,7 @@ def getAllPatients():
 
 def getPatientGraphs(patient):
     return (os.listdir("./Current Patients/"+patient+"/DataBases/Data/"))
-
-# Do a check to see if the Patient has an Anthropoemtics table
-# If not, create one with the naming scheme MrNumber_Anthropometrics_Source.xlsx
-# Add the columns at the top 
-# Then input the data
-# If so, this is fine 
+ 
 def saveAnthropometrics(patient, MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC,TSF,SSF,USF,SIS,MBSF,UC,Entered,Comments):
     path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Anthropometrics_Source.xlsx"
     

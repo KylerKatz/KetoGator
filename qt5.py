@@ -324,6 +324,7 @@ class Test (QWidget):
 
         self.groupbox.setLayout(self.middlegrid)
         self.groupbox.setContentsMargins(0,0,0,0)
+        self.middlegrid.setAlignment(QtCore.Qt.AlignTop)
 
         self.middlescrollarea = QScrollArea(self)
         self.middlescrollarea.setWidget(self.groupbox)
@@ -499,7 +500,7 @@ class Test (QWidget):
             # Close full list  
             for p in self.allpatientbuttons:
                 print(str(num) +p.text())
-                p.close()
+                p.deleteLater()
                 num += 1
             
             self.allpatientbuttons.clear()
@@ -510,7 +511,7 @@ class Test (QWidget):
                 for f in self.foundpatientbuttons:
                     print("Closing "+ f.text())
                     self.middlegrid.removeWidget(f)
-                    f.close()
+                    f.deleteLater()
                     self.foundpatientbuttons.clear()  
             
             # Clear Found Patients list
@@ -525,7 +526,7 @@ class Test (QWidget):
             #### Create Buttons For Each Match ####
             for patient in self.foundpatients:
                 print("Created New Button for " + patient)
-                self.patientbtn2 = QPushButton("MRN: " + patient)
+                self.patientbtn2 = QPushButton("Patient ID: " + patient)
                 self.middlegrid.addWidget(self.patientbtn2,i,j)
                 self.patientbtn2.clicked.connect(self.openprofile)
                 self.foundpatientbuttons.append(self.patientbtn2)
@@ -536,25 +537,14 @@ class Test (QWidget):
                     i+=1
                     j=0
             
-            
-            print("All Patients")
-            for m in self.allpatientbuttons:
-                print(m.text())
-            
             self.middlescrollarea.close()
             self.middlescrollarea.show()
-
+            print("--------------------------------------------")
             print("Total Patients " + str(len(self.allpatients)))
             print("Total old buttons " + str(len(self.allpatientbuttons)))
 
             print("Total Patients found that match " + str(len(self.foundpatients)))
             print("Number of new buttons " + str(len(self.foundpatientbuttons)))
-  
-            
-            # print("All of the found patient buttons")
-            # for t in self.foundpatientbuttons:
-            #     print(t.text())
-
 
         self.searchbar.setText("")
     
@@ -615,7 +605,7 @@ class Test (QWidget):
         self.allpatientbuttons.clear()
 
         for patient in self.allpatients:
-            self.patientbtn = QPushButton("MRN: " + patient)
+            self.patientbtn = QPushButton("Patient ID: " + patient)
             self.middlegrid.addWidget(self.patientbtn,i,j)
             self.patientbtn.clicked.connect(self.openprofile)
 
@@ -651,8 +641,8 @@ class Test (QWidget):
 
     def openprofile(self):
       
-        self.currentpatient = self.sender().text()[5:]
-               
+        self.currentpatient = self.sender().text()[12:]
+        print(self.currentpatient)         
         self.currentpatienttext.setText("Selected Patient: " + self.currentpatient) 
 
         self.patientname.setText(self.currentpatient)
@@ -790,30 +780,42 @@ class Test (QWidget):
        
         print(self.AnthropometricsPAF2.currentText()[:4])
        
-        saveAnthropometrics(
-            self.currentpatient,
-            self.AnthropometricsMRNumberF.text(),
-            self.AnthropometricsDateF.text(),
-            int(self.AnthropometricsDayTypeF.currentText()[:1]),
-            int(self.AnthropometricsSoruceF.currentText()[:1]),
-            float(self.AnthropometricsCPF.currentText()[:2]),
-            float(self.AnthropometricsPAF2.currentText()[:4]),
-            float(self.AnthropometricsHtF.text()),
-            float(self.AnthropometricsWtF.text()),
-            float(self.AnthropometricsHCF.text()),
-            float(self.AnthropometricsUACF.text()), 
-            float(self.AnthropometricsTSFF.text()),
-            float(self.AnthropometricsSSFF.text()),
-            float(self.AnthropometricsUSFF.text()),
-            float(self.AnthropometricsSISFF.text()),
-            float(self.AnthropometricsMBSFF.text()),
-            float(self.AnthropometricsUCF.text()),
-            self.AnthropometricsEnteredF.text(),
-            self.AnthropometricsCommentsF.toPlainText(), 
-            )
+        try:
+            saveAnthropometrics(
+                self.currentpatient,
+                int(self.AnthropometricsMRNumberF.text()),
+                self.AnthropometricsDateF.text(),
+                int(self.AnthropometricsDayTypeF.currentText()[:1]),
+                int(self.AnthropometricsSoruceF.currentText()[:1]),
+                float(self.AnthropometricsCPF.currentText()[:2]),
+                float(self.AnthropometricsPAF2.currentText()[:4]),
+                float(self.AnthropometricsHtF.text()),
+                float(self.AnthropometricsWtF.text()),
+                float(self.AnthropometricsHCF.text()),
+                float(self.AnthropometricsUACF.text()), 
+                float(self.AnthropometricsTSFF.text()),
+                float(self.AnthropometricsSSFF.text()),
+                float(self.AnthropometricsUSFF.text()),
+                float(self.AnthropometricsSISFF.text()),
+                float(self.AnthropometricsMBSFF.text()),
+                float(self.AnthropometricsUCF.text()),
+                self.AnthropometricsEnteredF.text(),
+                self.AnthropometricsCommentsF.toPlainText(), 
+                )
+            
+            self.anthropometricspopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            
+            print("Data Entered Successfully")
+            self.resetinputs()
+            self.loadgraphnames()
+        except ValueError: 
+            
+            self.anthropometricspopupfail = QMessageBox.question(self,"Incorrect Entry","One or more of the values that you entered are incorrect. \n\nPlease ensure that every entry is a number except for the Date, Entered, and Comments fields. ", QMessageBox.Retry)
+            if self.anthropometricspopupfail==QMessageBox.Retry:
+                print("Data Entered Failed")
+            
 
-        self.resetinputs()
-        self.loadgraphnames()
+        
 
 def main():
     app = QApplication(sys.argv)
