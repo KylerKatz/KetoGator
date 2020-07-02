@@ -1,0 +1,3 @@
+[console_scripts]
+kgstart = KetoGator.qt5:main
+

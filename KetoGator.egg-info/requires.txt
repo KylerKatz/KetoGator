@@ -1,0 +1,7 @@
+PyQt5
+pandas
+xlrd
+xlwt
+mysql-connector-python
+openpyxl
+matplotlib

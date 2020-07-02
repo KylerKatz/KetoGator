@@ -1,0 +1,29 @@
+LICENSE.txt
+README.md
+setup.cfg
+setup.py
+KetoGator/DataProcessing.py
+KetoGator/EmbedMatplotlib.py
+KetoGator/Icon.png
+KetoGator/Keto-Gator-V3.png
+KetoGator/SpreadSheetAccess.py
+KetoGator/__init__.py
+KetoGator/db_connection.py
+KetoGator/main.py
+KetoGator/qt5.py
+KetoGator.egg-info/PKG-INFO
+KetoGator.egg-info/SOURCES.txt
+KetoGator.egg-info/dependency_links.txt
+KetoGator.egg-info/entry_points.txt
+KetoGator.egg-info/requires.txt
+KetoGator.egg-info/top_level.txt
+KetoGator/.idea/KetoGator.iml
+KetoGator/.idea/misc.xml
+KetoGator/.idea/modules.xml
+KetoGator/.idea/vcs.xml
+KetoGator/.idea/workspace.xml
+KetoGator/.idea/inspectionProfiles/profiles_settings.xml
+KetoGator/.vscode/launch.json
+KetoGator/Current Patients/TeSt1/DataBases/Data/TeSt1_Anthropometrics_Source.xlsx
+KetoGator/Current Patients/TeSt2/DataBases/Data/TeSt2_Anthropometrics_Source.xlsx
+KetoGator/Current Patients/TeSt3/DataBases/Data/TeSt3_Anthropometrics_Source.xlsx
