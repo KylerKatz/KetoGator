@@ -44,11 +44,30 @@ class Canvas(FigureCanvas):
             weight = data["Wt"]
             date = pd.to_datetime(data["Date"])
 
+            print("------------------")
+            print("The Dates Are ...")
+            for d in date:
+                print(str(d) + " - type - " + str(type(d)))
+
+            print("------------------")
+            print("The Weights Are ...")
+            for w in weight:
+                print(str(w) + " - type - " + str(type(w)))
+
+
+
             ax = self.figure.add_subplot(111)
             ax.plot(date, weight)
+            ax.set_title(patient + " | Anthropometrics (Weight vs Time)")
+            ax.set_xlabel("Date - (MM/DD/YYYY)")
+            ax.set_ylabel("Weight - (KG)")
+            # ax.set_facecolor('#f0f0f0')
+            # ax.set_axis_bgcolor('#f0f0f0')
+            
+            
 
-        except TypeError:
-            print("Can't Create Graph, most likely the types aren't correct")
+        except:
+            print("Can't create graph, most likely the types aren't correct or the data is invalid")
 
 # app = QApplication(sys.argv)
 # window = Window()

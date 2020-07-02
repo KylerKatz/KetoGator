@@ -95,6 +95,7 @@ class Test (QWidget):
         self.setGeometry(300,200,1280,720)
         self.setWindowTitle("Keto Gator")
         self.setMinimumWidth(1280)
+        self.setWindowIcon(QtGui.QIcon("Icon.png"))
         
         ################### Side Bar ###################
         self.line1 = QFrame(self)
@@ -870,12 +871,12 @@ class Test (QWidget):
 def main():
     app = QApplication(sys.argv)
     
-    # loginwindow = Login()
-    # loginwindow.show()
+    loginwindow = Login()
+    loginwindow.show()
 
     
-    test = Test()
-    test.show()
+    # test = Test()
+    # test.show()
     app.exec_()
 
 
