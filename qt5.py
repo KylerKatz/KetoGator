@@ -5,6 +5,13 @@ from PyQt5.QtGui import QPixmap, QFont
 from PyQt5.QtWidgets import *
 from datetime import datetime
 
+
+from EmbedMatplotlib import *
+# from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+# from matplotlib.figure import Figure
+
+
+
 from SpreadSheetAccess import *
 
 
@@ -483,10 +490,37 @@ class Test (QWidget):
         self.middle.removeItem(self.graphinputformtop)
         self.middle.removeItem(self.graphinputformanthropometrics)
         self.resetinputs()
+        
+        try:
+            self.anthropometricsGraph.close()
+        except AttributeError:
+            print("No Graph to delete")
+    
 
 
         
     def handlelist(self,item):
+        
+        self.closedashboard()
+        self.closeprofile()
+        self.closeanthropometrics()
+        self.closenewpatient()
+    
+        
+        try: 
+            if(self.anthropometricsGraph):
+                self.anthropometricsGraph.close()
+        
+        except AttributeError:
+            print("Creating First Graph")
+        
+        if("Anthropometrics" in item.text()):
+            self.anthropometricsGraph = Canvas(self.currentpatient)
+            # self.anthropometricsGraph.move(0,0)
+            self.anthropometricsGraph.close()
+            self.middle.addWidget(self.anthropometricsGraph)
+
+
         print(item.text())
 
     def handlesearch(self,event):
@@ -548,6 +582,13 @@ class Test (QWidget):
             print("Number of new buttons " + str(len(self.foundpatientbuttons)))
 
         self.searchbar.setText("")
+        self.closeanthropometrics()
+        self.closenewpatient()
+        self.closeprofile()
+        try:
+            self.anthropometricsGraph.close()
+        except AttributeError:
+            print("No Graph to delete")
     
     def handlelogout(self,event):
         log = Login()
@@ -568,6 +609,13 @@ class Test (QWidget):
         self.middle.removeItem(self.graphinputformtop)
         self.middle.removeItem(self.graphinputformanthropometrics)
         self.resetinputs()
+
+        try:
+            self.anthropometricsGraph.close()
+        except AttributeError:
+            print("No Graph to delete")
+
+
                 
     def addnewpatient(self,event):
         if (self.nameinput.text != ''):
@@ -675,7 +723,8 @@ class Test (QWidget):
         self.addpatientbutton.close()
 
     def closeanthropometrics(self):
-        
+        self.graphselector.close()
+        self.selectgraph.close()
         self.AnthropometricsMRNumberL.close()
         self.AnthropometricsMRNumberF.close()
         self.AnthropometricsDateL.close()

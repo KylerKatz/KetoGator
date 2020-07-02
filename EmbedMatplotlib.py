@@ -7,25 +7,25 @@ import pandas as pd
 from datetime import datetime
 from SpreadSheetAccess import *
 
-class Window(QMainWindow):
-    def __init__(self):
-        super().__init__()
+# class Window(QMainWindow):
+#     def __init__(self):
+#         super().__init__()
 
-        title = "Matplotlib Embedding in PyQt5"
-        top = 400
-        left = 400
-        width = 900
-        height = 500
+#         title = "Matplotlib Embedding in PyQt5"
+#         top = 400
+#         left = 400
+#         width = 900
+#         height = 500
 
-        self.setWindowTitle(title)
-        self.setGeometry(top, left, width, height)
+#         self.setWindowTitle(title)
+#         self.setGeometry(top, left, width, height)
 
-        self.MyUI()
+#         self.MyUI()
 
-    def MyUI(self):
+#     def MyUI(self):
 
-        canvas = Canvas("TeSt2", self)
-        canvas.move(0,0)
+#         canvas = Canvas("TeSt2", self)
+#         canvas.move(0,0)
 
 class Canvas(FigureCanvas):
     def __init__(self, patient, parent = None, width = 15, height = 10, dpi = 100):
@@ -38,17 +38,19 @@ class Canvas(FigureCanvas):
         self.plot(patient=patient)
 
     def plot(self, patient):
+        try:
+            data = getAnthropometricsDataFrame(patient)
 
-        data = getAnthropometricsDataFrame(patient)
+            weight = data["Wt"]
+            date = pd.to_datetime(data["Date"])
 
-        weight = data["Wt"]
-        date = pd.to_datetime(data["Date"])
+            ax = self.figure.add_subplot(111)
+            ax.plot(date, weight)
 
-        ax = self.figure.add_subplot(111)
-        ax.plot(date, weight)
+        except TypeError:
+            print("Can't Create Graph, most likely the types aren't correct")
 
-
-app = QApplication(sys.argv)
-window = Window()
-window.show()
-app.exec()
+# app = QApplication(sys.argv)
+# window = Window()
+# window.show()
+# app.exec()
