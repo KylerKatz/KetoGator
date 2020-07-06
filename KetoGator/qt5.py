@@ -547,7 +547,7 @@ class Test (QWidget):
                     print("Closing "+ f.text())
                     self.middlegrid.removeWidget(f)
                     f.deleteLater()
-                    self.foundpatientbuttons.clear()  
+                self.foundpatientbuttons.clear()  
             
             # Clear Found Patients list
             self.foundpatients.clear()

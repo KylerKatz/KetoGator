@@ -22,7 +22,7 @@ I set up by Ubuntu WSL the same way as instructed at the beginning of the class.
 There were errors that were given in relation to not being able to find "xcb" and not finding some libxcb.so files.
 I had to do the following to fix this error:
 
-sudo apt-get install libxcb-icccm4-dev libxcb-image0-dev libxcb-shm0-dev libxcb-keysyms1-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-xfixes0-dev libxcb-xkb-dev libxkbcommon-x11-dev libxkbcommon-dev
+sudo apt-get install libxcb-icccm4-dev libxcb-image0-dev libxcb-shm0-dev libxcb-keysyms1-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-xfixes0-dev libxcb-xkb-dev libxkbcommon-x11-dev libxkbcommon-dev libxcb-xinerama0-dev
 
 This will have to be installed before the program can be ran, *IF* a xcb error is produced.
 
@@ -50,10 +50,14 @@ The package should install all dependencies.
 Our project specifications have changed by the "customer" of this project just recently (6/27). This config will be added at another time.
 
 ## GitHub Link
-https://github.com/KylerKatz/KetoGator/tree/dain_kg_package3
+https://github.com/KylerKatz/KetoGator/tree/dain_kg_package4
 
 ## PyPl
-pip install KetoGator=1.0.3
+pip install KetoGator==1.0.11
 
 ## Executable line
 kgstart
+
+## Username and Password
+Username: user
+Password: password

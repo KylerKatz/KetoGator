@@ -3,10 +3,12 @@ from openpyxl import *
 import os
 import pandas
 
+curDir = os.path.dirname(__file__)
+
 # Returns sheet that has the specified patients anthropometric sheet
 def getPatientAnthropometrics(patient):
     try:
-        path = r"KetoGator/Current Patients/" + patient + r"/DataBases/Data/" + patient + r"_Anthropometrics_Source.xlsx"
+        path = curDir + r"/Current Patients/" + patient + r"/DataBases/Data/" + patient + r"_Anthropometrics_Source.xlsx"
         workbook = xlrd.open_workbook(path)
         worksheet = workbook.sheet_by_name('Anthropometrics')
         return workbook
@@ -15,13 +17,13 @@ def getPatientAnthropometrics(patient):
 
 # Returns list of all patients
 def getAllPatients():
-    return(os.listdir("./KetoGator/Current Patients"))
+    return(os.listdir(curDir+"/Current Patients"))
 
 def getPatientGraphs(patient):
-    return (os.listdir("./KetoGator/Current Patients/"+patient+"/DataBases/Data/"))
+    return(os.listdir(curDir+"/Current Patients/"+patient+"/DataBases/Data/"))
  
 def saveAnthropometrics(patient, MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC,TSF,SSF,USF,SIS,MBSF,UC,Entered,Comments):
-    path = r"KetoGator/Current Patients/" + patient + r"/DataBases/Data/" + patient + r"_Anthropometrics_Source.xlsx"
+    path = curDir + r"/Current Patients/" + patient + r"/DataBases/Data/" + patient + r"_Anthropometrics_Source.xlsx"
     
     # Tries to load workbook
     try:
@@ -47,13 +49,13 @@ def saveAnthropometrics(patient, MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC
 
 # Returns dataframe containing data inside the excel sheet
 def getAnthropometricsDataFrame(patient):
-    path = r"KetoGator/Current Patients/" + patient + r"/DataBases/Data/" + patient + r"_Anthropometrics_Source.xlsx"
+    path = curDir + r"/Current Patients/" + patient + r"/DataBases/Data/" + patient + r"_Anthropometrics_Source.xlsx"
     dataframe = pandas.read_excel(path)
     return dataframe
 
 # Creates appropriate directories for new patient or existing patient who doesn't have them
 def setNewPatient(MrNum):
-    path = r"KetoGator/Current Patients/" + MrNum + r"/DataBases/Data/"
+    path = curDir + r"/Current Patients/" + MrNum + r"/DataBases/Data/"
 
     # If path doesn't exist, the function executes, otherwise nothing happens
     if not os.path.isdir(path):
@@ -64,7 +66,7 @@ def setNewPatient(MrNum):
             1: "/DataBases",
             2: "/Data",
         }
-        dir = r"KetoGator/Current Patients/"
+        dir = curDir + r"/Current Patients/"
 
         # Create necessary directories
         for i in range(3):
