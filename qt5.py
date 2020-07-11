@@ -622,8 +622,39 @@ class Test (QWidget):
         self.graphinputformclinicGI.addWidget(self.ClinicGISaveButton,15,1)
     
 
-    
+        
+        # Set Up Scroll Boxes 
 
+        self.alertnessbox = QGroupBox()
+        self.alertnessbox.setLayout(self.graphinputformalertness)
+        self.alertnessformscroll = QScrollArea()
+
+        self.alertnessformscroll.setWidget(self.alertnessbox)
+        self.alertnessformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.alertnessformscroll)
+
+
+        self.anthropometricsbox = QGroupBox()
+        self.anthropometricsbox.setLayout(self.graphinputformalertness)
+        self.anthropometricsformscroll = QScrollArea()
+
+        self.anthropometricsformscroll.setWidget(self.anthropometricsbox)
+        self.anthropometricsformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.anthropometricsformscroll)
+
+        self.clinicGIbox = QGroupBox()
+        self.clinicGIbox.setLayout(self.graphinputformclinicGI)
+        
+        self.clinicGIformscroll = QScrollArea()
+        self.clinicGIformscroll.setWidget(self.clinicGIbox)
+        self.clinicGIformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.clinicGIformscroll)
+
+
+        #####################################################    
         self.middle.addLayout(self.graphinputformtop)
     
         
@@ -665,6 +696,7 @@ class Test (QWidget):
         self.graphselector.close()
         self.selectgraph.close()
         self.closeallfroms()
+        self.removeallforms()
 
 
         # self.closedashboard()
@@ -844,7 +876,16 @@ class Test (QWidget):
             self.closeallfroms()
             self.removeallforms()
 
-            self.middle.addLayout(self.graphinputformalertness)
+            # self.middle.addLayout(self.graphinputformalertness)
+            self.alertnessbox = QGroupBox()
+            self.alertnessbox.setLayout(self.graphinputformalertness)
+            
+            self.alertnessformscroll = QScrollArea()
+            self.alertnessformscroll.setWidget(self.alertnessbox)
+            self.alertnessformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.alertnessformscroll)
+
             self.graphinputformalertness.setContentsMargins(200,0,200,0)
             self.openalertness()
 
@@ -852,7 +893,16 @@ class Test (QWidget):
             self.closeallfroms()
             self.removeallforms()
 
-            self.middle.addLayout(self.graphinputformanthropometrics)
+            # self.middle.addLayout(self.graphinputformanthropometrics)
+            self.anthropometricsbox = QGroupBox()
+            self.anthropometricsbox.setLayout(self.graphinputformanthropometrics)
+            
+            self.anthropometricsformscroll = QScrollArea()
+            self.anthropometricsformscroll.setWidget(self.anthropometricsbox)
+            self.anthropometricsformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.anthropometricsformscroll)
+
             self.graphinputformanthropometrics.setContentsMargins(200,0,200,0)
             self.openanthropometrics()
 
@@ -860,7 +910,16 @@ class Test (QWidget):
             self.closeallfroms()
             self.removeallforms()
 
-            self.middle.addLayout(self.graphinputformclinicGI)
+            # self.middle.addLayout(self.graphinputformclinicGI)
+            self.clinicGIbox = QGroupBox()
+            self.clinicGIbox.setLayout(self.graphinputformclinicGI)
+            
+            self.clinicGIformscroll = QScrollArea()
+            self.clinicGIformscroll.setWidget(self.clinicGIbox)
+            self.clinicGIformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.clinicGIformscroll)
+
             self.graphinputformclinicGI.setContentsMargins(200,0,200,0)
             self.openclinicgi()
                
@@ -949,12 +1008,26 @@ class Test (QWidget):
     def closeallfroms(self):
         self.closealertness()
         self.closeanthropometrics()
-        self.closeclinicgi()    
+        self.closeclinicgi()
+
+        self.alertnessbox.close()
+        self.alertnessformscroll.close()
+
+        self.anthropometricsbox.close()
+        self.anthropometricsformscroll.close()   
+
+        self.clinicGIbox.close()
+        self.clinicGIformscroll.close() 
 
     def removeallforms(self):
-        self.middle.removeItem(self.graphinputformalertness)
-        self.middle.removeItem(self.graphinputformanthropometrics)
-        self.middle.removeItem(self.graphinputformclinicGI)
+        # self.middle.removeItem(self.graphinputformalertness)
+        self.middle.removeWidget(self.alertnessformscroll)
+
+        # self.middle.removeItem(self.graphinputformanthropometrics)
+        self.middle.removeWidget(self.anthropometricsformscroll)
+
+        # self.middle.removeItem(self.graphinputformclinicGI)
+        self.middle.removeWidget(self.clinicGIformscroll)
 
 
     def closealertness(self):
