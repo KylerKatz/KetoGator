@@ -179,7 +179,55 @@ class Test (QWidget):
         ################### Update Data ###################
         self.selectgraph = QLabel("Select a Graph Type:")
         self.graphselector = QComboBox()
-        self.graphselector.addItems(["", "Alertness","Anthropometrics","Daily Intake","Diet RX Source","Med Load","Seizure Data","Seizure Load","Urine Kt SG Source","Vitals"])
+        self.graphselector.addItems(["", "Alertness","Anthropometrics", "Clinic GI Issues","Clinical Labs","Daily Intake",
+        "Diet RX","Med Data","Menus","Other Med","Seizure Data","Seizure Ranking","Urine Kt SG","Vitals","VNS"])
+
+        ################### Update Data - Alertness ###################
+        self.AlertnessMRNumberL = QLabel("Medical Record Number")
+        self.AlertnessMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.AlertnessMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.AlertnessMRNumberF = QLineEdit()
+        self.AlertnessMRNumberF.setMaxLength(10)
+        
+        self.AlertnessDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.AlertnessDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.AlertnessDateL.setToolTip("Date of collection pertaining to the table or parameter")
+        self.AlertnessDateF = QDateEdit()
+        self.AlertnessDateF.setDisplayFormat("MM/dd/yyyy")
+        self.AlertnessDateF.setDate(datetime.date(datetime.now()))
+        
+        self.AlertnessDayTypeL = QLabel("Day Type")
+        self.AlertnessDayTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.AlertnessDayTypeL.setToolTip("Description of date of collection")
+        self.AlertnessDayTypeF = QComboBox()
+        self.AlertnessDayTypeF.addItems(['','1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+
+        self.AlertnessL = QLabel("Alertness")
+        self.AlertnessL.setFont(QtGui.QFont("Ariel", 13))
+        self.AlertnessL.setToolTip("Description of the patients alertness at the clinic visit")
+        self.AlertnessF = QTextEdit()
+
+        self.AlertnessActivityL = QLabel("Activity")
+        self.AlertnessActivityL.setFont(QtGui.QFont("Ariel", 13))
+        self.AlertnessActivityL.setToolTip("Description of the patients activity at the clinic visit")
+        self.AlertnessActivityF = QTextEdit()
+
+        self.AlertnessDevelopmentL = QLabel("Development")
+        self.AlertnessDevelopmentL.setFont(QtGui.QFont("Ariel", 13))
+        self.AlertnessDevelopmentL.setToolTip("Description of the patients development at the clinic visit")
+        self.AlertnessDevelopmentF = QTextEdit()
+
+        self.AlertnessEnteredL = QLabel("Entered")
+        self.AlertnessEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.AlertnessEnteredL.setToolTip("Person who entered the data initials follwed by date entered i.e. HA-07/22/2016")
+        self.AlertnessEnteredF = QLineEdit()
+
+        self.AlertnessCommentsL = QLabel("Comments")
+        self.AlertnessCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.AlertnessCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.AlertnessCommentsF = QTextEdit()
+
+        self.AlertnessSaveButton = QPushButton("Save")
 
         ################### Update Data - Anthropometrics ###################
         self.AnthropometricsMRNumberL = QLabel("Medical Record Number")
@@ -188,19 +236,18 @@ class Test (QWidget):
         self.AnthropometricsMRNumberF = QLineEdit()
         self.AnthropometricsMRNumberF.setMaxLength(10)
 
-
         self.AnthropometricsDateL = QLabel("Date - (MM/DD/YYYY)")
         self.AnthropometricsDateL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsDateL.setToolTip("Date of collection pertaining to the table or parameter")
-        self.AnthropometricsDateF = QLineEdit()
-        self.AnthropometricsDateF.setMaxLength(10)
+        self.AnthropometricsDateF = QDateEdit()
+        self.AnthropometricsDateF.setDisplayFormat("MM/dd/yyyy")
+        self.AnthropometricsDateF.setDate(datetime.date(datetime.now()))
 
         self.AnthropometricsDayTypeL = QLabel("Day Type")
         self.AnthropometricsDayTypeL.setFont(QtGui.QFont("Ariel", 13))
-        self.AnthropometricsDayTypeL.setToolTip("Description of date of collection, see list in column I \"Option for categorical variables\" for categorical variables")
+        self.AnthropometricsDayTypeL.setToolTip("Description of date of collection")
         self.AnthropometricsDayTypeF = QComboBox()
         self.AnthropometricsDayTypeF.addItems(['','1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
-
 
         self.AnthropometricsSourceL = QLabel("Source")
         self.AnthropometricsSourceL.setFont(QtGui.QFont("Ariel", 13))
@@ -309,9 +356,108 @@ class Test (QWidget):
         self.AnthropometricsCommentsF = QTextEdit()
 
         self.AnthropometricsSaveButton = QPushButton("Save")
+
+
+        ################### Update Data - Clinic GI Issues ###################
+        self.ClinicGIMRNumberL = QLabel("Medical Record Number")
+        self.ClinicGIMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.ClinicGIMRNumberF = QLineEdit()
+        self.ClinicGIMRNumberF.setMaxLength(10)
+        
+        self.ClinicGIDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.ClinicGIDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIDateL.setToolTip("Date of collection pertaining to the table or parameter")
+        self.ClinicGIDateF = QDateEdit()
+        self.ClinicGIDateF.setDisplayFormat("MM/dd/yyyy")
+        self.ClinicGIDateF.setDate(datetime.date(datetime.now()))
+        
+        self.ClinicGIDayTypeL = QLabel("Day Type")
+        self.ClinicGIDayTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIDayTypeL.setToolTip("Description of date of collection")
+        self.ClinicGIDayTypeF = QComboBox()
+        self.ClinicGIDayTypeF.addItems(['','1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+
+        self.ClinicGIConstL = QLabel("Clinic Constipation")
+        self.ClinicGIConstL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIConstL.setToolTip("Response is yes or no for constipation concerns brought up at clinic")
+        self.ClinicGIConstF = QComboBox()
+        self.ClinicGIConstF.addItems(['','Yes','No'])
+
+        self.ClinicGIDiaL = QLabel("Clinic Diarrhea")
+        self.ClinicGIDiaL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIDiaL.setToolTip("Response is yes or no for diarrhea concerns brought up at clinic")
+        self.ClinicGIDiaF = QComboBox()
+        self.ClinicGIDiaF.addItems(['','Yes','No'])
+
+        self.ClinicGIVomL = QLabel("Clinic Vomitting")
+        self.ClinicGIVomL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIVomL.setToolTip("Response is yes or no for vomitting concerns brought up at clinic")
+        self.ClinicGIVomF = QComboBox()
+        self.ClinicGIVomF.addItems(['','Yes','No'])
+
+        self.ClinicGINauseaL = QLabel("Clinic Nausea")
+        self.ClinicGINauseaL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGINauseaL.setToolTip("Response is yes or no for nausea concerns brought up at clinic")
+        self.ClinicGINauseaF = QComboBox()
+        self.ClinicGINauseaF.addItems(['','Yes','No'])
+
+        self.ClinicGIGagL = QLabel("Clinic Gagging Retching")
+        self.ClinicGIGagL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIGagL.setToolTip("Response is yes or no for gagging/retching concerns brought up at clinic")
+        self.ClinicGIGagF = QComboBox()
+        self.ClinicGIGagF.addItems(['','Yes','No'])
+
+        self.ClinicGINissenL = QLabel("Clinic Nissen")
+        self.ClinicGINissenL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGINissenL.setToolTip("Nissen fundoplication, sometimes known as laparoscopic fundoplication \nwhen performed via laparoscopic surgery, is a surgical procedure to treat gastroesophageal \nreflux disease (GERD) and hiatal hernia. Most patients with a G-tube will have a Nissen")
+        self.ClinicGINissenF = QComboBox()
+        self.ClinicGINissenF.addItems(['','Yes','No'])
+
+        self.ClinicGIConstDesL = QLabel("Clinic Description - Constipation")
+        self.ClinicGIConstDesL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIConstDesL.setToolTip("Description of constipation concerns brought up at clinic")
+        self.ClinicGIConstDesF = QTextEdit()
+
+        self.ClinicGIDiaDesL = QLabel("Clinic Description - Diarrhea")
+        self.ClinicGIDiaDesL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIDiaDesL.setToolTip("Description of diarrhea concerns brought up at clinic")
+        self.ClinicGIDiaDesF = QTextEdit()
+
+        self.ClinicGIVomDesL = QLabel("Clinic Description - Vomitting")
+        self.ClinicGIVomDesL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIVomDesL.setToolTip("Description of vomitting concerns brought up at clinic")
+        self.ClinicGIVomDesF = QTextEdit()
+
+        self.ClinicGINauseaDesL = QLabel("Clinic Description - Nausea")
+        self.ClinicGINauseaDesL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGINauseaDesL.setToolTip("Description of nausea concerns brought up at clinic")
+        self.ClinicGINauseaDesF = QTextEdit()
+
+        self.ClinicGIGagDesL = QLabel("Clinic Description - Gagging Retching")
+        self.ClinicGIGagDesL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIGagDesL.setToolTip("Description of gagging/retching concerns brought up at clinic")
+        self.ClinicGIGagDesF = QTextEdit()
+
+        self.ClinicGIEnteredL = QLabel("Entered")
+        self.ClinicGIEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGIEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.ClinicGIEnteredF = QLineEdit()
+
+        self.ClinicGICommentsL = QLabel("Comments")
+        self.ClinicGICommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicGICommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.ClinicGICommentsF = QTextEdit()
+
+        self.ClinicGISaveButton = QPushButton("Save")
+        
+
+
         
 
         self.closeanthropometrics()
+        self.closealertness()
+
         
         self.currentpatient =""
         self.currentpatientMR =""
@@ -327,7 +473,9 @@ class Test (QWidget):
         self.profiletop = QHBoxLayout()
         self.newpatientform = QFormLayout()
         self.graphinputformtop = QFormLayout()
+        self.graphinputformalertness = QGridLayout()
         self.graphinputformanthropometrics = QGridLayout()
+        self.graphinputformclinicGI = QGridLayout()
 
 
 
@@ -377,10 +525,29 @@ class Test (QWidget):
         self.middle.addLayout(self.newpatientform)
         self.middle.addWidget(self.addpatientbutton)
         
+        self.graphinputformtop.addRow(self.selectgraph,self.graphselector)
+
+        ################### Update Data Alertness ###################
+        self.graphinputformalertness.addWidget(self.AlertnessMRNumberL,0,0)
+        self.graphinputformalertness.addWidget(self.AlertnessMRNumberF,0,1)
+        self.graphinputformalertness.addWidget(self.AlertnessDateL,1,0)
+        self.graphinputformalertness.addWidget(self.AlertnessDateF,1,1)
+        self.graphinputformalertness.addWidget(self.AlertnessDayTypeL,2,0)
+        self.graphinputformalertness.addWidget(self.AlertnessDayTypeF,2,1)
+        self.graphinputformalertness.addWidget(self.AlertnessL,3,0)
+        self.graphinputformalertness.addWidget(self.AlertnessF,3,1)
+        self.graphinputformalertness.addWidget(self.AlertnessActivityL,4,0)
+        self.graphinputformalertness.addWidget(self.AlertnessActivityF,4,1)
+        self.graphinputformalertness.addWidget(self.AlertnessDevelopmentL,5,0)
+        self.graphinputformalertness.addWidget(self.AlertnessDevelopmentF,5,1)
+        self.graphinputformalertness.addWidget(self.AlertnessEnteredL,6,0)
+        self.graphinputformalertness.addWidget(self.AlertnessEnteredF,6,1)
+        self.graphinputformalertness.addWidget(self.AlertnessCommentsL,7,0)
+        self.graphinputformalertness.addWidget(self.AlertnessCommentsF,7,1)
+        self.graphinputformalertness.addWidget(self.AlertnessSaveButton,8,1)
+
 
         ################### Update Data Anthropometrics ###################
-        
-        self.graphinputformtop.addRow(self.selectgraph,self.graphselector)
         # self.graphinputformanthropometrics.setColumnStretch(3,3)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsMRNumberL,0,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsMRNumberF,0,1)
@@ -419,14 +586,46 @@ class Test (QWidget):
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsEnteredF,18,1)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsCommentsL,20,0)
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsCommentsF,20,1)
-        
         self.graphinputformanthropometrics.addWidget(self.AnthropometricsSaveButton,21,1)
+
+        ################### Update Data Clinic GI Issues ###################
+        self.graphinputformclinicGI.addWidget(self.ClinicGIMRNumberL,0,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIMRNumberF,0,1)    
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDateL,1,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDateF,1,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIConstL,2,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIConstF,2,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaL,3,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaF,3,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIVomL,4,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIVomF,4,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaL,5,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaF,5,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIGagL,6,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIGagF,6,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINissenL,7,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINissenF,7,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIConstDesL,8,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIConstDesF,8,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaDesL,9,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaDesF,9,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIVomDesL,10,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIVomDesF,10,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaDesL,11,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaDesF,11,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIGagDesL,12,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIGagDesF,12,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIEnteredL,13,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIEnteredF,13,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGICommentsL,14,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGICommentsF,14,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGISaveButton,15,1)
+    
 
     
 
         self.middle.addLayout(self.graphinputformtop)
-        # self.middle.addLayout(self.graphinputformanthropometrics)
-        # self.middle.removeItem(self.graphinputformanthropometrics)
+    
         
         
         self.middle.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
@@ -443,7 +642,7 @@ class Test (QWidget):
 
         self.setLayout(self.mainlayout)
 
-
+#################################################################################################################################################################
         ################### Event Calling ###################
         self.logo.mousePressEvent = self.handlelogo
         self.newpatientbuttion.mousePressEvent = self.handlenewpatient
@@ -465,7 +664,8 @@ class Test (QWidget):
         self.closenewpatient()
         self.graphselector.close()
         self.selectgraph.close()
-        self.closeanthropometrics()
+        self.closeallfroms()
+
 
         # self.closedashboard()
 
@@ -487,9 +687,8 @@ class Test (QWidget):
         self.graphselector.setCurrentIndex(0)
         self.graphselector.close()
         self.selectgraph.close()
-        self.closeanthropometrics()
-        self.middle.removeItem(self.graphinputformtop)
-        self.middle.removeItem(self.graphinputformanthropometrics)
+        self.closeallfroms()
+        self.removeallforms()
         self.resetinputs()
         
         try:
@@ -504,7 +703,10 @@ class Test (QWidget):
         
         self.closedashboard()
         self.closeprofile()
-        self.closeanthropometrics()
+        self.closeallfroms()
+        self.removeallforms()
+        self.graphselector.close()
+
         self.closenewpatient()
     
         
@@ -548,7 +750,7 @@ class Test (QWidget):
                     print("Closing "+ f.text())
                     self.middlegrid.removeWidget(f)
                     f.deleteLater()
-                    self.foundpatientbuttons.clear()  
+                self.foundpatientbuttons.clear()  
             
             # Clear Found Patients list
             self.foundpatients.clear()
@@ -575,6 +777,7 @@ class Test (QWidget):
             
             self.middlescrollarea.close()
             self.middlescrollarea.show()
+            
             print("--------------------------------------------")
             print("Total Patients " + str(len(self.allpatients)))
             print("Total old buttons " + str(len(self.allpatientbuttons)))
@@ -583,7 +786,8 @@ class Test (QWidget):
             print("Number of new buttons " + str(len(self.foundpatientbuttons)))
 
         self.searchbar.setText("")
-        self.closeanthropometrics()
+        self.closeallfroms()
+        self.removeallforms()
         self.closenewpatient()
         self.closeprofile()
         try:
@@ -606,9 +810,8 @@ class Test (QWidget):
         self.graphselector.setCurrentIndex(0)
         self.graphselector.close()
         self.selectgraph.close()
-        self.closeanthropometrics()
-        self.middle.removeItem(self.graphinputformtop)
-        self.middle.removeItem(self.graphinputformanthropometrics)
+        self.closeallfroms()
+        self.removeallforms()
         self.resetinputs()
 
         try:
@@ -635,11 +838,32 @@ class Test (QWidget):
 
     def handlegraphselection(self, event):
         selection = (self.graphselector.currentText())
+        
 
-        if (selection == "Anthropometrics"):
+        if (selection == "Alertness"):
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.middle.addLayout(self.graphinputformalertness)
+            self.graphinputformalertness.setContentsMargins(200,0,200,0)
+            self.openalertness()
+
+        if (selection == "Anthropometrics"): 
+            self.closeallfroms()
+            self.removeallforms()
+
             self.middle.addLayout(self.graphinputformanthropometrics)
             self.graphinputformanthropometrics.setContentsMargins(200,0,200,0)
             self.openanthropometrics()
+
+        if (selection == "Clinic GI Issues"):
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.middle.addLayout(self.graphinputformclinicGI)
+            self.graphinputformclinicGI.setContentsMargins(200,0,200,0)
+            self.openclinicgi()
+               
 
     def updateStateCombo(self, index):
             indx = self.model.index(index, 0, self.AnthropometricsPAF.rootModelIndex())
@@ -715,16 +939,44 @@ class Test (QWidget):
         self.nameinput.show()
 
         self.addpatientbutton.show()
-
+######################## Closing ##########################
     def closenewpatient(self):
         self.newtip.close()
         self.namelabel.close()
         self.nameinput.close()
-
         self.addpatientbutton.close()
 
+    def closeallfroms(self):
+        self.closealertness()
+        self.closeanthropometrics()
+        self.closeclinicgi()    
+
+    def removeallforms(self):
+        self.middle.removeItem(self.graphinputformalertness)
+        self.middle.removeItem(self.graphinputformanthropometrics)
+        self.middle.removeItem(self.graphinputformclinicGI)
+
+
+    def closealertness(self):
+        self.AlertnessMRNumberL.close()
+        self.AlertnessMRNumberF.close()
+        self.AlertnessDateL.close()
+        self.AlertnessDateF.close()
+        self.AlertnessDayTypeL.close()
+        self.AlertnessDayTypeF.close()
+        self.AlertnessL.close()
+        self.AlertnessF.close()
+        self.AlertnessActivityL.close()
+        self.AlertnessActivityF.close()
+        self.AlertnessDevelopmentL.close()
+        self.AlertnessDevelopmentF.close()
+        self.AlertnessEnteredL.close()
+        self.AlertnessEnteredF.close()
+        self.AlertnessCommentsL.close()
+        self.AlertnessCommentsF.close()
+        self.AlertnessSaveButton.close()
+
     def closeanthropometrics(self):
-        self.graphselector.close()
         self.selectgraph.close()
         self.AnthropometricsMRNumberL.close()
         self.AnthropometricsMRNumberF.close()
@@ -764,6 +1016,62 @@ class Test (QWidget):
         self.AnthropometricsCommentsL.close()
         self.AnthropometricsCommentsF.close()
         self.AnthropometricsSaveButton.close()
+
+    def closeclinicgi(self):
+        self.ClinicGIMRNumberL.close()
+        self.ClinicGIMRNumberF.close()   
+        self.ClinicGIDateL.close()
+        self.ClinicGIDateF.close()
+        self.ClinicGIConstL.close()
+        self.ClinicGIConstF.close()
+        self.ClinicGIDiaL.close()
+        self.ClinicGIDiaF.close()
+        self.ClinicGIVomL.close()
+        self.ClinicGIVomF.close()
+        self.ClinicGINauseaL.close()
+        self.ClinicGINauseaF.close()
+        self.ClinicGIGagL.close()
+        self.ClinicGIGagF.close()
+        self.ClinicGINissenL.close()
+        self.ClinicGINissenF.close()
+        self.ClinicGIConstDesL.close()
+        self.ClinicGIConstDesF.close()
+        self.ClinicGIDiaDesL.close()
+        self.ClinicGIDiaDesF.close()
+        self.ClinicGIVomDesL.close()
+        self.ClinicGIVomDesF.close()
+        self.ClinicGINauseaDesL.close()
+        self.ClinicGINauseaDesF.close()
+        self.ClinicGIGagDesL.close()
+        self.ClinicGIGagDesF.close()
+        self.ClinicGIEnteredL.close()
+        self.ClinicGIEnteredF.close()
+        self.ClinicGICommentsL.close()
+        self.ClinicGICommentsF.close()
+        self.ClinicGISaveButton.close()
+
+
+
+    def openalertness(self):
+        self.AlertnessMRNumberL.show()
+        self.AlertnessMRNumberF.show()
+        self.AlertnessDateL.show()
+        self.AlertnessDateF.show()
+        self.AlertnessDayTypeL.show()
+        self.AlertnessDayTypeF.show()
+        self.AlertnessL.show()
+        self.AlertnessF.show()
+        self.AlertnessActivityL.show()
+        self.AlertnessActivityF.show()
+        self.AlertnessDevelopmentL.show()
+        self.AlertnessDevelopmentF.show()
+        self.AlertnessEnteredL.show()
+        self.AlertnessEnteredF.show()
+        self.AlertnessCommentsL.show()
+        self.AlertnessCommentsF.show()
+        self.AlertnessSaveButton.show()
+
+
 
     def openanthropometrics(self):
         self.AnthropometricsMRNumberL.show()
@@ -805,9 +1113,42 @@ class Test (QWidget):
         self.AnthropometricsCommentsF.show()
         self.AnthropometricsSaveButton.show()
 
+    def openclinicgi(self):
+        self.ClinicGIMRNumberL.show()
+        self.ClinicGIMRNumberF.show()   
+        self.ClinicGIDateL.show()
+        self.ClinicGIDateF.show()
+        self.ClinicGIConstL.show()
+        self.ClinicGIConstF.show()
+        self.ClinicGIDiaL.show()
+        self.ClinicGIDiaF.show()
+        self.ClinicGIVomL.show()
+        self.ClinicGIVomF.show()
+        self.ClinicGINauseaL.show()
+        self.ClinicGINauseaF.show()
+        self.ClinicGIGagL.show()
+        self.ClinicGIGagF.show()
+        self.ClinicGINissenL.show()
+        self.ClinicGINissenF.show()
+        self.ClinicGIConstDesL.show()
+        self.ClinicGIConstDesF.show()
+        self.ClinicGIDiaDesL.show()
+        self.ClinicGIDiaDesF.show()
+        self.ClinicGIVomDesL.show()
+        self.ClinicGIVomDesF.show()
+        self.ClinicGINauseaDesL.show()
+        self.ClinicGINauseaDesF.show()
+        self.ClinicGIGagDesL.show()
+        self.ClinicGIGagDesF.show()
+        self.ClinicGIEnteredL.show()
+        self.ClinicGIEnteredF.show()
+        self.ClinicGICommentsL.show()
+        self.ClinicGICommentsF.show()
+        self.ClinicGISaveButton.show()
+
     def resetinputs(self):
         self.AnthropometricsMRNumberF.setText(""),
-        self.AnthropometricsDateF.setText(""),
+        self.AnthropometricsDateF.setDate(datetime.date(datetime.now())),
         self.AnthropometricsDayTypeF.setCurrentIndex(0),
         self.AnthropometricsSoruceF.setCurrentIndex(0),
         self.AnthropometricsCPF.setCurrentIndex(0),
@@ -830,12 +1171,15 @@ class Test (QWidget):
     def submitAnthropometrics(self,event):
        
         print(self.AnthropometricsPAF2.currentText()[:4])
-       
+        print(type(self.AnthropometricsDateF.date()))
+
+        print(str(self.AnthropometricsDateF.date()))
+        
         try:
             saveAnthropometrics(
                 self.currentpatient,
                 int(self.AnthropometricsMRNumberF.text()),
-                self.AnthropometricsDateF.text(),
+                self.AnthropometricsDateF.date(),
                 int(self.AnthropometricsDayTypeF.currentText()[:1]),
                 int(self.AnthropometricsSoruceF.currentText()[:1]),
                 float(self.AnthropometricsCPF.currentText()[:2]),
@@ -871,12 +1215,12 @@ class Test (QWidget):
 def main():
     app = QApplication(sys.argv)
     
-    loginwindow = Login()
-    loginwindow.show()
+    # loginwindow = Login()
+    # loginwindow.show()
 
     
-    # test = Test()
-    # test.show()
+    test = Test()
+    test.show()
     app.exec_()
 
 

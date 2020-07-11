@@ -15,7 +15,10 @@ def getPatientAnthropometrics(patient):
 
 # Returns list of all patients
 def getAllPatients():
-    return(os.listdir("./Current Patients"))
+    print("Path is")
+    
+    cwd = os.getcwd() + "\Current Patients"
+    return(os.listdir(cwd))
 
 def getPatientGraphs(patient):
     return (os.listdir("./Current Patients/"+patient+"/DataBases/Data/"))
