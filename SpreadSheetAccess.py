@@ -22,6 +22,12 @@ def getAllPatients():
 
 def getPatientGraphs(patient):
     return (os.listdir("./Current Patients/"+patient+"/DataBases/Data/"))
+
+
+def saveAlertness(patient,MrNumber,Date,DayType,Alertness,Activity,Development,Entered,Comments):
+    pass
+
+    
  
 def saveAnthropometrics(patient, MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC,TSF,SSF,USF,SIS,MBSF,UC,Entered,Comments):
     path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Anthropometrics_Source.xlsx"
@@ -47,6 +53,15 @@ def saveAnthropometrics(patient, MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC
 
     #Save modified workbook
     wb.save(path)
+
+def saveClinicGI(patient,MrNumber,Date,DayType,Const,Dia,Vom,Nausea,Gag,Nissen,ConstDes,DiaDes,VomDes,NauseaDes,GagDes,Entered,Comments):
+     pass  
+
+def saveDailyIntake(patient,MrNumber,Date,DayType,PKTNUM,DataQuality,DayQuality,Entered,Comments):
+    pass
+
+def saveDietRX(patient,MrNumber,Date,DayType,ROF,RFCD,SnackCal,SnackRatio,SnackNumber,MealNumber,MealRatio,TotalCal,Protein,Entered,Comments):
+    pass
 
 # Returns dataframe containing data inside the excel sheet
 def getAnthropometricsDataFrame(patient):

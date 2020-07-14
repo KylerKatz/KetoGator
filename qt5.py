@@ -7,11 +7,6 @@ from datetime import datetime
 
 
 from EmbedMatplotlib import *
-# from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-# from matplotlib.figure import Figure
-
-
-
 from SpreadSheetAccess import *
 
 
@@ -188,6 +183,8 @@ class Test (QWidget):
         self.AlertnessMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
         self.AlertnessMRNumberF = QLineEdit()
         self.AlertnessMRNumberF.setMaxLength(10)
+        self.AlertnessMRNumberF.setPlaceholderText("Required")
+        
         
         self.AlertnessDateL = QLabel("Date - (MM/DD/YYYY)")
         self.AlertnessDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -200,7 +197,7 @@ class Test (QWidget):
         self.AlertnessDayTypeL.setFont(QtGui.QFont("Ariel", 13))
         self.AlertnessDayTypeL.setToolTip("Description of date of collection")
         self.AlertnessDayTypeF = QComboBox()
-        self.AlertnessDayTypeF.addItems(['','1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+        self.AlertnessDayTypeF.addItems(['1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
 
         self.AlertnessL = QLabel("Alertness")
         self.AlertnessL.setFont(QtGui.QFont("Ariel", 13))
@@ -221,6 +218,8 @@ class Test (QWidget):
         self.AlertnessEnteredL.setFont(QtGui.QFont("Ariel", 13))
         self.AlertnessEnteredL.setToolTip("Person who entered the data initials follwed by date entered i.e. HA-07/22/2016")
         self.AlertnessEnteredF = QLineEdit()
+        self.AlertnessEnteredF.setPlaceholderText("Required")
+
 
         self.AlertnessCommentsL = QLabel("Comments")
         self.AlertnessCommentsL.setFont(QtGui.QFont("Ariel", 13))
@@ -235,6 +234,7 @@ class Test (QWidget):
         self.AnthropometricsMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
         self.AnthropometricsMRNumberF = QLineEdit()
         self.AnthropometricsMRNumberF.setMaxLength(10)
+        self.AnthropometricsMRNumberF.setPlaceholderText("Required")
 
         self.AnthropometricsDateL = QLabel("Date - (MM/DD/YYYY)")
         self.AnthropometricsDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -247,7 +247,7 @@ class Test (QWidget):
         self.AnthropometricsDayTypeL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsDayTypeL.setToolTip("Description of date of collection")
         self.AnthropometricsDayTypeF = QComboBox()
-        self.AnthropometricsDayTypeF.addItems(['','1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+        self.AnthropometricsDayTypeF.addItems(['1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
 
         self.AnthropometricsSourceL = QLabel("Source")
         self.AnthropometricsSourceL.setFont(QtGui.QFont("Ariel", 13))
@@ -349,6 +349,8 @@ class Test (QWidget):
         self.AnthropometricsEnteredL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
         self.AnthropometricsEnteredF = QLineEdit()
+        self.AnthropometricsEnteredF.setPlaceholderText("Required")
+
 
         self.AnthropometricsCommentsL = QLabel("Comments")
         self.AnthropometricsCommentsL.setFont(QtGui.QFont("Ariel", 13))
@@ -364,6 +366,7 @@ class Test (QWidget):
         self.ClinicGIMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
         self.ClinicGIMRNumberF = QLineEdit()
         self.ClinicGIMRNumberF.setMaxLength(10)
+        self.ClinicGIMRNumberF.setPlaceholderText("Required")
         
         self.ClinicGIDateL = QLabel("Date - (MM/DD/YYYY)")
         self.ClinicGIDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -376,7 +379,7 @@ class Test (QWidget):
         self.ClinicGIDayTypeL.setFont(QtGui.QFont("Ariel", 13))
         self.ClinicGIDayTypeL.setToolTip("Description of date of collection")
         self.ClinicGIDayTypeF = QComboBox()
-        self.ClinicGIDayTypeF.addItems(['','1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+        self.ClinicGIDayTypeF.addItems(['1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
 
         self.ClinicGIConstL = QLabel("Clinic Constipation")
         self.ClinicGIConstL.setFont(QtGui.QFont("Ariel", 13))
@@ -443,6 +446,7 @@ class Test (QWidget):
         self.ClinicGIEnteredL.setFont(QtGui.QFont("Ariel", 13))
         self.ClinicGIEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
         self.ClinicGIEnteredF = QLineEdit()
+        self.ClinicGIEnteredF.setPlaceholderText("Required")
 
         self.ClinicGICommentsL = QLabel("Comments")
         self.ClinicGICommentsL.setFont(QtGui.QFont("Ariel", 13))
@@ -451,9 +455,172 @@ class Test (QWidget):
 
         self.ClinicGISaveButton = QPushButton("Save")
         
+        ################### Update Data - Clinical Labs ###################
+
+        ################### Update Data - Daily Intake ###################
+        self.DailyIntakeMRNumberL = QLabel("Medical Record Number")
+        self.DailyIntakeMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.DailyIntakeMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.DailyIntakeMRNumberF = QLineEdit()
+        self.DailyIntakeMRNumberF.setMaxLength(10)
+        self.DailyIntakeMRNumberF.setPlaceholderText("Required")
+        
+        self.DailyIntakeDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.DailyIntakeDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.DailyIntakeDateL.setToolTip("Date indicated on records")
+        self.DailyIntakeDateF = QDateEdit()
+        self.DailyIntakeDateF.setDisplayFormat("MM/dd/yyyy")
+        self.DailyIntakeDateF.setDate(datetime.date(datetime.now()))
+        
+        self.DailyIntakeDayTypeL = QLabel("Day Type")
+        self.DailyIntakeDayTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.DailyIntakeDayTypeL.setToolTip("Description of date of collection")
+        self.DailyIntakeDayTypeF = QComboBox()
+        self.DailyIntakeDayTypeF.addItems(['1 = Use this as baseline for analysis', '2 = On PKT'])
+
+        self.DailyIntakePKTNUML = QLabel("Precision Ketogenic Therapy Recipe Number")
+        self.DailyIntakePKTNUML.setFont(QtGui.QFont("Ariel", 13))
+        self.DailyIntakePKTNUML.setToolTip("The PKT recipe number is a number given to each different PKT recipe and supplement, and it is a unique number. \nWe use the information given to us by records from the family in order to create and enter a PKT recipe number for each meal consumed by the patient.")
+        self.DailyIntakePKTNUMF = QLineEdit()
+        self.DailyIntakePKTNUMF.setMaxLength(5)
+        self.DailyIntakePKTNUMF.setPlaceholderText("Required")
+
+
+        self.DailyIntakeDataQualityDietL = QLabel("Data Quality Diet")
+        self.DailyIntakeDataQualityDietL.setFont(QtGui.QFont("Ariel", 13))
+        self.DailyIntakeDataQualityDietL.setToolTip("Data quality is entered from a list of categorical values that allows for us to indicate the quality of the data and its source.")
+        self.DailyIntakeDataQualityDietF = QComboBox()
+        self.DailyIntakeDataQualityDietF.addItems(['1 = Meals consumed by the patient came from our PKT program AND the data comes from records kept by caregivers', 
+        '2 = The data comes from records kept by the caregivers; however, we do not have a copy of the patient’s cookbook or meals are not from our PKT program', 
+        '3 = Meals consumed by the patient came from our PKT program; however, data was not provided on records by the family',
+        '4 = We do not have a copy of the patient’s cookbook or meals are not from our PKT program AND data was not provided on records by the family',
+        '5 = The patient is off of PKT and there are no records'])
+
+        self.DailyIntakeDayQualityDietL = QLabel("Day Quality Diet")
+        self.DailyIntakeDayQualityDietL.setFont(QtGui.QFont("Ariel", 13))
+        self.DailyIntakeDayQualityDietL.setToolTip("Day quality is a list of categorical values that allows us to indicate the quality or health of the patient’s day in terms of nutrient intake.")
+        self.DailyIntakeDayQualityDietF = QComboBox()
+        self.DailyIntakeDayQualityDietF.addItems(['1 = The patient received 100% of what was prescribed to them', 
+        '2 = Deviations due to illness',
+        '3 = Unauthorized deviations due to improper administration of PKT','4 = Deviations due to a prescribed change', 
+        '5 = There is missing data so no assumptions can be made about day quality'])
+
+        self.DailyIntakeEnteredL = QLabel("Entered")
+        self.DailyIntakeEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.DailyIntakeEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.DailyIntakeEnteredF = QLineEdit()
+        self.DailyIntakeEnteredF.setPlaceholderText("Required")
+
+        self.DailyIntakeCommentsL = QLabel("Comments")
+        self.DailyIntakeCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.DailyIntakeCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.DailyIntakeCommentsF = QTextEdit()
+
+        self.DailyIntakeSaveButton = QPushButton("Save")
+        
+        ################### Update Data - Diet RX ###################
+        self.DietRXMRNumberL = QLabel("Medical Record Number")
+        self.DietRXMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.DietRXMRNumberF = QLineEdit()
+        self.DietRXMRNumberF.setMaxLength(10)
+        self.DietRXMRNumberF.setPlaceholderText("Required")
+        
+        self.DietRXDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.DietRXDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXDateL.setToolTip("Date indicated on records")
+        self.DietRXDateF = QDateEdit()
+        self.DietRXDateF.setDisplayFormat("MM/dd/yyyy")
+        self.DietRXDateF.setDate(datetime.date(datetime.now()))
+        
+        self.DietRXDayTypeL = QLabel("Day Type")
+        self.DietRXDayTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXDayTypeL.setToolTip("Description of date of collection")
+        self.DietRXDayTypeF = QComboBox()
+        self.DietRXDayTypeF.addItems(['1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+
+        self.DietRXROFL = QLabel("Route Of Feeding")
+        self.DietRXROFL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXROFL.setToolTip("Enter the ROF according to the options for categorical variables column")
+        self.DietRXROFF = QComboBox()
+        self.DietRXROFF.addItems(['TF = Tube Feeder', 'Oral = Oral Feeder', 'Both = Both Tube and Oral Feeder'])
+
+        self.DietRXRFCDL = QLabel("Reason For Change Diet")
+        self.DietRXRFCDL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXRFCDL.setToolTip("Enter the reason for change according to the options for categorical variables column")
+        self.DietRXRFCDF = QComboBox()
+        self.DietRXRFCDF.addItems(['0 = No diet change','1 = Unspecified','2 = Height','3 = Weight','4 = Seizures','5 = Illness','6 = Family, patients or doctor request',
+        '7 = Hunger','8 = Height and weight','9 = GI issues','10 = Weaning off diet','11 = Weight and seizures','12 = Too ketotic','13 = Height and seizures','14 = low ketosis',
+        '15 = Low blood sugar','16 = Low albumin','17 = Abnormal lab values','18 = Meal palatability','19 = Protein closer to RDA','20 = Activity','21 = Weight and ketosis',
+        '22 = Constipation'])
+        
+        self.DietRXSnackCalL = QLabel("Total Snack Calories Prescribed - (1 Decimal)")
+        self.DietRXSnackCalL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXSnackCalL.setToolTip("Total snack calories for the entire day")
+        self.DietRXSnackCalF = QLineEdit()
+        self.DietRXSnackCalF.setMaxLength(4)
+
+        self.DietRXSnackRatioL = QLabel("Snack Ratio Prescribed - (2 Decimals)")
+        self.DietRXSnackRatioL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXSnackRatioL.setToolTip("Snack PKT ratio precribed per day")
+        self.DietRXSnackRatioF = QLineEdit()
+        self.DietRXSnackRatioF.setMaxLength(3)
+
+        self.DietRXSnackNumberL = QLabel("Snack Number Prescribed")
+        self.DietRXSnackNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXSnackNumberL.setToolTip("Total number of snacks precribed per day")
+        self.DietRXSnackNumberF = QLineEdit()
+        self.DietRXSnackNumberF.setMaxLength(2)
+
+        self.DietRXMealNumberL = QLabel("Meal Number Prescribed")
+        self.DietRXMealNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXMealNumberL.setToolTip("Total number of meals prescribed per day")
+        self.DietRXMealNumberF = QLineEdit()
+        self.DietRXMealNumberF.setMaxLength(2)
+        self.DietRXMealNumberF.setPlaceholderText("Required")
+
+        self.DietRXMealRatioL = QLabel("Meal Ratio Prescribed - (2 Decimals)")
+        self.DietRXMealRatioL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXMealRatioL.setToolTip("Meal PKT ratio of amount of fat per amount of carbohydrate plus amount of protein prescribed per day")
+        self.DietRXMealRatioF = QLineEdit()
+        self.DietRXMealRatioF.setMaxLength(3)
+        self.DietRXMealRatioF.setPlaceholderText("Required")
+
+        
+        self.DietRXCalL = QLabel("Calories Prescribed - (2 Decimals)")
+        self.DietRXCalL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXCalL.setToolTip("Total calories prescribed per day")
+        self.DietRXCalF = QLineEdit()
+        self.DietRXCalF.setMaxLength(6)
+        self.DietRXCalF.setPlaceholderText("Required")
+
+
+        self.DietRXProL = QLabel("Protein Prescribed - (2 Decimals)")
+        self.DietRXProL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXProL.setToolTip("Perecent of intake versus recommended intake for proline")
+        self.DietRXProF = QLineEdit()
+        self.DietRXProF.setMaxLength(4)
+        self.DietRXProF.setPlaceholderText("Required")
+
+
+        self.DietRXEnteredL = QLabel("Entered")
+        self.DietRXEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.DietRXEnteredF = QLineEdit()
+        self.DietRXEnteredF.setPlaceholderText("Required")
+
+
+        self.DietRXCommentsL = QLabel("Comments")
+        self.DietRXCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.DietRXCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.DietRXCommentsF = QTextEdit()
+
+        self.DietRXSaveButton = QPushButton("Save")
+
 
 
         
+
 
         self.closeanthropometrics()
         self.closealertness()
@@ -476,6 +643,9 @@ class Test (QWidget):
         self.graphinputformalertness = QGridLayout()
         self.graphinputformanthropometrics = QGridLayout()
         self.graphinputformclinicGI = QGridLayout()
+        self.graphinputformdailyintake = QGridLayout()
+        self.graphinputformdietrx = QGridLayout()
+
 
 
 
@@ -593,34 +763,91 @@ class Test (QWidget):
         self.graphinputformclinicGI.addWidget(self.ClinicGIMRNumberF,0,1)    
         self.graphinputformclinicGI.addWidget(self.ClinicGIDateL,1,0)
         self.graphinputformclinicGI.addWidget(self.ClinicGIDateF,1,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIConstL,2,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIConstF,2,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaL,3,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaF,3,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIVomL,4,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIVomF,4,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaL,5,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaF,5,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIGagL,6,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIGagF,6,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGINissenL,7,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGINissenF,7,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIConstDesL,8,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIConstDesF,8,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaDesL,9,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaDesF,9,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIVomDesL,10,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIVomDesF,10,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaDesL,11,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaDesF,11,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIGagDesL,12,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIGagDesF,12,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIEnteredL,13,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGIEnteredF,13,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGICommentsL,14,0)
-        self.graphinputformclinicGI.addWidget(self.ClinicGICommentsF,14,1)
-        self.graphinputformclinicGI.addWidget(self.ClinicGISaveButton,15,1)
-    
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDayTypeL,2,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDayTypeF,2,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIConstL,3,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIConstF,3,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaL,4,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaF,4,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIVomL,5,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIVomF,5,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaL,6,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaF,6,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIGagL,7,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIGagF,7,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINissenL,8,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINissenF,8,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIConstDesL,9,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIConstDesF,9,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaDesL,10,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIDiaDesF,10,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIVomDesL,11,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIVomDesF,11,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaDesL,12,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGINauseaDesF,12,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIGagDesL,13,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIGagDesF,13,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIEnteredL,14,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGIEnteredF,14,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGICommentsL,15,0)
+        self.graphinputformclinicGI.addWidget(self.ClinicGICommentsF,15,1)
+        self.graphinputformclinicGI.addWidget(self.ClinicGISaveButton,16,1)
+        
+        ################### Update Data Daily Intake ###################
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeMRNumberL,0,0)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeMRNumberF,0,1)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeDateL,1,0)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeDateF,1,1)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeDayTypeL,2,0)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeDayTypeF,2,1)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakePKTNUML,3,0)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakePKTNUMF,3,1)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeDataQualityDietL,4,0)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeDataQualityDietF,4,1)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeDayQualityDietL,5,0)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeDayQualityDietF,5,1)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeEnteredL,6,0)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeEnteredF,6,1)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeCommentsL,7,0)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeCommentsF,7,1)
+        self.graphinputformdailyintake.addWidget(self.DailyIntakeSaveButton,8,1)
+        
+        ################### Update Data Diet RX ###################
+        self.graphinputformdietrx.addWidget(self.DietRXMRNumberL,0,0)
+        self.graphinputformdietrx.addWidget(self.DietRXMRNumberF,0,1)
+        self.graphinputformdietrx.addWidget(self.DietRXDateL,1,0)
+        self.graphinputformdietrx.addWidget(self.DietRXDateF,1,1)
+        self.graphinputformdietrx.addWidget(self.DietRXDayTypeL,2,0)
+        self.graphinputformdietrx.addWidget(self.DietRXDayTypeF,2,1)
+        self.graphinputformdietrx.addWidget(self.DietRXROFL,3,0)
+        self.graphinputformdietrx.addWidget(self.DietRXROFF,3,1)
+        self.graphinputformdietrx.addWidget(self.DietRXRFCDL,4,0)
+        self.graphinputformdietrx.addWidget(self.DietRXRFCDF,4,1)
+        self.graphinputformdietrx.addWidget(self.DietRXSnackCalL,5,0)
+        self.graphinputformdietrx.addWidget(self.DietRXSnackCalF,5,1)
+        self.graphinputformdietrx.addWidget(self.DietRXSnackRatioL,6,0)
+        self.graphinputformdietrx.addWidget(self.DietRXSnackRatioF,6,1)
+        self.graphinputformdietrx.addWidget(self.DietRXSnackNumberL,7,0)
+        self.graphinputformdietrx.addWidget(self.DietRXSnackNumberF,7,1)
+        self.graphinputformdietrx.addWidget(self.DietRXMealNumberL,8,0)
+        self.graphinputformdietrx.addWidget(self.DietRXMealNumberF,8,1)
+        self.graphinputformdietrx.addWidget(self.DietRXMealRatioL,9,0)
+        self.graphinputformdietrx.addWidget(self.DietRXMealRatioF,9,1)
+        self.graphinputformdietrx.addWidget(self.DietRXCalL,10,0)
+        self.graphinputformdietrx.addWidget(self.DietRXCalF,10,1)
+        self.graphinputformdietrx.addWidget(self.DietRXProL,11,0)
+        self.graphinputformdietrx.addWidget(self.DietRXProF,11,1)
+        self.graphinputformdietrx.addWidget(self.DietRXEnteredL,12,0)
+        self.graphinputformdietrx.addWidget(self.DietRXEnteredF,12,1)
+        self.graphinputformdietrx.addWidget(self.DietRXCommentsL,13,0)
+        self.graphinputformdietrx.addWidget(self.DietRXCommentsF,13,1)
+        self.graphinputformdietrx.addWidget(self.DietRXSaveButton,14,1)
+        
+
+
+
+
+
 
         
         # Set Up Scroll Boxes 
@@ -633,7 +860,7 @@ class Test (QWidget):
         self.alertnessformscroll.setWidgetResizable(True)
 
         self.middle.addWidget(self.alertnessformscroll)
-
+###############################
 
         self.anthropometricsbox = QGroupBox()
         self.anthropometricsbox.setLayout(self.graphinputformalertness)
@@ -643,6 +870,7 @@ class Test (QWidget):
         self.anthropometricsformscroll.setWidgetResizable(True)
 
         self.middle.addWidget(self.anthropometricsformscroll)
+###############################
 
         self.clinicGIbox = QGroupBox()
         self.clinicGIbox.setLayout(self.graphinputformclinicGI)
@@ -652,6 +880,27 @@ class Test (QWidget):
         self.clinicGIformscroll.setWidgetResizable(True)
 
         self.middle.addWidget(self.clinicGIformscroll)
+###############################
+        self.dailyIntakebox = QGroupBox()
+        self.dailyIntakebox.setLayout(self.graphinputformdailyintake)
+        
+        self.dailyIntakeformscroll = QScrollArea()
+        self.dailyIntakeformscroll.setWidget(self.dailyIntakebox)
+        self.dailyIntakeformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.dailyIntakeformscroll)
+
+###############################
+
+        self.dietrxbox = QGroupBox()
+        self.dietrxbox.setLayout(self.graphinputformdietrx)
+        
+        self.dietrxformscroll = QScrollArea()
+        self.dietrxformscroll.setWidget(self.dietrxbox)
+        self.dietrxformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.dietrxformscroll)
+
 
 
         #####################################################    
@@ -688,7 +937,11 @@ class Test (QWidget):
 
         self.graphselector.currentIndexChanged.connect (self.handlegraphselection)
 
+        self.AlertnessSaveButton.mousePressEvent = self.submitAlertness
         self.AnthropometricsSaveButton.mousePressEvent = self.submitAnthropometrics
+        self.ClinicGISaveButton.mousePressEvent = self.submitClinicGI
+        self.DailyIntakeSaveButton.mousePressEvent = self.submitDailyIntake
+        self.DietRXSaveButton.mousePressEvent = self.submitDietRX
 
         self.loadpatients()
         self.closeprofile()
@@ -886,7 +1139,7 @@ class Test (QWidget):
 
             self.middle.addWidget(self.alertnessformscroll)
 
-            self.graphinputformalertness.setContentsMargins(200,0,200,0)
+            # self.graphinputformalertness.setContentsMargins(200,0,200,0)
             self.openalertness()
 
         if (selection == "Anthropometrics"): 
@@ -903,7 +1156,7 @@ class Test (QWidget):
 
             self.middle.addWidget(self.anthropometricsformscroll)
 
-            self.graphinputformanthropometrics.setContentsMargins(200,0,200,0)
+            # self.graphinputformanthropometrics.setContentsMargins(200,0,200,0)
             self.openanthropometrics()
 
         if (selection == "Clinic GI Issues"):
@@ -920,8 +1173,40 @@ class Test (QWidget):
 
             self.middle.addWidget(self.clinicGIformscroll)
 
-            self.graphinputformclinicGI.setContentsMargins(200,0,200,0)
+            # self.graphinputformclinicGI.setContentsMargins(200,0,200,0)
             self.openclinicgi()
+
+        if (selection == "Daily Intake"):
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.dailyIntakebox = QGroupBox()
+            self.dailyIntakebox.setLayout(self.graphinputformdailyintake)
+            
+            self.dailyIntakeformscroll = QScrollArea()
+            self.dailyIntakeformscroll.setWidget(self.dailyIntakebox)
+            self.dailyIntakeformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.dailyIntakeformscroll)
+
+            # self.graphinputformdailyintake.setContentsMargins(200,0,200,0)
+            self.opendailyintake()
+
+        if (selection == "Diet RX"):
+            self.closeallfroms()
+            self.removeallforms()
+
+
+            self.dietrxbox = QGroupBox()
+            self.dietrxbox.setLayout(self.graphinputformdietrx)
+            
+            self.dietrxformscroll = QScrollArea()
+            self.dietrxformscroll.setWidget(self.dietrxbox)
+            self.dietrxformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.dietrxformscroll)
+
+            self.opendietrx()
                
 
     def updateStateCombo(self, index):
@@ -998,6 +1283,7 @@ class Test (QWidget):
         self.nameinput.show()
 
         self.addpatientbutton.show()
+
 ######################## Closing ##########################
     def closenewpatient(self):
         self.newtip.close()
@@ -1009,6 +1295,8 @@ class Test (QWidget):
         self.closealertness()
         self.closeanthropometrics()
         self.closeclinicgi()
+        self.closedailyintake()
+        self.closedietrx()
 
         self.alertnessbox.close()
         self.alertnessformscroll.close()
@@ -1019,6 +1307,12 @@ class Test (QWidget):
         self.clinicGIbox.close()
         self.clinicGIformscroll.close() 
 
+        self.dailyIntakebox.close()
+        self.dailyIntakeformscroll.close()
+
+        self.dietrxbox.close()
+        self.dietrxformscroll.close()
+
     def removeallforms(self):
         # self.middle.removeItem(self.graphinputformalertness)
         self.middle.removeWidget(self.alertnessformscroll)
@@ -1028,6 +1322,10 @@ class Test (QWidget):
 
         # self.middle.removeItem(self.graphinputformclinicGI)
         self.middle.removeWidget(self.clinicGIformscroll)
+
+        self.middle.removeWidget(self.dailyIntakeformscroll)
+
+        self.middle.removeWidget(self.dietrxformscroll)
 
 
     def closealertness(self):
@@ -1095,6 +1393,8 @@ class Test (QWidget):
         self.ClinicGIMRNumberF.close()   
         self.ClinicGIDateL.close()
         self.ClinicGIDateF.close()
+        self.ClinicGIDayTypeL.close()
+        self.ClinicGIDayTypeF.close()
         self.ClinicGIConstL.close()
         self.ClinicGIConstF.close()
         self.ClinicGIDiaL.close()
@@ -1123,6 +1423,57 @@ class Test (QWidget):
         self.ClinicGICommentsF.close()
         self.ClinicGISaveButton.close()
 
+    def closedailyintake(self):
+        self.DailyIntakeMRNumberL.close()
+        self.DailyIntakeMRNumberF.close()
+        self.DailyIntakeDateL.close()
+        self.DailyIntakeDateF.close()
+        self.DailyIntakeDayTypeL.close()
+        self.DailyIntakeDayTypeF.close()
+        self.DailyIntakePKTNUML.close()
+        self.DailyIntakePKTNUMF.close()
+        self.DailyIntakeDataQualityDietL.close()
+        self.DailyIntakeDataQualityDietF.close()
+        self.DailyIntakeDayQualityDietL.close()
+        self.DailyIntakeDayQualityDietF.close()
+        self.DailyIntakeEnteredL.close()
+        self.DailyIntakeEnteredF.close()
+        self.DailyIntakeCommentsL.close()
+        self.DailyIntakeCommentsF.close()
+        self.DailyIntakeSaveButton.close()
+
+
+    def closedietrx(self):
+        self.DietRXMRNumberL.close()
+        self.DietRXMRNumberF.close()
+        self.DietRXDateL.close()
+        self.DietRXDateF.close()
+        self.DietRXDayTypeL.close()
+        self.DietRXDayTypeF.close()
+        self.DietRXROFL.close()
+        self.DietRXROFF.close()
+        self.DietRXRFCDL.close()
+        self.DietRXRFCDF.close()
+        self.DietRXSnackCalL.close()
+        self.DietRXSnackCalF.close()
+        self.DietRXSnackRatioL.close()
+        self.DietRXSnackRatioF.close()
+        self.DietRXSnackNumberL.close()
+        self.DietRXSnackNumberF.close()
+        self.DietRXMealNumberL.close()
+        self.DietRXMealNumberF.close()
+        self.DietRXMealRatioL.close()
+        self.DietRXMealRatioF.close()
+        self.DietRXCalL.close()
+        self.DietRXCalF.close()
+        self.DietRXProL.close()
+        self.DietRXProF.close()
+        self.DietRXEnteredL.close()
+        self.DietRXEnteredF.close()
+        self.DietRXCommentsL.close()
+        self.DietRXCommentsF.close()
+        self.DietRXSaveButton.close()
+            
 
 
     def openalertness(self):
@@ -1191,6 +1542,8 @@ class Test (QWidget):
         self.ClinicGIMRNumberF.show()   
         self.ClinicGIDateL.show()
         self.ClinicGIDateF.show()
+        self.ClinicGIDayTypeL.show()
+        self.ClinicGIDayTypeF.show()
         self.ClinicGIConstL.show()
         self.ClinicGIConstF.show()
         self.ClinicGIDiaL.show()
@@ -1219,6 +1572,62 @@ class Test (QWidget):
         self.ClinicGICommentsF.show()
         self.ClinicGISaveButton.show()
 
+
+
+    def opendailyintake(self):
+        self.DailyIntakeMRNumberL.show()
+        self.DailyIntakeMRNumberF.show()
+        self.DailyIntakeDateL.show()
+        self.DailyIntakeDateF.show()
+        self.DailyIntakeDayTypeL.show()
+        self.DailyIntakeDayTypeF.show()
+        self.DailyIntakePKTNUML.show()
+        self.DailyIntakePKTNUMF.show()
+        self.DailyIntakeDataQualityDietL.show()
+        self.DailyIntakeDataQualityDietF.show()
+        self.DailyIntakeDayQualityDietL.show()
+        self.DailyIntakeDayQualityDietF.show()
+        self.DailyIntakeEnteredL.show()
+        self.DailyIntakeEnteredF.show()
+        self.DailyIntakeCommentsL.show()
+        self.DailyIntakeCommentsF.show()
+        self.DailyIntakeSaveButton.show()
+
+    def opendietrx(self):
+        self.DietRXMRNumberL.show()
+        self.DietRXMRNumberF.show()
+        self.DietRXDateL.show()
+        self.DietRXDateF.show()
+        self.DietRXDayTypeL.show()
+        self.DietRXDayTypeF.show()
+        self.DietRXROFL.show()
+        self.DietRXROFF.show()
+        self.DietRXRFCDL.show()
+        self.DietRXRFCDF.show()
+        self.DietRXSnackCalL.show()
+        self.DietRXSnackCalF.show()
+        self.DietRXSnackRatioL.show()
+        self.DietRXSnackRatioF.show()
+        self.DietRXSnackNumberL.show()
+        self.DietRXSnackNumberF.show()
+        self.DietRXMealNumberL.show()
+        self.DietRXMealNumberF.show()
+        self.DietRXMealRatioL.show()
+        self.DietRXMealRatioF.show()
+        self.DietRXCalL.show()
+        self.DietRXCalF.show()
+        self.DietRXProL.show()
+        self.DietRXProF.show()
+        self.DietRXEnteredL.show()
+        self.DietRXEnteredF.show()
+        self.DietRXCommentsL.show()
+        self.DietRXCommentsF.show()
+        self.DietRXSaveButton.show()    
+
+
+
+    
+
     def resetinputs(self):
         self.AnthropometricsMRNumberF.setText(""),
         self.AnthropometricsDateF.setDate(datetime.date(datetime.now())),
@@ -1239,6 +1648,25 @@ class Test (QWidget):
         self.AnthropometricsUCF.setText(""),
         self.AnthropometricsEnteredF.setText(""),
         self.AnthropometricsCommentsF.setText(""), 
+
+######################## Sending Input To The Back End ##########################
+    def submitAlertness(self,event):
+
+        try:
+            saveAlertness(
+            self.currentpatient,    
+            self.AlertnessMRNumberF.text(),
+            self.AlertnessDateF.date(),
+            self.AlertnessDayTypeF.currentText()[:1],
+            self.AlertnessF.toPlainText(),
+            self.AlertnessActivityF.toPlainText(),
+            self.AlertnessDevelopmentF.toPlainText(),
+            self.AlertnessEnteredF.text(),
+            self.AlertnessCommentsF.toPlainText()
+            )
+
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
 
 
     def submitAnthropometrics(self,event):
@@ -1268,7 +1696,7 @@ class Test (QWidget):
                 float(self.AnthropometricsMBSFF.text()),
                 float(self.AnthropometricsUCF.text()),
                 self.AnthropometricsEnteredF.text(),
-                self.AnthropometricsCommentsF.toPlainText(), 
+                self.AnthropometricsCommentsF.toPlainText() 
                 )
             
             self.anthropometricspopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
@@ -1281,9 +1709,73 @@ class Test (QWidget):
             self.anthropometricspopupfail = QMessageBox.question(self,"Incorrect Entry","One or more of the values that you entered are incorrect. \n\nPlease ensure that every entry is a number except for the Date, Entered, and Comments fields. ", QMessageBox.Retry)
             if self.anthropometricspopupfail==QMessageBox.Retry:
                 print("Data Entered Failed")
-            
 
+    def submitClinicGI(self,event):
+        try:
+            saveClinicGI(
+            self.currentpatient,
+            self.ClinicGIMRNumberF.text(),   
+            self.ClinicGIDateF.date(),
+            self.ClinicGIDayTypeF.currentText()[:1],
+            self.ClinicGIConstF.currentText(),
+            self.ClinicGIDiaF.currentText(),
+            self.ClinicGIVomF.currentText(),
+            self.ClinicGINauseaF.currentText(),
+            self.ClinicGIGagF.currentText(),
+            self.ClinicGINissenF.currentText(),
+            self.ClinicGIConstDesF.toPlainText(),
+            self.ClinicGIDiaDesF.toPlainText(),
+            self.ClinicGIVomDesF.toPlainText(),
+            self.ClinicGINauseaDesF.toPlainText(),
+            self.ClinicGIGagDesF.toPlainText(),
+            self.ClinicGIEnteredF.text(),
+            self.ClinicGICommentsF.toPlainText()
+            )
+
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
+       
+            
+    def submitDailyIntake(self,event):
+
+        try:
+            saveDailyIntake(
+            self.currentpatient,
+            self.DailyIntakeMRNumberF.text(),
+            self.DailyIntakeDateF.date(),
+            self.DailyIntakeDayTypeF.currentText()[:1],
+            self.DailyIntakePKTNUMF.text(),
+            self.DailyIntakeDataQualityDietF.currentText()[:1],
+            self.DailyIntakeDayQualityDietF.currentText()[:1],
+            self.DailyIntakeEnteredF.text(),
+            self.DailyIntakeCommentsF.toPlainText()
+            )
+           
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
+
+    def submitDietRX(self,event):
         
+        try:
+            saveDietRX(
+            self.currentpatient,
+            self.DietRXMRNumberF.text(),
+            self.DietRXDateF.date(),
+            self.DietRXDayTypeF.currentText()[:1],
+            self.DietRXROFF.currentText().split()[0],
+            self.DietRXRFCDF.currentText().split()[0],
+            self.DietRXSnackCalF.text(),
+            self.DietRXSnackRatioF.text(),
+            self.DietRXSnackNumberF.text(),
+            self.DietRXMealNumberF.text(),
+            self.DietRXMealRatioF.text(),
+            self.DietRXCalF.text(),
+            self.DietRXProF.text(),
+            self.DietRXEnteredF.text(),
+            self.DietRXCommentsF.toPlainText()
+            )
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
 
 def main():
     app = QApplication(sys.argv)
