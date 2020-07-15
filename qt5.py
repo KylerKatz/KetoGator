@@ -585,7 +585,6 @@ class Test (QWidget):
         self.DietRXMealRatioF = QLineEdit()
         self.DietRXMealRatioF.setMaxLength(3)
         self.DietRXMealRatioF.setPlaceholderText("Required")
-
         
         self.DietRXCalL = QLabel("Calories Prescribed - (2 Decimals)")
         self.DietRXCalL.setFont(QtGui.QFont("Ariel", 13))
@@ -594,7 +593,6 @@ class Test (QWidget):
         self.DietRXCalF.setMaxLength(6)
         self.DietRXCalF.setPlaceholderText("Required")
 
-
         self.DietRXProL = QLabel("Protein Prescribed - (2 Decimals)")
         self.DietRXProL.setFont(QtGui.QFont("Ariel", 13))
         self.DietRXProL.setToolTip("Perecent of intake versus recommended intake for proline")
@@ -602,13 +600,11 @@ class Test (QWidget):
         self.DietRXProF.setMaxLength(4)
         self.DietRXProF.setPlaceholderText("Required")
 
-
         self.DietRXEnteredL = QLabel("Entered")
         self.DietRXEnteredL.setFont(QtGui.QFont("Ariel", 13))
         self.DietRXEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
         self.DietRXEnteredF = QLineEdit()
         self.DietRXEnteredF.setPlaceholderText("Required")
-
 
         self.DietRXCommentsL = QLabel("Comments")
         self.DietRXCommentsL.setFont(QtGui.QFont("Ariel", 13))
@@ -617,9 +613,189 @@ class Test (QWidget):
 
         self.DietRXSaveButton = QPushButton("Save")
 
-
-
+        ################### Update Data - Med Data ###################
+        self.MedDataMRNumberL = QLabel("Medical Record Number")
+        self.MedDataMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.MedDataMRNumberF = QLineEdit()
+        self.MedDataMRNumberF.setMaxLength(10)
+        self.MedDataMRNumberF.setPlaceholderText("Required")
         
+        self.MedDataDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.MedDataDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataDateL.setToolTip("Date indicated on records")
+        self.MedDataDateF = QDateEdit()
+        self.MedDataDateF.setDisplayFormat("MM/dd/yyyy")
+        self.MedDataDateF.setDate(datetime.date(datetime.now()))
+        
+        self.MedDataDayTypeL = QLabel("Day Type")
+        self.MedDataDayTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataDayTypeL.setToolTip("Description of date of collection")
+        self.MedDataDayTypeF = QComboBox()
+        self.MedDataDayTypeF.addItems(['1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+
+        self.MedDataNDIDL = QLabel("Nutrition Facts Database Identification")
+        self.MedDataNDIDL.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataNDIDL.setToolTip("NDID is the specific number assigned to each food, suplement, or medication product in the Nutrition Facts Database")
+        self.MedDataNDIDF = QLineEdit()
+        self.MedDataNDIDF.setMaxLength(8)
+        
+        self.MedDataMedIDL = QLabel("Medication ID")
+        self.MedDataMedIDL.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataMedIDL.setToolTip("ID number given to each generic or brand name AED, see med ranking sheet in G:\MySQL Database\Meds\Med Ranking for list of ID numbers")
+        self.MedDataMedIDF = QLineEdit()
+        self.MedDataMedIDF.setMaxLength(8)
+
+        self.MedDataRFCML = QLabel("Reason For Change Med")
+        self.MedDataRFCML.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataRFCML.setToolTip("Reason for change in medication prescription or administration. ")
+        self.MedDataRFCMF = QComboBox()
+        self.MedDataRFCMF.addItems(['0 = No change and initiation (include comment for initiation)','1 = Unspecified','2 = Increased seizures','3 = Decreased seizures','4 = Change in seizure type',
+        '5 = Carbohydrate content','6 = Weaning','7 = Alertness','8 = Hospitalization','9 = Efficacy','10 = Adverse effects','11 = Family, patient, or doctor request','12 = Weight',
+        '13 = Age','14 = GI issues','15 = Non-compliant change by family','16 = Facilitate sleep'])
+
+        self.MedDataProdNameL = QLabel("Product Name")
+        self.MedDataProdNameL.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataProdNameL.setToolTip("Name of food, supplement or medication product that is assigned to the NDID")
+        self.MedDataProdNameF = QLineEdit()
+        self.MedDataProdNameF.setMaxLength(100)
+
+        self.MedDataDailyDoseL = QLabel("Daily Med Dose - (Mg)")
+        self.MedDataDailyDoseL.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataDailyDoseL.setToolTip("Total dose of AED per day in mg either prescribed or consumed")
+        self.MedDataDailyDoseF = QLineEdit()
+        self.MedDataDailyDoseF.setMaxLength(6)
+
+        self.MedDataMedDosesL = QLabel("Med Doses")
+        self.MedDataMedDosesL.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataMedDosesL.setToolTip("Total number of doses AED per day either presribed or consumed")
+        self.MedDataMedDosesF = QLineEdit()
+        self.MedDataMedDosesF.setMaxLength(2)
+
+        self.MedDataMedCommentsL = QLabel("Med Comments")
+        self.MedDataMedCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataMedCommentsL.setToolTip("Additional comments on AED prescription")
+        self.MedDataMedCommentsF = QTextEdit()
+                
+        self.MedDataEnteredL = QLabel("Entered")
+        self.MedDataEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.MedDataEnteredF = QLineEdit()
+        self.MedDataEnteredF.setPlaceholderText("Required")
+
+        self.MedDataCommentsL = QLabel("Comments")
+        self.MedDataCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.MedDataCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.MedDataCommentsF = QTextEdit()
+
+        self.MedDataSaveButton = QPushButton("Save")
+
+        ################### Update Data - Menus ###################
+        self.MenusMRNumberL = QLabel("Medical Record Number")
+        self.MenusMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.MenusMRNumberF = QLineEdit()
+        self.MenusMRNumberF.setMaxLength(10)
+        self.MenusMRNumberF.setPlaceholderText("Required")
+        
+        self.MenusDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.MenusDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusDateL.setToolTip("Date indicated on records")
+        self.MenusDateF = QDateEdit()
+        self.MenusDateF.setDisplayFormat("MM/dd/yyyy")
+        self.MenusDateF.setDate(datetime.date(datetime.now()))
+
+        self.MenusCalPrcntL = QLabel("Calories Prescribed - (kcal)")
+        self.MenusCalPrcntL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusCalPrcntL.setToolTip("Total calories prescribed per day")
+        self.MenusCalPrcntF = QLineEdit()
+        self.MenusCalPrcntF.setMaxLength(6)
+        self.MenusCalPrcntF.setPlaceholderText("Required")
+
+        self.MenusProcntPrcntL = QLabel("Protein Prescribed - (g)")
+        self.MenusProcntPrcntL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusProcntPrcntL.setToolTip("Percent of intake versus recommended intake for proline")
+        self.MenusProcntPrcntF = QLineEdit()
+        self.MenusProcntPrcntF.setMaxLength(4)
+        self.MenusProcntPrcntF.setPlaceholderText("Required")
+
+        self.MenusRatioPrL = QLabel("Ratio Prescribed")
+        self.MenusRatioPrL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusRatioPrL.setToolTip("Meal PKT ratio precribed of amount of fat per amount of carbohydrates plus amount of protein")
+        self.MenusRatioPrF = QLineEdit()
+        self.MenusRatioPrF.setMaxLength(3)
+        self.MenusRatioPrF.setPlaceholderText("Required")
+
+        self.MenusRatioPrL = QLabel("Ratio Prescribed")
+        self.MenusRatioPrL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusRatioPrL.setToolTip("Meal PKT ratio precribed of amount of fat per amount of carbohydrates plus amount of protein")
+        self.MenusRatioPrF = QLineEdit()
+        self.MenusRatioPrF.setMaxLength(3)
+        self.MenusRatioPrF.setPlaceholderText("Required")
+
+        self.MenusMealNumberL = QLabel("Meal Number Prescribed")
+        self.MenusMealNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusMealNumberL.setToolTip("Total number of meals prescribed per day")
+        self.MenusMealNumberF = QLineEdit()
+        self.MenusMealNumberF.setMaxLength(2)
+        self.MenusMealNumberF.setPlaceholderText("Required")
+        
+        self.MenusSnackNumberL = QLabel("Snack Number Prescribed")
+        self.MenusSnackNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusSnackNumberL.setToolTip("Total number of snacks precribed per day")
+        self.MenusSnackNumberF = QLineEdit()
+        self.MenusSnackNumberF.setMaxLength(2)
+        self.MenusSnackNumberF.setPlaceholderText("Cell can be blank if the patient does not receive a snack. Otherwise it is required")
+
+        self.MenusRecipeNameL = QLabel("PKT Recipe Name")
+        self.MenusRecipeNameL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusRecipeNameL.setToolTip("Name of the PKT recipe which includes the PKT recipe number, number of calories, PKT ratio, amount of protein, number of meals and the number of snacks")
+        self.MenusRecipeNameF = QLineEdit()
+        self.MenusRecipeNameF.setMaxLength(100)
+        # self.MenusRecipeNameF.setPlaceholderText("Required")
+
+        self.MenusRecipeNumberL = QLabel("PKT Recipe Number")
+        self.MenusRecipeNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusRecipeNumberL.setToolTip("number given to each different pkt recipe and supplement and it is a unique number. \n1) if the consumed nutrients are a prescribed meal then it gets a whole number and/or a decimal point, 2) if the consumed nutrients are a deviation of a prescribed meal then it \ngets a whole number followed by a letter (starting with the letter a) to denote a deviation of the meal, if the consumed food is a supplement then it gets the letter s followed by a whole number \nstarting with the number 1, if the consumed nutrients are a deviation of a supplement then it gets the letter s followed by a whole number started with the number 1 and followed \nby a letter (starting with the letter a) to denote a deviation in the supplement")
+        self.MenusRecipeNumberF = QLineEdit()
+        self.MenusRecipeNumberF.setMaxLength(5)
+
+        self.MenusRecipeIngredientAmountL = QLabel("PKT Recipe Ingredient Amount - (2 Decimals, g)")
+        self.MenusRecipeIngredientAmountL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusRecipeIngredientAmountL.setToolTip("Amount of ingredient consumed in grams, unless it is a supplement then the number of servings is entered")
+        self.MenusRecipeIngredientAmountF = QLineEdit()
+        self.MenusRecipeIngredientAmountF.setMaxLength(5)
+        
+        self.MenusNDIDL = QLabel("Nutrition Facts Database Identification")
+        self.MenusNDIDL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusNDIDL.setToolTip("NDID is the specific number assigned to each food, suplement, or medication product in the Nutrition Facts Database")
+        self.MenusNDIDF = QLineEdit()
+        self.MenusNDIDF.setMaxLength(8)
+
+        self.MenusProdNameL = QLabel("Product Name")
+        self.MenusProdNameL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusProdNameL.setToolTip("Name of food, supplement or medication product that is assigned to the NDID")
+        self.MenusProdNameF = QLineEdit()
+        self.MenusProdNameF.setMaxLength(100)
+        
+        self.MenusRecipeTypeL = QLabel("Product Name")
+        self.MenusRecipeTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusRecipeTypeL.setToolTip("Recipe type indicated whether the recipe is for breakfast, lunch, dinner or a snack")
+        self.MenusRecipeTypeF = QComboBox()
+        self.MenusRecipeTypeF.addItems(['1 = Prescribed meal','2 = Prescribed snack','3 = Deviation meal', '4 = Deviation snack', '5 = Other deviation', '6 = Dietary supplement or medication'])
+
+        self.MenusEnteredL = QLabel("Entered")
+        self.MenusEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.MenusEnteredF = QLineEdit()
+        self.MenusEnteredF.setPlaceholderText("Required")
+
+        self.MenusCommentsL = QLabel("Comments")
+        self.MenusCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.MenusCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.MenusCommentsF = QTextEdit()
+
+        self.MenusSaveButton = QPushButton("Save")
 
 
         self.closeanthropometrics()
@@ -645,6 +821,8 @@ class Test (QWidget):
         self.graphinputformclinicGI = QGridLayout()
         self.graphinputformdailyintake = QGridLayout()
         self.graphinputformdietrx = QGridLayout()
+        self.graphinputformmeddata = QGridLayout()
+        self.graphinputformmenus = QGridLayout()
 
 
 
@@ -843,12 +1021,70 @@ class Test (QWidget):
         self.graphinputformdietrx.addWidget(self.DietRXCommentsF,13,1)
         self.graphinputformdietrx.addWidget(self.DietRXSaveButton,14,1)
         
+        ################### Update Data Med Data ###################
+        self.graphinputformmeddata.addWidget(self.MedDataMRNumberL,0,0)
+        self.graphinputformmeddata.addWidget(self.MedDataMRNumberF,0,1)
+        self.graphinputformmeddata.addWidget(self.MedDataDateL,1,0)
+        self.graphinputformmeddata.addWidget(self.MedDataDateF,1,1)
+        self.graphinputformmeddata.addWidget(self.MedDataDayTypeL,2,0)
+        self.graphinputformmeddata.addWidget(self.MedDataDayTypeF,2,1)
+        self.graphinputformmeddata.addWidget(self.MedDataNDIDL,3,0)
+        self.graphinputformmeddata.addWidget(self.MedDataNDIDF,3,1)
+        self.graphinputformmeddata.addWidget(self.MedDataMedIDL,4,0)
+        self.graphinputformmeddata.addWidget(self.MedDataMedIDF,4,1)
+        self.graphinputformmeddata.addWidget(self.MedDataRFCML,5,0)
+        self.graphinputformmeddata.addWidget(self.MedDataRFCMF,5,1)
+        self.graphinputformmeddata.addWidget(self.MedDataProdNameL,6,0)
+        self.graphinputformmeddata.addWidget(self.MedDataProdNameF,6,1)
+        self.graphinputformmeddata.addWidget(self.MedDataDailyDoseL,7,0)
+        self.graphinputformmeddata.addWidget(self.MedDataDailyDoseF,7,1)
+        self.graphinputformmeddata.addWidget(self.MedDataMedDosesL,8,0)
+        self.graphinputformmeddata.addWidget(self.MedDataMedDosesF,8,1)
+        self.graphinputformmeddata.addWidget(self.MedDataMedCommentsL,9,0)
+        self.graphinputformmeddata.addWidget(self.MedDataMedCommentsF,9,1)
+        self.graphinputformmeddata.addWidget(self.MedDataEnteredL,10,0)
+        self.graphinputformmeddata.addWidget(self.MedDataEnteredF,10,1)
+        self.graphinputformmeddata.addWidget(self.MedDataCommentsL,11,0)
+        self.graphinputformmeddata.addWidget(self.MedDataCommentsF,11,1)
+        self.graphinputformmeddata.addWidget(self.MedDataSaveButton,12,1)
 
-
-
-
-
-
+        ################### Update Data Menus ###################
+        self.graphinputformmenus.addWidget(self.MenusMRNumberL,0,0)
+        self.graphinputformmenus.addWidget(self.MenusMRNumberF,0,1)
+        self.graphinputformmenus.addWidget(self.MenusDateL,1,0)
+        self.graphinputformmenus.addWidget(self.MenusDateF,1,1)
+        self.graphinputformmenus.addWidget(self.MenusCalPrcntL,2,0)
+        self.graphinputformmenus.addWidget(self.MenusCalPrcntF,2,1)
+        self.graphinputformmenus.addWidget(self.MenusProcntPrcntL,3,0)
+        self.graphinputformmenus.addWidget(self.MenusProcntPrcntF,3,1)
+        self.graphinputformmenus.addWidget(self.MenusRatioPrL,4,0 )
+        self.graphinputformmenus.addWidget(self.MenusRatioPrF,4,1)
+        self.graphinputformmenus.addWidget(self.MenusRatioPrL,5,0)
+        self.graphinputformmenus.addWidget(self.MenusRatioPrF,5,1)
+        self.graphinputformmenus.addWidget(self.MenusMealNumberL,6,0)
+        self.graphinputformmenus.addWidget(self.MenusMealNumberF,6,1)
+        self.graphinputformmenus.addWidget(self.MenusSnackNumberL,7,0)
+        self.graphinputformmenus.addWidget(self.MenusSnackNumberF,7,1)
+        self.graphinputformmenus.addWidget(self.MenusRecipeNameL,8,0)
+        self.graphinputformmenus.addWidget(self.MenusRecipeNameF,8,1)
+        self.graphinputformmenus.addWidget(self.MenusRecipeNumberL,9,0)
+        self.graphinputformmenus.addWidget(self.MenusRecipeNumberF,9,1)
+        self.graphinputformmenus.addWidget(self.MenusRecipeIngredientAmountL,10,0)
+        self.graphinputformmenus.addWidget(self.MenusRecipeIngredientAmountF,10,1)
+        self.graphinputformmenus.addWidget(self.MenusNDIDL,11,0)
+        self.graphinputformmenus.addWidget(self.MenusNDIDF,11,1)
+        self.graphinputformmenus.addWidget(self.MenusProdNameL,12,0)
+        self.graphinputformmenus.addWidget(self.MenusProdNameF,12,1)
+        self.graphinputformmenus.addWidget(self.MenusRecipeTypeL,13,0)
+        self.graphinputformmenus.addWidget(self.MenusRecipeTypeF,13,1)
+        self.graphinputformmenus.addWidget(self.MenusEnteredL,14,0)
+        self.graphinputformmenus.addWidget(self.MenusEnteredF,14,1)
+        self.graphinputformmenus.addWidget(self.MenusCommentsL,15,0)
+        self.graphinputformmenus.addWidget(self.MenusCommentsF,15,1)
+        self.graphinputformmenus.addWidget(self.MenusSaveButton,16,1)
+        
+        
+     
         
         # Set Up Scroll Boxes 
 
@@ -900,6 +1136,27 @@ class Test (QWidget):
         self.dietrxformscroll.setWidgetResizable(True)
 
         self.middle.addWidget(self.dietrxformscroll)
+
+###############################
+
+        self.meddatabox = QGroupBox()
+        self.meddatabox.setLayout(self.graphinputformmeddata)
+        
+        self.meddataformscroll = QScrollArea()
+        self.meddataformscroll.setWidget(self.meddatabox)
+        self.meddataformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.meddataformscroll)
+###############################
+
+        self.menusbox = QGroupBox()
+        self.menusbox.setLayout(self.graphinputformmenus)
+        
+        self.menusformscroll = QScrollArea()
+        self.menusformscroll.setWidget(self.menusbox)
+        self.menusformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.menusformscroll)
 
 
 
@@ -1207,6 +1464,36 @@ class Test (QWidget):
             self.middle.addWidget(self.dietrxformscroll)
 
             self.opendietrx()
+
+        if (selection == "Med Data"):
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.meddatabox = QGroupBox()
+            self.meddatabox.setLayout(self.graphinputformmeddata)
+            
+            self.meddataformscroll = QScrollArea()
+            self.meddataformscroll.setWidget(self.meddatabox)
+            self.meddataformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.meddataformscroll)
+
+            self.openmeddata()
+        
+        if(selection == "Menus"):
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.menusbox = QGroupBox()
+            self.menusbox.setLayout(self.graphinputformmenus)
+            
+            self.menusformscroll = QScrollArea()
+            self.menusformscroll.setWidget(self.menusbox)
+            self.menusformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.menusformscroll)
+
+            self.openmenus()
                
 
     def updateStateCombo(self, index):
@@ -1297,6 +1584,7 @@ class Test (QWidget):
         self.closeclinicgi()
         self.closedailyintake()
         self.closedietrx()
+        self.closemenus()
 
         self.alertnessbox.close()
         self.alertnessformscroll.close()
@@ -1313,6 +1601,12 @@ class Test (QWidget):
         self.dietrxbox.close()
         self.dietrxformscroll.close()
 
+        self.meddatabox.close()
+        self.meddataformscroll.close()
+
+        self.menusbox.close()
+        self.menusformscroll.close()
+
     def removeallforms(self):
         # self.middle.removeItem(self.graphinputformalertness)
         self.middle.removeWidget(self.alertnessformscroll)
@@ -1326,6 +1620,10 @@ class Test (QWidget):
         self.middle.removeWidget(self.dailyIntakeformscroll)
 
         self.middle.removeWidget(self.dietrxformscroll)
+
+        self.middle.removeWidget(self.meddataformscroll)
+
+        self.middle.removeWidget(self.menusformscroll)
 
 
     def closealertness(self):
@@ -1473,9 +1771,73 @@ class Test (QWidget):
         self.DietRXCommentsL.close()
         self.DietRXCommentsF.close()
         self.DietRXSaveButton.close()
+
+
+
+    def closemeddata(self):
+        self.MedDataMRNumberL.show()
+        self.MedDataMRNumberF.show()
+        self.MedDataDateL.show()
+        self.MedDataDateF.show()
+        self.MedDataDayTypeL.show()
+        self.MedDataDayTypeF.show()
+        self.MedDataNDIDL.show()
+        self.MedDataNDIDF.show()
+        self.MedDataMedIDL.show()
+        self.MedDataMedIDF.show()
+        self.MedDataRFCML.show()
+        self.MedDataRFCMF.show()
+        self.MedDataProdNameL.show()
+        self.MedDataProdNameF.show()
+        self.MedDataDailyDoseL.show()
+        self.MedDataDailyDoseF.show()
+        self.MedDataMedDosesL.show()
+        self.MedDataMedDosesF.show()
+        self.MedDataMedCommentsL.show()
+        self.MedDataMedCommentsF.show()
+        self.MedDataEnteredL.show()
+        self.MedDataEnteredF.show()
+        self.MedDataCommentsL.show()
+        self.MedDataCommentsF.show()
+        self.MedDataSaveButton.show()
+
+    def closemenus(self):
+        self.MenusMRNumberL.close()
+        self.MenusMRNumberF.close()
+        self.MenusDateL.close()
+        self.MenusDateF.close()
+        self.MenusCalPrcntL.close()
+        self.MenusCalPrcntF.close()
+        self.MenusProcntPrcntL.close()
+        self.MenusProcntPrcntF.close()
+        self.MenusRatioPrL .close()
+        self.MenusRatioPrF.close()
+        self.MenusRatioPrL.close()
+        self.MenusRatioPrF.close()
+        self.MenusMealNumberL.close()
+        self.MenusMealNumberF.close()
+        self.MenusSnackNumberL.close()
+        self.MenusSnackNumberF.close()
+        self.MenusRecipeNameL.close() 
+        self.MenusRecipeNameF.close()
+        self.MenusRecipeNumberL.close()
+        self.MenusRecipeNumberF.close()
+        self.MenusRecipeIngredientAmountL.close()
+        self.MenusRecipeIngredientAmountF.close()
+        self.MenusNDIDL.close()
+        self.MenusNDIDF.close()
+        self.MenusProdNameL.close()
+        self.MenusProdNameF.close()
+        self.MenusRecipeTypeL.close() 
+        self.MenusRecipeTypeF.close()
+        self.MenusEnteredL.close() 
+        self.MenusEnteredF.close()
+        self.MenusCommentsL.close()
+        self.MenusCommentsF.close() 
+        self.MenusSaveButton.close()     
             
 
-
+#################
     def openalertness(self):
         self.AlertnessMRNumberL.show()
         self.AlertnessMRNumberF.show()
@@ -1624,6 +1986,68 @@ class Test (QWidget):
         self.DietRXCommentsF.show()
         self.DietRXSaveButton.show()    
 
+
+    def openmeddata(self):
+        self.MedDataMRNumberL.show()
+        self.MedDataMRNumberF.show()
+        self.MedDataDateL.show()
+        self.MedDataDateF.show()
+        self.MedDataDayTypeL.show()
+        self.MedDataDayTypeF.show()
+        self.MedDataNDIDL.show()
+        self.MedDataNDIDF.show()
+        self.MedDataMedIDL.show()
+        self.MedDataMedIDF.show()
+        self.MedDataRFCML.show()
+        self.MedDataRFCMF.show()
+        self.MedDataProdNameL.show()
+        self.MedDataProdNameF.show()
+        self.MedDataDailyDoseL.show()
+        self.MedDataDailyDoseF.show()
+        self.MedDataMedDosesL.show()
+        self.MedDataMedDosesF.show()
+        self.MedDataMedCommentsL.show()
+        self.MedDataMedCommentsF.show()
+        self.MedDataEnteredL.show()
+        self.MedDataEnteredF.show()
+        self.MedDataCommentsL.show()
+        self.MedDataCommentsF.show()
+        self.MedDataSaveButton.show()
+
+    def openmenus(self):
+        self.MenusMRNumberL.show()
+        self.MenusMRNumberF.show()
+        self.MenusDateL.show()
+        self.MenusDateF.show()
+        self.MenusCalPrcntL.show()
+        self.MenusCalPrcntF.show()
+        self.MenusProcntPrcntL.show()
+        self.MenusProcntPrcntF.show()
+        self.MenusRatioPrL .show()
+        self.MenusRatioPrF.show()
+        self.MenusRatioPrL.show()
+        self.MenusRatioPrF.show()
+        self.MenusMealNumberL.show()
+        self.MenusMealNumberF.show()
+        self.MenusSnackNumberL.show()
+        self.MenusSnackNumberF.show()
+        self.MenusRecipeNameL.show() 
+        self.MenusRecipeNameF.show()
+        self.MenusRecipeNumberL.show()
+        self.MenusRecipeNumberF.show()
+        self.MenusRecipeIngredientAmountL.show()
+        self.MenusRecipeIngredientAmountF.show()
+        self.MenusNDIDL.show()
+        self.MenusNDIDF.show()
+        self.MenusProdNameL.show()
+        self.MenusProdNameF.show()
+        self.MenusRecipeTypeL.show() 
+        self.MenusRecipeTypeF.show()
+        self.MenusEnteredL.show() 
+        self.MenusEnteredF.show()
+        self.MenusCommentsL.show()
+        self.MenusCommentsF.show() 
+        self.MenusSaveButton.show() 
 
 
     
