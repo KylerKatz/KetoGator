@@ -558,13 +558,13 @@ class Test (QWidget):
         self.DietRXSnackCalL.setFont(QtGui.QFont("Ariel", 13))
         self.DietRXSnackCalL.setToolTip("Total snack calories for the entire day")
         self.DietRXSnackCalF = QLineEdit()
-        self.DietRXSnackCalF.setMaxLength(4)
+        self.DietRXSnackCalF.setMaxLength(5)
 
         self.DietRXSnackRatioL = QLabel("Snack Ratio Prescribed - (2 Decimals)")
         self.DietRXSnackRatioL.setFont(QtGui.QFont("Ariel", 13))
         self.DietRXSnackRatioL.setToolTip("Snack PKT ratio precribed per day")
         self.DietRXSnackRatioF = QLineEdit()
-        self.DietRXSnackRatioF.setMaxLength(3)
+        self.DietRXSnackRatioF.setMaxLength(4)
 
         self.DietRXSnackNumberL = QLabel("Snack Number Prescribed")
         self.DietRXSnackNumberL.setFont(QtGui.QFont("Ariel", 13))
@@ -583,21 +583,21 @@ class Test (QWidget):
         self.DietRXMealRatioL.setFont(QtGui.QFont("Ariel", 13))
         self.DietRXMealRatioL.setToolTip("Meal PKT ratio of amount of fat per amount of carbohydrate plus amount of protein prescribed per day")
         self.DietRXMealRatioF = QLineEdit()
-        self.DietRXMealRatioF.setMaxLength(3)
+        self.DietRXMealRatioF.setMaxLength(4)
         self.DietRXMealRatioF.setPlaceholderText("Required")
         
         self.DietRXCalL = QLabel("Calories Prescribed - (2 Decimals)")
         self.DietRXCalL.setFont(QtGui.QFont("Ariel", 13))
         self.DietRXCalL.setToolTip("Total calories prescribed per day")
         self.DietRXCalF = QLineEdit()
-        self.DietRXCalF.setMaxLength(6)
+        self.DietRXCalF.setMaxLength(7)
         self.DietRXCalF.setPlaceholderText("Required")
 
         self.DietRXProL = QLabel("Protein Prescribed - (2 Decimals)")
         self.DietRXProL.setFont(QtGui.QFont("Ariel", 13))
         self.DietRXProL.setToolTip("Perecent of intake versus recommended intake for proline")
         self.DietRXProF = QLineEdit()
-        self.DietRXProF.setMaxLength(4)
+        self.DietRXProF.setMaxLength(5)
         self.DietRXProF.setPlaceholderText("Required")
 
         self.DietRXEnteredL = QLabel("Entered")
@@ -764,7 +764,7 @@ class Test (QWidget):
         self.MenusRecipeIngredientAmountL.setFont(QtGui.QFont("Ariel", 13))
         self.MenusRecipeIngredientAmountL.setToolTip("Amount of ingredient consumed in grams, unless it is a supplement then the number of servings is entered")
         self.MenusRecipeIngredientAmountF = QLineEdit()
-        self.MenusRecipeIngredientAmountF.setMaxLength(5)
+        self.MenusRecipeIngredientAmountF.setMaxLength(6)
         
         self.MenusNDIDL = QLabel("Nutrition Facts Database Identification")
         self.MenusNDIDL.setFont(QtGui.QFont("Ariel", 13))
@@ -778,7 +778,7 @@ class Test (QWidget):
         self.MenusProdNameF = QLineEdit()
         self.MenusProdNameF.setMaxLength(100)
         
-        self.MenusRecipeTypeL = QLabel("Product Name")
+        self.MenusRecipeTypeL = QLabel("Recipe Type")
         self.MenusRecipeTypeL.setFont(QtGui.QFont("Ariel", 13))
         self.MenusRecipeTypeL.setToolTip("Recipe type indicated whether the recipe is for breakfast, lunch, dinner or a snack")
         self.MenusRecipeTypeF = QComboBox()
@@ -796,6 +796,382 @@ class Test (QWidget):
         self.MenusCommentsF = QTextEdit()
 
         self.MenusSaveButton = QPushButton("Save")
+
+        ################### Update Data - Other Med ###################
+        self.OtherMedMRNumberL = QLabel("Medical Record Number")
+        self.OtherMedMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.OtherMedMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.OtherMedMRNumberF = QLineEdit()
+        self.OtherMedMRNumberF.setMaxLength(10)
+        self.OtherMedMRNumberF.setPlaceholderText("Required")
+        
+        self.OtherMedDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.OtherMedDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.OtherMedDateL.setToolTip("Date indicated on records")
+        self.OtherMedDateF = QDateEdit()
+        self.OtherMedDateF.setDisplayFormat("MM/dd/yyyy")
+        self.OtherMedDateF.setDate(datetime.date(datetime.now()))
+        
+        self.OtherMedNDIDL = QLabel("Nutrition Facts Database Identification")
+        self.OtherMedNDIDL.setFont(QtGui.QFont("Ariel", 13))
+        self.OtherMedNDIDL.setToolTip("NDID is the specific number assigned to each food, suplement, or medication product in the Nutrition Facts Database")
+        self.OtherMedNDIDF = QLineEdit()
+        self.OtherMedNDIDF.setMaxLength(8)
+
+        self.OtherMedProdNameL = QLabel("Product Name")
+        self.OtherMedProdNameL.setFont(QtGui.QFont("Ariel", 13))
+        self.OtherMedProdNameL.setToolTip("Name of food, supplement or medication product that is assigned to the NDID")
+        self.OtherMedProdNameF = QLineEdit()
+        self.OtherMedProdNameF.setMaxLength(100)
+
+        self.OtherMedMedAmountL = QLabel("Medication Amount")
+        self.OtherMedMedAmountL.setFont(QtGui.QFont("Ariel", 13))
+        self.OtherMedMedAmountF = QLineEdit()
+
+        self.OtherMedMedUnitL = QLabel("Medication Unit")
+        self.OtherMedMedUnitL.setFont(QtGui.QFont("Ariel", 13))
+        self.OtherMedMedUnitF = QLineEdit()
+        
+        self.OtherMedEnteredL = QLabel("Entered")
+        self.OtherMedEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.OtherMedEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.OtherMedEnteredF = QLineEdit()
+        self.OtherMedEnteredF.setPlaceholderText("Required")
+
+        self.OtherMedCommentsL = QLabel("Comments")
+        self.OtherMedCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.OtherMedCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.OtherMedCommentsF = QTextEdit()
+
+        self.OtherMedSaveButton = QPushButton("Save")
+
+        ################### Update Data - Seizure Data ###################
+        self.SeizureDataMRNumberL = QLabel("Medical Record Number")
+        self.SeizureDataMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.SeizureDataMRNumberF = QLineEdit()
+        self.SeizureDataMRNumberF.setMaxLength(10)
+        self.SeizureDataMRNumberF.setPlaceholderText("Required")
+        
+        self.SeizureDataDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.SeizureDataDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataDateL.setToolTip("Date indicated on records")
+        self.SeizureDataDateF = QDateEdit()
+        self.SeizureDataDateF.setDisplayFormat("MM/dd/yyyy")
+        self.SeizureDataDateF.setDate(datetime.date(datetime.now()))
+        
+        self.SeizureDataDayTypeL = QLabel("Day Type")
+        self.SeizureDataDayTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataDayTypeL.setToolTip("Description of date of collection")
+        self.SeizureDataDayTypeF = QComboBox()
+        self.SeizureDataDayTypeF.addItems(['1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+
+        self.SeizureDataDataQualityL = QLabel("Data Quality Seizure")
+        self.SeizureDataDataQualityL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataDataQualityL.setToolTip("Quality of day pertaining to the options for categorical variables column")
+        self.SeizureDataDataQualityF = QComboBox()
+        self.SeizureDataDataQualityF.addItems(['1 = Record', '2 = Recall', '3 = Input'])
+
+        self.SeizureDataSeizureSeverityL = QLabel("Seizure Severity")
+        self.SeizureDataSeizureSeverityL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataSeizureSeverityL.setToolTip("Severity of seizure as written by caregiver")
+        self.SeizureDataSeizureSeverityF = QLineEdit()
+        self.SeizureDataSeizureSeverityF.setMaxLength(4)
+
+        self.SeizureDataSeizureLengthL = QLabel("Seizure Length - (s)")
+        self.SeizureDataSeizureLengthL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataSeizureLengthL.setToolTip("Length of seizure as written by caregiver, record in seconds")
+        self.SeizureDataSeizureLengthF = QLineEdit()
+        self.SeizureDataSeizureLengthF.setMaxLength(4)
+
+        self.SeizureDataSeizureTypeL = QLabel("Seizure Type")
+        self.SeizureDataSeizureTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataSeizureTypeL.setToolTip("Follow the entry instructions: The caregiver, when possible, described and ranked each seizure type. \nNeurologist classification and/or supporting literature was used to assign ranking points to each seizure types if caregivers ranking and description of seizure type did not exist. \nRanking points 0 through the maximum value were assigned to each seizure type with the maximum value being the most severe and 0 being seizure free. \nThe following scale, provided by the neurologists and/or supporting literature,\n was used to assign ranking points to seizure types: tonic clonic or generalized tonic clonic received the maximum number of points, complex partial and atonic seizures received the second highest value, myoclonic seizures received half of the maximum value, \nsimple partial seizures received the second lowest value, and absence seizures and infantile spasms received 1 point. Enter a letter or number that is associated with the seizure type \nand write the description in the notes section. Enter 0 to indicate seizure freedom. Enter each code in a separate row with SEIZURE TYPE in the SEIZURE_PARAMETER column")
+        self.SeizureDataSeizureTypeF = QLineEdit()
+        self.SeizureDataSeizureTypeF.setMaxLength(4)
+        
+        self.SeizureDataSeizureVariableL = QLabel("Seizure Variable")
+        self.SeizureDataSeizureVariableL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataSeizureVariableL.setToolTip("Seizure variables as recorded by caregivers")
+        self.SeizureDataSeizureVariableF = QLineEdit()
+        self.SeizureDataSeizureVariableF.setMaxLength(4)
+
+        self.SeizureDataSeizureNumberL = QLabel("Seizure Number")
+        self.SeizureDataSeizureNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataSeizureNumberL.setToolTip("Seizure number as recorded by caregivers from records or recall")
+        self.SeizureDataSeizureNumberF = QLineEdit()
+        self.SeizureDataSeizureNumberF.setMaxLength(4)
+
+        self.SeizureDataSeizureClusterL = QLabel("Seizure Cluster")
+        self.SeizureDataSeizureClusterL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataSeizureClusterL.setToolTip("Clusters of seizrues within an event as written by caregiver")
+        self.SeizureDataSeizureClusterF = QLineEdit()
+        self.SeizureDataSeizureClusterF.setMaxLength(4)
+        
+        self.SeizureDataEnteredL = QLabel("Entered")
+        self.SeizureDataEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.SeizureDataEnteredF = QLineEdit()
+        self.SeizureDataEnteredF.setPlaceholderText("Required")
+
+        self.SeizureDataCommentsL = QLabel("Comments")
+        self.SeizureDataCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureDataCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.SeizureDataCommentsF = QTextEdit()
+
+        self.SeizureDataSaveButton = QPushButton("Save")
+
+        ################### Update Data - Seizure Ranking ###################
+        self.SeizureRankingMRNumberL = QLabel("Medical Record Number")
+        self.SeizureRankingMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureRankingMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.SeizureRankingMRNumberF = QLineEdit()
+        self.SeizureRankingMRNumberF.setMaxLength(10)
+        self.SeizureRankingMRNumberF.setPlaceholderText("Required")
+
+        self.SeizureRankingSeizureParameterL = QLabel("Seizure Parameter")
+        self.SeizureRankingSeizureParameterL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureRankingSeizureParameterL.setToolTip("General description of seizures, including severity, seizure length, seizure type, seizure variables, seizure cluster")
+        self.SeizureRankingSeizureParameterF = QLineEdit()
+        self.SeizureRankingSeizureParameterF.setMaxLength(6)
+        
+        self.SeizureRankingSeizureEntryL = QLabel("Seizure Entry")
+        self.SeizureRankingSeizureEntryL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureRankingSeizureEntryL.setToolTip("Code as recorded by caregivers")
+        self.SeizureRankingSeizureEntryF = QLineEdit()
+        self.SeizureRankingSeizureEntryF.setMaxLength(6)
+
+        self.SeizureRankingSeizureRankingL = QLabel("Seizure Ranking")
+        self.SeizureRankingSeizureRankingL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureRankingSeizureRankingL.setToolTip("Seizure ranking point associated with code provided by caregivers")
+        self.SeizureRankingSeizureRankingF = QLineEdit()
+        self.SeizureRankingSeizureRankingF.setMaxLength(6)
+
+        self.SeizureRankingEnteredL = QLabel("Entered")
+        self.SeizureRankingEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureRankingEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.SeizureRankingEnteredF = QLineEdit()
+        self.SeizureRankingEnteredF.setPlaceholderText("Required")
+
+        self.SeizureRankingCommentsL = QLabel("Comments")
+        self.SeizureRankingCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.SeizureRankingCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.SeizureRankingCommentsF = QTextEdit()
+
+        self.SeizureRankingSaveButton = QPushButton("Save")
+
+        ################### Update Data - Urine Kt SG ###################
+        self.UrineKtSGMRNumberL = QLabel("Medical Record Number")
+        self.UrineKtSGMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.UrineKtSGMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.UrineKtSGMRNumberF = QLineEdit()
+        self.UrineKtSGMRNumberF.setMaxLength(10)
+        self.UrineKtSGMRNumberF.setPlaceholderText("Required")
+        
+        self.UrineKtSGDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.UrineKtSGDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.UrineKtSGDateL.setToolTip("Date indicated on records")
+        self.UrineKtSGDateF = QDateEdit()
+        self.UrineKtSGDateF.setDisplayFormat("MM/dd/yyyy")
+        self.UrineKtSGDateF.setDate(datetime.date(datetime.now()))
+        
+        self.UrineKtSGDayTypeL = QLabel("Day Type")
+        self.UrineKtSGDayTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.UrineKtSGDayTypeL.setToolTip("Description of date of collection")
+        self.UrineKtSGDayTypeF = QComboBox()
+        self.UrineKtSGDayTypeF.addItems(['1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+
+        self.UrineKtSGUrineKtL = QLabel("Urine Ketones - (1 Decimal)")
+        self.UrineKtSGUrineKtL.setFont(QtGui.QFont("Ariel", 13))
+        self.UrineKtSGUrineKtL.setToolTip("Urine ketone value from daily records from caregivers")
+        self.UrineKtSGUrineKtF = QLineEdit()
+        self.UrineKtSGUrineKtF.setMaxLength(7)
+
+        self.UrineKtSGUrineSGL = QLabel("Urine Specific Gravity - (5 Decimals)")
+        self.UrineKtSGUrineSGL.setFont(QtGui.QFont("Ariel", 13))
+        self.UrineKtSGUrineSGL.setToolTip("Urine specific gravity value from daily records from caregivers")
+        self.UrineKtSGUrineSGF = QLineEdit()
+        self.UrineKtSGUrineSGF.setMaxLength(7)
+        
+        self.UrineKtSGEnteredL = QLabel("Entered")
+        self.UrineKtSGEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.UrineKtSGEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.UrineKtSGEnteredF = QLineEdit()
+        self.UrineKtSGEnteredF.setPlaceholderText("Required")
+
+        self.UrineKtSGCommentsL = QLabel("Comments")
+        self.UrineKtSGCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.UrineKtSGCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.UrineKtSGCommentsF = QTextEdit()
+
+        self.UrineKtSGSaveButton = QPushButton("Save")
+
+        ################### Update Data - Vitals ###################
+
+        self.VitalsMRNumberL = QLabel("Medical Record Number")
+        self.VitalsMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.VitalsMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.VitalsMRNumberF = QLineEdit()
+        self.VitalsMRNumberF.setMaxLength(10)
+        self.VitalsMRNumberF.setPlaceholderText("Required")
+        
+        self.VitalsDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.VitalsDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.VitalsDateL.setToolTip("Date indicated on records")
+        self.VitalsDateF = QDateEdit()
+        self.VitalsDateF.setDisplayFormat("MM/dd/yyyy")
+        self.VitalsDateF.setDate(datetime.date(datetime.now()))
+        
+        self.VitalsDayTypeL = QLabel("Day Type")
+        self.VitalsDayTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.VitalsDayTypeL.setToolTip("Description of date of collection")
+        self.VitalsDayTypeF = QComboBox()
+        self.VitalsDayTypeF.addItems(['1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+        
+        self.VitalsSourceL = QLabel("Source")
+        self.VitalsSourceL.setFont(QtGui.QFont("Ariel", 13))
+        self.VitalsSourceL.setToolTip("Description of location for data collection which indicates quality of data. Patients on the prospective study can have 1,2, or 3 as options. \nPatients before the prospective study only have 2 and 3 as options")
+        self.VitalsSourceF = QComboBox()
+        self.VitalsSourceF.addItems(['1 = CRC', '2 = Clinic', '3 = Other (e.g. home,school)'])
+
+        self.VitalsBPSysL = QLabel("Blood Pressure Systolic - (mmHg)")
+        self.VitalsBPSysL.setFont(QtGui.QFont("Ariel", 13))
+        self.VitalsBPSysL.setToolTip("Systolic blood pressure is the pressure when the heart beats while pumping blood")
+        self.VitalsBPSysF = QLineEdit()
+        self.VitalsBPSysF.setMaxLength(3)
+
+        self.VitalsBPDiaL = QLabel("Blood Pressure Diastolic - (mmHg)")
+        self.VitalsBPDiaL.setFont(QtGui.QFont("Ariel", 13))
+        self.VitalsBPDiaL.setToolTip("Diastolic blood pressure is the pressure when the heart is at rest between beats")
+        self.VitalsBPDiaF = QLineEdit()
+        self.VitalsBPDiaF.setMaxLength(2)
+
+        self.VitalsTempL = QLabel("Temperature - (Celsius)")
+        self.VitalsTempL.setFont(QtGui.QFont("Ariel", 13))
+        self.VitalsTempL.setToolTip("The degree of heat maintained by the body or it is the balance between heat produced in the tissues and heat lost to the environment. It is typically taken axillary for our patients")
+        self.VitalsTempF = QLineEdit()
+        self.VitalsTempF.setMaxLength(3)
+        
+        self.VitalsRRL = QLabel("Respiratory Rate - (Respirations/minute)")
+        self.VitalsRRL.setFont(QtGui.QFont("Ariel", 13))
+        self.VitalsRRL.setToolTip("The respiration rate is the number of breaths a person takes per minute. The rate is usually measured when a person is at rest and simply involves \ncounting the number of breaths for one minute by counting how many times the chest rises")
+        self.VitalsRRF = QLineEdit()
+        self.VitalsRRF.setMaxLength(2)
+
+        self.VitalsHRL = QLabel("Heart Rate - (Beats/minute)")
+        self.VitalsHRL.setFont(QtGui.QFont("Ariel", 13))
+        self.VitalsHRL.setToolTip("The number of time the heart beats per minute")
+        self.VitalsHRF = QLineEdit()
+        self.VitalsHRF.setMaxLength(3)
+
+        self.VitalsEnteredL = QLabel("Entered")
+        self.VitalsEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.VitalsEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.VitalsEnteredF = QLineEdit()
+        self.VitalsEnteredF.setPlaceholderText("Required")
+
+        self.VitalsCommentsL = QLabel("Comments")
+        self.VitalsCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.VitalsCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.VitalsCommentsF = QTextEdit()
+
+        self.VitalsSaveButton = QPushButton("Save")
+
+        ################### Update Data - VNS ###################
+
+        self.VNSMRNumberL = QLabel("Medical Record Number")
+        self.VNSMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.VNSMRNumberF = QLineEdit()
+        self.VNSMRNumberF.setMaxLength(10)
+        self.VNSMRNumberF.setPlaceholderText("Required")
+        
+        self.VNSDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.VNSDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSDateL.setToolTip("Date indicated on records")
+        self.VNSDateF = QDateEdit()
+        self.VNSDateF.setDisplayFormat("MM/dd/yyyy")
+        self.VNSDateF.setDate(datetime.date(datetime.now()))
+        
+        self.VNSDayTypeL = QLabel("Day Type")
+        self.VNSDayTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSDayTypeL.setToolTip("Description of date of collection")
+        self.VNSDayTypeF = QComboBox()
+        self.VNSDayTypeF.addItems(['1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+        
+        self.VNSMRMagActL = QLabel("Number Of Magnet Activations")
+        self.VNSMRMagActL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSMRMagActL.setToolTip("Number Magnet Activations For Vagul Nerve Stimulator")
+        self.VNSMRMagActF = QLineEdit()
+        self.VNSMRMagActF.setMaxLength(5)
+
+        self.VNSOutputCurrL = QLabel("Output Current - (2 Decimals)")
+        self.VNSOutputCurrL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSOutputCurrL.setToolTip("Output Current For Vagul Nerve Stimulator")
+        self.VNSOutputCurrF = QLineEdit()
+        self.VNSOutputCurrF.setMaxLength(6)
+
+        self.VNSVNSFrequencyL = QLabel("Frequency - (2 Decimals)")
+        self.VNSVNSFrequencyL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSVNSFrequencyL.setToolTip("Frequency For Vagul Nerve Stimulator")
+        self.VNSVNSFrequencyF = QLineEdit()
+        self.VNSVNSFrequencyF.setMaxLength(6)
+        
+        self.VNSPulseWidthL = QLabel("Pulse Width - (2 Decimals)")
+        self.VNSPulseWidthL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSPulseWidthL.setToolTip("Pulse Width For Vagul Nerve Stimulator")
+        self.VNSPulseWidthF = QLineEdit()
+        self.VNSPulseWidthF.setMaxLength(6)
+        
+        self.VNSSignalOnL = QLabel("Signal On Time - (2 Decimals)")
+        self.VNSSignalOnL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSSignalOnL.setToolTip("Signal On Time For Vagul Nerve Stimulator")
+        self.VNSSignalOnF = QLineEdit()
+        self.VNSSignalOnF.setMaxLength(5)
+
+        self.VNSSignalOffL = QLabel("Signal Off Time - (2 Decimals)")
+        self.VNSSignalOffL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSSignalOffL.setToolTip("Signal Off Time For Vagul Nerve Stimulator")
+        self.VNSSignalOffF = QLineEdit()
+        self.VNSSignalOffF.setMaxLength(5)
+
+        self.VNSMagnetCurrentL = QLabel("Magnet Current - (2 Decimals)")
+        self.VNSMagnetCurrentL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSMagnetCurrentL.setToolTip("Magnet Current For Vagul Nerve Stimulator")
+        self.VNSMagnetCurrentF = QLineEdit()
+        self.VNSMagnetCurrentF.setMaxLength(5)
+
+        self.VNSMagnetOnL = QLabel("Magnet On Time - (2 Decimals)")
+        self.VNSMagnetOnL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSMagnetOnL.setToolTip("Magnet On Time For Vagul Nerve Stimulator")
+        self.VNSMagnetOnF = QLineEdit()
+        self.VNSMagnetOnF.setMaxLength(5)
+
+        self.VNSMagnetPulseL = QLabel("Magnet Pulse Width - (2 Decimals)")
+        self.VNSMagnetPulseL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSMagnetPulseL.setToolTip("Magnet Pulse Width For Vagul Nerve Stimulator")
+        self.VNSMagnetPulseF = QLineEdit()
+        self.VNSMagnetPulseF.setMaxLength(5)
+
+        self.VNSLeadTestL = QLabel("Lead Test")
+        self.VNSLeadTestL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSLeadTestL.setToolTip("Lead test from the VNS source")
+        self.VNSLeadTestF = QLineEdit()
+        self.VNSLeadTestF.setMaxLength(30)
+        
+        self.VNSEnteredL = QLabel("Entered")
+        self.VNSEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.VNSEnteredF = QLineEdit()
+        self.VNSEnteredF.setPlaceholderText("Required")
+
+        self.VNSCommentsL = QLabel("Comments")
+        self.VNSCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.VNSCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.VNSCommentsF = QTextEdit()
+
+        self.VNSSaveButton = QPushButton("Save")
+
 
 
         self.closeanthropometrics()
@@ -815,6 +1191,7 @@ class Test (QWidget):
         self.groupbox = QGroupBox()
         self.profiletop = QHBoxLayout()
         self.newpatientform = QFormLayout()
+        
         self.graphinputformtop = QFormLayout()
         self.graphinputformalertness = QGridLayout()
         self.graphinputformanthropometrics = QGridLayout()
@@ -823,6 +1200,13 @@ class Test (QWidget):
         self.graphinputformdietrx = QGridLayout()
         self.graphinputformmeddata = QGridLayout()
         self.graphinputformmenus = QGridLayout()
+        self.graphinputformothermed = QGridLayout()
+        self.graphinputformseizuredata = QGridLayout()
+        self.graphinputformseizureranking = QGridLayout()
+        self.graphinputformurinektsg = QGridLayout()
+        self.graphinputformvitals = QGridLayout()
+        self.graphinputformvns = QGridLayout()
+
 
 
 
@@ -1059,8 +1443,6 @@ class Test (QWidget):
         self.graphinputformmenus.addWidget(self.MenusProcntPrcntF,3,1)
         self.graphinputformmenus.addWidget(self.MenusRatioPrL,4,0 )
         self.graphinputformmenus.addWidget(self.MenusRatioPrF,4,1)
-        self.graphinputformmenus.addWidget(self.MenusRatioPrL,5,0)
-        self.graphinputformmenus.addWidget(self.MenusRatioPrF,5,1)
         self.graphinputformmenus.addWidget(self.MenusMealNumberL,6,0)
         self.graphinputformmenus.addWidget(self.MenusMealNumberF,6,1)
         self.graphinputformmenus.addWidget(self.MenusSnackNumberL,7,0)
@@ -1083,11 +1465,146 @@ class Test (QWidget):
         self.graphinputformmenus.addWidget(self.MenusCommentsF,15,1)
         self.graphinputformmenus.addWidget(self.MenusSaveButton,16,1)
         
+        ################### Update Data Other Med ###################
+        self.graphinputformothermed.addWidget(self.OtherMedMRNumberL,0,0)
+        self.graphinputformothermed.addWidget(self.OtherMedMRNumberF,0,1)
+        self.graphinputformothermed.addWidget(self.OtherMedDateL,1,0)
+        self.graphinputformothermed.addWidget(self.OtherMedDateF,1,1)
+        self.graphinputformothermed.addWidget(self.OtherMedNDIDL,2,0)
+        self.graphinputformothermed.addWidget(self.OtherMedNDIDF,2,1)
+        self.graphinputformothermed.addWidget(self.OtherMedProdNameL,3,0)
+        self.graphinputformothermed.addWidget(self.OtherMedProdNameF,3,1)
+        self.graphinputformothermed.addWidget(self.OtherMedMedAmountL,4,0)
+        self.graphinputformothermed.addWidget(self.OtherMedMedAmountF,4,1)
+        self.graphinputformothermed.addWidget(self.OtherMedMedUnitL,5,0)
+        self.graphinputformothermed.addWidget(self.OtherMedMedUnitF,5,1)
+        self.graphinputformothermed.addWidget(self.OtherMedEnteredL,6,0)
+        self.graphinputformothermed.addWidget(self.OtherMedEnteredF,6,1)
+        self.graphinputformothermed.addWidget(self.OtherMedCommentsL,7,0)
+        self.graphinputformothermed.addWidget(self.OtherMedCommentsF,7,1)
+        self.graphinputformothermed.addWidget(self.OtherMedSaveButton,8,1)
+
+        ################### Update Data Seizure Data ###################
+        self.graphinputformseizuredata.addWidget(self.SeizureDataMRNumberL,0,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataMRNumberF,0,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataDateL,1,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataDateF,1,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataDayTypeL,2,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataDayTypeF,2,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataDataQualityL,3,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataDataQualityF,3,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureSeverityL,4,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureSeverityF,4,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureLengthL,5,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureLengthF,5,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureTypeL,6,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureTypeF,6,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureVariableL,7,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureVariableF,7,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureNumberL,8,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureNumberF,8,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureClusterL,9,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSeizureClusterF,9,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataEnteredL,10,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataEnteredF,10,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataCommentsL,11,0)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataCommentsF,11,1)
+        self.graphinputformseizuredata.addWidget(self.SeizureDataSaveButton,12,1)
         
-     
+        ################### Update Data Seizure Ranking ###################
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingMRNumberL,0,0)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingMRNumberF,0,1)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingSeizureParameterL,1,0)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingSeizureParameterF,1,1)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingSeizureEntryL,2,0)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingSeizureEntryF,2,1)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingSeizureRankingL,3,0)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingSeizureRankingF,3,1)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingEnteredL,4,0)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingEnteredF,4,1)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingCommentsL,5,0)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingCommentsF,5,1)
+        self.graphinputformseizureranking.addWidget(self.SeizureRankingSaveButton,6,1)
+        
+        ################### Update Data Urine Kt SG ###################
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGMRNumberL,0,0)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGMRNumberF,0,1)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGDateL,1,0)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGDateF,1,1)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGDayTypeL,2,0)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGDayTypeF,2,1)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGUrineKtL,3,0)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGUrineKtF,3,1)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGUrineSGL,4,0)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGUrineSGF,4,1)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGEnteredL,5,0)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGEnteredF,5,1)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGCommentsL,6,0)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGCommentsF,6,1)
+        self.graphinputformurinektsg.addWidget(self.UrineKtSGSaveButton,7,1)
+
+        ################### Update Data Vitals ###################
+        self.graphinputformvitals.addWidget(self.VitalsMRNumberL,0,0)
+        self.graphinputformvitals.addWidget(self.VitalsMRNumberF,0,1)
+        self.graphinputformvitals.addWidget(self.VitalsDateL,1,0)
+        self.graphinputformvitals.addWidget(self.VitalsDateF,1,1)
+        self.graphinputformvitals.addWidget(self.VitalsDayTypeL,2,0)
+        self.graphinputformvitals.addWidget(self.VitalsDayTypeF,2,1)
+        self.graphinputformvitals.addWidget(self.VitalsSourceL,3,0)
+        self.graphinputformvitals.addWidget(self.VitalsSourceF,3,1)
+        self.graphinputformvitals.addWidget(self.VitalsBPSysL,4,0)
+        self.graphinputformvitals.addWidget(self.VitalsBPSysF,4,1)
+        self.graphinputformvitals.addWidget(self.VitalsBPDiaL,5,0)
+        self.graphinputformvitals.addWidget(self.VitalsBPDiaF,5,1)
+        self.graphinputformvitals.addWidget(self.VitalsTempL,6,0)
+        self.graphinputformvitals.addWidget(self.VitalsTempF,6,1)
+        self.graphinputformvitals.addWidget(self.VitalsRRL,7,0)
+        self.graphinputformvitals.addWidget(self.VitalsRRF,7,1)
+        self.graphinputformvitals.addWidget(self.VitalsHRL,8,0)
+        self.graphinputformvitals.addWidget(self.VitalsHRF,8,1)
+        self.graphinputformvitals.addWidget(self.VitalsEnteredL,9,0)
+        self.graphinputformvitals.addWidget(self.VitalsEnteredF,9,1)
+        self.graphinputformvitals.addWidget(self.VitalsCommentsL,10,0)
+        self.graphinputformvitals.addWidget(self.VitalsCommentsF,10,1)
+        self.graphinputformvitals.addWidget(self.VitalsSaveButton,11,1)
+
+        ################### Update Data VNS ###################
+        self.graphinputformvns.addWidget(self.VNSMRNumberL,0,0)
+        self.graphinputformvns.addWidget(self.VNSMRNumberF,0,1)
+        self.graphinputformvns.addWidget(self.VNSDateL,1,0)
+        self.graphinputformvns.addWidget(self.VNSDateF,1,1)
+        self.graphinputformvns.addWidget(self.VNSDayTypeL,2,0)
+        self.graphinputformvns.addWidget(self.VNSDayTypeF,2,1)
+        self.graphinputformvns.addWidget(self.VNSMRMagActL,3,0)
+        self.graphinputformvns.addWidget(self.VNSMRMagActF,3,1)
+        self.graphinputformvns.addWidget(self.VNSOutputCurrL,4,0)
+        self.graphinputformvns.addWidget(self.VNSOutputCurrF,4,1)
+        self.graphinputformvns.addWidget(self.VNSVNSFrequencyL,5,0)
+        self.graphinputformvns.addWidget(self.VNSVNSFrequencyF,5,1)
+        self.graphinputformvns.addWidget(self.VNSPulseWidthL,6,0)
+        self.graphinputformvns.addWidget(self.VNSPulseWidthF,6,1)
+        self.graphinputformvns.addWidget(self.VNSSignalOnL,7,0)
+        self.graphinputformvns.addWidget(self.VNSSignalOnF,7,1)
+        self.graphinputformvns.addWidget(self.VNSSignalOffL,8,0)
+        self.graphinputformvns.addWidget(self.VNSSignalOffF,8,1)
+        self.graphinputformvns.addWidget(self.VNSMagnetCurrentL,9,0)
+        self.graphinputformvns.addWidget(self.VNSMagnetCurrentF,9,1)
+        self.graphinputformvns.addWidget(self.VNSMagnetOnL,10,0)
+        self.graphinputformvns.addWidget(self.VNSMagnetOnF,10,1)
+        self.graphinputformvns.addWidget(self.VNSMagnetPulseL,11,0)
+        self.graphinputformvns.addWidget(self.VNSMagnetPulseF,11,1)
+        self.graphinputformvns.addWidget(self.VNSLeadTestL,12,0)
+        self.graphinputformvns.addWidget(self.VNSLeadTestF,12,1)
+        self.graphinputformvns.addWidget(self.VNSEnteredL,13,0)
+        self.graphinputformvns.addWidget(self.VNSEnteredF,13,1)
+        self.graphinputformvns.addWidget(self.VNSCommentsL,14,0)
+        self.graphinputformvns.addWidget(self.VNSCommentsF,14,1)
+        self.graphinputformvns.addWidget(self.VNSSaveButton,15,1)
+
         
         # Set Up Scroll Boxes 
-
+############################### Alertness ###############################
+        
         self.alertnessbox = QGroupBox()
         self.alertnessbox.setLayout(self.graphinputformalertness)
         self.alertnessformscroll = QScrollArea()
@@ -1096,7 +1613,8 @@ class Test (QWidget):
         self.alertnessformscroll.setWidgetResizable(True)
 
         self.middle.addWidget(self.alertnessformscroll)
-###############################
+
+############################### Anthropometrics ###############################
 
         self.anthropometricsbox = QGroupBox()
         self.anthropometricsbox.setLayout(self.graphinputformalertness)
@@ -1106,7 +1624,8 @@ class Test (QWidget):
         self.anthropometricsformscroll.setWidgetResizable(True)
 
         self.middle.addWidget(self.anthropometricsformscroll)
-###############################
+
+############################### Clinic GI ###############################
 
         self.clinicGIbox = QGroupBox()
         self.clinicGIbox.setLayout(self.graphinputformclinicGI)
@@ -1116,7 +1635,9 @@ class Test (QWidget):
         self.clinicGIformscroll.setWidgetResizable(True)
 
         self.middle.addWidget(self.clinicGIformscroll)
-###############################
+
+############################### Daily Intake ###############################
+        
         self.dailyIntakebox = QGroupBox()
         self.dailyIntakebox.setLayout(self.graphinputformdailyintake)
         
@@ -1126,7 +1647,7 @@ class Test (QWidget):
 
         self.middle.addWidget(self.dailyIntakeformscroll)
 
-###############################
+############################### Diet Rx ###############################
 
         self.dietrxbox = QGroupBox()
         self.dietrxbox.setLayout(self.graphinputformdietrx)
@@ -1137,7 +1658,7 @@ class Test (QWidget):
 
         self.middle.addWidget(self.dietrxformscroll)
 
-###############################
+############################### Med Data ###############################
 
         self.meddatabox = QGroupBox()
         self.meddatabox.setLayout(self.graphinputformmeddata)
@@ -1147,7 +1668,8 @@ class Test (QWidget):
         self.meddataformscroll.setWidgetResizable(True)
 
         self.middle.addWidget(self.meddataformscroll)
-###############################
+
+############################### Menus ###############################
 
         self.menusbox = QGroupBox()
         self.menusbox.setLayout(self.graphinputformmenus)
@@ -1158,9 +1680,75 @@ class Test (QWidget):
 
         self.middle.addWidget(self.menusformscroll)
 
+############################### Other Med ###############################
+
+        self.othermedbox = QGroupBox()
+        self.othermedbox.setLayout(self.graphinputformothermed)
+        
+        self.othermedformscroll = QScrollArea()
+        self.othermedformscroll.setWidget(self.othermedbox)
+        self.othermedformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.othermedformscroll)
 
 
-        #####################################################    
+############################### Seizure Data ###############################
+
+        self.seizuredatabox = QGroupBox()
+        self.seizuredatabox.setLayout(self.graphinputformseizuredata)
+        
+        self.seizuredataformscroll = QScrollArea()
+        self.seizuredataformscroll.setWidget(self.seizuredatabox)
+        self.seizuredataformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.seizuredataformscroll)
+
+############################### Seizure Ranking ###############################
+
+        self.seizurerankingbox = QGroupBox()
+        self.seizurerankingbox.setLayout(self.graphinputformseizureranking)
+        
+        self.seizurerankingformscroll = QScrollArea()
+        self.seizurerankingformscroll.setWidget(self.seizurerankingbox)
+        self.seizurerankingformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.seizurerankingformscroll)
+
+############################### Urine Kt SG ###############################
+
+        self.urineKtSGbox = QGroupBox()
+        self.urineKtSGbox.setLayout(self.graphinputformurinektsg)
+        
+        self.urineKtSGformscroll = QScrollArea()
+        self.urineKtSGformscroll.setWidget(self.urineKtSGbox)
+        self.urineKtSGformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.urineKtSGformscroll)
+
+############################### Vitals ###############################
+
+        self.vitalsbox = QGroupBox()
+        self.vitalsbox.setLayout(self.graphinputformvitals)
+        
+        self.vitalsformscroll = QScrollArea()
+        self.vitalsformscroll.setWidget(self.vitalsbox)
+        self.vitalsformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.vitalsformscroll)           
+
+############################### VNS ###############################
+
+        self.vnsbox = QGroupBox()
+        self.vnsbox.setLayout(self.graphinputformvns)
+        
+        self.vnsformscroll = QScrollArea()
+        self.vnsformscroll.setWidget(self.vnsbox)
+        self.vnsformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.vnsformscroll)  
+        
+
+#####################################################    
         self.middle.addLayout(self.graphinputformtop)
     
         
@@ -1480,7 +2068,7 @@ class Test (QWidget):
 
             self.openmeddata()
         
-        if(selection == "Menus"):
+        if (selection == "Menus"):
             self.closeallfroms()
             self.removeallforms()
 
@@ -1494,7 +2082,104 @@ class Test (QWidget):
             self.middle.addWidget(self.menusformscroll)
 
             self.openmenus()
-               
+
+        if (selection == "Other Med"):
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.othermedbox = QGroupBox()
+            self.othermedbox.setLayout(self.graphinputformothermed)
+            
+            self.othermedformscroll = QScrollArea()
+            self.othermedformscroll.setWidget(self.othermedbox)
+            self.othermedformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.othermedformscroll)
+
+            self.openothermed()
+
+        if (selection == "Seizure Data"):
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.seizuredatabox = QGroupBox()
+            self.seizuredatabox.setLayout(self.graphinputformseizuredata)
+            
+            self.seizuredataformscroll = QScrollArea()
+            self.seizuredataformscroll.setWidget(self.seizuredatabox)
+            self.seizuredataformscroll.setWidgetResizable(True)
+            
+            self.middle.addWidget(self.seizuredataformscroll)
+
+            self.openseizuredata()
+
+        
+        if (selection == "Seizure Ranking"):
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.seizurerankingbox = QGroupBox()
+            self.seizurerankingbox.setLayout(self.graphinputformseizureranking)
+            
+            self.seizurerankingformscroll = QScrollArea()
+            self.seizurerankingformscroll.setWidget(self.seizurerankingbox)
+            self.seizurerankingformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.seizurerankingformscroll)
+            
+            self.openseizureranking()
+
+
+        if (selection == "Urine Kt SG"):
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.urineKtSGbox = QGroupBox()
+            self.urineKtSGbox.setLayout(self.graphinputformurinektsg)
+            
+            self.urineKtSGformscroll = QScrollArea()
+            self.urineKtSGformscroll.setWidget(self.urineKtSGbox)
+            self.urineKtSGformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.urineKtSGformscroll) 
+
+            self.openurinektsg()
+        
+        if (selection == "Vitals"):
+            
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.vitalsbox = QGroupBox()
+            self.vitalsbox.setLayout(self.graphinputformvitals)
+        
+            self.vitalsformscroll = QScrollArea()
+            self.vitalsformscroll.setWidget(self.vitalsbox)
+            self.vitalsformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.vitalsformscroll) 
+
+            self.openvitals()
+        
+        if (selection == "VNS"):
+            
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.vnsbox = QGroupBox()
+            self.vnsbox.setLayout(self.graphinputformvns)
+            
+            self.vnsformscroll = QScrollArea()
+            self.vnsformscroll.setWidget(self.vnsbox)
+            self.vnsformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.vnsformscroll) 
+
+            self.openvns()
+
+        if (selection == ""):
+            self.closeallfroms()
+            self.removeallforms()               
 
     def updateStateCombo(self, index):
             indx = self.model.index(index, 0, self.AnthropometricsPAF.rootModelIndex())
@@ -1585,6 +2270,12 @@ class Test (QWidget):
         self.closedailyintake()
         self.closedietrx()
         self.closemenus()
+        self.closeothermed()
+        self.closeseizuredata()
+        self.closeseizureranking()
+        self.closeurinektsg()
+        self.closevitals()
+        self.closevns()
 
         self.alertnessbox.close()
         self.alertnessformscroll.close()
@@ -1607,6 +2298,24 @@ class Test (QWidget):
         self.menusbox.close()
         self.menusformscroll.close()
 
+        self.othermedbox.close()
+        self.othermedformscroll.close()
+
+        self.seizuredatabox.close()
+        self.seizuredataformscroll.close()
+
+        self.seizurerankingbox.close()
+        self.seizurerankingformscroll.close()
+
+        self.urineKtSGbox.close()
+        self.urineKtSGformscroll.close()
+
+        self.vitalsbox.close()
+        self.vitalsformscroll.close()
+
+        self.vnsbox.close()
+        self.vnsformscroll.close()
+
     def removeallforms(self):
         # self.middle.removeItem(self.graphinputformalertness)
         self.middle.removeWidget(self.alertnessformscroll)
@@ -1624,6 +2333,10 @@ class Test (QWidget):
         self.middle.removeWidget(self.meddataformscroll)
 
         self.middle.removeWidget(self.menusformscroll)
+
+        self.middle.removeWidget(self.vitalsformscroll)
+
+        self.middle.removeWidget(self.vnsformscroll)
 
 
     def closealertness(self):
@@ -1834,8 +2547,144 @@ class Test (QWidget):
         self.MenusEnteredF.close()
         self.MenusCommentsL.close()
         self.MenusCommentsF.close() 
-        self.MenusSaveButton.close()     
-            
+        self.MenusSaveButton.close()
+
+    def closeothermed(self):
+        self.OtherMedMRNumberL.close()
+        self.OtherMedMRNumberF.close()
+        self.OtherMedDateL.close()
+        self.OtherMedDateF.close()
+        self.OtherMedNDIDL.close()
+        self.OtherMedNDIDF.close()
+        self.OtherMedProdNameL.close()
+        self.OtherMedProdNameF.close()
+        self.OtherMedMedAmountL.close()
+        self.OtherMedMedAmountF.close()
+        self.OtherMedMedUnitL.close()
+        self.OtherMedMedUnitF.close()
+        self.OtherMedEnteredL.close()
+        self.OtherMedEnteredF.close()
+        self.OtherMedCommentsL.close()
+        self.OtherMedCommentsF.close()
+        self.OtherMedSaveButton.close()  
+
+    def closeseizuredata(self):
+        self.SeizureDataMRNumberL.close()
+        self.SeizureDataMRNumberF.close()
+        self.SeizureDataDateL.close()
+        self.SeizureDataDateF.close()
+        self.SeizureDataDayTypeL.close()
+        self.SeizureDataDayTypeF.close()
+        self.SeizureDataDataQualityL.close()
+        self.SeizureDataDataQualityF.close()
+        self.SeizureDataSeizureSeverityL.close()
+        self.SeizureDataSeizureSeverityF.close()
+        self.SeizureDataSeizureLengthL.close()
+        self.SeizureDataSeizureLengthF.close()
+        self.SeizureDataSeizureTypeL.close()
+        self.SeizureDataSeizureTypeF.close()
+        self.SeizureDataSeizureVariableL.close()
+        self.SeizureDataSeizureVariableF.close()
+        self.SeizureDataSeizureNumberL.close()
+        self.SeizureDataSeizureNumberF.close()
+        self.SeizureDataSeizureClusterL.close()
+        self.SeizureDataSeizureClusterF.close()
+        self.SeizureDataEnteredL.close()
+        self.SeizureDataEnteredF.close()
+        self.SeizureDataCommentsL.close()
+        self.SeizureDataCommentsF.close()
+        self.SeizureDataSaveButton.close()
+
+    def closeseizureranking(self):
+        self.SeizureRankingMRNumberL.close()
+        self.SeizureRankingMRNumberF.close()
+        self.SeizureRankingSeizureParameterL.close()
+        self.SeizureRankingSeizureParameterF.close()
+        self.SeizureRankingSeizureEntryL.close()
+        self.SeizureRankingSeizureEntryF.close()
+        self.SeizureRankingSeizureRankingL.close()
+        self.SeizureRankingSeizureRankingF.close()
+        self.SeizureRankingEnteredL.close()
+        self.SeizureRankingEnteredF.close()
+        self.SeizureRankingCommentsL.close()
+        self.SeizureRankingCommentsF.close()
+        self.SeizureRankingSaveButton.close()
+
+    def closeurinektsg(self):
+        self.UrineKtSGMRNumberL.close()
+        self.UrineKtSGMRNumberF.close()
+        self.UrineKtSGDateL.close()
+        self.UrineKtSGDateF.close()
+        self.UrineKtSGDayTypeL.close()
+        self.UrineKtSGDayTypeF.close()
+        self.UrineKtSGUrineKtL.close()
+        self.UrineKtSGUrineKtF.close()
+        self.UrineKtSGUrineSGL.close()
+        self.UrineKtSGUrineSGF.close()
+        self.UrineKtSGEnteredL.close()
+        self.UrineKtSGEnteredF.close()
+        self.UrineKtSGCommentsL.close()
+        self.UrineKtSGCommentsF.close()
+        self.UrineKtSGSaveButton.close()
+
+    def closevitals(self):
+        self.VitalsMRNumberL.close()
+        self.VitalsMRNumberF.close()
+        self.VitalsDateL.close()
+        self.VitalsDateF.close()
+        self.VitalsDayTypeL.close()
+        self.VitalsDayTypeF.close()
+        self.VitalsSourceL.close()
+        self.VitalsSourceF.close()
+        self.VitalsBPSysL.close()
+        self.VitalsBPSysF.close()
+        self.VitalsBPDiaL.close()
+        self.VitalsBPDiaF.close()
+        self.VitalsTempL.close()
+        self.VitalsTempF.close()
+        self.VitalsRRL.close()
+        self.VitalsRRF.close()
+        self.VitalsHRL.close()
+        self.VitalsHRF.close()
+        self.VitalsEnteredL.close()
+        self.VitalsEnteredF.close()
+        self.VitalsCommentsL.close()
+        self.VitalsCommentsF.close()
+        self.VitalsSaveButton.close()
+
+    def closevns(self):
+        self.VNSMRNumberL.close()
+        self.VNSMRNumberF.close()
+        self.VNSDateL.close()
+        self.VNSDateF.close()
+        self.VNSDayTypeL.close()
+        self.VNSDayTypeF.close()
+        self.VNSMRMagActL.close()
+        self.VNSMRMagActF.close()
+        self.VNSOutputCurrL.close()
+        self.VNSOutputCurrF.close()
+        self.VNSVNSFrequencyL.close()
+        self.VNSVNSFrequencyF.close()
+        self.VNSPulseWidthL.close()
+        self.VNSPulseWidthF.close()
+        self.VNSSignalOnL.close()
+        self.VNSSignalOnF.close()
+        self.VNSSignalOffL.close()
+        self.VNSSignalOffF.close()
+        self.VNSMagnetCurrentL.close()
+        self.VNSMagnetCurrentF.close()
+        self.VNSMagnetOnL.close()
+        self.VNSMagnetOnF.close()
+        self.VNSMagnetPulseL.close()
+        self.VNSMagnetPulseF.close()
+        self.VNSLeadTestL.close()
+        self.VNSLeadTestF.close()
+        self.VNSEnteredL.close()
+        self.VNSEnteredF.close()
+        self.VNSCommentsL.close()
+        self.VNSCommentsF.close()
+        self.VNSSaveButton.close()
+    
 
 #################
     def openalertness(self):
@@ -1856,8 +2705,6 @@ class Test (QWidget):
         self.AlertnessCommentsL.show()
         self.AlertnessCommentsF.show()
         self.AlertnessSaveButton.show()
-
-
 
     def openanthropometrics(self):
         self.AnthropometricsMRNumberL.show()
@@ -1934,8 +2781,6 @@ class Test (QWidget):
         self.ClinicGICommentsF.show()
         self.ClinicGISaveButton.show()
 
-
-
     def opendailyintake(self):
         self.DailyIntakeMRNumberL.show()
         self.DailyIntakeMRNumberF.show()
@@ -1985,7 +2830,6 @@ class Test (QWidget):
         self.DietRXCommentsL.show()
         self.DietRXCommentsF.show()
         self.DietRXSaveButton.show()    
-
 
     def openmeddata(self):
         self.MedDataMRNumberL.show()
@@ -2049,6 +2893,141 @@ class Test (QWidget):
         self.MenusCommentsF.show() 
         self.MenusSaveButton.show() 
 
+    def openothermed(self):
+        self.OtherMedMRNumberL.show()
+        self.OtherMedMRNumberF.show()
+        self.OtherMedDateL.show()
+        self.OtherMedDateF.show()
+        self.OtherMedNDIDL.show()
+        self.OtherMedNDIDF.show()
+        self.OtherMedProdNameL.show()
+        self.OtherMedProdNameF.show()
+        self.OtherMedMedAmountL.show()
+        self.OtherMedMedAmountF.show()
+        self.OtherMedMedUnitL.show()
+        self.OtherMedMedUnitF.show()
+        self.OtherMedEnteredL.show()
+        self.OtherMedEnteredF.show()
+        self.OtherMedCommentsL.show()
+        self.OtherMedCommentsF.show()
+        self.OtherMedSaveButton.show()
+
+    def openseizuredata(self):
+        self.SeizureDataMRNumberL.show()
+        self.SeizureDataMRNumberF.show()
+        self.SeizureDataDateL.show()
+        self.SeizureDataDateF.show()
+        self.SeizureDataDayTypeL.show()
+        self.SeizureDataDayTypeF.show()
+        self.SeizureDataDataQualityL.show()
+        self.SeizureDataDataQualityF.show()
+        self.SeizureDataSeizureSeverityL.show()
+        self.SeizureDataSeizureSeverityF.show()
+        self.SeizureDataSeizureLengthL.show()
+        self.SeizureDataSeizureLengthF.show()
+        self.SeizureDataSeizureTypeL.show()
+        self.SeizureDataSeizureTypeF.show()
+        self.SeizureDataSeizureVariableL.show()
+        self.SeizureDataSeizureVariableF.show()
+        self.SeizureDataSeizureNumberL.show()
+        self.SeizureDataSeizureNumberF.show()
+        self.SeizureDataSeizureClusterL.show()
+        self.SeizureDataSeizureClusterF.show()
+        self.SeizureDataEnteredL.show()
+        self.SeizureDataEnteredF.show()
+        self.SeizureDataCommentsL.show()
+        self.SeizureDataCommentsF.show()
+        self.SeizureDataSaveButton.show() 
+
+    def openseizureranking(self):
+        self.SeizureRankingMRNumberL.show()
+        self.SeizureRankingMRNumberF.show()
+        self.SeizureRankingSeizureParameterL.show()
+        self.SeizureRankingSeizureParameterF.show()
+        self.SeizureRankingSeizureEntryL.show()
+        self.SeizureRankingSeizureEntryF.show()
+        self.SeizureRankingSeizureRankingL.show()
+        self.SeizureRankingSeizureRankingF.show()
+        self.SeizureRankingEnteredL.show()
+        self.SeizureRankingEnteredF.show()
+        self.SeizureRankingCommentsL.show()
+        self.SeizureRankingCommentsF.show()
+        self.SeizureRankingSaveButton.show()
+
+    def openurinektsg(self):
+        self.UrineKtSGMRNumberL.show()
+        self.UrineKtSGMRNumberF.show()
+        self.UrineKtSGDateL.show()
+        self.UrineKtSGDateF.show()
+        self.UrineKtSGDayTypeL.show()
+        self.UrineKtSGDayTypeF.show()
+        self.UrineKtSGUrineKtL.show()
+        self.UrineKtSGUrineKtF.show()
+        self.UrineKtSGUrineSGL.show()
+        self.UrineKtSGUrineSGF.show()
+        self.UrineKtSGEnteredL.show()
+        self.UrineKtSGEnteredF.show()
+        self.UrineKtSGCommentsL.show()
+        self.UrineKtSGCommentsF.show()
+        self.UrineKtSGSaveButton.show()
+
+    def openvitals(self):
+        self.VitalsMRNumberL.show()
+        self.VitalsMRNumberF.show()
+        self.VitalsDateL.show()
+        self.VitalsDateF.show()
+        self.VitalsDayTypeL.show()
+        self.VitalsDayTypeF.show()
+        self.VitalsSourceL.show()
+        self.VitalsSourceF.show()
+        self.VitalsBPSysL.show()
+        self.VitalsBPSysF.show()
+        self.VitalsBPDiaL.show()
+        self.VitalsBPDiaF.show()
+        self.VitalsTempL.show()
+        self.VitalsTempF.show()
+        self.VitalsRRL.show()
+        self.VitalsRRF.show()
+        self.VitalsHRL.show()
+        self.VitalsHRF.show()
+        self.VitalsEnteredL.show()
+        self.VitalsEnteredF.show()
+        self.VitalsCommentsL.show()
+        self.VitalsCommentsF.show()
+        self.VitalsSaveButton.show()
+
+    def openvns(self):
+        self.VNSMRNumberL.show()
+        self.VNSMRNumberF.show()
+        self.VNSDateL.show()
+        self.VNSDateF.show()
+        self.VNSDayTypeL.show()
+        self.VNSDayTypeF.show()
+        self.VNSMRMagActL.show()
+        self.VNSMRMagActF.show()
+        self.VNSOutputCurrL.show()
+        self.VNSOutputCurrF.show()
+        self.VNSVNSFrequencyL.show()
+        self.VNSVNSFrequencyF.show()
+        self.VNSPulseWidthL.show()
+        self.VNSPulseWidthF.show()
+        self.VNSSignalOnL.show()
+        self.VNSSignalOnF.show()
+        self.VNSSignalOffL.show()
+        self.VNSSignalOffF.show()
+        self.VNSMagnetCurrentL.show()
+        self.VNSMagnetCurrentF.show()
+        self.VNSMagnetOnL.show()
+        self.VNSMagnetOnF.show()
+        self.VNSMagnetPulseL.show()
+        self.VNSMagnetPulseF.show()
+        self.VNSLeadTestL.show()
+        self.VNSLeadTestF.show()
+        self.VNSEnteredL.show()
+        self.VNSEnteredF.show()
+        self.VNSCommentsL.show()
+        self.VNSCommentsF.show()
+        self.VNSSaveButton.show()
 
     
 
