@@ -25,9 +25,29 @@ def getPatientGraphs(patient):
 
 
 def saveAlertness(patient,MrNumber,Date,DayType,Alertness,Activity,Development,Entered,Comments):
-    pass
-
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Alertness_Source.xlsx"
     
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb['Sheet1']
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Sheet1"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date","Day_Type","Alertness","Activity","Development", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MrNumber,Date,DayType,Alertness,Activity,Development,Entered, "", Comments])
+
+    #Save modified workbook
+    wb.save(path)
  
 def saveAnthropometrics(patient, MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC,TSF,SSF,USF,SIS,MBSF,UC,Entered,Comments):
     path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Anthropometrics_Source.xlsx"
@@ -55,13 +75,79 @@ def saveAnthropometrics(patient, MrNumber,Date,DayType,Source,CP,PA,Ht,Wt,HC,UAC
     wb.save(path)
 
 def saveClinicGI(patient,MrNumber,Date,DayType,Const,Dia,Vom,Nausea,Gag,Nissen,ConstDes,DiaDes,VomDes,NauseaDes,GagDes,Entered,Comments):
-     pass  
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Clinic_GI_Issues_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb['Sheet1']
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Sheet1"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date","Day_Type","Clinic_Const","Clinic_Dia","Clinic_Vom", "Clinic_Nausea", "Clinic_Gag_Retch", "Clinic_Nissen", "Clinic_Descr_Const", "Clinic_Descr_Dia", "Clinic_Descr_Vom", "Clinic_Descr_Nausea", "Clinic_Descr_Gag_Retch", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MrNumber,Date,DayType,Const,Dia,Vom,Nausea,Gag,Nissen,ConstDes,DiaDes,VomDes,NauseaDes,GagDes,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
 
 def saveDailyIntake(patient,MrNumber,Date,DayType,PKTNUM,DataQuality,DayQuality,Entered,Comments):
-    pass
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Daily_Intake_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb["Daily_Intake"]
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Daily_Intake"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date","Day_Type","PKT_Recipe_Number","Data_Quality_D","Day_Quality_D", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MrNumber,Date,DayType,PKTNUM,DataQuality,DayQuality,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
 
 def saveDietRX(patient,MrNumber,Date,DayType,ROF,RFCD,SnackCal,SnackRatio,SnackNumber,MealNumber,MealRatio,TotalCal,Protein,Entered,Comments):
-    pass
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Diet_RX_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb["Diet_Rx"]
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Diet_Rx"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date","Day_Type","ROF_Pr","Reason_For_Change_Diet","Snack_Cal_Pr", "Snack_Ratio_Pr", "Snack_Number_Pr", "Meal_Number_Pr", "Ratio_Pr", "Cal_Pr", "Pro_Pr", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MrNumber,Date,DayType,ROF,RFCD,SnackCal,SnackRatio,SnackNumber,MealNumber,MealRatio,TotalCal,Protein,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
 
 # Returns dataframe containing data inside the excel sheet
 def getAnthropometricsDataFrame(patient):
