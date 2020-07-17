@@ -1808,7 +1808,6 @@ class Test (QWidget):
 ################### Event Handling ###################
 
     def handlelogo(self,event):
-        print("Logo Clicked")
         self.opendashboard()
         self.closeprofile()
         self.closenewpatient()
@@ -2212,13 +2211,22 @@ class Test (QWidget):
     
     def loadgraphnames(self):
         newlist = getPatientGraphs(self.currentpatient)
-        print(newlist)
         temp = []
         temp.clear()
-        temp.extend(newlist)
+        # temp.extend(newlist)
+
+        graphnames = ["Alertness","Anthropometrics", "Clinic GI Issues","Clinical Labs","Daily Intake",
+        "Diet RX","Med Data","Menus","Other Med","Seizure Data","Seizure Ranking","Urine Kt SG","Vitals","VNS"]
+        
+        for string in newlist:
+            for name in graphnames:
+                if name in string:
+                        temp.append(name) 
+
+
         self.graphlist.clear()
-        self.graphlist.addItems(newlist)
-        return temp
+        self.graphlist.addItems(temp)
+        
         
 
     def closedashboard(self):
