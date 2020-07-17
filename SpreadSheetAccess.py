@@ -15,7 +15,6 @@ def getPatientAnthropometrics(patient):
 
 # Returns list of all patients
 def getAllPatients():
-    print("Path is")
     
     cwd = os.getcwd() + "\Current Patients"
     return(os.listdir(cwd))
@@ -148,6 +147,31 @@ def saveDietRX(patient,MrNumber,Date,DayType,ROF,RFCD,SnackCal,SnackRatio,SnackN
 
     #Save modified workbook
     wb.save(path)
+
+
+def saveMedData(patient,MrNumber,Date,DayType,NDID,MedID,RFCM,ProdName,DailyDose,MedDose,MedComments,Entered,Comments):
+    pass
+
+def saveMenus(patient,MrNumber,Date,CalPrcnt,ProcntPrcnt,RatioPr,MealNumber,SnackNumber,RecipeName,RecipeNumber,RecipeIngredientAmount,NDID,ProdName,RecipeType,Entered,Comments):
+    pass
+
+def saveOtherMed(patient,MrNumber,Date,NDID,ProdName,MedAmount,MedUnit,Entered,Comments):
+    pass
+
+def saveSeizureData(patient,MrNumber,Date,DayType,DataQuality,SeizureSeverity,SeizureLength,SeizureType,SeizureVariable,SeizureNumber,SeizureCluster,Entered,Comments):
+    pass
+
+def saveSeizureRanking(patient,MrNumber,SeizureParameter,SeizureEntry,SeizureRanking,Entered,Comments):
+    pass
+
+def saveUrineKtSG(patient,MrNumber,Date,DayType,UrineKt,UrineSG,Entered,Comments):
+    pass
+
+def saveVitals(patient,MrNumber,Date,DayType,Source,BPSys,BPDia,Temp,RR,HR,Entered,Comments):
+    pass
+
+def saveVNS(patient,MrNumber,Data,DayType,MRMagAct,OutPutCurr,VNSFrequency,PluseWidth,SignalOn,SingnalOff,MagnetCurrent,MagnetOn,MagnetPulse,LeadTest,Entered,Comments):
+    pass
 
 # Returns dataframe containing data inside the excel sheet
 def getAnthropometricsDataFrame(patient):

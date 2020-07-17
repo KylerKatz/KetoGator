@@ -1787,6 +1787,18 @@ class Test (QWidget):
         self.ClinicGISaveButton.mousePressEvent = self.submitClinicGI
         self.DailyIntakeSaveButton.mousePressEvent = self.submitDailyIntake
         self.DietRXSaveButton.mousePressEvent = self.submitDietRX
+        
+        self.MedDataSaveButton.mousePressEvent = self.submitMedData
+        self.MenusSaveButton.mousePressEvent = self.submitMenus
+        self.OtherMedSaveButton.mousePressEvent = self.submitOtherMed
+        self.SeizureDataSaveButton.mousePressEvent = self.submitSeizureData
+        self.SeizureRankingSaveButton.mousePressEvent = self.submitSeizureRanking
+        self.UrineKtSGSaveButton.mousePressEvent = self.submitUrineKtSG
+        self.VitalsSaveButton.mousePressEvent = self.submitVitals
+        self.VNSSaveButton.mousePressEvent = self.submitVNS
+
+
+
 
         self.loadpatients()
         self.closeprofile()
@@ -1823,7 +1835,7 @@ class Test (QWidget):
         try:
             self.anthropometricsGraph.close()
         except AttributeError:
-            print("No Graph to delete")
+            pass
     
 
 
@@ -1853,7 +1865,7 @@ class Test (QWidget):
             self.middle.addWidget(self.anthropometricsGraph)
 
 
-        print(item.text())
+        # print(item.text())
 
     def handlesearch(self,event):
         search = self.searchbar.text()
@@ -2239,13 +2251,11 @@ class Test (QWidget):
 
     def openprofile(self):
       
-        self.currentpatient = self.sender().text()[12:]
-        print(self.currentpatient)         
+        self.currentpatient = self.sender().text()[12:]      
         self.currentpatienttext.setText("Selected Patient: " + self.currentpatient) 
 
         self.patientname.setText(self.currentpatient)
 
-        print(self.currentpatient)
         self.loadgraphnames()
         self.closedashboard()
         self.patientname.show()
@@ -3040,6 +3050,17 @@ class Test (QWidget):
     
 
     def resetinputs(self):
+
+        self.AlertnessMRNumberF.setText(""),
+        self.AlertnessDateF.setDate(datetime.date(datetime.now())),
+        self.AlertnessDayTypeF.setCurrentIndex(0),
+        self.AlertnessF.setText(""),
+        self.AlertnessActivityF.setText(""),
+        self.AlertnessDevelopmentF.setText(""),
+        self.AlertnessEnteredF.setText(""),
+        self.AlertnessCommentsF.setText(""),
+
+
         self.AnthropometricsMRNumberF.setText(""),
         self.AnthropometricsDateF.setDate(datetime.date(datetime.now())),
         self.AnthropometricsDayTypeF.setCurrentIndex(0),
@@ -3060,6 +3081,153 @@ class Test (QWidget):
         self.AnthropometricsEnteredF.setText(""),
         self.AnthropometricsCommentsF.setText(""), 
 
+
+        self.ClinicGIMRNumberF.setText(""),   
+        self.ClinicGIDateF.setDate(datetime.date(datetime.now())),
+        self.ClinicGIDayTypeF.setCurrentIndex(0),
+        self.ClinicGIConstF.setCurrentIndex(0),
+        self.ClinicGIDiaF.setCurrentIndex(0),
+        self.ClinicGIVomF.setCurrentIndex(0),
+        self.ClinicGINauseaF.setCurrentIndex(0),
+        self.ClinicGIGagF.setCurrentIndex(0),
+        self.ClinicGINissenF.setCurrentIndex(0),
+        self.ClinicGIConstDesF.setText(""),
+        self.ClinicGIDiaDesF.setText(""),
+        self.ClinicGIVomDesF.setText(""),
+        self.ClinicGINauseaDesF.setText(""),
+        self.ClinicGIGagDesF.setText(""),
+        self.ClinicGIEnteredF.setText(""),
+        self.ClinicGICommentsF.setText(""),
+
+        self.DailyIntakeMRNumberF.setText(""),
+        self.DailyIntakeDateF.setDate(datetime.date(datetime.now())),
+        self.DailyIntakeDayTypeF.setCurrentIndex(0),
+        self.DailyIntakePKTNUMF.setText(""),
+        self.DailyIntakeDataQualityDietF.setCurrentIndex(0),
+        self.DailyIntakeDayQualityDietF.setCurrentIndex(0),
+        self.DailyIntakeEnteredF.setText(""),
+        self.DailyIntakeCommentsF.setText(""),
+
+
+        self.DietRXMRNumberF.setText(""),
+        self.DietRXDateF.setDate(datetime.date(datetime.now())),
+        self.DietRXDayTypeF.setCurrentIndex(0),
+        self.DietRXROFF.setCurrentIndex(0),
+        self.DietRXRFCDF.setCurrentIndex(0),
+        self.DietRXSnackCalF.setText(""),
+        self.DietRXSnackRatioF.setText(""),
+        self.DietRXSnackNumberF.setText(""),
+        self.DietRXMealNumberF.setText(""),
+        self.DietRXMealRatioF.setText(""),
+        self.DietRXCalF.setText(""),
+        self.DietRXProF.setText(""),
+        self.DietRXEnteredF.setText(""),
+        self.DietRXCommentsF.setText(""),
+
+
+        self.MedDataMRNumberF.setText(""),
+        self.MedDataDateF.setDate(datetime.date(datetime.now())),
+        self.MedDataDayTypeF.setCurrentIndex(0),
+        self.MedDataNDIDF.setText(""),
+        self.MedDataMedIDF.setText(""),
+        self.MedDataRFCMF.setCurrentIndex(0),
+        self.MedDataProdNameF.setText(""),
+        self.MedDataDailyDoseF.setText(""),
+        self.MedDataMedDosesF.setText(""),
+        self.MedDataMedCommentsF.setText(""),
+        self.MedDataEnteredF.setText(""),
+        self.MedDataCommentsF.setText(""),
+
+
+
+        self.MenusMRNumberF.setText(""),
+        self.MenusDateF.setDate(datetime.date(datetime.now())),
+        self.MenusCalPrcntF.setText(""),
+        self.MenusProcntPrcntF.setText(""),
+        self.MenusRatioPrF.setText(""),
+        self.MenusMealNumberF.setText(""),
+        self.MenusSnackNumberF.setText(""),
+        self.MenusRecipeNameF.setText(""),
+        self.MenusRecipeNumberF.setText(""),
+        self.MenusRecipeIngredientAmountF.setText(""),
+        self.MenusNDIDF.setText(""),
+        self.MenusProdNameF.setText(""),
+        self.MenusRecipeTypeF.setCurrentIndex(0),
+        self.MenusEnteredF.setText(""),
+        self.MenusCommentsF.setText(""),
+
+
+        self.OtherMedMRNumberF.setText(""),
+        self.OtherMedDateF.setDate(datetime.date(datetime.now())),
+        self.OtherMedNDIDF.setText(""),
+        self.OtherMedProdNameF.setText(""),
+        self.OtherMedMedAmountF.setText(""),
+        self.OtherMedMedUnitF.setText(""),
+        self.OtherMedEnteredF.setText(""),
+        self.OtherMedCommentsF.setText(""),
+
+        self.SeizureDataMRNumberF.setText(""),
+        self.SeizureDataDateF.setDate(datetime.date(datetime.now())),
+        self.SeizureDataDayTypeF.setCurrentIndex(0),
+        self.SeizureDataDataQualityF.setCurrentIndex(0),
+        self.SeizureDataSeizureSeverityF.setText(""),
+        self.SeizureDataSeizureLengthF.setText(""),
+        self.SeizureDataSeizureTypeF.setText(""),
+        self.SeizureDataSeizureVariableF.setText(""),
+        self.SeizureDataSeizureNumberF.setText(""),
+        self.SeizureDataSeizureClusterF.setText(""),
+        self.SeizureDataEnteredF.setText(""),
+        self.SeizureDataCommentsF.setText(""),
+
+        self.SeizureRankingMRNumberF.setText(""),
+        self.SeizureRankingSeizureParameterF.setText(""),
+        self.SeizureRankingSeizureEntryF.setText(""),
+        self.SeizureRankingSeizureRankingF.setText(""),
+        self.SeizureRankingEnteredF.setText(""),
+        self.SeizureRankingCommentsF.setText(""),
+
+
+        self.UrineKtSGMRNumberF.setText(""),
+        self.UrineKtSGDateF.setDate(datetime.date(datetime.now())),
+        self.UrineKtSGDayTypeF.setCurrentIndex(0),
+        self.UrineKtSGUrineKtF.setText(""),
+        self.UrineKtSGUrineSGF.setText(""),
+        self.UrineKtSGEnteredF.setText(""),
+        self.UrineKtSGCommentsF.setText(""),
+
+        self.VitalsMRNumberF.setText(""),
+        self.VitalsDateF.setDate(datetime.date(datetime.now())),
+        self.VitalsDayTypeF.setCurrentIndex(0),
+        self.VitalsSourceF.setCurrentIndex(0),
+        self.VitalsBPSysF.setText(""),
+        self.VitalsBPDiaF.setText(""),
+        self.VitalsTempF.setText(""),
+        self.VitalsRRF.setText(""),
+        self.VitalsHRF.setText(""),
+        self.VitalsEnteredF.setText(""),
+        self.VitalsCommentsF.setText(""),
+
+        self.VNSMRNumberF.setText(""),
+        self.VNSDateF.setDate(datetime.date(datetime.now())),
+        self.VNSDayTypeF.setCurrentIndex(0),
+        self.VNSMRMagActF.setText(""),
+        self.VNSOutputCurrF.setText(""),
+        self.VNSVNSFrequencyF.setText(""),
+        self.VNSPulseWidthF.setText(""),
+        self.VNSSignalOnF.setText(""),
+        self.VNSSignalOffF.setText(""),
+        self.VNSMagnetCurrentF.setText(""),
+        self.VNSMagnetOnF.setText(""),
+        self.VNSMagnetPulseF.setText(""),
+        self.VNSLeadTestF.setText(""),
+        self.VNSEnteredF.setText(""),
+        self.VNSCommentsF.setText("")
+
+
+
+
+
+
 ######################## Sending Input To The Back End ##########################
     def submitAlertness(self,event):
 
@@ -3076,6 +3244,10 @@ class Test (QWidget):
             self.AlertnessCommentsF.toPlainText()
             )
 
+            self.alertnesspopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
+
         except ValueError:
             print("There is a value error, placeholder for now WIP")
 
@@ -3091,7 +3263,7 @@ class Test (QWidget):
             saveAnthropometrics(
                 self.currentpatient,
                 int(self.AnthropometricsMRNumberF.text()),
-                self.AnthropometricsDateF.date(),
+                self.AnthropometricsDateF.date().toString("MM/dd/yyyy"),
                 int(self.AnthropometricsDayTypeF.currentText()[:1]),
                 int(self.AnthropometricsSoruceF.currentText()[:1]),
                 float(self.AnthropometricsCPF.currentText()[:2]),
@@ -3143,6 +3315,10 @@ class Test (QWidget):
             self.ClinicGICommentsF.toPlainText()
             )
 
+            self.clinicgipopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
+
         except ValueError:
             print("There is a value error, placeholder for now WIP")
        
@@ -3162,6 +3338,9 @@ class Test (QWidget):
             self.DailyIntakeCommentsF.toPlainText()
             )
            
+            self.dailyintakepopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
         except ValueError:
             print("There is a value error, placeholder for now WIP")
 
@@ -3185,6 +3364,200 @@ class Test (QWidget):
             self.DietRXEnteredF.text(),
             self.DietRXCommentsF.toPlainText()
             )
+
+            self.dietrxpopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
+
+    def submitMedData(self,event):
+
+        try:
+            saveMedData(
+            self.currentpatient,
+            self.MedDataMRNumberF.text(),
+            self.MedDataDateF.date().toString("MM/dd/yyyy"),
+            self.MedDataDayTypeF.currentText()[:1],
+            self.MedDataNDIDF.text(),
+            self.MedDataMedIDF.text(),
+            self.MedDataRFCMF.currentText().split()[0],
+            self.MedDataProdNameF.text(),
+            self.MedDataDailyDoseF.text(),
+            self.MedDataMedDosesF.text(),
+            self.MedDataMedCommentsF.toPlainText(),
+            self.MedDataEnteredF.text(),
+            self.MedDataCommentsF.toPlainText()
+            )
+
+            self.meddatapopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
+        
+
+    def submitMenus(self,event):
+        try:
+            saveMenus(
+            self.currentpatient,
+            self.MenusMRNumberF.text(),
+            self.MenusDateF.date().toString("MM/dd/yyyy"),
+            self.MenusCalPrcntF.text(),
+            self.MenusProcntPrcntF.text(),
+            self.MenusRatioPrF.text(),
+            self.MenusMealNumberF.text(),
+            self.MenusSnackNumberF.text(),
+            self.MenusRecipeNameF.text(),
+            self.MenusRecipeNumberF.text(),
+            self.MenusRecipeIngredientAmountF.text(),
+            self.MenusNDIDF.text(),
+            self.MenusProdNameF.text(),
+            self.MenusRecipeTypeF.currentText()[:1],
+            self.MenusEnteredF.text(),
+            self.MenusCommentsF.toPlainText()
+            )
+
+            self.menuspopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
+        
+
+    def submitOtherMed(self,event):
+        
+        try:
+            saveOtherMed(
+            self.currentpatient,
+            self.OtherMedMRNumberF.text(),
+            self.OtherMedDateF.date().toString("MM/dd/yyyy"),
+            self.OtherMedNDIDF.text(),
+            self.OtherMedProdNameF.text(),
+            self.OtherMedMedAmountF.text(),
+            self.OtherMedMedUnitF.text(),
+            self.OtherMedEnteredF.text(),
+            self.OtherMedCommentsF.toPlainText()
+            )
+
+            self.othermedpopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
+
+    def submitSeizureData(self,event):
+
+        try:
+            saveSeizureData(
+            self.currentpatient,
+            self.SeizureDataMRNumberF.text(),
+            self.SeizureDataDateF.date().toString("MM/dd/yyyy"),
+            self.SeizureDataDayTypeF.currentText()[:1],
+            self.SeizureDataDataQualityF.currentText()[:1],
+            self.SeizureDataSeizureSeverityF.text(),
+            self.SeizureDataSeizureLengthF.text(),
+            self.SeizureDataSeizureTypeF.text(),
+            self.SeizureDataSeizureVariableF.text(),
+            self.SeizureDataSeizureNumberF.text(),
+            self.SeizureDataSeizureClusterF.text(),
+            self.SeizureDataEnteredF.text(),
+            self.SeizureDataCommentsF.toPlainText()
+            )
+
+            self.seizuredatapopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
+
+    def submitSeizureRanking(self,event):
+        
+        try:
+            saveSeizureRanking(
+            self.currentpatient,
+            self.SeizureRankingMRNumberF.text(),
+            self.SeizureRankingSeizureParameterF.text(),
+            self.SeizureRankingSeizureEntryF.text(),
+            self.SeizureRankingSeizureRankingF.text(),
+            self.SeizureRankingEnteredF.text(),
+            self.SeizureRankingCommentsF.toPlainText()
+            )
+
+            self.seizurerankingpopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
+
+    def submitUrineKtSG(self,event):
+        
+        try:
+            saveUrineKtSG(
+            self.currentpatient,
+            self.UrineKtSGMRNumberF.text(),
+            self.UrineKtSGDateF.date().toString("MM/dd/yyyy"),
+            self.UrineKtSGDayTypeF.currentText()[:1],
+            self.UrineKtSGUrineKtF.text(),
+            self.UrineKtSGUrineSGF.text(),
+            self.UrineKtSGEnteredF.text(),
+            self.UrineKtSGCommentsF.toPlainText()
+            )
+
+            self.urinektsgpopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
+
+    def submitVitals(self,event):
+        
+        try:
+            saveVitals(
+            self.currentpatient,
+            self.VitalsMRNumberF.text(),
+            self.VitalsDateF.date().toString("MM/dd/yyyy"),
+            self.VitalsDayTypeF.currentText()[:1],
+            self.VitalsSourceF.currentText()[:1],
+            self.VitalsBPSysF.text(),
+            self.VitalsBPDiaF.text(),
+            self.VitalsTempF.text(),
+            self.VitalsRRF.text(),
+            self.VitalsHRF.text(),
+            self.VitalsEnteredF.text(),
+            self.VitalsCommentsF.toPlainText()
+            )
+
+            self.vitalspopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
+
+    def submitVNS(self,event):
+        try:
+            saveVNS(
+            currentpatient,
+            self.VNSMRNumberF.text(),
+            self.VNSDateF.date().toString("MM/dd/yyyy"),
+            self.VNSDayTypeF.currentText()[:1],
+            self.VNSMRMagActF.text(),
+            self.VNSOutputCurrF.text(),
+            self.VNSVNSFrequencyF.text(),
+            self.VNSPulseWidthF.text(),
+            self.VNSSignalOnF.text(),
+            self.VNSSignalOffF.text(),
+            self.VNSMagnetCurrentF.text(),
+            self.VNSMagnetOnF.text(),
+            self.VNSMagnetPulseF.text(),
+            self.VNSLeadTestF.text(),
+            self.VNSEnteredF.text(),
+            self.VNSCommentsF.toPlainText()
+            )
+
+            self.vnspopupsucess = QMessageBox.question(self,"Success","The data has been added.", QMessageBox.Ok)
+            self.resetinputs()
+            self.loadgraphnames()
         except ValueError:
             print("There is a value error, placeholder for now WIP")
 
