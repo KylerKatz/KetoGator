@@ -3067,7 +3067,7 @@ class Test (QWidget):
             saveAlertness(
             self.currentpatient,    
             self.AlertnessMRNumberF.text(),
-            self.AlertnessDateF.date(),
+            self.AlertnessDateF.date().toString("MM/dd/yyyy"),
             self.AlertnessDayTypeF.currentText()[:1],
             self.AlertnessF.toPlainText(),
             self.AlertnessActivityF.toPlainText(),
@@ -3126,7 +3126,7 @@ class Test (QWidget):
             saveClinicGI(
             self.currentpatient,
             self.ClinicGIMRNumberF.text(),   
-            self.ClinicGIDateF.date(),
+            self.ClinicGIDateF.date().toString("MM/dd/yyyy"),
             self.ClinicGIDayTypeF.currentText()[:1],
             self.ClinicGIConstF.currentText(),
             self.ClinicGIDiaF.currentText(),
@@ -3153,7 +3153,7 @@ class Test (QWidget):
             saveDailyIntake(
             self.currentpatient,
             self.DailyIntakeMRNumberF.text(),
-            self.DailyIntakeDateF.date(),
+            self.DailyIntakeDateF.date().toString("MM/dd/yyyy"),
             self.DailyIntakeDayTypeF.currentText()[:1],
             self.DailyIntakePKTNUMF.text(),
             self.DailyIntakeDataQualityDietF.currentText()[:1],
@@ -3171,7 +3171,7 @@ class Test (QWidget):
             saveDietRX(
             self.currentpatient,
             self.DietRXMRNumberF.text(),
-            self.DietRXDateF.date(),
+            self.DietRXDateF.date().toString("MM/dd/yyyy"),
             self.DietRXDayTypeF.currentText()[:1],
             self.DietRXROFF.currentText().split()[0],
             self.DietRXRFCDF.currentText().split()[0],
