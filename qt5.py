@@ -1,7 +1,7 @@
 import sys
 import os
 from PyQt5 import QtWidgets, uic, QtSql, QtCore, QtGui
-from PyQt5.QtGui import QPixmap, QFont
+from PyQt5.QtGui import QPixmap, QFont, QIntValidator, QDoubleValidator
 from PyQt5.QtWidgets import *
 from datetime import datetime
 
@@ -184,6 +184,7 @@ class Test (QWidget):
         self.AlertnessMRNumberF = QLineEdit()
         self.AlertnessMRNumberF.setMaxLength(10)
         self.AlertnessMRNumberF.setPlaceholderText("Required")
+        self.AlertnessMRNumberF.setValidator(QIntValidator())
         
         
         self.AlertnessDateL = QLabel("Date - (MM/DD/YYYY)")
@@ -235,6 +236,8 @@ class Test (QWidget):
         self.AnthropometricsMRNumberF = QLineEdit()
         self.AnthropometricsMRNumberF.setMaxLength(10)
         self.AnthropometricsMRNumberF.setPlaceholderText("Required")
+        self.AnthropometricsMRNumberF.setValidator(QIntValidator())
+        
 
         self.AnthropometricsDateL = QLabel("Date - (MM/DD/YYYY)")
         self.AnthropometricsDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -299,51 +302,62 @@ class Test (QWidget):
         self.AnthropometricsHtL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsHtL.setToolTip("Measure of linear growth. It is collected in one of 3 ways for patients: 1) patient standing measured using a stadiometer; 2) \nlying down straight measured from head to heel using measuring tape; 3) lying down segmental measured using measuring tape (head to shoulder, shoulder to hip, hip to knee, knee to heel). \nFor patients lying down, the measurement may be taken on the left or right side of the body depending on the patient, but is most routinely collected on the right side of the body.   ")
         self.AnthropometricsHtF = QLineEdit()
+        self.AnthropometricsHtF.setValidator(QDoubleValidator())
 
         self.AnthropometricsWtL = QLabel("Weight - kg")
         self.AnthropometricsWtL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsWtL.setToolTip("Measure of ponderal growth. It is collected in one of 2 ways for patients: 1) patient standing on a scale; 2) patient is weighed with wheelchair and wheelchair weight is subtracted from first weight.")
         self.AnthropometricsWtF = QLineEdit()
+        self.AnthropometricsWtF.setValidator(QDoubleValidator())
 
         self.AnthropometricsHCL = QLabel("Head Circumference - cm")
         self.AnthropometricsHCL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsHCL.setToolTip("Measurement of the head around its largest area. It measures the distance from above the eyebrows and ears and around the back of the head. The average of 3 readings is recorded.")
         self.AnthropometricsHCF = QLineEdit()
+        self.AnthropometricsHCF.setValidator(QDoubleValidator())
 
         self.AnthropometricsUACL = QLabel("Upper Arm Circumference - cm")
         self.AnthropometricsUACL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsUACL.setToolTip("The circumference of the upper right arm. Measured at the mid-point between the tip of the shoulder and the tip of the elbow (olecranon process and the acromium). \nPatient's elbow should be flexed to 90 degrees with the palm facing superiorly. The average of 3 readings is recorded.")
         self.AnthropometricsUACF = QLineEdit()
+        self.AnthropometricsUACF.setValidator(QDoubleValidator())
 
         self.AnthropometricsTSFL = QLabel("Triceps Skinfold - mm")
         self.AnthropometricsTSFL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsTSFL.setToolTip("Triceps skinfold thickness measured with a skinfold caliper. Measured at the back of the midpoint of the upper right arm. \nPatient should stand or lie down with right arm hanging loosely by the side. The average of 3 readings is recorded.")
         self.AnthropometricsTSFF = QLineEdit()
+        self.AnthropometricsTSFF.setValidator(QDoubleValidator())
 
         self.AnthropometricsSSFL = QLabel("Subscapular Skinfold - mm")
         self.AnthropometricsSSFL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsSSFL.setToolTip("Subscapular skinfold thickness measured with a skinfold caliper. Measured 1 cm below the inferior angle of the right scapula (shoulder blade). The average of 3 readings is recorded.")
         self.AnthropometricsSSFF = QLineEdit()
+        self.AnthropometricsSSFF.setValidator(QDoubleValidator())
 
         self.AnthropometricsUSFL = QLabel("Umbilicus Skinfold - mm")
         self.AnthropometricsUSFL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsUSFL.setToolTip("Umbilicus skinfold thickness measured with a skinfold caliper. The vertical umbilicus skinfold is measured by pinching the abdominal fat fold vertically \nabout 2.5 cm to the right of the patient’s umbilicus. The average of 3 readings is recorded.")
         self.AnthropometricsUSFF = QLineEdit()
+        self.AnthropometricsUSFF.setValidator(QDoubleValidator())
 
         self.AnthropometricsSISFL = QLabel("Suprailiac Skinfold - mm")
         self.AnthropometricsSISFL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsSISFL.setToolTip("Suprailiac skinfold thickness measured with a skinfold caliper. The vertical supra iliac skinfolds are measured by pinching the side fatfolds vertically \nat the mid-axilary line and at the level of the umbilicus. The average of 3 readings is recorded.")
         self.AnthropometricsSISFF = QLineEdit()
+        self.AnthropometricsSISFF.setValidator(QDoubleValidator())
 
         self.AnthropometricsMBSFL = QLabel("Midback Skinfold - mm")
         self.AnthropometricsMBSFL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsMBSFL.setToolTip("Mid back skinfold thickness measured with a skinfold caliper. The vertical mid-back skinfold is measured by pinching the back fat fold about 2.5 cm to the \nright of the spinal column at the level of the umbilicus. The average of 3 readings is recorded.")
         self.AnthropometricsMBSFF = QLineEdit()
+        self.AnthropometricsMBSFF.setValidator(QDoubleValidator())
+        
 
         self.AnthropometricsUCL = QLabel("Umbilical Circumference - cm")
         self.AnthropometricsUCL.setFont(QtGui.QFont("Ariel", 13))
         self.AnthropometricsUCL.setToolTip("Circumference of the mid-section of the body at the umbilicus (belly button), perpendicular to the long axis of the body. The average of 3 readings is recorded.")
         self.AnthropometricsUCF = QLineEdit()
+        self.AnthropometricsUCF.setValidator(QDoubleValidator())
 
         self.AnthropometricsEnteredL = QLabel("Entered")
         self.AnthropometricsEnteredL.setFont(QtGui.QFont("Ariel", 13))
@@ -525,6 +539,8 @@ class Test (QWidget):
         self.DietRXMRNumberF = QLineEdit()
         self.DietRXMRNumberF.setMaxLength(10)
         self.DietRXMRNumberF.setPlaceholderText("Required")
+        self.DietRXMRNumberF.setValidator(QIntValidator())
+        
         
         self.DietRXDateL = QLabel("Date - (MM/DD/YYYY)")
         self.DietRXDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -559,18 +575,24 @@ class Test (QWidget):
         self.DietRXSnackCalL.setToolTip("Total snack calories for the entire day")
         self.DietRXSnackCalF = QLineEdit()
         self.DietRXSnackCalF.setMaxLength(5)
+        self.DietRXSnackCalF.setValidator(QDoubleValidator())
+        self.DietRXSnackCalF.setPlaceholderText("Can be blank if the patient does not receive a snack")
 
         self.DietRXSnackRatioL = QLabel("Snack Ratio Prescribed - (2 Decimals)")
         self.DietRXSnackRatioL.setFont(QtGui.QFont("Ariel", 13))
         self.DietRXSnackRatioL.setToolTip("Snack PKT ratio precribed per day")
         self.DietRXSnackRatioF = QLineEdit()
         self.DietRXSnackRatioF.setMaxLength(4)
+        self.DietRXSnackRatioF.setValidator(QDoubleValidator())
+        self.DietRXSnackRatioF.setPlaceholderText("Can be blank if the patient does not receive a snack")
 
         self.DietRXSnackNumberL = QLabel("Snack Number Prescribed")
         self.DietRXSnackNumberL.setFont(QtGui.QFont("Ariel", 13))
         self.DietRXSnackNumberL.setToolTip("Total number of snacks precribed per day")
         self.DietRXSnackNumberF = QLineEdit()
         self.DietRXSnackNumberF.setMaxLength(2)
+        self.DietRXSnackNumberF.setValidator(QIntValidator())
+        self.DietRXSnackNumberF.setPlaceholderText("Can be blank if the patient does not receive a snack")
 
         self.DietRXMealNumberL = QLabel("Meal Number Prescribed")
         self.DietRXMealNumberL.setFont(QtGui.QFont("Ariel", 13))
@@ -578,6 +600,7 @@ class Test (QWidget):
         self.DietRXMealNumberF = QLineEdit()
         self.DietRXMealNumberF.setMaxLength(2)
         self.DietRXMealNumberF.setPlaceholderText("Required")
+        self.DietRXMealNumberF.setValidator(QIntValidator())
 
         self.DietRXMealRatioL = QLabel("Meal Ratio Prescribed - (2 Decimals)")
         self.DietRXMealRatioL.setFont(QtGui.QFont("Ariel", 13))
@@ -585,6 +608,7 @@ class Test (QWidget):
         self.DietRXMealRatioF = QLineEdit()
         self.DietRXMealRatioF.setMaxLength(4)
         self.DietRXMealRatioF.setPlaceholderText("Required")
+        self.DietRXMealRatioF.setValidator(QDoubleValidator())
         
         self.DietRXCalL = QLabel("Calories Prescribed - (2 Decimals)")
         self.DietRXCalL.setFont(QtGui.QFont("Ariel", 13))
@@ -592,6 +616,7 @@ class Test (QWidget):
         self.DietRXCalF = QLineEdit()
         self.DietRXCalF.setMaxLength(7)
         self.DietRXCalF.setPlaceholderText("Required")
+        self.DietRXCalF.setValidator(QDoubleValidator())
 
         self.DietRXProL = QLabel("Protein Prescribed - (2 Decimals)")
         self.DietRXProL.setFont(QtGui.QFont("Ariel", 13))
@@ -599,6 +624,7 @@ class Test (QWidget):
         self.DietRXProF = QLineEdit()
         self.DietRXProF.setMaxLength(5)
         self.DietRXProF.setPlaceholderText("Required")
+        self.DietRXProF.setValidator(QDoubleValidator())
 
         self.DietRXEnteredL = QLabel("Entered")
         self.DietRXEnteredL.setFont(QtGui.QFont("Ariel", 13))
@@ -620,6 +646,7 @@ class Test (QWidget):
         self.MedDataMRNumberF = QLineEdit()
         self.MedDataMRNumberF.setMaxLength(10)
         self.MedDataMRNumberF.setPlaceholderText("Required")
+        self.MedDataMRNumberF.setValidator(QIntValidator())
         
         self.MedDataDateL = QLabel("Date - (MM/DD/YYYY)")
         self.MedDataDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -645,6 +672,7 @@ class Test (QWidget):
         self.MedDataMedIDL.setToolTip("ID number given to each generic or brand name AED, see med ranking sheet in G:\MySQL Database\Meds\Med Ranking for list of ID numbers")
         self.MedDataMedIDF = QLineEdit()
         self.MedDataMedIDF.setMaxLength(8)
+        self.MedDataMedIDF.setPlaceholderText("Required")
 
         self.MedDataRFCML = QLabel("Reason For Change Med")
         self.MedDataRFCML.setFont(QtGui.QFont("Ariel", 13))
@@ -665,12 +693,14 @@ class Test (QWidget):
         self.MedDataDailyDoseL.setToolTip("Total dose of AED per day in mg either prescribed or consumed")
         self.MedDataDailyDoseF = QLineEdit()
         self.MedDataDailyDoseF.setMaxLength(6)
+        self.MedDataDailyDoseF.setValidator(QDoubleValidator())
 
         self.MedDataMedDosesL = QLabel("Med Doses")
         self.MedDataMedDosesL.setFont(QtGui.QFont("Ariel", 13))
         self.MedDataMedDosesL.setToolTip("Total number of doses AED per day either presribed or consumed")
         self.MedDataMedDosesF = QLineEdit()
         self.MedDataMedDosesF.setMaxLength(2)
+        self.MedDataMedDosesF.setValidator(QIntValidator())
 
         self.MedDataMedCommentsL = QLabel("Med Comments")
         self.MedDataMedCommentsL.setFont(QtGui.QFont("Ariel", 13))
@@ -697,6 +727,7 @@ class Test (QWidget):
         self.MenusMRNumberF = QLineEdit()
         self.MenusMRNumberF.setMaxLength(10)
         self.MenusMRNumberF.setPlaceholderText("Required")
+        self.MenusMRNumberF.setValidator(QIntValidator())
         
         self.MenusDateL = QLabel("Date - (MM/DD/YYYY)")
         self.MenusDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -711,6 +742,7 @@ class Test (QWidget):
         self.MenusCalPrcntF = QLineEdit()
         self.MenusCalPrcntF.setMaxLength(6)
         self.MenusCalPrcntF.setPlaceholderText("Required")
+        self.MenusCalPrcntF.setValidator(QDoubleValidator())
 
         self.MenusProcntPrcntL = QLabel("Protein Prescribed - (g)")
         self.MenusProcntPrcntL.setFont(QtGui.QFont("Ariel", 13))
@@ -718,6 +750,7 @@ class Test (QWidget):
         self.MenusProcntPrcntF = QLineEdit()
         self.MenusProcntPrcntF.setMaxLength(4)
         self.MenusProcntPrcntF.setPlaceholderText("Required")
+        self.MenusProcntPrcntF.setValidator(QDoubleValidator())
 
         self.MenusRatioPrL = QLabel("Ratio Prescribed")
         self.MenusRatioPrL.setFont(QtGui.QFont("Ariel", 13))
@@ -725,13 +758,7 @@ class Test (QWidget):
         self.MenusRatioPrF = QLineEdit()
         self.MenusRatioPrF.setMaxLength(3)
         self.MenusRatioPrF.setPlaceholderText("Required")
-
-        self.MenusRatioPrL = QLabel("Ratio Prescribed")
-        self.MenusRatioPrL.setFont(QtGui.QFont("Ariel", 13))
-        self.MenusRatioPrL.setToolTip("Meal PKT ratio precribed of amount of fat per amount of carbohydrates plus amount of protein")
-        self.MenusRatioPrF = QLineEdit()
-        self.MenusRatioPrF.setMaxLength(3)
-        self.MenusRatioPrF.setPlaceholderText("Required")
+        self.MenusRatioPrF.setValidator(QDoubleValidator())
 
         self.MenusMealNumberL = QLabel("Meal Number Prescribed")
         self.MenusMealNumberL.setFont(QtGui.QFont("Ariel", 13))
@@ -739,6 +766,7 @@ class Test (QWidget):
         self.MenusMealNumberF = QLineEdit()
         self.MenusMealNumberF.setMaxLength(2)
         self.MenusMealNumberF.setPlaceholderText("Required")
+        self.MenusMealNumberF.setValidator(QIntValidator())
         
         self.MenusSnackNumberL = QLabel("Snack Number Prescribed")
         self.MenusSnackNumberL.setFont(QtGui.QFont("Ariel", 13))
@@ -746,6 +774,7 @@ class Test (QWidget):
         self.MenusSnackNumberF = QLineEdit()
         self.MenusSnackNumberF.setMaxLength(2)
         self.MenusSnackNumberF.setPlaceholderText("Cell can be blank if the patient does not receive a snack. Otherwise it is required")
+        self.MenusSnackNumberF.setValidator(QIntValidator())
 
         self.MenusRecipeNameL = QLabel("PKT Recipe Name")
         self.MenusRecipeNameL.setFont(QtGui.QFont("Ariel", 13))
@@ -765,6 +794,7 @@ class Test (QWidget):
         self.MenusRecipeIngredientAmountL.setToolTip("Amount of ingredient consumed in grams, unless it is a supplement then the number of servings is entered")
         self.MenusRecipeIngredientAmountF = QLineEdit()
         self.MenusRecipeIngredientAmountF.setMaxLength(6)
+        self.MenusRecipeIngredientAmountF.setValidator(QDoubleValidator())
         
         self.MenusNDIDL = QLabel("Nutrition Facts Database Identification")
         self.MenusNDIDL.setFont(QtGui.QFont("Ariel", 13))
@@ -827,6 +857,7 @@ class Test (QWidget):
         self.OtherMedMedAmountL = QLabel("Medication Amount")
         self.OtherMedMedAmountL.setFont(QtGui.QFont("Ariel", 13))
         self.OtherMedMedAmountF = QLineEdit()
+        self.OtherMedMedAmountF.setValidator(QIntValidator())
 
         self.OtherMedMedUnitL = QLabel("Medication Unit")
         self.OtherMedMedUnitL.setFont(QtGui.QFont("Ariel", 13))
@@ -907,6 +938,7 @@ class Test (QWidget):
         self.SeizureDataSeizureClusterL.setToolTip("Clusters of seizrues within an event as written by caregiver")
         self.SeizureDataSeizureClusterF = QLineEdit()
         self.SeizureDataSeizureClusterF.setMaxLength(4)
+        self.SeizureDataSeizureClusterF.setValidator(QIntValidator())
         
         self.SeizureDataEnteredL = QLabel("Entered")
         self.SeizureDataEnteredL.setFont(QtGui.QFont("Ariel", 13))
@@ -946,6 +978,7 @@ class Test (QWidget):
         self.SeizureRankingSeizureRankingL.setToolTip("Seizure ranking point associated with code provided by caregivers")
         self.SeizureRankingSeizureRankingF = QLineEdit()
         self.SeizureRankingSeizureRankingF.setMaxLength(6)
+        self.SeizureRankingSeizureRankingF.setValidator(QIntValidator())
 
         self.SeizureRankingEnteredL = QLabel("Entered")
         self.SeizureRankingEnteredL.setFont(QtGui.QFont("Ariel", 13))
@@ -986,12 +1019,14 @@ class Test (QWidget):
         self.UrineKtSGUrineKtL.setToolTip("Urine ketone value from daily records from caregivers")
         self.UrineKtSGUrineKtF = QLineEdit()
         self.UrineKtSGUrineKtF.setMaxLength(7)
+        self.UrineKtSGUrineKtF.setValidator(QDoubleValidator())
 
         self.UrineKtSGUrineSGL = QLabel("Urine Specific Gravity - (5 Decimals)")
         self.UrineKtSGUrineSGL.setFont(QtGui.QFont("Ariel", 13))
         self.UrineKtSGUrineSGL.setToolTip("Urine specific gravity value from daily records from caregivers")
         self.UrineKtSGUrineSGF = QLineEdit()
         self.UrineKtSGUrineSGF.setMaxLength(7)
+        self.UrineKtSGUrineSGF.setValidator(QDoubleValidator())
         
         self.UrineKtSGEnteredL = QLabel("Entered")
         self.UrineKtSGEnteredL.setFont(QtGui.QFont("Ariel", 13))
@@ -1039,30 +1074,35 @@ class Test (QWidget):
         self.VitalsBPSysL.setToolTip("Systolic blood pressure is the pressure when the heart beats while pumping blood")
         self.VitalsBPSysF = QLineEdit()
         self.VitalsBPSysF.setMaxLength(3)
+        self.VitalsBPSysF.setValidator(QIntValidator())
 
         self.VitalsBPDiaL = QLabel("Blood Pressure Diastolic - (mmHg)")
         self.VitalsBPDiaL.setFont(QtGui.QFont("Ariel", 13))
         self.VitalsBPDiaL.setToolTip("Diastolic blood pressure is the pressure when the heart is at rest between beats")
         self.VitalsBPDiaF = QLineEdit()
         self.VitalsBPDiaF.setMaxLength(2)
+        self.VitalsBPDiaF.setValidator(QIntValidator())
 
         self.VitalsTempL = QLabel("Temperature - (Celsius)")
         self.VitalsTempL.setFont(QtGui.QFont("Ariel", 13))
         self.VitalsTempL.setToolTip("The degree of heat maintained by the body or it is the balance between heat produced in the tissues and heat lost to the environment. It is typically taken axillary for our patients")
         self.VitalsTempF = QLineEdit()
         self.VitalsTempF.setMaxLength(3)
+        self.VitalsTempF.setValidator(QDoubleValidator())
         
         self.VitalsRRL = QLabel("Respiratory Rate - (Respirations/minute)")
         self.VitalsRRL.setFont(QtGui.QFont("Ariel", 13))
         self.VitalsRRL.setToolTip("The respiration rate is the number of breaths a person takes per minute. The rate is usually measured when a person is at rest and simply involves \ncounting the number of breaths for one minute by counting how many times the chest rises")
         self.VitalsRRF = QLineEdit()
         self.VitalsRRF.setMaxLength(2)
+        self.VitalsRRF.setValidator(QIntValidator())
 
         self.VitalsHRL = QLabel("Heart Rate - (Beats/minute)")
         self.VitalsHRL.setFont(QtGui.QFont("Ariel", 13))
         self.VitalsHRL.setToolTip("The number of time the heart beats per minute")
         self.VitalsHRF = QLineEdit()
         self.VitalsHRF.setMaxLength(3)
+        self.VitalsHRF.setValidator(QIntValidator())
 
         self.VitalsEnteredL = QLabel("Entered")
         self.VitalsEnteredL.setFont(QtGui.QFont("Ariel", 13))
@@ -1104,54 +1144,63 @@ class Test (QWidget):
         self.VNSMRMagActL.setToolTip("Number Magnet Activations For Vagul Nerve Stimulator")
         self.VNSMRMagActF = QLineEdit()
         self.VNSMRMagActF.setMaxLength(5)
+        self.VNSMRMagActF.setValidator(QIntValidator())
 
         self.VNSOutputCurrL = QLabel("Output Current - (2 Decimals)")
         self.VNSOutputCurrL.setFont(QtGui.QFont("Ariel", 13))
         self.VNSOutputCurrL.setToolTip("Output Current For Vagul Nerve Stimulator")
         self.VNSOutputCurrF = QLineEdit()
         self.VNSOutputCurrF.setMaxLength(6)
+        self.VNSOutputCurrF.setValidator(QDoubleValidator())
 
         self.VNSVNSFrequencyL = QLabel("Frequency - (2 Decimals)")
         self.VNSVNSFrequencyL.setFont(QtGui.QFont("Ariel", 13))
         self.VNSVNSFrequencyL.setToolTip("Frequency For Vagul Nerve Stimulator")
         self.VNSVNSFrequencyF = QLineEdit()
         self.VNSVNSFrequencyF.setMaxLength(6)
+        self.VNSVNSFrequencyF.setValidator(QDoubleValidator())
         
         self.VNSPulseWidthL = QLabel("Pulse Width - (2 Decimals)")
         self.VNSPulseWidthL.setFont(QtGui.QFont("Ariel", 13))
         self.VNSPulseWidthL.setToolTip("Pulse Width For Vagul Nerve Stimulator")
         self.VNSPulseWidthF = QLineEdit()
         self.VNSPulseWidthF.setMaxLength(6)
+        self.VNSPulseWidthF.setValidator(QDoubleValidator())
         
         self.VNSSignalOnL = QLabel("Signal On Time - (2 Decimals)")
         self.VNSSignalOnL.setFont(QtGui.QFont("Ariel", 13))
         self.VNSSignalOnL.setToolTip("Signal On Time For Vagul Nerve Stimulator")
         self.VNSSignalOnF = QLineEdit()
         self.VNSSignalOnF.setMaxLength(5)
+        self.VNSSignalOnF.setValidator(QDoubleValidator())
 
         self.VNSSignalOffL = QLabel("Signal Off Time - (2 Decimals)")
         self.VNSSignalOffL.setFont(QtGui.QFont("Ariel", 13))
         self.VNSSignalOffL.setToolTip("Signal Off Time For Vagul Nerve Stimulator")
         self.VNSSignalOffF = QLineEdit()
         self.VNSSignalOffF.setMaxLength(5)
+        self.VNSSignalOffF.setValidator(QDoubleValidator())
 
         self.VNSMagnetCurrentL = QLabel("Magnet Current - (2 Decimals)")
         self.VNSMagnetCurrentL.setFont(QtGui.QFont("Ariel", 13))
         self.VNSMagnetCurrentL.setToolTip("Magnet Current For Vagul Nerve Stimulator")
         self.VNSMagnetCurrentF = QLineEdit()
         self.VNSMagnetCurrentF.setMaxLength(5)
+        self.VNSMagnetCurrentF.setValidator(QDoubleValidator())
 
         self.VNSMagnetOnL = QLabel("Magnet On Time - (2 Decimals)")
         self.VNSMagnetOnL.setFont(QtGui.QFont("Ariel", 13))
         self.VNSMagnetOnL.setToolTip("Magnet On Time For Vagul Nerve Stimulator")
         self.VNSMagnetOnF = QLineEdit()
         self.VNSMagnetOnF.setMaxLength(5)
+        self.VNSMagnetOnF.setValidator(QDoubleValidator())
 
         self.VNSMagnetPulseL = QLabel("Magnet Pulse Width - (2 Decimals)")
         self.VNSMagnetPulseL.setFont(QtGui.QFont("Ariel", 13))
         self.VNSMagnetPulseL.setToolTip("Magnet Pulse Width For Vagul Nerve Stimulator")
         self.VNSMagnetPulseF = QLineEdit()
         self.VNSMagnetPulseF.setMaxLength(5)
+        self.VNSMagnetPulseF.setValidator(QDoubleValidator())
 
         self.VNSLeadTestL = QLabel("Lead Test")
         self.VNSLeadTestL.setFont(QtGui.QFont("Ariel", 13))
