@@ -150,28 +150,204 @@ def saveDietRX(patient,MrNumber,Date,DayType,ROF,RFCD,SnackCal,SnackRatio,SnackN
 
 
 def saveMedData(patient,MrNumber,Date,DayType,NDID,MedID,RFCM,ProdName,DailyDose,MedDose,MedComments,Entered,Comments):
-    pass
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Med_Data_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb["Sheet1"]
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Sheet1"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date","Day_Type","NDID","Med_ID","Reason_For_Change_Med", "Prod_Name", "Daily_Med_Dose_Mg", "Med_Doses", "Med_Comments", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MrNumber,Date,DayType,NDID,MedID,RFCM,ProdName,DailyDose,MedDose,MedComments,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
 
 def saveMenus(patient,MrNumber,Date,CalPrcnt,ProcntPrcnt,RatioPr,MealNumber,SnackNumber,RecipeName,RecipeNumber,RecipeIngredientAmount,NDID,ProdName,RecipeType,Entered,Comments):
-    pass
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Menus_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb["Menus"]
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Menus"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date","Cal_Prcnt","Procnt_Prcnt","Ratio_Pr","Meal_Number_Pr", "Snack_Number_Pr", "PKT_Recipe_Name", "PKT_Recipe_Number", "PKT_Recipe_Ingredient_Amount", "NDID", "Prod_Name", "Recipe_Type", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MrNumber,Date,CalPrcnt,ProcntPrcnt,RatioPr,MealNumber,SnackNumber,RecipeName,RecipeNumber,RecipeIngredientAmount,NDID,ProdName,RecipeType,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
 
 def saveOtherMed(patient,MrNumber,Date,NDID,ProdName,MedAmount,MedUnit,Entered,Comments):
-    pass
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Other_Med_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb["Menus"]
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Menus"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date","NDID","Prod_Name","Med_Amount","Med_Unit", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MrNumber,Date,NDID,ProdName,MedAmount,MedUnit,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
 
 def saveSeizureData(patient,MrNumber,Date,DayType,DataQuality,SeizureSeverity,SeizureLength,SeizureType,SeizureVariable,SeizureNumber,SeizureCluster,Entered,Comments):
-    pass
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Seizure_Data_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb["Sheet1"]
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Sheet1"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date","Day_Type","Data_Quality_S","Seizure_Severity","Seizure_Length", "Seizure_Type", "Seizure_Variable", "Seizure_Number", "Seizure_Cluster", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MrNumber,Date,DayType,DataQuality,SeizureSeverity,SeizureLength,SeizureType,SeizureVariable,SeizureNumber,SeizureCluster,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
 
 def saveSeizureRanking(patient,MrNumber,SeizureParameter,SeizureEntry,SeizureRanking,Entered,Comments):
-    pass
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Seizure_Ranking_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb["Sheet1"]
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Sheet1"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Seizure_Parameter","Seizure_Entry","Seizure_Ranking", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MrNumber,SeizureParameter,SeizureEntry,SeizureRanking,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
 
 def saveUrineKtSG(patient,MrNumber,Date,DayType,UrineKt,UrineSG,Entered,Comments):
-    pass
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Urine_Kt_SG_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb["Sheet1"]
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Sheet1"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date","Day_Type","Urine_Kt","Urine_SG", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MrNumber,Date,DayType,UrineKt,UrineSG,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
 
 def saveVitals(patient,MrNumber,Date,DayType,Source,BPSys,BPDia,Temp,RR,HR,Entered,Comments):
-    pass
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Vitals_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb["Sheet1"]
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
 
-def saveVNS(patient,MrNumber,Data,DayType,MRMagAct,OutPutCurr,VNSFrequency,PluseWidth,SignalOn,SingnalOff,MagnetCurrent,MagnetOn,MagnetPulse,LeadTest,Entered,Comments):
-    pass
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Sheet1"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date","Day_Type","Source","BP_Sys", "BP_Dia", "T", "RR", "HR", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MrNumber,Date,DayType,Source,BPSys,BPDia,Temp,RR,HR,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
+
+def saveVNS(patient,MrNumber,Date,DayType,MRMagAct,OutPutCurr,VNSFrequency,PluseWidth,SignalOn,SingnalOff,MagnetCurrent,MagnetOn,MagnetPulse,LeadTest,Entered,Comments):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Clinic_VNS_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb["Sheet1"]
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Sheet1"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date","Mag_Act","Output_Curr","VNS_Frequency", "Pulse_Width", "Signal_On", "Signal_Off", "Magnet_Current", "Magnet_On", "Magnet_Pulse", "Lead_Test" "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([patient,MrNumber,Date,DayType,MRMagAct,OutPutCurr,VNSFrequency,PluseWidth,SignalOn,SingnalOff,MagnetCurrent,MagnetOn,MagnetPulse,LeadTest,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
 
 # Returns dataframe containing data inside the excel sheet
 def getAnthropometricsDataFrame(patient):
