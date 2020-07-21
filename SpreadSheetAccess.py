@@ -98,6 +98,14 @@ def saveClinicGI(patient,MrNumber,Date,DayType,Const,Dia,Vom,Nausea,Gag,Nissen,C
     #Save modified workbook
     wb.save(path)
 
+def saveClinicalLabs(patient,MRNumber,Date,Time,DayType,Source,Fasting,TGBlood,HDLBlood,LDLBlood,TCBlood,NABlood,KBlood,ChlBlood,CO2Blood,BUNBlood,CrBlood,GlusBlood,CaBlood,MagBlood,PhosBlood,UricAcidBlood,ProBlood,
+AlbBlood,TBilBlood,TotalBilirubinBlood,AstBlood,AltBlood,RBCBlood,HgbBlood,HctBlood,PlateletBlood,MCVBlood,MCHBlood,MCHCBlood,MPVBlood,RDWBlood,WBCBlood,AmmoniaBlood,BHbBlood,AcacBlood, 
+NeutrophilsBlood,LymphocytesBlood,MonocytesBlood,EosinophilsBlood,BasophilsBlood,LargeUnstainedCellsBlood,NeutrophilsAbsoluteBlood,LymphocytesAbsoluteBlood,EosinophilsAbsoluteBlood,BasophilsAbsoluteBlood,
+GlusBloodCRC,LactBloodCRCMmol,LabBlood1,LabBlood2,LabBlood3,LabBlood4,LabBlood5,LabBlood6,LabBlood7,LabBlood8,LabBlood9,LabBlood10,LabBlood11,LabBlood12,LabBlood13,LabBlood14,LabBlood15,LabBlood16,LabBlood17,
+LabBlood18,LabBlood19,LabBlood20,LabBlood21,LabBlood22,LabBlood23,LabBlood24,LabBlood25,LabBlood26,LabBlood27,LabBlood28,LabBlood29,LabBlood30,LabBlood31,LabBlood32,LabBlood33,LabBlood34,LabBlood35,LabBlood36,
+LabBlood37,LabBlood38,LabBlood39,LabBlood40,LabBlood41,LabBlood42,LabBlood43,LabBlood44,LabBlood45,LabBlood46,LabBlood47,LabBlood48,LabBlood49,LabBlood50,Entered,Comments):
+    pass
+
 def saveDailyIntake(patient,MrNumber,Date,DayType,PKTNUM,DataQuality,DayQuality,Entered,Comments):
     path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Daily_Intake_Source.xlsx"
     

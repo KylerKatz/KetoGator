@@ -834,6 +834,7 @@ class Test (QWidget):
         self.OtherMedMRNumberF = QLineEdit()
         self.OtherMedMRNumberF.setMaxLength(10)
         self.OtherMedMRNumberF.setPlaceholderText("Required")
+        self.OtherMedMRNumberF.setValidator(QIntValidator())
         
         self.OtherMedDateL = QLabel("Date - (MM/DD/YYYY)")
         self.OtherMedDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -883,6 +884,7 @@ class Test (QWidget):
         self.SeizureDataMRNumberF = QLineEdit()
         self.SeizureDataMRNumberF.setMaxLength(10)
         self.SeizureDataMRNumberF.setPlaceholderText("Required")
+        self.SeizureDataMRNumberF.setValidator(QIntValidator())
         
         self.SeizureDataDateL = QLabel("Date - (MM/DD/YYYY)")
         self.SeizureDataDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -960,6 +962,7 @@ class Test (QWidget):
         self.SeizureRankingMRNumberF = QLineEdit()
         self.SeizureRankingMRNumberF.setMaxLength(10)
         self.SeizureRankingMRNumberF.setPlaceholderText("Required")
+        self.SeizureRankingMRNumberF.setValidator(QIntValidator())
 
         self.SeizureRankingSeizureParameterL = QLabel("Seizure Parameter")
         self.SeizureRankingSeizureParameterL.setFont(QtGui.QFont("Ariel", 13))
@@ -1000,6 +1003,7 @@ class Test (QWidget):
         self.UrineKtSGMRNumberF = QLineEdit()
         self.UrineKtSGMRNumberF.setMaxLength(10)
         self.UrineKtSGMRNumberF.setPlaceholderText("Required")
+        self.UrineKtSGMRNumberF.setValidator(QIntValidator())
         
         self.UrineKtSGDateL = QLabel("Date - (MM/DD/YYYY)")
         self.UrineKtSGDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -1049,6 +1053,7 @@ class Test (QWidget):
         self.VitalsMRNumberF = QLineEdit()
         self.VitalsMRNumberF.setMaxLength(10)
         self.VitalsMRNumberF.setPlaceholderText("Required")
+        self.VitalsMRNumberF.setValidator(QIntValidator())
         
         self.VitalsDateL = QLabel("Date - (MM/DD/YYYY)")
         self.VitalsDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -1125,6 +1130,7 @@ class Test (QWidget):
         self.VNSMRNumberF = QLineEdit()
         self.VNSMRNumberF.setMaxLength(10)
         self.VNSMRNumberF.setPlaceholderText("Required")
+        self.VNSMRNumberF.setValidator(QIntValidator())
         
         self.VNSDateL = QLabel("Date - (MM/DD/YYYY)")
         self.VNSDateL.setFont(QtGui.QFont("Ariel", 13))
@@ -1221,8 +1227,733 @@ class Test (QWidget):
 
         self.VNSSaveButton = QPushButton("Save")
 
+        ################### Update Data - Clinical Labs ###################
 
+        self.ClinicalLabsMRNumberL = QLabel("Medical Record Number")
+        self.ClinicalLabsMRNumberL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsMRNumberL.setToolTip("Medical record number from UF Health that is unique to each patient")
+        self.ClinicalLabsMRNumberF = QLineEdit()
+        self.ClinicalLabsMRNumberF.setMaxLength(10)
+        self.ClinicalLabsMRNumberF.setPlaceholderText("Required")
+        self.ClinicalLabsMRNumberF.setValidator(QIntValidator())
+        
+        self.ClinicalLabsDateL = QLabel("Date - (MM/DD/YYYY)")
+        self.ClinicalLabsDateL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsDateL.setToolTip("Date indicated on records")
+        self.ClinicalLabsDateF = QDateEdit()
+        self.ClinicalLabsDateF.setDisplayFormat("MM/dd/yyyy")
+        self.ClinicalLabsDateF.setDate(datetime.date(datetime.now()))
 
+        self.ClinicalLabsTimeL = QLabel("Time - (hh:mm:ss)")
+        self.ClinicalLabsTimeL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsTimeL.setToolTip("Time blood sample was collected")
+        self.ClinicalLabsTimeF = QLineEdit()
+        self.ClinicalLabsTimeF.setMaxLength(8)
+        
+        self.ClinicalLabsDayTypeL = QLabel("Day Type")
+        self.ClinicalLabsDayTypeL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsDayTypeL.setToolTip("Description of date of collection")
+        self.ClinicalLabsDayTypeF = QComboBox()
+        self.ClinicalLabsDayTypeF.addItems(['1 = Use this as baseline for analysis', '2 = On PKT', '3 = Before or after first/last day on PKT', '4 = Other baseline but not for analysis'])
+        
+        self.ClinicalLabsSourceL = QLabel("Source")
+        self.ClinicalLabsSourceL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsSourceL.setToolTip("Description of location for data collection which indicates quality of data")
+        self.ClinicalLabsSourceF = QComboBox()
+        self.ClinicalLabsSourceF.addItems(['1 = CRC', '2 = Clinic', '3 = Other (e.g. home,school)'])
+
+        self.ClinicalLabsFastingL = QLabel("Fasting Status")
+        self.ClinicalLabsFastingL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsFastingL.setToolTip("Determination of whether or not the patient was fasting at time of blood draw. Patients are asked to fast for at least 8 hours prior to a blood draw.\n Fasting is defined as no Calorie intake, but medications and water are encouraged.")
+        self.ClinicalLabsFastingF = QComboBox()
+        self.ClinicalLabsFastingF.addItems(['1 = Fasting','2 = Non-Fasting'])
+
+        self.ClinicalLabsTGBloodL = QLabel("Triglyceride Blood - (mg/dL)")
+        self.ClinicalLabsTGBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsTGBloodL.setToolTip("A triglyceride (TG, triacylglycerol, TAG, or triacylglyceride) is an ester derived from glycerol and three fatty acids. \nThere are many triglycerides, depending on the oil source, some are highly unsaturated, some less so. \nTriglycerides are the main constituents of vegetable oil (typically more unsaturated) and animal fats (typically more saturated). \nIn humans, triglycerides are a mechanism for storing unused calories, and their high concentrations in blood correlates with the consumption of starchy and fatty foods. \nHigh levels of triglycerides in the bloodstream have been linked to atherosclerosis and, by extension, the risk of heart disease and stroke. \nDiets high in carbohydrates, with carbohydrates accounting for more than 60% of the total energy intake, can increase triglyceride levels.")
+        self.ClinicalLabsTGBloodF = QLineEdit()
+        self.ClinicalLabsTGBloodF.setMaxLength(4)
+        self.ClinicalLabsTGBloodF.setValidator(QIntValidator())
+
+        self.ClinicalLabsHDLBloodL = QLabel("High Density Lipoprotein Blood - (mg/dL)")
+        self.ClinicalLabsHDLBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsHDLBloodL.setToolTip("High-density lipoprotein (HDL) is one of the five major groups of lipoproteins (chylomicrons, VLDL, IDL, LDL, HDL) which enable lipids like cholesterol and triglycerides to be transported within the water based blood stream. \nIn healthy individuals, about thirty percent of blood cholesterol is carried by HDL. High levels of cholesterol in the blood have been linked to damage to arteries and cardiovascular disease.")
+        self.ClinicalLabsHDLBloodF = QLineEdit()
+        self.ClinicalLabsHDLBloodF.setMaxLength(3)
+        self.ClinicalLabsHDLBloodF.setValidator(QIntValidator())
+        
+        self.ClinicalLabsLDLBloodL = QLabel("Low Density Lipoprotein Blood - (mg/dL)")
+        self.ClinicalLabsLDLBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLDLBloodL.setToolTip("A small dense LDL fraction, reported as part of LDL Subclasses panel. Seven LDL subclasses and 3 mid-band fractions can be determined by linear polyacrylamide gel electrophoresis and densitometric scanning. \nFormula= Total cholesterol - HDL - (Triglyceride/5)")
+        self.ClinicalLabsLDLBloodF = QLineEdit()
+        self.ClinicalLabsLDLBloodF.setMaxLength(3)
+        self.ClinicalLabsLDLBloodF.setValidator(QIntValidator())
+        
+        self.ClinicalLabsTCBloodL = QLabel("Total Cholesterol Blood - (mg/dL)")
+        self.ClinicalLabsTCBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsTCBloodL.setToolTip("Cholesterol is a lipidic, waxy alcohol found in the cell membranes and transported in the blood plasma of all animals. \nIt is an essential component of mammalian cell membranes where it establishes proper membrane permeability and fluidity. \nCholesterol is the principal sterol synthesized by animals, but small quantities are synthesized in other eukaryotes, such as plants and fungi. \nIt is almost completely absent among prokaryotes, which include bacteria. Cholesterol is classified as a sterol.")
+        self.ClinicalLabsTCBloodF = QLineEdit()
+        self.ClinicalLabsTCBloodF.setMaxLength(4)
+        self.ClinicalLabsTCBloodF.setValidator(QIntValidator())
+
+        self.ClinicalLabsNABloodL = QLabel("Sodium Blood - (mmol/L)")
+        self.ClinicalLabsNABloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsNABloodL.setToolTip("Sodium is an essential nutrient that regulates blood volume, blood pressure, osmotic equilibrium and electrolyte balance. \nSodium chloride is the principal source of sodium in the diet, and is used for seasoning and as a preservative. \nIncreased levels of sodium intake can cause hypertension and reportedly leads to 7.6 million premature deaths worldwide. \nSodium is also important in neuron function and osmoregulation between cells and the extracellular fluid.")
+        self.ClinicalLabsNABloodF = QLineEdit()
+        self.ClinicalLabsNABloodF.setMaxLength(3)
+        self.ClinicalLabsNABloodF.setValidator(QIntValidator())
+
+        self.ClinicalLabsKBloodL = QLabel("Potassium Blood - (mmol/L, 1 Decimal)")
+        self.ClinicalLabsKBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsKBloodL.setToolTip("Potassium (symbol K from Latin:kalium) is a key chemical element involved in neuron function and influencing osmotic balance between cells and interstitial fluid. \nDepletion in potassium levels results in deficient fluid and electrolyte balance in the body as well as various nervous and cardiac dysfunctions. \nStudies suggest diets high in potassium can reduce the risk of hypertension and possibly stroke. \nFoods rich in potassium include parsley, dried apricots, potatoes, bananas, avocados, soybeans, and bran, as well as most fruits, vegetables, meat and fish. \nOverall, clear cases of potassium deficiency are rare in healthy individuals.")
+        self.ClinicalLabsKBloodF = QLineEdit()
+        self.ClinicalLabsKBloodF.setMaxLength(4)
+        self.ClinicalLabsKBloodF.setValidator(QDoubleValidator())
+        
+        self.ClinicalLabsChlBloodL = QLabel("Chloride Blood - (mmol/L)")
+        self.ClinicalLabsChlBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsChlBloodL.setToolTip("The chloride ion is formed when the element chlorine picks up one electron to form an anion negatively-charged ion Cl−. The salts of hydrochloric acid contain chloride ions and can also be called chlorides.")
+        self.ClinicalLabsChlBloodF = QLineEdit()
+        self.ClinicalLabsChlBloodF.setMaxLength(3)
+        self.ClinicalLabsChlBloodF.setValidator(QIntValidator())
+
+        self.ClinicalLabsCO2BloodL = QLabel("Carbon Dioxide Blood - (mmol/L)")
+        self.ClinicalLabsCO2BloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsCO2BloodL.setToolTip("Carbon dioxide content is a measurement of total CO2 in the blood. Most of it is in the form of bicarbonate (HCO3) controlled by the kidney. \nA small amount (5%) of CO2 is dissolved in the blood as insoluble carbonic acid (H2CO3). Changes in CO2 content generally relate to metabolic issues, renal function and unusual losses (diarrhea). \nRespiratory disease can ultimately effect CO2 content, but only slightly and only if prolonged. ")
+        self.ClinicalLabsCO2BloodF = QLineEdit()
+        self.ClinicalLabsCO2BloodF.setMaxLength(2)
+        self.ClinicalLabsCO2BloodF.setValidator(QIntValidator())
+
+        self.ClinicalLabsBUNBloodL = QLabel("Blood Urea Nitrogen Blood - (mg/dL)")
+        self.ClinicalLabsBUNBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsBUNBloodL.setToolTip("Urea, also called carbamide, is an organic chemical compound involved in the metabolism of nitrogen-containing compounds and in the re-absorption of water and critical ions from excreted urine, \nan important mechanism in prevention of water loss and maintaining blood pressure. Urea levels are measured to diagnose conditions that affect the kidneys, \nsuch as acute kidney failure or end-stage renal disease (ESRD). The blood urea nitrogen (BUN) test may be used to determine how well a patient's kidneys are functioning. \nIncreased or decreased levels of urea may also suggest dehydration or increased protein intake.")
+        self.ClinicalLabsBUNBloodF = QLineEdit()
+        self.ClinicalLabsBUNBloodF.setMaxLength(2)
+        self.ClinicalLabsBUNBloodF.setValidator(QIntValidator())
+
+        self.ClinicalLabsCrBloodL = QLabel("Creatinine Blood - (mg/dL, 2 Decimals)")
+        self.ClinicalLabsCrBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsCrBloodL.setToolTip("Creatinine or creatine anhydride, is a breakdown product of creatine phosphate in muscle. The loss of water molecule from creatine results in the \nformation of creatinine. It is transferred to the kidneys by blood plasma, whereupon it is eliminated by glomular filtration and partial tubular excretion. \nCreatinine is usually produced at a fairly constant rate and measuring its serum level is a simple test. A rise in blood creatinine levels is observed only with marked damage \nto functioning nephrons; therefore this test is not suitable for detecting early kidney disease. Creatine and creatinine are metabolized in the kidneys, muscle, liver and pancreas.")
+        self.ClinicalLabsCrBloodF = QLineEdit()
+        self.ClinicalLabsCrBloodF.setMaxLength(3)
+        self.ClinicalLabsCrBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsGlusBloodL = QLabel("Glucose Blood - (mg/dL, 2 Decimals)")
+        self.ClinicalLabsGlusBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsGlusBloodL.setToolTip("Glucose (Glc), a monosaccharide (or simple sugar) also known as grape sugar, blood sugar, or corn sugar, is an important carbohydrate. \nLiving cell uses it as a source of energy and a metabolic intermediate. Glucose is a common medical analyte measured in blood samples. Eating or fasting prior to taking a blood sample has an effect on the result. \nHigher than usual glucose levels may be a sign of prediabetes or diabetes mellitus.")
+        self.ClinicalLabsGlusBloodF = QLineEdit()
+        self.ClinicalLabsGlusBloodF.setMaxLength(6)
+        self.ClinicalLabsGlusBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsCaBloodL = QLabel("Calcium Blood - (mg/dL, 1 Decimal)")
+        self.ClinicalLabsCaBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsCaBloodL.setToolTip("Calcium is essential for living organisms, in particular in cell physiology, where movement of the calcium ion Ca2+ into and out of the \ncytoplasm functions as a signal for many cellular processes. It is an important component of a healthy diet and a mineral necessary for life. Dairy products, such as milk and cheese, are a well-known source of calcium \nas well as nuts and seeds, beans, figs, broccoli, kale and fortified products such as orange juice and soy milk. \nApproximately 99 percent of the body's calcium is stored in the bones and teeth. Long-term calcium deficiency can lead to rickets and poor blood clotting. \nIn menopausal woman, it can lead to osteoporosis. While a lifelong deficit can affect bone and tooth formation, over-retention can cause hypercalcemia (elevated levels of calcium in the blood), \nimpaired kidney function and decreased absorption of other minerals. In addition, studies suggest a correlation between high calcium intake (2000 mg per day) and prostate cancer.")
+        self.ClinicalLabsCaBloodF = QLineEdit()
+        self.ClinicalLabsCaBloodF.setMaxLength(4)
+        self.ClinicalLabsCaBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsMagBloodL = QLabel("Magnesium Blood - (mg/dL, 1 Decimal)")
+        self.ClinicalLabsMagBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsMagBloodL.setToolTip("Magnesium salts are essential in nutrition, being required for the activity of many enzymes, especially those concerned with oxidative phosphorylation. \nPhysiologically, it exists as an ion in the body. It is a component of both intra- and extracellular fluids and is excreted in the urine and feces. Deficiency causes irritability of the nervous system \nwith tetany, vasodilatation, convulsions, tremors, depression, and psychotic behavior. Magnesium ion in large amounts is an ionic laxative, and magnesium sulfate \n(Epsom salts) is sometimes used for this purpose. So-called \"milk of magnesia\" is a water suspension of one of the few insoluble magnesium compounds, magnesium hydroxide; the \nundissolved particles give rise to its appearance and name. Milk of magnesia is a mild base, and is commonly used as an antacid.")
+        self.ClinicalLabsMagBloodF = QLineEdit()
+        self.ClinicalLabsMagBloodF.setMaxLength(4)
+        self.ClinicalLabsMagBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsPhosBloodL = QLabel("Phosphorus Blood - (mg/dL, 1 Decimal)")
+        self.ClinicalLabsPhosBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsPhosBloodL.setToolTip("Phosphate levels are checked to see if a patient has a kidney or bone-related disease or to identify problems with certain glands, such as the parathyroid glands. \nPhosphate is a salt of phosphoric acid. In organic chemistry, a phosphate, or organophosphate, is an ester of phosphoric acid. The body needs phosphate to build and repair bones and teeth and \nto help the nervous system function. A high level of phosphate in the blood is usually caused by a kidney problem since they help control the amount of phosphate \nin the blood. Phosphate levels also affects the level of calcium in the blood, so both calcium and phosphate levels are usually measured at the same time.")
+        self.ClinicalLabsPhosBloodF = QLineEdit()
+        self.ClinicalLabsPhosBloodF.setMaxLength(4)
+        self.ClinicalLabsPhosBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsUricAcidBloodL = QLabel("Uric Acid Blood - (mg/dL, 1 Decimal)")
+        self.ClinicalLabsUricAcidBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsUricAcidBloodL.setToolTip("Uric acid (urate) is a product of the metabolic breakdown of purine nucleotides.")
+        self.ClinicalLabsUricAcidBloodF = QLineEdit()
+        self.ClinicalLabsUricAcidBloodF.setMaxLength(4)
+        self.ClinicalLabsUricAcidBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsProBloodL = QLabel("Protein Blood - (G/dL, 1 Decimal)")
+        self.ClinicalLabsProBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsProBloodL.setToolTip("Protein testing is performed to evaluate and monitor liver and kidney function and to detect and diagnose early kidney damage and various other diseases. \nElevated protein levels may also be due to an infection, medication, vigorous exercise, or emotional or physical stress. Body fluids contain many different proteins that serve diverse functions such as transport of nutrients, removal of toxins, control of metabolic processes, and defense against invaders. \nTesting for protein levels may be done as part of a routine physical, a pregnancy workup, in cased of a suspected UTI, as part of a hospital admission, or to evaluate kidney function.")
+        self.ClinicalLabsProBloodF = QLineEdit()
+        self.ClinicalLabsProBloodF.setMaxLength(4)
+        self.ClinicalLabsProBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsAlbBloodL = QLabel("Albumin Blood - (G/dL, 1 Decimal)")
+        self.ClinicalLabsAlbBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsAlbBloodL.setToolTip("Albumin is a non-glycosylated protein that is synthesized in the liver parenchymal cells, regulated by colloid osmotic pressure from interstitial fluid \nsurrounding hepatocytes, and catabolized in nearly all organs.")
+        self.ClinicalLabsAlbBloodF = QLineEdit()
+        self.ClinicalLabsAlbBloodF.setMaxLength(4)
+        self.ClinicalLabsAlbBloodF.setValidator(QDoubleValidator())
+        
+        self.ClinicalLabsTBilBloodL = QLabel("Total Bilirubin Blood - (mg/dL, 1 Decimal)")
+        self.ClinicalLabsTBilBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsTBilBloodL.setToolTip("Bilirubin is an orange-yellow pigment produced by the normal breakdown of heme, a component of the hemoglobin found in red blood cells. ")
+        self.ClinicalLabsTBilBloodF = QLineEdit()
+        self.ClinicalLabsTBilBloodF.setMaxLength(4)
+        self.ClinicalLabsTBilBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsTotalBilirubinBloodL = QLabel("Alkaline Phosphatase Blood - (U/L)")
+        self.ClinicalLabsTotalBilirubinBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsTotalBilirubinBloodL.setToolTip("Alkaline phosphatase (ALP, ALKP) is a hydrolase enzyme responsible for removing phosphate groups from many types of molecules, including nucleotides, proteins, and alkaloids.")
+        self.ClinicalLabsTotalBilirubinBloodF = QLineEdit()
+        self.ClinicalLabsTotalBilirubinBloodF.setMaxLength(3)
+        self.ClinicalLabsTotalBilirubinBloodF.setValidator(QIntValidator())
+
+        self.ClinicalLabsAstBloodL = QLabel("Aspartate Amino Transferase Blood - (U/L)")
+        self.ClinicalLabsAstBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsAstBloodL.setToolTip("Aspartate transaminase (AST) also called serum glutamic oxaloacetic transaminase (SGOT) or aspartate aminotransferase (ASAT/AAT/AspAT) (EC 2.6.1.1) \nis similar to alanine transaminase (ALT) in that it is another enzyme associated with liver parenchymal cells. ")
+        self.ClinicalLabsAstBloodF = QLineEdit()
+        self.ClinicalLabsAstBloodF.setMaxLength(3)
+        self.ClinicalLabsAstBloodF.setValidator(QIntValidator())
+
+        self.ClinicalLabsAltBloodL = QLabel("Alanine Amino Transferase Blood - (U/L)")
+        self.ClinicalLabsAltBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsAltBloodL.setToolTip("Alanine transaminase or ALT is an enzyme (EC 2.6.1.2) also called serum glutamic pyruvic transaminase (SGPT) or alanine aminotransferase (ALAT). \nIt is found in serum and in various bodily tissues, but is most commonly associated with the liver.")
+        self.ClinicalLabsAltBloodF = QLineEdit()
+        self.ClinicalLabsAltBloodF.setMaxLength(3)
+        self.ClinicalLabsAltBloodF.setValidator(QIntValidator())
+
+        self.ClinicalLabsRBCBloodL = QLabel("Red Blood Cell Blood - (10^12/L, 2 Decimals)")
+        self.ClinicalLabsRBCBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsRBCBloodL.setToolTip("Red blood cells (RBC), or erythrocytes, are the most common type of blood cells whose function is to transport oxygen throughout the body.")
+        self.ClinicalLabsRBCBloodF = QLineEdit()
+        self.ClinicalLabsRBCBloodF.setMaxLength(4)
+        self.ClinicalLabsRBCBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsHgbBloodL = QLabel("Hemoglobin Blood - (g/dL, 2 Decimals)")
+        self.ClinicalLabsHgbBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsHgbBloodL.setToolTip("Hemoglobin (Hb or Hgb) is the iron-containing oxygen-transport metalloprotein in the red blood cells.")
+        self.ClinicalLabsHgbBloodF = QLineEdit()
+        self.ClinicalLabsHgbBloodF.setMaxLength(4)
+        self.ClinicalLabsHgbBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsHctBloodL = QLabel("Hematocrit Blood - (%, 2 Decimals)")
+        self.ClinicalLabsHctBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsHctBloodL.setToolTip("The volume of packed red blood cells in a blood sample. The volume is measured by centrifugation in a tube with graduated markings, or with automated blood cell counters. \nIt is an indicator of erythrocyte status in disease. For example, in anemia the volume is low and in polycythemia it is high.")
+        self.ClinicalLabsHctBloodF = QLineEdit()
+        self.ClinicalLabsHctBloodF.setMaxLength(4)
+        self.ClinicalLabsHctBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsPlateletBloodL = QLabel("Platelet Blood - (10^3/μL)")
+        self.ClinicalLabsPlateletBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsPlateletBloodL.setToolTip("A platelet count is a lab test to measure how many platelets you have in your blood. Platelets are parts of the blood that help the blood clot. \nThey are smaller than red or white blood cells. The number of platelets in your blood can be affected by many diseases. Platelets may be counted to monitor or diagnose diseases, or to look for the cause of too much bleeding or clotting.")
+        self.ClinicalLabsPlateletBloodF = QLineEdit()
+        self.ClinicalLabsPlateletBloodF.setMaxLength(3)
+        self.ClinicalLabsPlateletBloodF.setValidator(QIntValidator())
+
+        self.ClinicalLabsMCVBloodL = QLabel("Mean Corpuscular Volume Blood - (fL, 1 Decimal)")
+        self.ClinicalLabsMCVBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsMCVBloodL.setToolTip("The mean corpuscular volume, or MCV, is a measure of the average red blood cell volume. \nMCV measurements classify anemias as either microcytic (MCV below normal range) or macrocytic (MCV above normal range).")
+        self.ClinicalLabsMCVBloodF = QLineEdit()
+        self.ClinicalLabsMCVBloodF.setMaxLength(4)
+        self.ClinicalLabsMCVBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsMCHBloodL = QLabel("Mean Corpuscular Hemoglobin Blood - (pg, 1 Decimal)")
+        self.ClinicalLabsMCHBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsMCHBloodL.setToolTip("The mean corpuscular hemoglobin, or \"mean cell hemoglobin\" (MCH), is the average mass of hemoglobin per red blood cell in a blood sample. \nIt is decreased in hypochromic anemias, and increased in hyperchromic anemias. MCH is obtained by dividing the total mass of hemoglobin by the number of red blood cells in a volume of blood.")
+        self.ClinicalLabsMCHBloodF = QLineEdit()
+        self.ClinicalLabsMCHBloodF.setMaxLength(4)
+        self.ClinicalLabsMCHBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsMCHCBloodL = QLabel("Mean Corpuscular Hemoglobin Concentration Blood - (g/dL, 1 Decimal)")
+        self.ClinicalLabsMCHCBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsMCHCBloodL.setToolTip("The mean corpuscular hemoglobin concentration, or MCHC, is a measure of the concentration of hemoglobin in a given volume of packed red blood cell. \nIt is reported as part of a standard complete blood count. It is calculated by dividing the hemoglobin by the hematocrit.")
+        self.ClinicalLabsMCHCBloodF = QLineEdit()
+        self.ClinicalLabsMCHCBloodF.setMaxLength(4)
+        self.ClinicalLabsMCHCBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsMPVBloodL = QLabel("Mean Platelet Volume Blood - (fL, 1 Decimal)")
+        self.ClinicalLabsMPVBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsMPVBloodL.setToolTip("Platelet size can be measured directly by automated hematology analyzers, expressed as mean platelet volume (MPV). \nPlatelet size is determined at the time of platelet production from megakaryocytes.")
+        self.ClinicalLabsMPVBloodF = QLineEdit()
+        self.ClinicalLabsMPVBloodF.setMaxLength(4)
+        self.ClinicalLabsMPVBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsRDWBloodL = QLabel("Red Blood Cell Distribution Blood - (%, 1 Decimal)")
+        self.ClinicalLabsRDWBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsRDWBloodL.setToolTip("The RDW-CV is the ratio of the variation in width to the mean width ot the RBC volume distribution curve taken at +/- 1CV. \nRed Cell Distribution Width (RDW) is a measurement of anisocytosis.")
+        self.ClinicalLabsRDWBloodF = QLineEdit()
+        self.ClinicalLabsRDWBloodF.setMaxLength(4)
+        self.ClinicalLabsRDWBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsWBCBloodL = QLabel("White Blood Cell Blood - (10^3/μL, 1 Decimal)")
+        self.ClinicalLabsWBCBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsWBCBloodL.setToolTip("White blood cells are intrinsic components of the blood. They are produced in the bone marrow and help to defend against infectious agents and foreign materials. \nAs part of the immune system, they also help fight against malignant and aberrant cells.")
+        self.ClinicalLabsWBCBloodF = QLineEdit()
+        self.ClinicalLabsWBCBloodF.setMaxLength(4)
+        self.ClinicalLabsWBCBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsAmmoniaBloodL = QLabel("White Blood Cell Blood - (2 Decimals)")
+        self.ClinicalLabsAmmoniaBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsAmmoniaBloodL.setToolTip("Ammonia is a colorless alkaline gas with a characteristic sharp smell.")
+        self.ClinicalLabsAmmoniaBloodF = QLineEdit()
+        self.ClinicalLabsAmmoniaBloodF.setMaxLength(4)
+        self.ClinicalLabsAmmoniaBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsBHbBloodL = QLabel("Beta Hydroxybutyrate Blood Mmol L - (mmol/L, 1 Decimal)")
+        self.ClinicalLabsBHbBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsBHbBloodL.setToolTip("Beta-hydroxybutyrate from blood mmol/L obtained at fasting state. Increases in beta-hydroxybutyrate are due to excessive fatty acid oxidation.")
+        self.ClinicalLabsBHbBloodF = QLineEdit()
+        self.ClinicalLabsBHbBloodF.setMaxLength(4)
+        self.ClinicalLabsBHbBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsAcacBloodL = QLabel("Acetoacetate Blood - (mg/dL, 2 Decimals)")
+        self.ClinicalLabsAcacBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsAcacBloodL.setToolTip("Acetoacetic acid (also known as 3-oxobutanoic acid or diacetic acid) is a beta-keto acid of the keto acid group. \nIt is a weak organic acid produced in the liver under conditions of poor metabolism leading to excessive fatty acid breakdown.")
+        self.ClinicalLabsAcacBloodF = QLineEdit()
+        self.ClinicalLabsAcacBloodF.setMaxLength(4)
+        self.ClinicalLabsAcacBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsNeutrophilsBloodL = QLabel("Neutrophils Blood - (%, 2 Decimals)")
+        self.ClinicalLabsNeutrophilsBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsNeutrophilsBloodL.setToolTip("Neutrophils/​100 leukocytes in blood by automated count.  Neutrophil granulocytes, generally referred to as neutrophils, are the most abundant type of white blood cells. ")
+        self.ClinicalLabsNeutrophilsBloodF = QLineEdit()
+        self.ClinicalLabsNeutrophilsBloodF.setMaxLength(4)
+        self.ClinicalLabsNeutrophilsBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLymphocytesBloodL = QLabel("Lymphocytes Blood - (%, 2 Decimals)")
+        self.ClinicalLabsLymphocytesBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLymphocytesBloodL.setToolTip("Lymphocytes/​100 leukocytes in blood by automated count. A lymphocyte is a type of white blood cell in the vertebrate immune system.")
+        self.ClinicalLabsLymphocytesBloodF = QLineEdit()
+        self.ClinicalLabsLymphocytesBloodF.setMaxLength(4)
+        self.ClinicalLabsLymphocytesBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsMonocytesBloodL = QLabel("Monocytes Blood - (%, 2 Decimals)")
+        self.ClinicalLabsMonocytesBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsMonocytesBloodL.setToolTip("Monocytes/​100 leukocytes in blood by automated count.  A monocyte is a mononuclear leukocyte, intimately involved in the initiaton of an immune response.")
+        self.ClinicalLabsMonocytesBloodF = QLineEdit()
+        self.ClinicalLabsMonocytesBloodF.setMaxLength(4)
+        self.ClinicalLabsMonocytesBloodF.setValidator(QDoubleValidator())
+        
+        self.ClinicalLabsEosinophilsBloodL = QLabel("Eosinophils Blood - (%, 2 Decimals)")
+        self.ClinicalLabsEosinophilsBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsEosinophilsBloodL.setToolTip("Eosinophils/​100 leukocytes in blood by automated count. Granular leukocytes with a nucleus that usually \nhas two lobes connected by a slender thread of chromatin. The cytoplasm contains coarse, round and uniform granules stainable by eosin.")
+        self.ClinicalLabsEosinophilsBloodF = QLineEdit()
+        self.ClinicalLabsEosinophilsBloodF.setMaxLength(4)
+        self.ClinicalLabsEosinophilsBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsBasophilsBloodL = QLabel("Basophils Blood - (%, 2 Decimals)")
+        self.ClinicalLabsBasophilsBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsBasophilsBloodL.setToolTip("Basophils/​100 leukocytes in blood by automated count. Basophils are granular white blood cells \ncharacterized by a pale-staining nucleus with 2 to 3 lobes and a cytoplasm containing coarse, dark-staining granules of variable size. ")
+        self.ClinicalLabsBasophilsBloodF = QLineEdit()
+        self.ClinicalLabsBasophilsBloodF.setMaxLength(4)
+        self.ClinicalLabsBasophilsBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLargeUnstainedCellsBloodL = QLabel("Large Unstained Cells Blood - (%, 2 Decimals)")
+        self.ClinicalLabsLargeUnstainedCellsBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLargeUnstainedCellsBloodL.setToolTip("Large unstained cells/​100 leukocytes in blood. Peroxidase negative cells too large to be classified as lymphocytes or basophils.")
+        self.ClinicalLabsLargeUnstainedCellsBloodF = QLineEdit()
+        self.ClinicalLabsLargeUnstainedCellsBloodF.setMaxLength(4)
+        self.ClinicalLabsLargeUnstainedCellsBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsNeutrophilsAbsoluteBloodL = QLabel("Neutrophils Absolute Blood - (10^3/μL, 2 Decimals)")
+        self.ClinicalLabsNeutrophilsAbsoluteBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsNeutrophilsAbsoluteBloodL.setToolTip("Neutrophils [#/​volume] in blood by automated count")
+        self.ClinicalLabsNeutrophilsAbsoluteBloodF = QLineEdit()
+        self.ClinicalLabsNeutrophilsAbsoluteBloodF.setMaxLength(4)
+        self.ClinicalLabsNeutrophilsAbsoluteBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLymphocytesAbsoluteBloodL = QLabel("Lymphocytes Absolute Blood - (10^3/μL, 2 Decimals)")
+        self.ClinicalLabsLymphocytesAbsoluteBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLymphocytesAbsoluteBloodL.setToolTip("Lymphocytes [#/​volume] in blood by automated count")
+        self.ClinicalLabsLymphocytesAbsoluteBloodF = QLineEdit()
+        self.ClinicalLabsLymphocytesAbsoluteBloodF.setMaxLength(4)
+        self.ClinicalLabsLymphocytesAbsoluteBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsEosinophilsAbsoluteBloodL = QLabel("Eosinophils Absolute Blood - (10^3/μL, 2 Decimals)")
+        self.ClinicalLabsEosinophilsAbsoluteBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsEosinophilsAbsoluteBloodL.setToolTip("Eosinophils [#/​volume] in blood by automated count")
+        self.ClinicalLabsEosinophilsAbsoluteBloodF = QLineEdit()
+        self.ClinicalLabsEosinophilsAbsoluteBloodF.setMaxLength(4)
+        self.ClinicalLabsEosinophilsAbsoluteBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsBasophilsAbsoluteBloodL = QLabel("Basophils Absolute Blood - (10^3/μL, 2 Decimals)")
+        self.ClinicalLabsBasophilsAbsoluteBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsBasophilsAbsoluteBloodL.setToolTip("Basophils [#/​volume] in blood by automated count")
+        self.ClinicalLabsBasophilsAbsoluteBloodF = QLineEdit()
+        self.ClinicalLabsBasophilsAbsoluteBloodF.setMaxLength(4)
+        self.ClinicalLabsBasophilsAbsoluteBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsGlusBloodCRCL = QLabel("Glucose Clinical Research Center Blood - (mg/dL, 2 Decimals)")
+        self.ClinicalLabsGlusBloodCRCL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsGlusBloodCRCL.setToolTip("Glucose (Glc), a monosaccharide (or simple sugar) also known as grape sugar, blood sugar, or corn sugar, is an important carbohydrate. \nLiving cell uses it as a source of energy and a metabolic intermediate.")
+        self.ClinicalLabsGlusBloodCRCF = QLineEdit()
+        self.ClinicalLabsGlusBloodCRCF.setMaxLength(4)
+        self.ClinicalLabsGlusBloodCRCF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLactBloodCRCMmolL = QLabel("Lactate Clinical Research Center Blood Mmol L - (mmol/L, 2 Decimals)")
+        self.ClinicalLabsLactBloodCRCMmolL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLactBloodCRCMmolL.setToolTip("Lactacte from blood mmol/L obtained at fasting state in CRC lab")
+        self.ClinicalLabsLactBloodCRCMmolF = QLineEdit()
+        self.ClinicalLabsLactBloodCRCMmolF.setMaxLength(4)
+        self.ClinicalLabsLactBloodCRCMmolF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood1L = QLabel("Lab Parameter Blood 1 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood1L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood1L.setToolTip("Phenobarbital levels in the blood. Phenobarbital (INN) or phenobarbitone (former BAN) is a barbiturate, first marketed as Luminal® by Farbwerke Fr. \nBayer and Co. It is the most widely used anticonvulsant worldwide and the oldest still in use.")
+        self.ClinicalLabsLabBlood1F = QLineEdit()
+        self.ClinicalLabsLabBlood1F.setMaxLength(4)
+        self.ClinicalLabsLabBlood1F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood2L = QLabel("Lab Parameter Blood 2 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood2L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood2L.setToolTip("Valproic Acid levels in the blood. Valproic acid is a compound used as an anticonvulsant and mood-stabilizing drug, primarily in the treatment of \nepilepsy and bipolar disorder. It is also used to treat migraine headaches and schizophrenia.")
+        self.ClinicalLabsLabBlood2F = QLineEdit()
+        self.ClinicalLabsLabBlood2F.setMaxLength(4)
+        self.ClinicalLabsLabBlood2F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood3L = QLabel("Lab Parameter Blood 3 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood3L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood3L.setToolTip("Primidone levels in the blood")
+        self.ClinicalLabsLabBlood3F = QLineEdit()
+        self.ClinicalLabsLabBlood3F.setMaxLength(4)
+        self.ClinicalLabsLabBlood3F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood4L = QLabel("Lab Parameter Blood 4 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood4L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood4L.setToolTip("Phenytoin levels in the blood")
+        self.ClinicalLabsLabBlood4F = QLineEdit()
+        self.ClinicalLabsLabBlood4F.setMaxLength(4)
+        self.ClinicalLabsLabBlood4F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood5L = QLabel("Lab Parameter Blood 5 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood5L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood5L.setToolTip("Lamotrigine levels in the blood")
+        self.ClinicalLabsLabBlood5F = QLineEdit()
+        self.ClinicalLabsLabBlood5F.setMaxLength(4)
+        self.ClinicalLabsLabBlood5F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood6L = QLabel("Lab Parameter Blood 6 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood6L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood6L.setToolTip("Clonazepam levels in the blood")
+        self.ClinicalLabsLabBlood6F = QLineEdit()
+        self.ClinicalLabsLabBlood6F.setMaxLength(4)
+        self.ClinicalLabsLabBlood6F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood7L = QLabel("Lab Parameter Blood 7 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood7L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood7L.setToolTip("Oxcarbazepine levels in the blood")
+        self.ClinicalLabsLabBlood7F = QLineEdit()
+        self.ClinicalLabsLabBlood7F.setMaxLength(4)
+        self.ClinicalLabsLabBlood7F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood8L = QLabel("Lab Parameter Blood 8 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood8L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood8L.setToolTip("Carbamazepine levels in the blood")
+        self.ClinicalLabsLabBlood8F = QLineEdit()
+        self.ClinicalLabsLabBlood8F.setMaxLength(4)
+        self.ClinicalLabsLabBlood8F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood9L = QLabel("Lab Parameter Blood 9 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood9L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood9L.setToolTip("Topiramate levels in the blood")
+        self.ClinicalLabsLabBlood9F = QLineEdit()
+        self.ClinicalLabsLabBlood9F.setMaxLength(4)
+        self.ClinicalLabsLabBlood9F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood10L = QLabel("Lab Parameter Blood 10 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood10L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood10L.setToolTip("Vancomycin levels in the blood")
+        self.ClinicalLabsLabBlood10F = QLineEdit()
+        self.ClinicalLabsLabBlood10F.setMaxLength(4)
+        self.ClinicalLabsLabBlood10F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood11L = QLabel("Lab Parameter Blood 11 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood11L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood11L.setToolTip("Gentamicin levels in the blood")
+        self.ClinicalLabsLabBlood11F = QLineEdit()
+        self.ClinicalLabsLabBlood11F.setMaxLength(4)
+        self.ClinicalLabsLabBlood11F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood12L = QLabel("Lab Parameter Blood 12 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood12L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood12L.setToolTip("Gentamicin trough levels in the blood")
+        self.ClinicalLabsLabBlood12F = QLineEdit()
+        self.ClinicalLabsLabBlood12F.setMaxLength(4)
+        self.ClinicalLabsLabBlood12F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood13L = QLabel("Lab Parameter Blood 13 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood13L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood13L.setToolTip("Phenytoin-free levels in the blood")
+        self.ClinicalLabsLabBlood13F = QLineEdit()
+        self.ClinicalLabsLabBlood13F.setMaxLength(4)
+        self.ClinicalLabsLabBlood13F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood14L = QLabel("Lab Parameter Blood 14 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood14L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood14L.setToolTip("Ethosuximide levels in the blood")
+        self.ClinicalLabsLabBlood14F = QLineEdit()
+        self.ClinicalLabsLabBlood14F.setMaxLength(4)
+        self.ClinicalLabsLabBlood14F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood15L = QLabel("Lab Parameter Blood 15 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood15L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood15L.setToolTip("Vancomycin peak levels in the blood")
+        self.ClinicalLabsLabBlood15F = QLineEdit()
+        self.ClinicalLabsLabBlood15F.setMaxLength(4)
+        self.ClinicalLabsLabBlood15F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood16L = QLabel("Lab Parameter Blood 16 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood16L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood16L.setToolTip("Tobramycin peak levels in the blood")
+        self.ClinicalLabsLabBlood16F = QLineEdit()
+        self.ClinicalLabsLabBlood16F.setMaxLength(4)
+        self.ClinicalLabsLabBlood16F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood17L = QLabel("Lab Parameter Blood 17 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood17L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood17L.setToolTip("Tobramycin trough levels in the blood")
+        self.ClinicalLabsLabBlood17F = QLineEdit()
+        self.ClinicalLabsLabBlood17F.setMaxLength(4)
+        self.ClinicalLabsLabBlood17F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood18L = QLabel("Lab Parameter Blood 18 - (mcg/mL, 2 Decimals)")
+        self.ClinicalLabsLabBlood18L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood18L.setToolTip("Mephobarbital levels in the blood")
+        self.ClinicalLabsLabBlood18F = QLineEdit()
+        self.ClinicalLabsLabBlood18F.setMaxLength(4)
+        self.ClinicalLabsLabBlood18F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood19L = QLabel("Lab Parameter Blood 19")
+        self.ClinicalLabsLabBlood19L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood19L.setToolTip("Blood value for parameter 19")
+        self.ClinicalLabsLabBlood19F = QLineEdit()
+        self.ClinicalLabsLabBlood19F.setMaxLength(4)
+        self.ClinicalLabsLabBlood19F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood20L = QLabel("Lab Parameter Blood 20")
+        self.ClinicalLabsLabBlood20L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood20L.setToolTip("Blood value for parameter 20")
+        self.ClinicalLabsLabBlood20F = QLineEdit()
+        self.ClinicalLabsLabBlood20F.setMaxLength(4)
+        self.ClinicalLabsLabBlood20F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood21L = QLabel("Lab Parameter Blood 21")
+        self.ClinicalLabsLabBlood21L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood21L.setToolTip("Blood value for parameter 21")
+        self.ClinicalLabsLabBlood21F = QLineEdit()
+        self.ClinicalLabsLabBlood21F.setMaxLength(4)
+        self.ClinicalLabsLabBlood21F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood22L = QLabel("Lab Parameter Blood 22")
+        self.ClinicalLabsLabBlood22L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood22L.setToolTip("Blood value for parameter 22")
+        self.ClinicalLabsLabBlood22F = QLineEdit()
+        self.ClinicalLabsLabBlood22F.setMaxLength(4)
+        self.ClinicalLabsLabBlood22F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood23L = QLabel("Lab Parameter Blood 23")
+        self.ClinicalLabsLabBlood23L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood23L.setToolTip("Blood value for parameter 23")
+        self.ClinicalLabsLabBlood23F = QLineEdit()
+        self.ClinicalLabsLabBlood23F.setMaxLength(4)
+        self.ClinicalLabsLabBlood23F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood24L = QLabel("Lab Parameter Blood 24")
+        self.ClinicalLabsLabBlood24L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood24L.setToolTip("Blood value for parameter 24")
+        self.ClinicalLabsLabBlood24F = QLineEdit()
+        self.ClinicalLabsLabBlood24F.setMaxLength(4)
+        self.ClinicalLabsLabBlood24F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood25L = QLabel("Lab Parameter Blood 25")
+        self.ClinicalLabsLabBlood25L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood25L.setToolTip("Blood value for parameter 25")
+        self.ClinicalLabsLabBlood25F = QLineEdit()
+        self.ClinicalLabsLabBlood25F.setMaxLength(4)
+        self.ClinicalLabsLabBlood25F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood26L = QLabel("Lab Parameter Blood 26")
+        self.ClinicalLabsLabBlood26L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood26L.setToolTip("Blood value for parameter 26")
+        self.ClinicalLabsLabBlood26F = QLineEdit()
+        self.ClinicalLabsLabBlood26F.setMaxLength(4)
+        self.ClinicalLabsLabBlood26F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood27L = QLabel("Lab Parameter Blood 27")
+        self.ClinicalLabsLabBlood27L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood27L.setToolTip("Blood value for parameter 27")
+        self.ClinicalLabsLabBlood27F = QLineEdit()
+        self.ClinicalLabsLabBlood27F.setMaxLength(4)
+        self.ClinicalLabsLabBlood27F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood28L = QLabel("Lab Parameter Blood 28")
+        self.ClinicalLabsLabBlood28L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood28L.setToolTip("Blood value for parameter 28")
+        self.ClinicalLabsLabBlood28F = QLineEdit()
+        self.ClinicalLabsLabBlood28F.setMaxLength(4)
+        self.ClinicalLabsLabBlood28F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood29L = QLabel("Lab Parameter Blood 29")
+        self.ClinicalLabsLabBlood29L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood29L.setToolTip("Blood value for parameter 29")
+        self.ClinicalLabsLabBlood29F = QLineEdit()
+        self.ClinicalLabsLabBlood29F.setMaxLength(4)
+        self.ClinicalLabsLabBlood29F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood30L = QLabel("Lab Parameter Blood 30")
+        self.ClinicalLabsLabBlood30L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood30L.setToolTip("Blood value for parameter 30")
+        self.ClinicalLabsLabBlood30F = QLineEdit()
+        self.ClinicalLabsLabBlood30F.setMaxLength(4)
+        self.ClinicalLabsLabBlood30F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood31L = QLabel("Lab Parameter Blood 31")
+        self.ClinicalLabsLabBlood31L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood31L.setToolTip("Blood value for parameter 31")
+        self.ClinicalLabsLabBlood31F = QLineEdit()
+        self.ClinicalLabsLabBlood31F.setMaxLength(4)
+        self.ClinicalLabsLabBlood31F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood32L = QLabel("Lab Parameter Blood 32")
+        self.ClinicalLabsLabBlood32L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood32L.setToolTip("Blood value for parameter 32")
+        self.ClinicalLabsLabBlood32F = QLineEdit()
+        self.ClinicalLabsLabBlood32F.setMaxLength(4)
+        self.ClinicalLabsLabBlood32F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood33L = QLabel("Lab Parameter Blood 33")
+        self.ClinicalLabsLabBlood33L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood33L.setToolTip("Blood value for parameter 33")
+        self.ClinicalLabsLabBlood33F = QLineEdit()
+        self.ClinicalLabsLabBlood33F.setMaxLength(4)
+        self.ClinicalLabsLabBlood33F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood34L = QLabel("Lab Parameter Blood 34")
+        self.ClinicalLabsLabBlood34L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood34L.setToolTip("Blood value for parameter 34")
+        self.ClinicalLabsLabBlood34F = QLineEdit()
+        self.ClinicalLabsLabBlood34F.setMaxLength(4)
+        self.ClinicalLabsLabBlood34F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood35L = QLabel("Lab Parameter Blood 35")
+        self.ClinicalLabsLabBlood35L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood35L.setToolTip("Blood value for parameter 35")
+        self.ClinicalLabsLabBlood35F = QLineEdit()
+        self.ClinicalLabsLabBlood35F.setMaxLength(4)
+        self.ClinicalLabsLabBlood35F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood36L = QLabel("Lab Parameter Blood 36")
+        self.ClinicalLabsLabBlood36L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood36L.setToolTip("Blood value for parameter 36")
+        self.ClinicalLabsLabBlood36F = QLineEdit()
+        self.ClinicalLabsLabBlood36F.setMaxLength(4)
+        self.ClinicalLabsLabBlood36F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood37L = QLabel("Lab Parameter Blood 37")
+        self.ClinicalLabsLabBlood37L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood37L.setToolTip("Blood value for parameter 37")
+        self.ClinicalLabsLabBlood37F = QLineEdit()
+        self.ClinicalLabsLabBlood37F.setMaxLength(4)
+        self.ClinicalLabsLabBlood37F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood38L = QLabel("Lab Parameter Blood 38")
+        self.ClinicalLabsLabBlood38L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood38L.setToolTip("Blood value for parameter 38")
+        self.ClinicalLabsLabBlood38F = QLineEdit()
+        self.ClinicalLabsLabBlood38F.setMaxLength(4)
+        self.ClinicalLabsLabBlood38F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood39L = QLabel("Lab Parameter Blood 39")
+        self.ClinicalLabsLabBlood39L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood39L.setToolTip("Blood value for parameter 39")
+        self.ClinicalLabsLabBlood39F = QLineEdit()
+        self.ClinicalLabsLabBlood39F.setMaxLength(4)
+        self.ClinicalLabsLabBlood39F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood40L = QLabel("Lab Parameter Blood 40")
+        self.ClinicalLabsLabBlood40L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood40L.setToolTip("Blood value for parameter 40")
+        self.ClinicalLabsLabBlood40F = QLineEdit()
+        self.ClinicalLabsLabBlood40F.setMaxLength(4)
+        self.ClinicalLabsLabBlood40F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood41L = QLabel("Lab Parameter Blood 41")
+        self.ClinicalLabsLabBlood41L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood41L.setToolTip("Blood value for parameter 41")
+        self.ClinicalLabsLabBlood41F = QLineEdit()
+        self.ClinicalLabsLabBlood41F.setMaxLength(4)
+        self.ClinicalLabsLabBlood41F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood42L = QLabel("Lab Parameter Blood 42")
+        self.ClinicalLabsLabBlood42L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood42L.setToolTip("Blood value for parameter 42")
+        self.ClinicalLabsLabBlood42F = QLineEdit()
+        self.ClinicalLabsLabBlood42F.setMaxLength(4)
+        self.ClinicalLabsLabBlood42F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood43L = QLabel("Lab Parameter Blood 43")
+        self.ClinicalLabsLabBlood43L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood43L.setToolTip("Blood value for parameter 43")
+        self.ClinicalLabsLabBlood43F = QLineEdit()
+        self.ClinicalLabsLabBlood43F.setMaxLength(4)
+        self.ClinicalLabsLabBlood43F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood44L = QLabel("Lab Parameter Blood 44")
+        self.ClinicalLabsLabBlood44L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood44L.setToolTip("Blood value for parameter 44")
+        self.ClinicalLabsLabBlood44F = QLineEdit()
+        self.ClinicalLabsLabBlood44F.setMaxLength(4)
+        self.ClinicalLabsLabBlood44F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood45L = QLabel("Lab Parameter Blood 45")
+        self.ClinicalLabsLabBlood45L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood45L.setToolTip("Blood value for parameter 45")
+        self.ClinicalLabsLabBlood45F = QLineEdit()
+        self.ClinicalLabsLabBlood45F.setMaxLength(4)
+        self.ClinicalLabsLabBlood45F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood46L = QLabel("Lab Parameter Blood 46")
+        self.ClinicalLabsLabBlood46L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood46L.setToolTip("Blood value for parameter 46")
+        self.ClinicalLabsLabBlood46F = QLineEdit()
+        self.ClinicalLabsLabBlood46F.setMaxLength(4)
+        self.ClinicalLabsLabBlood46F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood47L = QLabel("Lab Parameter Blood 47")
+        self.ClinicalLabsLabBlood47L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood47L.setToolTip("Blood value for parameter 47")
+        self.ClinicalLabsLabBlood47F = QLineEdit()
+        self.ClinicalLabsLabBlood47F.setMaxLength(4)
+        self.ClinicalLabsLabBlood47F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood48L = QLabel("Lab Parameter Blood 48")
+        self.ClinicalLabsLabBlood48L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood48L.setToolTip("Blood value for parameter 48")
+        self.ClinicalLabsLabBlood48F = QLineEdit()
+        self.ClinicalLabsLabBlood48F.setMaxLength(4)
+        self.ClinicalLabsLabBlood48F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood49L = QLabel("Lab Parameter Blood 49")
+        self.ClinicalLabsLabBlood49L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood49L.setToolTip("Blood value for parameter 49")
+        self.ClinicalLabsLabBlood49F = QLineEdit()
+        self.ClinicalLabsLabBlood49F.setMaxLength(4)
+        self.ClinicalLabsLabBlood49F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsLabBlood50L = QLabel("Lab Parameter Blood 50")
+        self.ClinicalLabsLabBlood50L.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsLabBlood50L.setToolTip("Blood value for parameter 50")
+        self.ClinicalLabsLabBlood50F = QLineEdit()
+        self.ClinicalLabsLabBlood50F.setMaxLength(4)
+        self.ClinicalLabsLabBlood50F.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsEnteredL = QLabel("Entered")
+        self.ClinicalLabsEnteredL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsEnteredL.setToolTip("Person who entered the data initials follwed by date entered  i.e. HA-07/22/2016")
+        self.ClinicalLabsEnteredF = QLineEdit()
+        self.ClinicalLabsEnteredF.setPlaceholderText("Required")
+
+        self.ClinicalLabsCommentsL = QLabel("Comments")
+        self.ClinicalLabsCommentsL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsCommentsL.setToolTip("Additional comments pertaining to the date and data")
+        self.ClinicalLabsCommentsF = QTextEdit()
+
+        self.ClinicalLabsSaveButton = QPushButton("Save")
+
+        
         self.closeanthropometrics()
         self.closealertness()
 
@@ -1245,6 +1976,7 @@ class Test (QWidget):
         self.graphinputformalertness = QGridLayout()
         self.graphinputformanthropometrics = QGridLayout()
         self.graphinputformclinicGI = QGridLayout()
+        self.graphinputformclinicallabs = QGridLayout()
         self.graphinputformdailyintake = QGridLayout()
         self.graphinputformdietrx = QGridLayout()
         self.graphinputformmeddata = QGridLayout()
@@ -1255,9 +1987,6 @@ class Test (QWidget):
         self.graphinputformurinektsg = QGridLayout()
         self.graphinputformvitals = QGridLayout()
         self.graphinputformvns = QGridLayout()
-
-
-
 
 
         self.groupbox.setLayout(self.middlegrid)
@@ -1403,6 +2132,231 @@ class Test (QWidget):
         self.graphinputformclinicGI.addWidget(self.ClinicGICommentsL,15,0)
         self.graphinputformclinicGI.addWidget(self.ClinicGICommentsF,15,1)
         self.graphinputformclinicGI.addWidget(self.ClinicGISaveButton,16,1)
+
+        ################### Update Data Clinical Labs ###################
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMRNumberL,0,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMRNumberF,0,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsDateL,1,0)    
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsDateF,1,1)    
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTimeL,2,0)    
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTimeF,2,1)    
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsDayTypeL,3,0) 
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsDayTypeF,3,1) 
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsSourceL,4,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsSourceF,4,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsFastingL,5,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsFastingF,5,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTGBloodL,6,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTGBloodF,6,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsHDLBloodL,7,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsHDLBloodF,7,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLDLBloodL,8,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLDLBloodF,8,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTCBloodL,9,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTCBloodF,9,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsNABloodL,10,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsNABloodF,10,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsKBloodL,11,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsKBloodF,11,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsChlBloodL,12,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsChlBloodF,12,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsCO2BloodL,13,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsCO2BloodF,13,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBUNBloodL,14,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBUNBloodF,14,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsCrBloodL,15,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsCrBloodF,15,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsGlusBloodL,16,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsGlusBloodF,16,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsCaBloodL,17,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsCaBloodF,17,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMagBloodL,18,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMagBloodF,18,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsPhosBloodL,19,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsPhosBloodF,19,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsUricAcidBloodL,20,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsUricAcidBloodF,20,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsProBloodL,21,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsProBloodF,21,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAlbBloodL,22,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAlbBloodF,22,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTBilBloodL,23,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTBilBloodF,23,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTotalBilirubinBloodL,24,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTotalBilirubinBloodF,24,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAstBloodL,25,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAstBloodF,25,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAltBloodL,26,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAltBloodF,26,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsRBCBloodL,27,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsRBCBloodF,27,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsHgbBloodL,28,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsHgbBloodF,28,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsHctBloodL,29,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsHctBloodF,29,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsPlateletBloodL,30,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsPlateletBloodF,30,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMCVBloodL,31,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMCVBloodF,31,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMCHBloodL,32,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMCHBloodF,32,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMCHCBloodL,33,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMCHCBloodF,33,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMPVBloodL,34,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMPVBloodF,34,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsRDWBloodL,35,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsRDWBloodF,35,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsWBCBloodL,36,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsWBCBloodF,36,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAmmoniaBloodL,37,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAmmoniaBloodF,37,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBHbBloodL,38,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBHbBloodF,38,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAcacBloodL,39,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAcacBloodF,39,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsNeutrophilsBloodL,40,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsNeutrophilsBloodF,40,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLymphocytesBloodL,41,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLymphocytesBloodF,41,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMonocytesBloodL,42,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMonocytesBloodF,42,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsEosinophilsBloodL,43,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsEosinophilsBloodF,43,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBasophilsBloodL,44,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBasophilsBloodF,44,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLargeUnstainedCellsBloodL,45,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLargeUnstainedCellsBloodF,45,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsNeutrophilsAbsoluteBloodL,46,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsNeutrophilsAbsoluteBloodF,46,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLymphocytesAbsoluteBloodL,47,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLymphocytesAbsoluteBloodF,47,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsEosinophilsAbsoluteBloodL,48,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsEosinophilsAbsoluteBloodF,48,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBasophilsAbsoluteBloodL,49,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBasophilsAbsoluteBloodF,49,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsGlusBloodCRCL,50,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsGlusBloodCRCF,50,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLactBloodCRCMmolL,51,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLactBloodCRCMmolF,51,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood1L,53,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood1F,53,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood2L,54,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood2F,54,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood3L,55,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood3F,55,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood4L,56,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood4F,56,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood5L,57,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood5F,57,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood6L,58,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood6F,58,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood7L,59,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood7F,59,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood8L,60,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood8F,60,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood9L,61,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood9F,61,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood10L,62,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood10F,62,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood11L,63,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood11F,63,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood12L,64,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood12F,64,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood13L,65,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood13F,65,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood14L,66,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood14F,66,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood15L,67,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood15F,67,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood16L,68,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood16F,68,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood17L,69,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood17F,69,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood18L,70,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood18F,70,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood19L,71,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood19F,71,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood20L,72,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood20F,72,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood21L,73,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood21F,73,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood22L,74,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood22F,74,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood23L,75,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood23F,75,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood24L,76,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood24F,76,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood25L,77,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood25F,77,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood26L,78,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood26F,78,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood27L,79,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood27F,79,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood28L,80,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood28F,80,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood29L,81,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood29F,81,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood30L,82,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood30F,82,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood31L,83,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood31F,83,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood32L,84,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood32F,84,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood33L,85,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood33F,85,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood34L,86,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood34F,86,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood35L,87,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood35F,87,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood36L,88,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood36F,88,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood37L,89,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood37F,89,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood38L,90,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood38F,90,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood39L,91,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood39F,91,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood40L,92,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood40F,92,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood41L,93,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood41F,93,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood42L,94,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood42F,94,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood43L,95,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood43F,95,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood44L,96,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood44F,96,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood45L,97,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood45F,97,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood46L,98,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood46F,98,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood47L,99,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood47F,99,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood48L,100,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood48F,100,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood49L,101,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood49F,101,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood50L,102,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood50F,102,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsEnteredL,103,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsEnteredF,103,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsCommentsL,104,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsCommentsF,104,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsSaveButton,105,1)
+
+
+#         names = ["MRNumber","Date","Time","DayType","Source","Fasting","TGBlood","HDLBlood","LDLBlood","TCBlood","NABlood","KBlood","ChlBlood","CO2Blood","BUNBlood","CrBlood","GlusBlood","CaBlood","MagBlood","PhosBlood","UricAcidBlood","ProBlood",
+# "AlbBlood","TBilBlood","TotalBilirubinBlood","AstBlood","AltBlood","RBCBlood","HgbBlood","HctBlood","PlateletBlood","MCVBlood","MCHBlood","MCHCBlood","MPVBlood","RDWBlood","WBCBlood","AmmoniaBlood","BHbBlood","AcacBlood", 
+# "NeutrophilsBlood","LymphocytesBlood","MonocytesBlood","EosinophilsBlood","BasophilsBlood","LargeUnstainedCellsBlood","NeutrophilsAbsoluteBlood","LymphocytesAbsoluteBlood","EosinophilsAbsoluteBlood","BasophilsAbsoluteBlood",
+# "GlusBloodCRC","LactBloodCRCMmol"]
+#         for el in names:
+#             print("self.ClinicalLabs"+el+"F.text(),")
+           
+
+#         for ind in range(1,51):
+#             # print("self.ClinicalLabsLabBlood"+str(ind)+"L.text()")
+#             print("self.ClinicalLabsLabBlood"+str(ind)+"F.text(),")
+            
         
         ################### Update Data Daily Intake ###################
         self.graphinputformdailyintake.addWidget(self.DailyIntakeMRNumberL,0,0)
@@ -1685,6 +2639,17 @@ class Test (QWidget):
 
         self.middle.addWidget(self.clinicGIformscroll)
 
+############################### Clinical Labs ###############################
+
+        self.clinicallabsbox = QGroupBox()
+        self.clinicallabsbox.setLayout(self.graphinputformclinicallabs)
+        
+        self.clinicallabsformscroll = QScrollArea()
+        self.clinicallabsformscroll.setWidget(self.clinicallabsbox)
+        self.clinicallabsformscroll.setWidgetResizable(True)
+
+        self.middle.addWidget(self.clinicallabsformscroll)
+
 ############################### Daily Intake ###############################
         
         self.dailyIntakebox = QGroupBox()
@@ -1834,9 +2799,9 @@ class Test (QWidget):
         self.AlertnessSaveButton.mousePressEvent = self.submitAlertness
         self.AnthropometricsSaveButton.mousePressEvent = self.submitAnthropometrics
         self.ClinicGISaveButton.mousePressEvent = self.submitClinicGI
+        self.ClinicalLabsSaveButton.mousePressEvent = self.submitClinicalLabs
         self.DailyIntakeSaveButton.mousePressEvent = self.submitDailyIntake
         self.DietRXSaveButton.mousePressEvent = self.submitDietRX
-        
         self.MedDataSaveButton.mousePressEvent = self.submitMedData
         self.MenusSaveButton.mousePressEvent = self.submitMenus
         self.OtherMedSaveButton.mousePressEvent = self.submitOtherMed
@@ -2080,6 +3045,21 @@ class Test (QWidget):
 
             # self.graphinputformclinicGI.setContentsMargins(200,0,200,0)
             self.openclinicgi()
+
+        if (selection == "Clinical Labs"):
+            self.closeallfroms()
+            self.removeallforms()
+
+            self.clinicallabsbox = QGroupBox()
+            self.clinicallabsbox.setLayout(self.graphinputformclinicallabs)
+            
+            self.clinicallabsformscroll = QScrollArea()
+            self.clinicallabsformscroll.setWidget(self.clinicallabsbox)
+            self.clinicallabsformscroll.setWidgetResizable(True)
+
+            self.middle.addWidget(self.clinicallabsformscroll)
+
+            self.openclinicallabs()
 
         if (selection == "Daily Intake"):
             self.closeallfroms()
@@ -2334,6 +3314,7 @@ class Test (QWidget):
         self.closealertness()
         self.closeanthropometrics()
         self.closeclinicgi()
+        self.closeclinicallabs()
         self.closedailyintake()
         self.closedietrx()
         self.closemenus()
@@ -2343,6 +3324,7 @@ class Test (QWidget):
         self.closeurinektsg()
         self.closevitals()
         self.closevns()
+        
 
         self.alertnessbox.close()
         self.alertnessformscroll.close()
@@ -2352,6 +3334,9 @@ class Test (QWidget):
 
         self.clinicGIbox.close()
         self.clinicGIformscroll.close() 
+        
+        self.clinicallabsbox.close()
+        self.clinicallabsformscroll.close()
 
         self.dailyIntakebox.close()
         self.dailyIntakeformscroll.close()
@@ -2383,16 +3368,16 @@ class Test (QWidget):
         self.vnsbox.close()
         self.vnsformscroll.close()
 
+
     def removeallforms(self):
-        # self.middle.removeItem(self.graphinputformalertness)
         self.middle.removeWidget(self.alertnessformscroll)
 
-        # self.middle.removeItem(self.graphinputformanthropometrics)
         self.middle.removeWidget(self.anthropometricsformscroll)
 
-        # self.middle.removeItem(self.graphinputformclinicGI)
         self.middle.removeWidget(self.clinicGIformscroll)
 
+        self.middle.removeWidget(self.clinicallabsformscroll)
+        
         self.middle.removeWidget(self.dailyIntakeformscroll)
 
         self.middle.removeWidget(self.dietrxformscroll)
@@ -2404,6 +3389,7 @@ class Test (QWidget):
         self.middle.removeWidget(self.vitalsformscroll)
 
         self.middle.removeWidget(self.vnsformscroll)
+
 
 
     def closealertness(self):
@@ -2501,6 +3487,217 @@ class Test (QWidget):
         self.ClinicGICommentsF.close()
         self.ClinicGISaveButton.close()
 
+    def closeclinicallabs(self):
+        self.ClinicalLabsMRNumberL.close()
+        self.ClinicalLabsMRNumberF.close()
+        self.ClinicalLabsDateL.close()    
+        self.ClinicalLabsDateF.close()    
+        self.ClinicalLabsTimeL.close()    
+        self.ClinicalLabsTimeF.close()    
+        self.ClinicalLabsDayTypeL.close() 
+        self.ClinicalLabsDayTypeF.close() 
+        self.ClinicalLabsSourceL.close()
+        self.ClinicalLabsSourceF.close()
+        self.ClinicalLabsFastingL.close()
+        self.ClinicalLabsFastingF.close()
+        self.ClinicalLabsTGBloodL.close()
+        self.ClinicalLabsTGBloodF.close()
+        self.ClinicalLabsHDLBloodL.close()
+        self.ClinicalLabsHDLBloodF.close()
+        self.ClinicalLabsLDLBloodL.close()
+        self.ClinicalLabsLDLBloodF.close()
+        self.ClinicalLabsTCBloodL.close()
+        self.ClinicalLabsTCBloodF.close()
+        self.ClinicalLabsNABloodL.close()
+        self.ClinicalLabsNABloodF.close()
+        self.ClinicalLabsKBloodL.close()
+        self.ClinicalLabsKBloodF.close()
+        self.ClinicalLabsChlBloodL.close()
+        self.ClinicalLabsChlBloodF.close()
+        self.ClinicalLabsCO2BloodL.close()
+        self.ClinicalLabsCO2BloodF.close()
+        self.ClinicalLabsBUNBloodL.close()
+        self.ClinicalLabsBUNBloodF.close()
+        self.ClinicalLabsCrBloodL.close()
+        self.ClinicalLabsCrBloodF.close()
+        self.ClinicalLabsGlusBloodL.close()
+        self.ClinicalLabsGlusBloodF.close()
+        self.ClinicalLabsCaBloodL.close()
+        self.ClinicalLabsCaBloodF.close()
+        self.ClinicalLabsMagBloodL.close()
+        self.ClinicalLabsMagBloodF.close()
+        self.ClinicalLabsPhosBloodL.close()
+        self.ClinicalLabsPhosBloodF.close()
+        self.ClinicalLabsUricAcidBloodL.close()
+        self.ClinicalLabsUricAcidBloodF.close()
+        self.ClinicalLabsProBloodL.close()
+        self.ClinicalLabsProBloodF.close()
+        self.ClinicalLabsAlbBloodL.close()
+        self.ClinicalLabsAlbBloodF.close()
+        self.ClinicalLabsTBilBloodL.close()
+        self.ClinicalLabsTBilBloodF.close()
+        self.ClinicalLabsTotalBilirubinBloodL.close()
+        self.ClinicalLabsTotalBilirubinBloodF.close()
+        self.ClinicalLabsAstBloodL.close()
+        self.ClinicalLabsAstBloodF.close()
+        self.ClinicalLabsAltBloodL.close()
+        self.ClinicalLabsAltBloodF.close()
+        self.ClinicalLabsRBCBloodL.close()
+        self.ClinicalLabsRBCBloodF.close()
+        self.ClinicalLabsHgbBloodL.close()
+        self.ClinicalLabsHgbBloodF.close()
+        self.ClinicalLabsHctBloodL.close()
+        self.ClinicalLabsHctBloodF.close()
+        self.ClinicalLabsPlateletBloodL.close()
+        self.ClinicalLabsPlateletBloodF.close()
+        self.ClinicalLabsMCVBloodL.close()
+        self.ClinicalLabsMCVBloodF.close()
+        self.ClinicalLabsMCHBloodL.close()
+        self.ClinicalLabsMCHBloodF.close()
+        self.ClinicalLabsMCHCBloodL.close()
+        self.ClinicalLabsMCHCBloodF.close()
+        self.ClinicalLabsMPVBloodL.close()
+        self.ClinicalLabsMPVBloodF.close()
+        self.ClinicalLabsRDWBloodL.close()
+        self.ClinicalLabsRDWBloodF.close()
+        self.ClinicalLabsWBCBloodL.close()
+        self.ClinicalLabsWBCBloodF.close()
+        self.ClinicalLabsAmmoniaBloodL.close()
+        self.ClinicalLabsAmmoniaBloodF.close()
+        self.ClinicalLabsBHbBloodL.close()
+        self.ClinicalLabsBHbBloodF.close()
+        self.ClinicalLabsAcacBloodL.close()
+        self.ClinicalLabsAcacBloodF.close()
+        self.ClinicalLabsNeutrophilsBloodL.close()
+        self.ClinicalLabsNeutrophilsBloodF.close()
+        self.ClinicalLabsLymphocytesBloodL.close()
+        self.ClinicalLabsLymphocytesBloodF.close()
+        self.ClinicalLabsMonocytesBloodL.close()
+        self.ClinicalLabsMonocytesBloodF.close()
+        self.ClinicalLabsEosinophilsBloodL.close()
+        self.ClinicalLabsEosinophilsBloodF.close()
+        self.ClinicalLabsBasophilsBloodL.close()
+        self.ClinicalLabsBasophilsBloodF.close()
+        self.ClinicalLabsLargeUnstainedCellsBloodL.close()
+        self.ClinicalLabsLargeUnstainedCellsBloodF.close()
+        self.ClinicalLabsNeutrophilsAbsoluteBloodL.close()
+        self.ClinicalLabsNeutrophilsAbsoluteBloodF.close()
+        self.ClinicalLabsLymphocytesAbsoluteBloodL.close()
+        self.ClinicalLabsLymphocytesAbsoluteBloodF.close()
+        self.ClinicalLabsEosinophilsAbsoluteBloodL.close()
+        self.ClinicalLabsEosinophilsAbsoluteBloodF.close()
+        self.ClinicalLabsBasophilsAbsoluteBloodL.close()
+        self.ClinicalLabsBasophilsAbsoluteBloodF.close()
+        self.ClinicalLabsGlusBloodCRCL.close()
+        self.ClinicalLabsGlusBloodCRCF.close()
+        self.ClinicalLabsLactBloodCRCMmolL.close()
+        self.ClinicalLabsLactBloodCRCMmolF.close()
+        self.ClinicalLabsLabBlood1L.close()
+        self.ClinicalLabsLabBlood1F.close()
+        self.ClinicalLabsLabBlood2L.close()
+        self.ClinicalLabsLabBlood2F.close()
+        self.ClinicalLabsLabBlood3L.close()
+        self.ClinicalLabsLabBlood3F.close()
+        self.ClinicalLabsLabBlood4L.close()
+        self.ClinicalLabsLabBlood4F.close()
+        self.ClinicalLabsLabBlood5L.close()
+        self.ClinicalLabsLabBlood5F.close()
+        self.ClinicalLabsLabBlood6L.close()
+        self.ClinicalLabsLabBlood6F.close()
+        self.ClinicalLabsLabBlood7L.close()
+        self.ClinicalLabsLabBlood7F.close()
+        self.ClinicalLabsLabBlood8L.close()
+        self.ClinicalLabsLabBlood8F.close()
+        self.ClinicalLabsLabBlood9L.close()
+        self.ClinicalLabsLabBlood9F.close()
+        self.ClinicalLabsLabBlood10L.close()
+        self.ClinicalLabsLabBlood10F.close()
+        self.ClinicalLabsLabBlood11L.close()
+        self.ClinicalLabsLabBlood11F.close()
+        self.ClinicalLabsLabBlood12L.close()
+        self.ClinicalLabsLabBlood12F.close()
+        self.ClinicalLabsLabBlood13L.close()
+        self.ClinicalLabsLabBlood13F.close()
+        self.ClinicalLabsLabBlood14L.close()
+        self.ClinicalLabsLabBlood14F.close()
+        self.ClinicalLabsLabBlood15L.close()
+        self.ClinicalLabsLabBlood15F.close()
+        self.ClinicalLabsLabBlood16L.close()
+        self.ClinicalLabsLabBlood16F.close()
+        self.ClinicalLabsLabBlood17L.close()
+        self.ClinicalLabsLabBlood17F.close()
+        self.ClinicalLabsLabBlood18L.close()
+        self.ClinicalLabsLabBlood18F.close()
+        self.ClinicalLabsLabBlood19L.close()
+        self.ClinicalLabsLabBlood19F.close()
+        self.ClinicalLabsLabBlood20L.close()
+        self.ClinicalLabsLabBlood20F.close()
+        self.ClinicalLabsLabBlood21L.close()
+        self.ClinicalLabsLabBlood21F.close()
+        self.ClinicalLabsLabBlood22L.close()
+        self.ClinicalLabsLabBlood22F.close()
+        self.ClinicalLabsLabBlood23L.close()
+        self.ClinicalLabsLabBlood23F.close()
+        self.ClinicalLabsLabBlood24L.close()
+        self.ClinicalLabsLabBlood24F.close()
+        self.ClinicalLabsLabBlood25L.close()
+        self.ClinicalLabsLabBlood25F.close()
+        self.ClinicalLabsLabBlood26L.close()
+        self.ClinicalLabsLabBlood26F.close()
+        self.ClinicalLabsLabBlood27L.close()
+        self.ClinicalLabsLabBlood27F.close()
+        self.ClinicalLabsLabBlood28L.close()
+        self.ClinicalLabsLabBlood28F.close()
+        self.ClinicalLabsLabBlood29L.close()
+        self.ClinicalLabsLabBlood29F.close()
+        self.ClinicalLabsLabBlood30L.close()
+        self.ClinicalLabsLabBlood30F.close()
+        self.ClinicalLabsLabBlood31L.close()
+        self.ClinicalLabsLabBlood31F.close()
+        self.ClinicalLabsLabBlood32L.close()
+        self.ClinicalLabsLabBlood32F.close()
+        self.ClinicalLabsLabBlood33L.close()
+        self.ClinicalLabsLabBlood33F.close()
+        self.ClinicalLabsLabBlood34L.close()
+        self.ClinicalLabsLabBlood34F.close()
+        self.ClinicalLabsLabBlood35L.close()
+        self.ClinicalLabsLabBlood35F.close()
+        self.ClinicalLabsLabBlood36L.close()
+        self.ClinicalLabsLabBlood36F.close()
+        self.ClinicalLabsLabBlood37L.close()
+        self.ClinicalLabsLabBlood37F.close()
+        self.ClinicalLabsLabBlood38L.close()
+        self.ClinicalLabsLabBlood38F.close()
+        self.ClinicalLabsLabBlood39L.close()
+        self.ClinicalLabsLabBlood39F.close()
+        self.ClinicalLabsLabBlood40L.close()
+        self.ClinicalLabsLabBlood40F.close()
+        self.ClinicalLabsLabBlood41L.close()
+        self.ClinicalLabsLabBlood41F.close()
+        self.ClinicalLabsLabBlood42L.close()
+        self.ClinicalLabsLabBlood42F.close()
+        self.ClinicalLabsLabBlood43L.close()
+        self.ClinicalLabsLabBlood43F.close()
+        self.ClinicalLabsLabBlood44L.close()
+        self.ClinicalLabsLabBlood44F.close()
+        self.ClinicalLabsLabBlood45L.close()
+        self.ClinicalLabsLabBlood45F.close()
+        self.ClinicalLabsLabBlood46L.close()
+        self.ClinicalLabsLabBlood46F.close()
+        self.ClinicalLabsLabBlood47L.close()
+        self.ClinicalLabsLabBlood47F.close()
+        self.ClinicalLabsLabBlood48L.close()
+        self.ClinicalLabsLabBlood48F.close()
+        self.ClinicalLabsLabBlood49L.close()
+        self.ClinicalLabsLabBlood49F.close()
+        self.ClinicalLabsLabBlood50L.close()
+        self.ClinicalLabsLabBlood50F.close()
+        self.ClinicalLabsEnteredL.close()
+        self.ClinicalLabsEnteredF.close()
+        self.ClinicalLabsCommentsL.close()
+        self.ClinicalLabsCommentsF.close()
+        self.ClinicalLabsSaveButton.close()
+
     def closedailyintake(self):
         self.DailyIntakeMRNumberL.close()
         self.DailyIntakeMRNumberF.close()
@@ -2519,7 +3716,6 @@ class Test (QWidget):
         self.DailyIntakeCommentsL.close()
         self.DailyIntakeCommentsF.close()
         self.DailyIntakeSaveButton.close()
-
 
     def closedietrx(self):
         self.DietRXMRNumberL.close()
@@ -2551,8 +3747,6 @@ class Test (QWidget):
         self.DietRXCommentsL.close()
         self.DietRXCommentsF.close()
         self.DietRXSaveButton.close()
-
-
 
     def closemeddata(self):
         self.MedDataMRNumberL.show()
@@ -2847,6 +4041,217 @@ class Test (QWidget):
         self.ClinicGICommentsL.show()
         self.ClinicGICommentsF.show()
         self.ClinicGISaveButton.show()
+
+    def openclinicallabs(self):
+        self.ClinicalLabsMRNumberL.show()
+        self.ClinicalLabsMRNumberF.show()
+        self.ClinicalLabsDateL.show()
+        self.ClinicalLabsDateF.show()
+        self.ClinicalLabsTimeL.show()
+        self.ClinicalLabsTimeF.show()
+        self.ClinicalLabsDayTypeL.show()
+        self.ClinicalLabsDayTypeF.show()
+        self.ClinicalLabsSourceL.show()
+        self.ClinicalLabsSourceF.show()
+        self.ClinicalLabsFastingL.show()
+        self.ClinicalLabsFastingF.show()
+        self.ClinicalLabsTGBloodL.show()
+        self.ClinicalLabsTGBloodF.show()
+        self.ClinicalLabsHDLBloodL.show()
+        self.ClinicalLabsHDLBloodF.show()
+        self.ClinicalLabsLDLBloodL.show()
+        self.ClinicalLabsLDLBloodF.show()
+        self.ClinicalLabsTCBloodL.show()
+        self.ClinicalLabsTCBloodF.show()
+        self.ClinicalLabsNABloodL.show()
+        self.ClinicalLabsNABloodF.show()
+        self.ClinicalLabsKBloodL.show()
+        self.ClinicalLabsKBloodF.show()
+        self.ClinicalLabsChlBloodL.show()
+        self.ClinicalLabsChlBloodF.show()
+        self.ClinicalLabsCO2BloodL.show()
+        self.ClinicalLabsCO2BloodF.show()
+        self.ClinicalLabsBUNBloodL.show()
+        self.ClinicalLabsBUNBloodF.show()
+        self.ClinicalLabsCrBloodL.show()
+        self.ClinicalLabsCrBloodF.show()
+        self.ClinicalLabsGlusBloodL.show()
+        self.ClinicalLabsGlusBloodF.show()
+        self.ClinicalLabsCaBloodL.show()
+        self.ClinicalLabsCaBloodF.show()
+        self.ClinicalLabsMagBloodL.show()
+        self.ClinicalLabsMagBloodF.show()
+        self.ClinicalLabsPhosBloodL.show()
+        self.ClinicalLabsPhosBloodF.show()
+        self.ClinicalLabsUricAcidBloodL.show()
+        self.ClinicalLabsUricAcidBloodF.show()
+        self.ClinicalLabsProBloodL.show()
+        self.ClinicalLabsProBloodF.show()
+        self.ClinicalLabsAlbBloodL.show()
+        self.ClinicalLabsAlbBloodF.show()
+        self.ClinicalLabsTBilBloodL.show()
+        self.ClinicalLabsTBilBloodF.show()
+        self.ClinicalLabsTotalBilirubinBloodL.show()
+        self.ClinicalLabsTotalBilirubinBloodF.show()
+        self.ClinicalLabsAstBloodL.show()
+        self.ClinicalLabsAstBloodF.show()
+        self.ClinicalLabsAltBloodL.show()
+        self.ClinicalLabsAltBloodF.show()
+        self.ClinicalLabsRBCBloodL.show()
+        self.ClinicalLabsRBCBloodF.show()
+        self.ClinicalLabsHgbBloodL.show()
+        self.ClinicalLabsHgbBloodF.show()
+        self.ClinicalLabsHctBloodL.show()
+        self.ClinicalLabsHctBloodF.show()
+        self.ClinicalLabsPlateletBloodL.show()
+        self.ClinicalLabsPlateletBloodF.show()
+        self.ClinicalLabsMCVBloodL.show()
+        self.ClinicalLabsMCVBloodF.show()
+        self.ClinicalLabsMCHBloodL.show()
+        self.ClinicalLabsMCHBloodF.show()
+        self.ClinicalLabsMCHCBloodL.show()
+        self.ClinicalLabsMCHCBloodF.show()
+        self.ClinicalLabsMPVBloodL.show()
+        self.ClinicalLabsMPVBloodF.show()
+        self.ClinicalLabsRDWBloodL.show()
+        self.ClinicalLabsRDWBloodF.show()
+        self.ClinicalLabsWBCBloodL.show()
+        self.ClinicalLabsWBCBloodF.show()
+        self.ClinicalLabsAmmoniaBloodL.show()
+        self.ClinicalLabsAmmoniaBloodF.show()
+        self.ClinicalLabsBHbBloodL.show()
+        self.ClinicalLabsBHbBloodF.show()
+        self.ClinicalLabsAcacBloodL.show()
+        self.ClinicalLabsAcacBloodF.show()
+        self.ClinicalLabsNeutrophilsBloodL.show()
+        self.ClinicalLabsNeutrophilsBloodF.show()
+        self.ClinicalLabsLymphocytesBloodL.show()
+        self.ClinicalLabsLymphocytesBloodF.show()
+        self.ClinicalLabsMonocytesBloodL.show()
+        self.ClinicalLabsMonocytesBloodF.show()
+        self.ClinicalLabsEosinophilsBloodL.show()
+        self.ClinicalLabsEosinophilsBloodF.show()
+        self.ClinicalLabsBasophilsBloodL.show()
+        self.ClinicalLabsBasophilsBloodF.show()
+        self.ClinicalLabsLargeUnstainedCellsBloodL.show()
+        self.ClinicalLabsLargeUnstainedCellsBloodF.show()
+        self.ClinicalLabsNeutrophilsAbsoluteBloodL.show()
+        self.ClinicalLabsNeutrophilsAbsoluteBloodF.show()
+        self.ClinicalLabsLymphocytesAbsoluteBloodL.show()
+        self.ClinicalLabsLymphocytesAbsoluteBloodF.show()
+        self.ClinicalLabsEosinophilsAbsoluteBloodL.show()
+        self.ClinicalLabsEosinophilsAbsoluteBloodF.show()
+        self.ClinicalLabsBasophilsAbsoluteBloodL.show()
+        self.ClinicalLabsBasophilsAbsoluteBloodF.show()
+        self.ClinicalLabsGlusBloodCRCL.show()
+        self.ClinicalLabsGlusBloodCRCF.show()
+        self.ClinicalLabsLactBloodCRCMmolL.show()
+        self.ClinicalLabsLactBloodCRCMmolF.show()
+        self.ClinicalLabsLabBlood1L.show()
+        self.ClinicalLabsLabBlood1F.show()
+        self.ClinicalLabsLabBlood2L.show()
+        self.ClinicalLabsLabBlood2F.show()
+        self.ClinicalLabsLabBlood3L.show()
+        self.ClinicalLabsLabBlood3F.show()
+        self.ClinicalLabsLabBlood4L.show()
+        self.ClinicalLabsLabBlood4F.show()
+        self.ClinicalLabsLabBlood5L.show()
+        self.ClinicalLabsLabBlood5F.show()
+        self.ClinicalLabsLabBlood6L.show()
+        self.ClinicalLabsLabBlood6F.show()
+        self.ClinicalLabsLabBlood7L.show()
+        self.ClinicalLabsLabBlood7F.show()
+        self.ClinicalLabsLabBlood8L.show()
+        self.ClinicalLabsLabBlood8F.show()
+        self.ClinicalLabsLabBlood9L.show()
+        self.ClinicalLabsLabBlood9F.show()
+        self.ClinicalLabsLabBlood10L.show()
+        self.ClinicalLabsLabBlood10F.show()
+        self.ClinicalLabsLabBlood11L.show()
+        self.ClinicalLabsLabBlood11F.show()
+        self.ClinicalLabsLabBlood12L.show()
+        self.ClinicalLabsLabBlood12F.show()
+        self.ClinicalLabsLabBlood13L.show()
+        self.ClinicalLabsLabBlood13F.show()
+        self.ClinicalLabsLabBlood14L.show()
+        self.ClinicalLabsLabBlood14F.show()
+        self.ClinicalLabsLabBlood15L.show()
+        self.ClinicalLabsLabBlood15F.show()
+        self.ClinicalLabsLabBlood16L.show()
+        self.ClinicalLabsLabBlood16F.show()
+        self.ClinicalLabsLabBlood17L.show()
+        self.ClinicalLabsLabBlood17F.show()
+        self.ClinicalLabsLabBlood18L.show()
+        self.ClinicalLabsLabBlood18F.show()
+        self.ClinicalLabsLabBlood19L.show()
+        self.ClinicalLabsLabBlood19F.show()
+        self.ClinicalLabsLabBlood20L.show()
+        self.ClinicalLabsLabBlood20F.show()
+        self.ClinicalLabsLabBlood21L.show()
+        self.ClinicalLabsLabBlood21F.show()
+        self.ClinicalLabsLabBlood22L.show()
+        self.ClinicalLabsLabBlood22F.show()
+        self.ClinicalLabsLabBlood23L.show()
+        self.ClinicalLabsLabBlood23F.show()
+        self.ClinicalLabsLabBlood24L.show()
+        self.ClinicalLabsLabBlood24F.show()
+        self.ClinicalLabsLabBlood25L.show()
+        self.ClinicalLabsLabBlood25F.show()
+        self.ClinicalLabsLabBlood26L.show()
+        self.ClinicalLabsLabBlood26F.show()
+        self.ClinicalLabsLabBlood27L.show()
+        self.ClinicalLabsLabBlood27F.show()
+        self.ClinicalLabsLabBlood28L.show()
+        self.ClinicalLabsLabBlood28F.show()
+        self.ClinicalLabsLabBlood29L.show()
+        self.ClinicalLabsLabBlood29F.show()
+        self.ClinicalLabsLabBlood30L.show()
+        self.ClinicalLabsLabBlood30F.show()
+        self.ClinicalLabsLabBlood31L.show()
+        self.ClinicalLabsLabBlood31F.show()
+        self.ClinicalLabsLabBlood32L.show()
+        self.ClinicalLabsLabBlood32F.show()
+        self.ClinicalLabsLabBlood33L.show()
+        self.ClinicalLabsLabBlood33F.show()
+        self.ClinicalLabsLabBlood34L.show()
+        self.ClinicalLabsLabBlood34F.show()
+        self.ClinicalLabsLabBlood35L.show()
+        self.ClinicalLabsLabBlood35F.show()
+        self.ClinicalLabsLabBlood36L.show()
+        self.ClinicalLabsLabBlood36F.show()
+        self.ClinicalLabsLabBlood37L.show()
+        self.ClinicalLabsLabBlood37F.show()
+        self.ClinicalLabsLabBlood38L.show()
+        self.ClinicalLabsLabBlood38F.show()
+        self.ClinicalLabsLabBlood39L.show()
+        self.ClinicalLabsLabBlood39F.show()
+        self.ClinicalLabsLabBlood40L.show()
+        self.ClinicalLabsLabBlood40F.show()
+        self.ClinicalLabsLabBlood41L.show()
+        self.ClinicalLabsLabBlood41F.show()
+        self.ClinicalLabsLabBlood42L.show()
+        self.ClinicalLabsLabBlood42F.show()
+        self.ClinicalLabsLabBlood43L.show()
+        self.ClinicalLabsLabBlood43F.show()
+        self.ClinicalLabsLabBlood44L.show()
+        self.ClinicalLabsLabBlood44F.show()
+        self.ClinicalLabsLabBlood45L.show()
+        self.ClinicalLabsLabBlood45F.show()
+        self.ClinicalLabsLabBlood46L.show()
+        self.ClinicalLabsLabBlood46F.show()
+        self.ClinicalLabsLabBlood47L.show()
+        self.ClinicalLabsLabBlood47F.show()
+        self.ClinicalLabsLabBlood48L.show()
+        self.ClinicalLabsLabBlood48F.show()
+        self.ClinicalLabsLabBlood49L.show()
+        self.ClinicalLabsLabBlood49F.show()
+        self.ClinicalLabsLabBlood50L.show()
+        self.ClinicalLabsLabBlood50F.show()
+        self.ClinicalLabsEnteredL.show()
+        self.ClinicalLabsEnteredF.show()
+        self.ClinicalLabsCommentsL.show()
+        self.ClinicalLabsCommentsF.show()
+        self.ClinicalLabsSaveButton.show()
 
     def opendailyintake(self):
         self.DailyIntakeMRNumberL.show()
@@ -3148,6 +4553,112 @@ class Test (QWidget):
         self.ClinicGIEnteredF.setText(""),
         self.ClinicGICommentsF.setText(""),
 
+
+        self.ClinicalLabsMRNumberF.setText(""),
+        self.ClinicalLabsDateF.setDate(datetime.date(datetime.now())),
+        self.ClinicalLabsTimeF.setText(""),
+        self.ClinicalLabsDayTypeF.setCurrentIndex(0),
+        self.ClinicalLabsSourceF.setCurrentIndex(0),
+        self.ClinicalLabsFastingF.setCurrentIndex(0),
+        self.ClinicalLabsTGBloodF.setText(""),
+        self.ClinicalLabsHDLBloodF.setText(""),
+        self.ClinicalLabsLDLBloodF.setText(""),
+        self.ClinicalLabsTCBloodF.setText(""),
+        self.ClinicalLabsNABloodF.setText(""),
+        self.ClinicalLabsKBloodF.setText(""),
+        self.ClinicalLabsChlBloodF.setText(""),
+        self.ClinicalLabsCO2BloodF.setText(""),
+        self.ClinicalLabsBUNBloodF.setText(""),
+        self.ClinicalLabsCrBloodF.setText(""),
+        self.ClinicalLabsGlusBloodF.setText(""),
+        self.ClinicalLabsCaBloodF.setText(""),
+        self.ClinicalLabsMagBloodF.setText(""),
+        self.ClinicalLabsPhosBloodF.setText(""),
+        self.ClinicalLabsUricAcidBloodF.setText(""),
+        self.ClinicalLabsProBloodF.setText(""),
+        self.ClinicalLabsAlbBloodF.setText(""),
+        self.ClinicalLabsTBilBloodF.setText(""),
+        self.ClinicalLabsTotalBilirubinBloodF.setText(""),
+        self.ClinicalLabsAstBloodF.setText(""),
+        self.ClinicalLabsAltBloodF.setText(""),
+        self.ClinicalLabsRBCBloodF.setText(""),
+        self.ClinicalLabsHgbBloodF.setText(""),
+        self.ClinicalLabsHctBloodF.setText(""),
+        self.ClinicalLabsPlateletBloodF.setText(""),
+        self.ClinicalLabsMCVBloodF.setText(""),
+        self.ClinicalLabsMCHBloodF.setText(""),
+        self.ClinicalLabsMCHCBloodF.setText(""),
+        self.ClinicalLabsMPVBloodF.setText(""),
+        self.ClinicalLabsRDWBloodF.setText(""),
+        self.ClinicalLabsWBCBloodF.setText(""),
+        self.ClinicalLabsAmmoniaBloodF.setText(""),
+        self.ClinicalLabsBHbBloodF.setText(""),
+        self.ClinicalLabsAcacBloodF.setText(""),
+        self.ClinicalLabsNeutrophilsBloodF.setText(""),
+        self.ClinicalLabsLymphocytesBloodF.setText(""),
+        self.ClinicalLabsMonocytesBloodF.setText(""),
+        self.ClinicalLabsEosinophilsBloodF.setText(""),
+        self.ClinicalLabsBasophilsBloodF.setText(""),
+        self.ClinicalLabsLargeUnstainedCellsBloodF.setText(""),
+        self.ClinicalLabsNeutrophilsAbsoluteBloodF.setText(""),
+        self.ClinicalLabsLymphocytesAbsoluteBloodF.setText(""),
+        self.ClinicalLabsEosinophilsAbsoluteBloodF.setText(""),
+        self.ClinicalLabsBasophilsAbsoluteBloodF.setText(""),
+        self.ClinicalLabsGlusBloodCRCF.setText(""),
+        self.ClinicalLabsLactBloodCRCMmolF.setText(""),
+        self.ClinicalLabsLabBlood1F.setText(""),
+        self.ClinicalLabsLabBlood2F.setText(""),
+        self.ClinicalLabsLabBlood3F.setText(""),
+        self.ClinicalLabsLabBlood4F.setText(""),
+        self.ClinicalLabsLabBlood5F.setText(""),
+        self.ClinicalLabsLabBlood6F.setText(""),
+        self.ClinicalLabsLabBlood7F.setText(""),
+        self.ClinicalLabsLabBlood8F.setText(""),
+        self.ClinicalLabsLabBlood9F.setText(""),
+        self.ClinicalLabsLabBlood10F.setText(""),
+        self.ClinicalLabsLabBlood11F.setText(""),
+        self.ClinicalLabsLabBlood12F.setText(""),
+        self.ClinicalLabsLabBlood13F.setText(""),
+        self.ClinicalLabsLabBlood14F.setText(""),
+        self.ClinicalLabsLabBlood15F.setText(""),
+        self.ClinicalLabsLabBlood16F.setText(""),
+        self.ClinicalLabsLabBlood17F.setText(""),
+        self.ClinicalLabsLabBlood18F.setText(""),
+        self.ClinicalLabsLabBlood19F.setText(""),
+        self.ClinicalLabsLabBlood20F.setText(""),
+        self.ClinicalLabsLabBlood21F.setText(""),
+        self.ClinicalLabsLabBlood22F.setText(""),
+        self.ClinicalLabsLabBlood23F.setText(""),
+        self.ClinicalLabsLabBlood24F.setText(""),
+        self.ClinicalLabsLabBlood25F.setText(""),
+        self.ClinicalLabsLabBlood26F.setText(""),
+        self.ClinicalLabsLabBlood27F.setText(""),
+        self.ClinicalLabsLabBlood28F.setText(""),
+        self.ClinicalLabsLabBlood29F.setText(""),
+        self.ClinicalLabsLabBlood30F.setText(""),
+        self.ClinicalLabsLabBlood31F.setText(""),
+        self.ClinicalLabsLabBlood32F.setText(""),
+        self.ClinicalLabsLabBlood33F.setText(""),
+        self.ClinicalLabsLabBlood34F.setText(""),
+        self.ClinicalLabsLabBlood35F.setText(""),
+        self.ClinicalLabsLabBlood36F.setText(""),
+        self.ClinicalLabsLabBlood37F.setText(""),
+        self.ClinicalLabsLabBlood38F.setText(""),
+        self.ClinicalLabsLabBlood39F.setText(""),
+        self.ClinicalLabsLabBlood40F.setText(""),
+        self.ClinicalLabsLabBlood41F.setText(""),
+        self.ClinicalLabsLabBlood42F.setText(""),
+        self.ClinicalLabsLabBlood43F.setText(""),
+        self.ClinicalLabsLabBlood44F.setText(""),
+        self.ClinicalLabsLabBlood45F.setText(""),
+        self.ClinicalLabsLabBlood46F.setText(""),
+        self.ClinicalLabsLabBlood47F.setText(""),
+        self.ClinicalLabsLabBlood48F.setText(""),
+        self.ClinicalLabsLabBlood49F.setText(""),
+        self.ClinicalLabsLabBlood50F.setText(""),
+        self.ClinicalLabsEnteredF.setText(""),
+        self.ClinicalLabsCommentsF.setText(""),
+
         self.DailyIntakeMRNumberF.setText(""),
         self.DailyIntakeDateF.setDate(datetime.date(datetime.now())),
         self.DailyIntakeDayTypeF.setCurrentIndex(0),
@@ -3156,7 +4667,6 @@ class Test (QWidget):
         self.DailyIntakeDayQualityDietF.setCurrentIndex(0),
         self.DailyIntakeEnteredF.setText(""),
         self.DailyIntakeCommentsF.setText(""),
-
 
         self.DietRXMRNumberF.setText(""),
         self.DietRXDateF.setDate(datetime.date(datetime.now())),
@@ -3173,7 +4683,6 @@ class Test (QWidget):
         self.DietRXEnteredF.setText(""),
         self.DietRXCommentsF.setText(""),
 
-
         self.MedDataMRNumberF.setText(""),
         self.MedDataDateF.setDate(datetime.date(datetime.now())),
         self.MedDataDayTypeF.setCurrentIndex(0),
@@ -3186,8 +4695,6 @@ class Test (QWidget):
         self.MedDataMedCommentsF.setText(""),
         self.MedDataEnteredF.setText(""),
         self.MedDataCommentsF.setText(""),
-
-
 
         self.MenusMRNumberF.setText(""),
         self.MenusDateF.setDate(datetime.date(datetime.now())),
@@ -3371,7 +4878,120 @@ class Test (QWidget):
         except ValueError:
             print("There is a value error, placeholder for now WIP")
        
-            
+
+    def submitClinicalLabs(self,event):
+        try:
+            saveClinicalLabs(
+                self.currentpatient,
+                self.ClinicalLabsMRNumberF.text(),
+                self.ClinicalLabsDateF.date().toString("MM/dd/yyyy"),
+                self.ClinicalLabsTimeF.text(),
+                self.ClinicalLabsDayTypeF.currentText()[:1],
+                self.ClinicalLabsSourceF.currentText()[:1],
+                self.ClinicalLabsFastingF.currentText()[:1],
+                self.ClinicalLabsTGBloodF.text(),
+                self.ClinicalLabsHDLBloodF.text(),
+                self.ClinicalLabsLDLBloodF.text(),
+                self.ClinicalLabsTCBloodF.text(),
+                self.ClinicalLabsNABloodF.text(),
+                self.ClinicalLabsKBloodF.text(),
+                self.ClinicalLabsChlBloodF.text(),
+                self.ClinicalLabsCO2BloodF.text(),
+                self.ClinicalLabsBUNBloodF.text(),
+                self.ClinicalLabsCrBloodF.text(),
+                self.ClinicalLabsGlusBloodF.text(),
+                self.ClinicalLabsCaBloodF.text(),
+                self.ClinicalLabsMagBloodF.text(),
+                self.ClinicalLabsPhosBloodF.text(),
+                self.ClinicalLabsUricAcidBloodF.text(),
+                self.ClinicalLabsProBloodF.text(),
+                self.ClinicalLabsAlbBloodF.text(),
+                self.ClinicalLabsTBilBloodF.text(),
+                self.ClinicalLabsTotalBilirubinBloodF.text(),
+                self.ClinicalLabsAstBloodF.text(),
+                self.ClinicalLabsAltBloodF.text(),
+                self.ClinicalLabsRBCBloodF.text(),
+                self.ClinicalLabsHgbBloodF.text(),
+                self.ClinicalLabsHctBloodF.text(),
+                self.ClinicalLabsPlateletBloodF.text(),
+                self.ClinicalLabsMCVBloodF.text(),
+                self.ClinicalLabsMCHBloodF.text(),
+                self.ClinicalLabsMCHCBloodF.text(),
+                self.ClinicalLabsMPVBloodF.text(),
+                self.ClinicalLabsRDWBloodF.text(),
+                self.ClinicalLabsWBCBloodF.text(),
+                self.ClinicalLabsAmmoniaBloodF.text(),
+                self.ClinicalLabsBHbBloodF.text(),
+                self.ClinicalLabsAcacBloodF.text(),
+                self.ClinicalLabsNeutrophilsBloodF.text(),
+                self.ClinicalLabsLymphocytesBloodF.text(),
+                self.ClinicalLabsMonocytesBloodF.text(),
+                self.ClinicalLabsEosinophilsBloodF.text(),
+                self.ClinicalLabsBasophilsBloodF.text(),
+                self.ClinicalLabsLargeUnstainedCellsBloodF.text(),
+                self.ClinicalLabsNeutrophilsAbsoluteBloodF.text(),
+                self.ClinicalLabsLymphocytesAbsoluteBloodF.text(),
+                self.ClinicalLabsEosinophilsAbsoluteBloodF.text(),
+                self.ClinicalLabsBasophilsAbsoluteBloodF.text(),
+                self.ClinicalLabsGlusBloodCRCF.text(),
+                self.ClinicalLabsLactBloodCRCMmolF.text(),
+                self.ClinicalLabsLabBlood1F.text(),
+                self.ClinicalLabsLabBlood2F.text(),
+                self.ClinicalLabsLabBlood3F.text(),
+                self.ClinicalLabsLabBlood4F.text(),
+                self.ClinicalLabsLabBlood5F.text(),
+                self.ClinicalLabsLabBlood6F.text(),
+                self.ClinicalLabsLabBlood7F.text(),
+                self.ClinicalLabsLabBlood8F.text(),
+                self.ClinicalLabsLabBlood9F.text(),
+                self.ClinicalLabsLabBlood10F.text(),
+                self.ClinicalLabsLabBlood11F.text(),
+                self.ClinicalLabsLabBlood12F.text(),
+                self.ClinicalLabsLabBlood13F.text(),
+                self.ClinicalLabsLabBlood14F.text(),
+                self.ClinicalLabsLabBlood15F.text(),
+                self.ClinicalLabsLabBlood16F.text(),
+                self.ClinicalLabsLabBlood17F.text(),
+                self.ClinicalLabsLabBlood18F.text(),
+                self.ClinicalLabsLabBlood19F.text(),
+                self.ClinicalLabsLabBlood20F.text(),
+                self.ClinicalLabsLabBlood21F.text(),
+                self.ClinicalLabsLabBlood22F.text(),
+                self.ClinicalLabsLabBlood23F.text(),
+                self.ClinicalLabsLabBlood24F.text(),
+                self.ClinicalLabsLabBlood25F.text(),
+                self.ClinicalLabsLabBlood26F.text(),
+                self.ClinicalLabsLabBlood27F.text(),
+                self.ClinicalLabsLabBlood28F.text(),
+                self.ClinicalLabsLabBlood29F.text(),
+                self.ClinicalLabsLabBlood30F.text(),
+                self.ClinicalLabsLabBlood31F.text(),
+                self.ClinicalLabsLabBlood32F.text(),
+                self.ClinicalLabsLabBlood33F.text(),
+                self.ClinicalLabsLabBlood34F.text(),
+                self.ClinicalLabsLabBlood35F.text(),
+                self.ClinicalLabsLabBlood36F.text(),
+                self.ClinicalLabsLabBlood37F.text(),
+                self.ClinicalLabsLabBlood38F.text(),
+                self.ClinicalLabsLabBlood39F.text(),
+                self.ClinicalLabsLabBlood40F.text(),
+                self.ClinicalLabsLabBlood41F.text(),
+                self.ClinicalLabsLabBlood42F.text(),
+                self.ClinicalLabsLabBlood43F.text(),
+                self.ClinicalLabsLabBlood44F.text(),
+                self.ClinicalLabsLabBlood45F.text(),
+                self.ClinicalLabsLabBlood46F.text(),
+                self.ClinicalLabsLabBlood47F.text(),
+                self.ClinicalLabsLabBlood48F.text(),
+                self.ClinicalLabsLabBlood49F.text(),
+                self.ClinicalLabsLabBlood50F.text(),
+                self.ClinicalLabsEnteredF.text(),
+                self.ClinicalLabsCommentsF.toPlainText()
+            )
+
+        except ValueError:
+            print("There is a value error, placeholder for now WIP")
+
     def submitDailyIntake(self,event):
 
         try:
