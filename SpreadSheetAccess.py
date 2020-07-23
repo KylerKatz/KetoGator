@@ -99,12 +99,46 @@ def saveClinicGI(patient,MrNumber,Date,DayType,Const,Dia,Vom,Nausea,Gag,Nissen,C
     wb.save(path)
 
 def saveClinicalLabs(patient,MRNumber,Date,Time,DayType,Source,Fasting,TGBlood,HDLBlood,LDLBlood,TCBlood,NABlood,KBlood,ChlBlood,CO2Blood,BUNBlood,CrBlood,GlusBlood,CaBlood,MagBlood,PhosBlood,UricAcidBlood,ProBlood,
-AlbBlood,TBilBlood,TotalBilirubinBlood,AstBlood,AltBlood,RBCBlood,HgbBlood,HctBlood,PlateletBlood,MCVBlood,MCHBlood,MCHCBlood,MPVBlood,RDWBlood,WBCBlood,AmmoniaBlood,BHbBlood,AcacBlood, 
-NeutrophilsBlood,LymphocytesBlood,MonocytesBlood,EosinophilsBlood,BasophilsBlood,LargeUnstainedCellsBlood,NeutrophilsAbsoluteBlood,LymphocytesAbsoluteBlood,EosinophilsAbsoluteBlood,BasophilsAbsoluteBlood,
+AlbBlood,TBilBlood,AlpBlood,AstBlood,AltBlood,RBCBlood,HgbBlood,HctBlood,PlateletBlood,MCVBlood,MCHBlood,MCHCBlood,MPVBlood,RDWBlood,WBCBlood,AmmoniaBlood,BHbBlood,AcacBlood, 
+NeutrophilsBlood,LymphocytesBlood,MonocytesBlood,EosinophilsBlood,BasophilsBlood,LargeUnstainedCellsBlood,NeutrophilsAbsoluteBlood,LymphocytesAbsoluteBlood, MonocytesAbsoluteBlood,EosinophilsAbsoluteBlood,BasophilsAbsoluteBlood,
 GlusBloodCRC,LactBloodCRCMmol,LabBlood1,LabBlood2,LabBlood3,LabBlood4,LabBlood5,LabBlood6,LabBlood7,LabBlood8,LabBlood9,LabBlood10,LabBlood11,LabBlood12,LabBlood13,LabBlood14,LabBlood15,LabBlood16,LabBlood17,
 LabBlood18,LabBlood19,LabBlood20,LabBlood21,LabBlood22,LabBlood23,LabBlood24,LabBlood25,LabBlood26,LabBlood27,LabBlood28,LabBlood29,LabBlood30,LabBlood31,LabBlood32,LabBlood33,LabBlood34,LabBlood35,LabBlood36,
 LabBlood37,LabBlood38,LabBlood39,LabBlood40,LabBlood41,LabBlood42,LabBlood43,LabBlood44,LabBlood45,LabBlood46,LabBlood47,LabBlood48,LabBlood49,LabBlood50,Entered,Comments):
-    pass
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Clinical_Labs_Source.xlsx"
+    
+    # Tries to load workbook
+    try:
+        wb = load_workbook(path)
+        ws = wb["Sheet1"]
+    # On failure ensures they have the right directories using setNewPatient
+    except FileNotFoundError:
+        setNewPatient(patient)
+
+        # Create new workbook and name sheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Sheet1"
+
+        # Create appropriate columns
+        ws.append(["MrNumber","Date", "Time", "Day_Type","Source","Fasting","Tg_Blood", "HDL_Blood", "LDL_Blood", "TC_Blood", "Na_Blood", "K_Blood", "Chl_Blood", "CO2_Blood", "BUN_Blood", "Cr_Blood", "Glus_Blood",
+        "Ca_Blood", "Mag_Blood", "Phos_Blood", "Uric_Acid_Blood", "Pro_Blood", "Alb_Blood", "TBil_Blood", "Alp_Blood", "Ast_Blood", "Alt_Blood", "RBC_Blood", "Hgb_Blood", "Hct_Blood", "Platelet_Blood", "MCV_Blood",
+        "MCH_Blood", "MCHC_Blood", "MPV_Blood", "RDW_Blood", "WBC_Blood", "Ammonia_Blood", "BHb_Blood_Mmol", "Acac_Blood", "Neutrophils_Blood", "Lymphocytes_Blood", "Monocytes_Blood", "Eosinophils_Blood", "Basophils_Blood",
+        "Large_Unstained_Cells_Blood", "Neutrophils_Absolute_Blood", "Lymphocytes_Absolute_Blood", "Monocytes_Absolute_Blood", "Eosinophils_Absolute_Blood", "Basophils_Absolute_Blood", "Glus_Blood_CRC", "Lact_Blood_CRC_Mmol",
+        "Lab_Blood_1", "Lab_Blood_2", "Lab_Blood_3", "Lab_Blood_4", "Lab_Blood_5", "Lab_Blood_6", "Lab_Blood_7", "Lab_Blood_8", "Lab_Blood_9", "Lab_Blood_10", "Lab_Blood_11", "Lab_Blood_12", "Lab_Blood_13", "Lab_Blood_14",
+        "Lab_Blood_15", "Lab_Blood_16", "Lab_Blood_17", "Lab_Blood_18", "Lab_Blood_19", "Lab_Blood_20", "Lab_Blood_21", "Lab_Blood_22", "Lab_Blood_23", "Lab_Blood_24", "Lab_Blood_25", "Lab_Blood_26", "Lab_Blood_27",
+        "Lab_Blood_28", "Lab_Blood_29", "Lab_Blood_30", "Lab_Blood_31", "Lab_Blood_32", "Lab_Blood_33", "Lab_Blood_34", "Lab_Blood_35", "Lab_Blood_36", "Lab_Blood_37", "Lab_Blood_38", "Lab_Blood_39", "Lab_Blood_40",
+        "Lab_Blood_41", "Lab_Blood_42", "Lab_Blood_43", "Lab_Blood_44", "Lab_Blood_45", "Lab_Blood_46", "Lab_Blood_47", "Lab_Blood_48", "Lab_Blood_49", "Lab_Blood_50", "Entered", "Audited", "Comments"])
+
+    # Add data
+    ws.append([MRNumber,Date,Time,DayType,Source,Fasting,TGBlood,HDLBlood,LDLBlood,TCBlood,NABlood,KBlood,ChlBlood,CO2Blood,BUNBlood,CrBlood,GlusBlood,CaBlood,MagBlood,PhosBlood,UricAcidBlood,ProBlood,
+    AlbBlood,TBilBlood,AlpBlood,AstBlood,AltBlood,RBCBlood,HgbBlood,HctBlood,PlateletBlood,MCVBlood,MCHBlood,MCHCBlood,MPVBlood,RDWBlood,WBCBlood,AmmoniaBlood,BHbBlood,AcacBlood, 
+    NeutrophilsBlood,LymphocytesBlood,MonocytesBlood,EosinophilsBlood,BasophilsBlood,LargeUnstainedCellsBlood,NeutrophilsAbsoluteBlood,LymphocytesAbsoluteBlood,MonocytesAbsoluteBlood,EosinophilsAbsoluteBlood,BasophilsAbsoluteBlood,
+    GlusBloodCRC,LactBloodCRCMmol,LabBlood1,LabBlood2,LabBlood3,LabBlood4,LabBlood5,LabBlood6,LabBlood7,LabBlood8,LabBlood9,LabBlood10,LabBlood11,LabBlood12,LabBlood13,LabBlood14,LabBlood15,LabBlood16,LabBlood17,
+    LabBlood18,LabBlood19,LabBlood20,LabBlood21,LabBlood22,LabBlood23,LabBlood24,LabBlood25,LabBlood26,LabBlood27,LabBlood28,LabBlood29,LabBlood30,LabBlood31,LabBlood32,LabBlood33,LabBlood34,LabBlood35,LabBlood36,
+    LabBlood37,LabBlood38,LabBlood39,LabBlood40,LabBlood41,LabBlood42,LabBlood43,LabBlood44,LabBlood45,LabBlood46,LabBlood47,LabBlood48,LabBlood49,LabBlood50,Entered,"",Comments])
+
+    #Save modified workbook
+    wb.save(path)
 
 def saveDailyIntake(patient,MrNumber,Date,DayType,PKTNUM,DataQuality,DayQuality,Entered,Comments):
     path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Daily_Intake_Source.xlsx"

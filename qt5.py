@@ -4907,7 +4907,7 @@ class Test (QWidget):
                 self.ClinicalLabsProBloodF.text(),
                 self.ClinicalLabsAlbBloodF.text(),
                 self.ClinicalLabsTBilBloodF.text(),
-                self.ClinicalLabsTotalBilirubinBloodF.text(),
+                self.ClinicalLabsTotalBilirubinBloodF.text(), #This should be changed to alp_blood
                 self.ClinicalLabsAstBloodF.text(),
                 self.ClinicalLabsAltBloodF.text(),
                 self.ClinicalLabsRBCBloodF.text(),
@@ -4930,6 +4930,7 @@ class Test (QWidget):
                 self.ClinicalLabsBasophilsBloodF.text(),
                 self.ClinicalLabsLargeUnstainedCellsBloodF.text(),
                 self.ClinicalLabsNeutrophilsAbsoluteBloodF.text(),
+                "This is Monocutes Absolute Blood",
                 self.ClinicalLabsLymphocytesAbsoluteBloodF.text(),
                 self.ClinicalLabsEosinophilsAbsoluteBloodF.text(),
                 self.ClinicalLabsBasophilsAbsoluteBloodF.text(),
