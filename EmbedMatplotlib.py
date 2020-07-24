@@ -111,10 +111,15 @@ class Canvas(FigureCanvas):
             ax.set_title(patient + " | Anthropometric Z-Scores")
             ax.set_xlabel("Date")
             ax.set_ylabel("Z-score")
-            # ax.set_facecolor('#f0f0f0')
+            ax.set_facecolor('#f0f0f0')
+            
+            ax.xaxis.pane.fill = False
+            ax.xaxis.pane.set_edgecolor('#f0f0f0')
+
+            
             # ax.set_axis_bgcolor('#f0f0f0')
         except:
-            print("Can't create graph, most likely the types aren't correct or the data is invalid")
+            pass
         
         #try:
         #    data2 = getDemographics(1)

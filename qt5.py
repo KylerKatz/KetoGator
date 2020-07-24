@@ -123,7 +123,7 @@ class Test (QWidget):
         self.graphlist = QListWidget(self)
         self.graphlist.setGeometry(8,190,191,400)
         self.graphlist.setStyleSheet("background-color: rgb(209, 102, 24); border:none; color:white")
-        # self.graphlist.setFont(QtGui.QFont("Ariel", 14))
+        # self.graphlist.setFont(QtGui.QFont("Ariel", 10))
         self.graphlist.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         ################### Top Bar ###################
@@ -1394,12 +1394,12 @@ class Test (QWidget):
         self.ClinicalLabsTBilBloodF.setMaxLength(4)
         self.ClinicalLabsTBilBloodF.setValidator(QDoubleValidator())
 
-        self.ClinicalLabsTotalBilirubinBloodL = QLabel("Alkaline Phosphatase Blood - (U/L)")
-        self.ClinicalLabsTotalBilirubinBloodL.setFont(QtGui.QFont("Ariel", 13))
-        self.ClinicalLabsTotalBilirubinBloodL.setToolTip("Alkaline phosphatase (ALP, ALKP) is a hydrolase enzyme responsible for removing phosphate groups from many types of molecules, including nucleotides, proteins, and alkaloids.")
-        self.ClinicalLabsTotalBilirubinBloodF = QLineEdit()
-        self.ClinicalLabsTotalBilirubinBloodF.setMaxLength(3)
-        self.ClinicalLabsTotalBilirubinBloodF.setValidator(QIntValidator())
+        self.ClinicalLabsAlpbloodL = QLabel("Alkaline Phosphatase Blood - (U/L)")
+        self.ClinicalLabsAlpbloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsAlpbloodL.setToolTip("Alkaline phosphatase (ALP, ALKP) is a hydrolase enzyme responsible for removing phosphate groups from many types of molecules, including nucleotides, proteins, and alkaloids.")
+        self.ClinicalLabsAlpbloodF = QLineEdit()
+        self.ClinicalLabsAlpbloodF.setMaxLength(3)
+        self.ClinicalLabsAlpbloodF.setValidator(QIntValidator())
 
         self.ClinicalLabsAstBloodL = QLabel("Aspartate Amino Transferase Blood - (U/L)")
         self.ClinicalLabsAstBloodL.setFont(QtGui.QFont("Ariel", 13))
@@ -1561,6 +1561,13 @@ class Test (QWidget):
         self.ClinicalLabsLymphocytesAbsoluteBloodF = QLineEdit()
         self.ClinicalLabsLymphocytesAbsoluteBloodF.setMaxLength(4)
         self.ClinicalLabsLymphocytesAbsoluteBloodF.setValidator(QDoubleValidator())
+
+        self.ClinicalLabsMonocytesAbsoluteBloodL = QLabel("Monocytes Absolute Blood - (10^3/μL, 2 Decimals)")
+        self.ClinicalLabsMonocytesAbsoluteBloodL.setFont(QtGui.QFont("Ariel", 13))
+        self.ClinicalLabsMonocytesAbsoluteBloodL.setToolTip("Monocytes [#/​volume] in blood by automated count")
+        self.ClinicalLabsMonocytesAbsoluteBloodF = QLineEdit()
+        self.ClinicalLabsMonocytesAbsoluteBloodF.setMaxLength(4)
+        self.ClinicalLabsMonocytesAbsoluteBloodF.setValidator(QDoubleValidator())
 
         self.ClinicalLabsEosinophilsAbsoluteBloodL = QLabel("Eosinophils Absolute Blood - (10^3/μL, 2 Decimals)")
         self.ClinicalLabsEosinophilsAbsoluteBloodL.setFont(QtGui.QFont("Ariel", 13))
@@ -2182,8 +2189,8 @@ class Test (QWidget):
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAlbBloodF,22,1)
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTBilBloodL,23,0)
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTBilBloodF,23,1)
-        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTotalBilirubinBloodL,24,0)
-        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsTotalBilirubinBloodF,24,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAlpbloodL,24,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAlpbloodF,24,1)
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAstBloodL,25,0)
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAstBloodF,25,1)
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsAltBloodL,26,0)
@@ -2230,14 +2237,16 @@ class Test (QWidget):
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsNeutrophilsAbsoluteBloodF,46,1)
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLymphocytesAbsoluteBloodL,47,0)
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLymphocytesAbsoluteBloodF,47,1)
-        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsEosinophilsAbsoluteBloodL,48,0)
-        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsEosinophilsAbsoluteBloodF,48,1)
-        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBasophilsAbsoluteBloodL,49,0)
-        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBasophilsAbsoluteBloodF,49,1)
-        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsGlusBloodCRCL,50,0)
-        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsGlusBloodCRCF,50,1)
-        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLactBloodCRCMmolL,51,0)
-        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLactBloodCRCMmolF,51,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMonocytesAbsoluteBloodL,48,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsMonocytesAbsoluteBloodF,48,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsEosinophilsAbsoluteBloodL,49,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsEosinophilsAbsoluteBloodF,49,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBasophilsAbsoluteBloodL,50,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsBasophilsAbsoluteBloodF,50,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsGlusBloodCRCL,51,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsGlusBloodCRCF,51,1)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLactBloodCRCMmolL,52,0)
+        self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLactBloodCRCMmolF,52,1)
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood1L,53,0)
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood1F,53,1)
         self.graphinputformclinicallabs.addWidget(self.ClinicalLabsLabBlood2L,54,0)
@@ -2346,7 +2355,7 @@ class Test (QWidget):
 
 
 #         names = ["MRNumber","Date","Time","DayType","Source","Fasting","TGBlood","HDLBlood","LDLBlood","TCBlood","NABlood","KBlood","ChlBlood","CO2Blood","BUNBlood","CrBlood","GlusBlood","CaBlood","MagBlood","PhosBlood","UricAcidBlood","ProBlood",
-# "AlbBlood","TBilBlood","TotalBilirubinBlood","AstBlood","AltBlood","RBCBlood","HgbBlood","HctBlood","PlateletBlood","MCVBlood","MCHBlood","MCHCBlood","MPVBlood","RDWBlood","WBCBlood","AmmoniaBlood","BHbBlood","AcacBlood", 
+# "AlbBlood","TBilBlood","Alpblood","AstBlood","AltBlood","RBCBlood","HgbBlood","HctBlood","PlateletBlood","MCVBlood","MCHBlood","MCHCBlood","MPVBlood","RDWBlood","WBCBlood","AmmoniaBlood","BHbBlood","AcacBlood", 
 # "NeutrophilsBlood","LymphocytesBlood","MonocytesBlood","EosinophilsBlood","BasophilsBlood","LargeUnstainedCellsBlood","NeutrophilsAbsoluteBlood","LymphocytesAbsoluteBlood","EosinophilsAbsoluteBlood","BasophilsAbsoluteBlood",
 # "GlusBloodCRC","LactBloodCRCMmol"]
 #         for el in names:
@@ -3256,14 +3265,52 @@ class Test (QWidget):
         temp.clear()
         # temp.extend(newlist)
 
-        graphnames = ["Alertness","Anthropometrics", "Clinic GI Issues","Clinical Labs","Daily Intake",
+        graphnames = ["Alertness_Source","Anthropometrics_Source", "Clinic GI Issues","Clinical Labs","Daily Intake",
         "Diet RX","Med Data","Menus","Other Med","Seizure Data","Seizure Ranking","Urine Kt SG","Vitals","VNS"]
         
         for string in newlist:
-            for name in graphnames:
-                if name in string:
-                        temp.append(name) 
+            
+            if "Alertness_Source" in string:
+                temp.append("Alertness")
+            
+            if "Anthropometrics_Source" in string:
+                temp.append("Anthropometrics")
 
+            if "Clinic_GI_Issues_Source" in string:
+                temp.append("Clinic GI Issues")
+            
+            if "Clinical_Labs_Source" in string:
+                temp.append("Clinical Labs")
+            
+            if "Daily_Intake_Source" in string:
+                temp.append("Daily Intake")
+
+            if "Diet_RX_Source" in string:
+                temp.append("Diet RX")
+            
+            if "Med_Data_Source" in string:
+                temp.append("Med Data")
+            
+            if "Menus_Source" in string:
+                temp.append("Menus")
+            
+            if "Other_Med_Source" in string:
+                temp.append("Other Med")
+            
+            if "Seizure_Data_Source" in string:
+                temp.append("Seizure Data")
+            
+            if "Seizure_Ranking_Source" in string:
+                temp.append("Seizure Ranking")
+
+            if "Urine_Kt_SG_Source" in string:
+                temp.append("Urine Kt SG")
+
+            if "Vitals_Source" in string:
+                temp.append("Vitals")
+
+            if "VNS_Source" in string:
+                temp.append("VNS")
 
         self.graphlist.clear()
         self.graphlist.addItems(temp)
@@ -3536,8 +3583,8 @@ class Test (QWidget):
         self.ClinicalLabsAlbBloodF.close()
         self.ClinicalLabsTBilBloodL.close()
         self.ClinicalLabsTBilBloodF.close()
-        self.ClinicalLabsTotalBilirubinBloodL.close()
-        self.ClinicalLabsTotalBilirubinBloodF.close()
+        self.ClinicalLabsAlpbloodL.close()
+        self.ClinicalLabsAlpbloodF.close()
         self.ClinicalLabsAstBloodL.close()
         self.ClinicalLabsAstBloodF.close()
         self.ClinicalLabsAltBloodL.close()
@@ -3584,6 +3631,8 @@ class Test (QWidget):
         self.ClinicalLabsNeutrophilsAbsoluteBloodF.close()
         self.ClinicalLabsLymphocytesAbsoluteBloodL.close()
         self.ClinicalLabsLymphocytesAbsoluteBloodF.close()
+        self.ClinicalLabsMonocytesAbsoluteBloodL.close()
+        self.ClinicalLabsMonocytesAbsoluteBloodF.close()
         self.ClinicalLabsEosinophilsAbsoluteBloodL.close()
         self.ClinicalLabsEosinophilsAbsoluteBloodF.close()
         self.ClinicalLabsBasophilsAbsoluteBloodL.close()
@@ -4091,8 +4140,8 @@ class Test (QWidget):
         self.ClinicalLabsAlbBloodF.show()
         self.ClinicalLabsTBilBloodL.show()
         self.ClinicalLabsTBilBloodF.show()
-        self.ClinicalLabsTotalBilirubinBloodL.show()
-        self.ClinicalLabsTotalBilirubinBloodF.show()
+        self.ClinicalLabsAlpbloodL.show()
+        self.ClinicalLabsAlpbloodF.show()
         self.ClinicalLabsAstBloodL.show()
         self.ClinicalLabsAstBloodF.show()
         self.ClinicalLabsAltBloodL.show()
@@ -4139,6 +4188,8 @@ class Test (QWidget):
         self.ClinicalLabsNeutrophilsAbsoluteBloodF.show()
         self.ClinicalLabsLymphocytesAbsoluteBloodL.show()
         self.ClinicalLabsLymphocytesAbsoluteBloodF.show()
+        self.ClinicalLabsMonocytesAbsoluteBloodL.show()
+        self.ClinicalLabsMonocytesAbsoluteBloodF.show()
         self.ClinicalLabsEosinophilsAbsoluteBloodL.show()
         self.ClinicalLabsEosinophilsAbsoluteBloodF.show()
         self.ClinicalLabsBasophilsAbsoluteBloodL.show()
@@ -4578,7 +4629,7 @@ class Test (QWidget):
         self.ClinicalLabsProBloodF.setText(""),
         self.ClinicalLabsAlbBloodF.setText(""),
         self.ClinicalLabsTBilBloodF.setText(""),
-        self.ClinicalLabsTotalBilirubinBloodF.setText(""),
+        self.ClinicalLabsAlpbloodF.setText(""),
         self.ClinicalLabsAstBloodF.setText(""),
         self.ClinicalLabsAltBloodF.setText(""),
         self.ClinicalLabsRBCBloodF.setText(""),
@@ -4602,6 +4653,7 @@ class Test (QWidget):
         self.ClinicalLabsLargeUnstainedCellsBloodF.setText(""),
         self.ClinicalLabsNeutrophilsAbsoluteBloodF.setText(""),
         self.ClinicalLabsLymphocytesAbsoluteBloodF.setText(""),
+        self.ClinicalLabsMonocytesAbsoluteBloodF.setText(""),
         self.ClinicalLabsEosinophilsAbsoluteBloodF.setText(""),
         self.ClinicalLabsBasophilsAbsoluteBloodF.setText(""),
         self.ClinicalLabsGlusBloodCRCF.setText(""),
@@ -4907,7 +4959,7 @@ class Test (QWidget):
                 self.ClinicalLabsProBloodF.text(),
                 self.ClinicalLabsAlbBloodF.text(),
                 self.ClinicalLabsTBilBloodF.text(),
-                self.ClinicalLabsTotalBilirubinBloodF.text(), #This should be changed to alp_blood
+                self.ClinicalLabsAlpbloodF.text(),
                 self.ClinicalLabsAstBloodF.text(),
                 self.ClinicalLabsAltBloodF.text(),
                 self.ClinicalLabsRBCBloodF.text(),
@@ -4931,7 +4983,7 @@ class Test (QWidget):
                 self.ClinicalLabsLargeUnstainedCellsBloodF.text(),
                 self.ClinicalLabsNeutrophilsAbsoluteBloodF.text(),
                 self.ClinicalLabsLymphocytesAbsoluteBloodF.text(),
-                "This is Monocytes Absolute Blood",
+                self.ClinicalLabsMonocytesAbsoluteBloodF.text(),
                 self.ClinicalLabsEosinophilsAbsoluteBloodF.text(),
                 self.ClinicalLabsBasophilsAbsoluteBloodF.text(),
                 self.ClinicalLabsGlusBloodCRCF.text(),
