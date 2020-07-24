@@ -39,36 +39,88 @@ class Canvas(FigureCanvas):
 
     def plot(self, patient):
         try:
-            data = getAnthropometricsDataFrame(patient)
+            ht_z = []
+            wt_z = []
+            bmi_z = []
+            data = getAnthropometricsClinicalDataFrame(patient)
 
-            weight = data["Wt"]
-            date = pd.to_datetime(data["Date"])
+            date = pd.to_datetime(data["DATE"])
+            age = data["AGE"]
 
-            print("------------------")
-            print("The Dates Are ...")
-            for d in date:
-                print(str(d) + " - type - " + str(type(d)))
+            for index, row in data.iterrows():
+                if(row["AGE"] >= 2 and row["AGE"] <= 20):
+                    if(pd.isna(row["CDC_HT_Z"]) == False):
+                        ht_z.append(row["CDC_HT_Z"])
+                    else:
+                        ht_z.append(row["CDC_HT_Z_DAY"])
+                    
+                    if(pd.isna(row["CDC_WT_Z"]) == False):
+                        wt_z.append(row["CDC_WT_Z"])
+                    else:
+                        wt_z.append(row["CDC_WT_Z_DAY"])
+                    
+                    if(pd.isna(row["CDC_BMI_Z"]) == False):
+                        bmi_z.append(row["CDC_BMI_Z"])
+                    else:
+                        bmi_z.append(row["CDC_BMI_Z_DAY"])
+                elif(row["AGE"] < 2):
+                    if(pd.isna(row["WHO_HT_Z"]) == False):
+                        ht_z.append(row["WHO_HT_Z"])
+                    else:
+                        ht_z.append(row["WHO_HT_Z_DAY"])
+                    
+                    if(pd.isna(row["WHO_WT_Z"]) == False):
+                        wt_z.append(row["WHO_WT_Z"])
+                    else:
+                        wt_z.append(row["WHO_WT_Z_DAY"])
+                    
+                    if(pd.isna(row["WHO_BMI_Z"]) == False):
+                        bmi_z.append(row["WHO_BMI_Z"])
+                    else:
+                        bmi_z.append(row["WHO_BMI_Z_DAY"])
+                else:
+                    if(pd.isna(row["NHANES_HT_Z"]) == False):
+                        ht_z.append(row["NHANES_HT_Z"])
+                    else:
+                        ht_z.append(row["NHANES_HT_Z_DAY"])
+                    
+                    if(pd.isna(row["NHANES_WT_Z"]) == False):
+                        wt_z.append(row["NHANES_WT_Z"])
+                    else:
+                        wt_z.append(row["NHANES_WT_Z_DAY"])
+                    
+                    if(pd.isna(row["NHANES_BMI_Z"]) == False):
+                        bmi_z.append(row["NHANES_BMI_Z"])
+                    else:
+                        bmi_z.append(row["NHANES_BMI_Z_DAY"])
 
-            print("------------------")
-            print("The Weights Are ...")
-            for w in weight:
-                print(str(w) + " - type - " + str(type(w)))
+            new_data = {'Date':date, 'Age':age, 'HtZ':ht_z, 'WtZ':wt_z, 'BmiZ':bmi_z}
+            newdf = pd.DataFrame(new_data)
+            print(newdf)
 
-
+            newdf = newdf.dropna()
+            print(newdf)
 
             ax = self.figure.add_subplot(111)
-            ax.plot(date, weight)
-            ax.set_title(patient + " | Anthropometrics (Weight vs Time)")
-            ax.set_xlabel("Date - (MM/DD/YYYY)")
-            ax.set_ylabel("Weight - (KG)")
+            ax.grid(axis='y')
+            #ax.plot(date, age)
+            ax.plot('Date', 'HtZ', data=newdf, marker='D', markerfacecolor='orange', markersize=14, color='orange', linewidth=6)
+            ax.plot('Date', 'WtZ', data=newdf, marker='s', markerfacecolor='purple', markersize=14, color='purple', linewidth=6)
+            ax.plot('Date', 'BmiZ', data=newdf, marker='^',  markerfacecolor='green', markersize=14, color='green', linewidth=6)
+            ax.legend()
+            ax.set_title(patient + " | Anthropometric Z-Scores")
+            ax.set_xlabel("Date")
+            ax.set_ylabel("Z-score")
             # ax.set_facecolor('#f0f0f0')
             # ax.set_axis_bgcolor('#f0f0f0')
-            
-            
-
         except:
             print("Can't create graph, most likely the types aren't correct or the data is invalid")
-
+        
+        #try:
+        #    data2 = getDemographics(1)
+        #   print (data2)
+        #except:
+        #    print("error with demo")
 # app = QApplication(sys.argv)
 # window = Window()
 # window.show()
