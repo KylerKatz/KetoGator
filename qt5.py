@@ -3,6 +3,7 @@ import os
 from PyQt5 import QtWidgets, uic, QtSql, QtCore, QtGui
 from PyQt5.QtGui import QPixmap, QFont, QIntValidator, QDoubleValidator
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 from datetime import datetime
 
 
@@ -64,8 +65,14 @@ class Login (QWidget):
         self.mainlayout.setAlignment(QtCore.Qt.AlignVCenter | QtCore.Qt.AlignHCenter )
         
         self.setLayout (self.mainlayout)
+        
+
 
         self.loginbutton.mousePressEvent = self.handlelogin
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter:
+            self.handlelogin(event)
 
     def handlelogin(self,event):
         if(self.usernameform.text().lower() == 'user' and self.passwordform.text().lower() == 'pass'):
@@ -113,6 +120,7 @@ class Test (QWidget):
         self.logo.setPixmap(QPixmap(img_path)) 
         self.logo.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
+
         self.newpatientbuttion = QLabel("Add New Patient", self)
         self.newpatientbuttion.move(30,150)
         self.newpatientbuttion.resize(140,20)
@@ -135,10 +143,26 @@ class Test (QWidget):
         self.searchbar.setPlaceholderText("Patient Search")
         self.searchbar.setStyleSheet("background-color:rgb(255, 255, 255);border-radius: 10px;")
 
-        self.logoutbutton = QtWidgets.QPushButton("Log Out",self)
-        self.logoutbutton.setStyleSheet("background-color: rgb(209, 102, 24);color:white; border-radius: 10px; padding-left: 15px; padding-right: 15px; padding-top:10px; padding-bottom:10px")
-        self.logoutbutton.setFont(QtGui.QFont("Ariel", 14))
+        # self.homebutton = QtWidgets.QPushButton("Home",self)
+        # self.homebutton.setStyleSheet("background-color: rgb(209, 102, 24);color:white; border-radius: 10px; padding-left: 15px; padding-right: 15px; padding-top:10px; padding-bottom:10px")
+        # self.homebutton.setFont(QtGui.QFont("Ariel", 14))
+        # self.homebutton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
+        self.homebutton = QLabel(self)
+        img_path_Home = os.path.join(ui_path, "Home.png")
+        self.homebutton.setPixmap(QPixmap(img_path_Home)) 
+        self.homebutton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
+
+        self.logoutbutton = QLabel(self)
+        img_path_logout = os.path.join(ui_path, "Logout.png")
+        self.logoutbutton.setPixmap(QPixmap(img_path_logout)) 
         self.logoutbutton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        
+        # self.logoutbutton = QtWidgets.QPushButton("Log Out",self)
+        # self.logoutbutton.setStyleSheet("background-color: rgb(209, 102, 24);color:white; border-radius: 10px; padding-left: 15px; padding-right: 15px; padding-top:10px; padding-bottom:10px")
+        # self.logoutbutton.setFont(QtGui.QFont("Ariel", 14))
+        # self.logoutbutton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         self.confirmbutton = QtWidgets.QPushButton("Confirm",self)
         self.confirmbutton.setStyleSheet("background-color: rgb(209, 102, 24);color:white; border-radius: 10px; padding-left: 15px; padding-right: 15px; padding-top:10px; padding-bottom:10px; font-weight:bold; ")
@@ -162,8 +186,10 @@ class Test (QWidget):
 
         ################### Add New Patient ###################
         self.newtip = QLabel("Complete The Form Below To Add A New Patient")
+        self.newtip.setFont(QtGui.QFont("Ariel", 14))
         
-        self.namelabel = QLabel("Medical Record Number:")
+        
+        self.namelabel = QLabel("Patient Number:")
         self.nameinput = QLineEdit()
 
    
@@ -2014,9 +2040,10 @@ class Test (QWidget):
         self.topbarmid2.addStretch()
         self.topbarmid2.addWidget(self.confirmbutton)
 
+        self.topbar.addWidget(self.homebutton)
         self.topbar.addLayout(self.topbarmid1)
         self.topbar.addWidget(self.logoutbutton)
-        self.topbar.setContentsMargins(0,50,50,20)
+        self.topbar.setContentsMargins(50,50,50,20)
         self.topbar.setAlignment(QtCore.Qt.AlignTop)
 
         ################### Middle DashBoard ###################
@@ -2793,11 +2820,16 @@ class Test (QWidget):
 #################################################################################################################################################################
         ################### Event Calling ###################
         self.logo.mousePressEvent = self.handlelogo
+        self.homebutton.mousePressEvent = self.handlelogo
         self.newpatientbuttion.mousePressEvent = self.handlenewpatient
         self.addpatientbutton.mousePressEvent = self.addnewpatient
+        self.nameinput.returnPressed.connect(self.addnewpatient)
+
         self.graphlist.itemClicked.connect(self.handlelist)    
 
         self.confirmbutton.mousePressEvent = self.handlesearch
+        self.searchbar.returnPressed.connect(self.handlesearch)
+
         self.logoutbutton.mousePressEvent = self.handlelogout
         # self.searchbar.textChanged.connect(self.handlesearch)
     
@@ -2890,7 +2922,8 @@ class Test (QWidget):
 
         # print(item.text())
 
-    def handlesearch(self,event):
+    def handlesearch(self,event=QtGui.QMouseEvent):
+        print (event)
         search = self.searchbar.text()
         i = 0
         j = 0
@@ -2985,14 +3018,15 @@ class Test (QWidget):
 
 
                 
-    def addnewpatient(self,event):
+    def addnewpatient(self,event=QtGui.QMouseEvent):
         if (self.nameinput.text != ''):
             setNewPatient(self.nameinput.text())
             self.nameinput.setText('')
+            self.newpatientpopupsucess = QMessageBox.question(self,"Success","New Patient Added.", QMessageBox.Ok)
 
-        # Eventually I need to make sure it can only be 10 chars, but for now this is ok 
+
       
-    def handleupdate(self, event):
+    def handleupdate(self, event=QtGui.QMouseEvent):
         self.closeprofile()
         self.middle.addLayout(self.graphinputformtop)
         self.currentpatienttext.show()
@@ -3334,9 +3368,10 @@ class Test (QWidget):
 
         self.loadgraphnames()
         self.closedashboard()
-        self.patientname.show()
-        self.patientage.show()
-        self.updateinfobutton.show()
+        self.handleupdate()
+        # self.patientname.show()
+        # self.patientage.show()
+        # self.updateinfobutton.show()
         
     def closeprofile(self):
         self.patientname.close()
