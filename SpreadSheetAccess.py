@@ -1,45 +1,38 @@
-import xlrd  # used to read from excel document
+import xlrd
 from openpyxl import *
 import os
 import pandas
 
+# Creates appropriate directories for new patient or existing patient who doesn't have them
+def setNewPatient(MrNum):
+    path = r"Current Patients\\" + MrNum + r"\\DataBases\\Data\\"
 
-# Returns sheet that has the specified patients anthropometric sheet
-def getPatientAnthropometrics(patient):
-    try:
-        path = r"Current Patients\\" + patient + r"\DataBases\Data\\" + patient + r"_Anthropometrics_Source.xlsx"
-        workbook = xlrd.open_workbook(path)
-        worksheet = workbook.sheet_by_name('Anthropometrics')
-        return workbook
-    except FileNotFoundError:
-        exit("This Patient Doesn't Exist. Please Review Your Spelling")
+    # If path doesn't exist, the function executes, otherwise nothing happens
+    if not os.path.isdir(path):
 
+        # Used to make appropriate directories
+        switch = {
+            0: MrNum,
+            1: "\DataBases",
+            2: "\Data",
+        }
+        dir = "Current Patients\\"
+
+        # Create necessary directories
+        for i in range(3):
+            dir = dir + switch.get(i)
+            os.mkdir(dir)
 
 # Returns list of all patients
 def getAllPatients():
     cwd = os.getcwd() + "\Current Patients"
     return (os.listdir(cwd))
 
-
+# Returns list of all excel sheets a patient has
 def getPatientGraphs(patient):
     return (os.listdir("./Current Patients/" + patient + "/DataBases/Data/"))
 
-
-# def getDemographics(mrn):
-#    print("in demographics")
-#    try:
-#        path = str(os.getcwd()) + r"\Current Patients\Demographics_Source.xlsx"
-#        workbook = xlrd.open_workbook(filename=path)
-#        sheetnames = workbook.sheet_names()
-#        worksheet = workbook.sheet_by_name(sheetnames[0])
-#        for row_ndx in range(1, worksheet.nrows):
-#            for col_ndx in range(0, 1):
-#                cell_val = int(worksheet.cell_value(row_ndx, col_ndx))
-#                print ('Column: [%s] cell_obj: [%s]' % (col_ndx, cell_val))
-#        return 1
-#    except:
-#        exit("demo error")
-
+################### Save Methods for excel sheets ################### 
 
 def saveAlertness(patient, MRNumber, Date, DayType, Alertness, Activity, Development, Entered, Comments):
     path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Alertness_Source.xlsx"
@@ -487,6 +480,22 @@ def saveVNS(patient, MRNumber, Date, DayType, MRMagAct, OutPutCurr, VNSFrequency
     # Save modified workbook
     wb.save(path)
 
+################### Getter Methods for excel sheets ###################
+
+# def getDemographics(mrn):
+#    print("in demographics")
+#    try:
+#        path = str(os.getcwd()) + r"\Current Patients\Demographics_Source.xlsx"
+#        workbook = xlrd.open_workbook(filename=path)
+#        sheetnames = workbook.sheet_names()
+#        worksheet = workbook.sheet_by_name(sheetnames[0])
+#        for row_ndx in range(1, worksheet.nrows):
+#            for col_ndx in range(0, 1):
+#                cell_val = int(worksheet.cell_value(row_ndx, col_ndx))
+#                print ('Column: [%s] cell_obj: [%s]' % (col_ndx, cell_val))
+#        return 1
+#    except:
+#        exit("demo error")
 
 # Returns dataframe containing data inside the excel sheet
 def getAnthropometricsDataFrame(patient):
@@ -565,22 +574,3 @@ def getAlertnessDataFrame(patient):
     dataframe = pandas.read_excel(path)
     return dataframe
 
-# Creates appropriate directories for new patient or existing patient who doesn't have them
-def setNewPatient(MrNum):
-    path = r"Current Patients\\" + MrNum + r"\\DataBases\\Data\\"
-
-    # If path doesn't exist, the function executes, otherwise nothing happens
-    if not os.path.isdir(path):
-
-        # Used to make appropriate directories
-        switch = {
-            0: MrNum,
-            1: "\DataBases",
-            2: "\Data",
-        }
-        dir = "Current Patients\\"
-
-        # Create necessary directories
-        for i in range(3):
-            dir = dir + switch.get(i)
-            os.mkdir(dir)
