@@ -500,6 +500,70 @@ def getAnthropometricsClinicalDataFrame(patient):
     dataframe = pandas.read_excel(path)
     return dataframe
 
+def getVNSDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Clinic_VNS_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getVitalsDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Vitals_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getUrineKtSgDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Urine_Kt_SG_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getSeizureRankingDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Seizure_Ranking_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getSeizureDataDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Seizure_Data_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getOtherMedDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Other_Med_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getMenusDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Menus_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getMedDataDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Med_Data_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getDietRXDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Diet_RX_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getDailyIntakeDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Daily_Intake_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getClinicalLabsDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Clinical_Labs_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getClinicGIDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Clinic_GI_Issues_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
+
+def getAlertnessDataFrame(patient):
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Alertness_Source.xlsx"
+    dataframe = pandas.read_excel(path)
+    return dataframe
 
 # Creates appropriate directories for new patient or existing patient who doesn't have them
 def setNewPatient(MrNum):
