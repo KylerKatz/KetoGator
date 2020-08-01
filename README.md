@@ -42,12 +42,12 @@ In class, our config files keep the display value to -1 and the Native OpenGL op
 
 This will have to be changed before running the program, or it could possible cause errors with the UI.
 
-## MySQL Configuration File (LATER)
+## MySQL Configuration File 
 The MySQL connector looks for a configuration file called mysql.conf. It should specify host, database, user, password, and port information for the target database.
 
-The package should install all dependencies.
+This information is used by the db_connection file, which exists as a separate script to de-identify and export data from the excel sheets to a MySQL database. The decision for this script to exist on its own rather than as a part of the main GUI program was made as a result of customer requirements for protection of HIPAA data.
 
-Our project specifications have changed by the "customer" of this project just recently (6/27). This config will be added at another time.
+The package should install all dependencies.
 
 ## GitHub Link
 https://github.com/KylerKatz/KetoGator/tree/dain_kg_package3
