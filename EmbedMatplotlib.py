@@ -186,16 +186,19 @@ class Canvas(FigureCanvas):
         ax = self.figure.add_subplot(111)
 
         #add total plot
-        ax.plot("Date", "MED_LOAD_PER_MED", data=total, marker = 's', label = "Total")
+        ax.plot("Date", "MED_LOAD_PER_MED", data=total, marker = 's', markersize = 14, label = "Total", linewidth = 6)
 
         # Add each Med's med load, while ensuring there are no duplicates
         items = []
         for x in medTable["Med_ID"]:
             if(not x in items):
-                ax.plot("Date", "MED_LOAD_PER_MED", data=medTable.loc[medTable['Med_ID'] == x], marker='D', label = (medRankings.loc[medRankings['Med_ID'] == x])["MED_GENERIC_NAME"].values[0])
+                ax.plot("Date", "MED_LOAD_PER_MED", data=medTable.loc[medTable['Med_ID'] == x], marker='D', markersize = 14, label = (medRankings.loc[medRankings['Med_ID'] == x])["MED_GENERIC_NAME"].values[0], linewidth = 6)
                 items.append(x)
 
         # Add lables
         ax.set_xlabel("Date - (YYYY-MM)")
         ax.set_ylabel("Medication Load")
         ax.legend()
+        ax.set_title(patient + " | Med Load")
+        ax.set_facecolor('#f0f0f0')
+        ax.grid(axis="y")

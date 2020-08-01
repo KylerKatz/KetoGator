@@ -2891,6 +2891,10 @@ class Test (QWidget):
             self.anthropometricsGraph.close()
         except AttributeError:
             pass
+        try:
+            self.medloadGraph.close()
+        except AttributeError:
+            pass
     
 
 
@@ -2909,16 +2913,17 @@ class Test (QWidget):
         try: 
             if(self.anthropometricsGraph):
                 self.anthropometricsGraph.close()
-        
+            if(self.medloadGraph):
+                self.medloadGraph.close()
         except AttributeError:
             print("Creating First Graph")
-        
+
         if("Anthropometrics" in item.text()):
             self.anthropometricsGraph = Canvas(self.currentpatient, plot = "Anthropometrics")
             # self.anthropometricsGraph.move(0,0)
             self.anthropometricsGraph.close()
             self.middle.addWidget(self.anthropometricsGraph)
-        elif("Med Load" in item.text()):
+        if("Med Load" in item.text()):
             self.medloadGraph = Canvas(self.currentpatient, plot = "Med Load")
             # self.medloadGraph.move(0,0)
             self.medloadGraph.close()
@@ -2996,6 +3001,10 @@ class Test (QWidget):
             self.anthropometricsGraph.close()
         except AttributeError:
             print("No Graph to delete")
+        try:
+            self.medloadGraph.close()
+        except AttributeError:
+            print("No Graph to delete")
     
     def handlelogout(self,event):
         log = Login()
@@ -3018,6 +3027,10 @@ class Test (QWidget):
 
         try:
             self.anthropometricsGraph.close()
+        except AttributeError:
+            print("No Graph to delete")
+        try:
+            self.medloadGraph.close()
         except AttributeError:
             print("No Graph to delete")
 
