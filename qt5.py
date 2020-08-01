@@ -2914,10 +2914,15 @@ class Test (QWidget):
             print("Creating First Graph")
         
         if("Anthropometrics" in item.text()):
-            self.anthropometricsGraph = Canvas(self.currentpatient)
+            self.anthropometricsGraph = Canvas(self.currentpatient, plot = "Anthropometrics")
             # self.anthropometricsGraph.move(0,0)
             self.anthropometricsGraph.close()
             self.middle.addWidget(self.anthropometricsGraph)
+        elif("Med Load" in item.text()):
+            self.medloadGraph = Canvas(self.currentpatient, plot = "Med Load")
+            # self.medloadGraph.move(0,0)
+            self.medloadGraph.close()
+            self.middle.addWidget(self.medloadGraph)
 
 
         # print(item.text())
@@ -3294,63 +3299,9 @@ class Test (QWidget):
 
     
     def loadgraphnames(self):
-        newlist = getPatientGraphs(self.currentpatient)
-        temp = []
-        temp.clear()
-        # temp.extend(newlist)
-
-        graphnames = ["Alertness_Source","Anthropometrics_Source", "Clinic GI Issues","Clinical Labs","Daily Intake",
-        "Diet RX","Med Data","Menus","Other Med","Seizure Data","Seizure Ranking","Urine Kt SG","Vitals","VNS"]
-        
-        for string in newlist:
-            
-            if "Alertness_Source" in string:
-                temp.append("Alertness")
-            
-            if "Anthropometrics_Source" in string:
-                temp.append("Anthropometrics")
-
-            if "Clinic_GI_Issues_Source" in string:
-                temp.append("Clinic GI Issues")
-            
-            if "Clinical_Labs_Source" in string:
-                temp.append("Clinical Labs")
-            
-            if "Daily_Intake_Source" in string:
-                temp.append("Daily Intake")
-
-            if "Diet_RX_Source" in string:
-                temp.append("Diet RX")
-            
-            if "Med_Data_Source" in string:
-                temp.append("Med Data")
-            
-            if "Menus_Source" in string:
-                temp.append("Menus")
-            
-            if "Other_Med_Source" in string:
-                temp.append("Other Med")
-            
-            if "Seizure_Data_Source" in string:
-                temp.append("Seizure Data")
-            
-            if "Seizure_Ranking_Source" in string:
-                temp.append("Seizure Ranking")
-
-            if "Urine_Kt_SG_Source" in string:
-                temp.append("Urine Kt SG")
-
-            if "Vitals_Source" in string:
-                temp.append("Vitals")
-
-            if "VNS_Source" in string:
-                temp.append("VNS")
-
         self.graphlist.clear()
-        self.graphlist.addItems(temp)
+        self.graphlist.addItems(getPatientGraphs(self.currentpatient))
         
-        
-
     def closedashboard(self):
         self.currentpatienttext.close()
         self.middlescrollarea.close()

@@ -25,12 +25,30 @@ def setNewPatient(MrNum):
 
 # Returns list of all patients
 def getAllPatients():
-    cwd = os.getcwd() + "\Current Patients"
+    cwd = os.getcwd() + "\\Current Patients"
     return (os.listdir(cwd))
 
 # Returns list of all excel sheets a patient has
+def getPatientExcels(patient):
+    return (os.listdir("Current Patients\\" + patient + "\\DataBases\\Data\\"))
+
+# Returns list of all graphs a patient has
 def getPatientGraphs(patient):
-    return (os.listdir("./Current Patients/" + patient + "/DataBases/Data/"))
+    graphs = []
+
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Anthropometrics_Clinical.xlsx"
+
+    if os.path.isfile(path):
+        graphs.append("Anthropometrics")
+    
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Anthropometrics_Source.xlsx"
+    path2 = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Med_Data_Source.xlsx"
+
+    if os.path.isfile(path) and os.path.isfile(path2):
+        graphs.append("Med Load")
+
+
+    return (graphs)
 
 ################### Save Methods for excel sheets ################### 
 
@@ -573,4 +591,4 @@ def getAlertnessDataFrame(patient):
     path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Alertness_Source.xlsx"
     dataframe = pandas.read_excel(path)
     return dataframe
-
+    

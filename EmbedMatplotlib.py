@@ -28,14 +28,17 @@ from SpreadSheetAccess import *
 #         canvas.move(0,0)
 
 class Canvas(FigureCanvas):
-    def __init__(self, patient, parent = None, width = 15, height = 10, dpi = 100):
+    def __init__(self, patient, parent = None, width = 15, height = 10, dpi = 100, plot=""):
         fig = Figure(figsize=(width, height), dpi=dpi)
         self.axes = fig.add_subplot(111)
 
         FigureCanvas.__init__(self, fig)
         self.setParent(parent)
 
-        self.plot(patient=patient)
+        if plot == "Anthropometrics":
+            self.plot(patient)
+        elif plot == "Med Load":
+            self.medloadplot(patient)
 
     def plot(self, patient):
         try:
@@ -120,13 +123,79 @@ class Canvas(FigureCanvas):
             # ax.set_axis_bgcolor('#f0f0f0')
         except:
             pass
-        
-        #try:
-        #    data2 = getDemographics(1)
-        #   print (data2)
-        #except:
-        #    print("error with demo")
-# app = QApplication(sys.argv)
-# window = Window()
-# window.show()
-# app.exec()
+
+    # Plots Med Load
+    def medloadplot(self, patient):
+
+        # Get appropriate Data
+        anthro = getAnthropometricsDataFrame(patient)
+        medData = getMedDataDataFrame(patient)
+
+        # Remove Day Type of 3
+        anthro = anthro[anthro.Day_Type != 3]
+        medData = medData[medData.Day_Type != 3]
+
+        # Create table with necessary information
+        anthroTable = anthro[["Date", "Wt"]].copy()
+        medTable = medData[["Date", "Med_ID", "Prod_Name", "Daily_Med_Dose_Mg"]].copy()
+    
+        # Get Med Ranking
+        medRankings = pandas.read_excel("MED_RANKING_SOURCE.xlsx")
+
+        # Save med names
+        temp = medRankings[["MED_ID","MED_GENERIC_NAME"]].drop_duplicates()
+
+        # Separate MED_ID and MED_MIN_DOSE to remoce duplicates
+        medRankings = medRankings[["MED_ID", "MED_MIN_DOSE"]]
+
+        # Remove duplicate MED_IDs, then merge temp, which was holding the name of each med
+        medRankings = medRankings.groupby('MED_ID').mean().reset_index()
+        medRankings = pd.merge(medRankings, temp, on="MED_ID", how="inner")
+
+        # set column to datetime and add column containing dates with only month and year
+        medTable["Date"] = pd.to_datetime(medTable["Date"], format="%m/%d/%y")
+        medTable["MonthDate"] = medTable["Date"].dt.to_period("M")
+
+        # set column to datetime and add column containing dates with only month and year
+        anthroTable["Date"] = pd.to_datetime(anthroTable["Date"])
+        anthroTable["MonthDate"] = anthroTable["Date"].dt.to_period("M")
+
+        # Remove regular date column, leaving only month and year
+        del anthroTable["Date"]
+
+        # Merge based on MonthDate
+        medTable = pd.merge(medTable, anthroTable, on="MonthDate", how="outer")
+
+        # Fill any NaN values on Wt
+        medTable["Wt"] = medTable["Wt"].fillna(method="ffill")
+        medTable["Wt"] = medTable["Wt"].fillna(method="bfill")
+
+        # Calculate med intake
+        medTable["Med_Intake"] = medTable["Daily_Med_Dose_Mg"] / medTable["Wt"]
+
+        # Rename column for compatability
+        medRankings = medRankings.rename(columns={"MED_ID" : "Med_ID"})
+
+        # Merge and calculate med load
+        medTable = pd.merge(medTable, medRankings, on="Med_ID")
+        medTable["MED_LOAD_PER_MED"] = medTable["Med_Intake"] / medTable["MED_MIN_DOSE"]
+
+        # Add different med loads in one day to get the total med load
+        total = medTable.groupby("Date").agg(sum).reset_index()
+
+        ax = self.figure.add_subplot(111)
+
+        #add total plot
+        ax.plot("Date", "MED_LOAD_PER_MED", data=total, marker = 's', label = "Total")
+
+        # Add each Med's med load, while ensuring there are no duplicates
+        items = []
+        for x in medTable["Med_ID"]:
+            if(not x in items):
+                ax.plot("Date", "MED_LOAD_PER_MED", data=medTable.loc[medTable['Med_ID'] == x], marker='D', label = (medRankings.loc[medRankings['Med_ID'] == x])["MED_GENERIC_NAME"].values[0])
+                items.append(x)
+
+        # Add lables
+        ax.set_xlabel("Date - (YYYY-MM)")
+        ax.set_ylabel("Medication Load")
+        ax.legend()
