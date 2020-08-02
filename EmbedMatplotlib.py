@@ -2,8 +2,6 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
 import sys
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
-import matplotlib.pyplot as plt
-import matplotlib
 import numpy as np
 import pandas as pd
 from datetime import datetime
@@ -255,6 +253,5 @@ class Canvas(FigureCanvas):
             ax.set_facecolor('#f0f0f0')
             ax.grid(axis="y")
             self.figure.autofmt_xdate()
-            plt.show()
         except:
             pass
