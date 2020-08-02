@@ -5,6 +5,7 @@ from matplotlib.figure import Figure
 import numpy as np
 import pandas as pd
 from datetime import datetime
+from datetime import date
 from SpreadSheetAccess import *
 
 # class Window(QMainWindow):
@@ -129,8 +130,6 @@ class Canvas(FigureCanvas):
 
             data["MEAN_NHANES_BMI"] = MEAN_NHANES_BMI
             data["SD_NHANES_BMI"] = SD_NHANES_BMI
-            
-            i = 1
 
             for index, row in data.iterrows():
                 if(pd.isna(row["Ht"]) == False and pd.isna(row["Wt"]) == False):
@@ -172,15 +171,11 @@ class Canvas(FigureCanvas):
                         ht_z.append((row["Ht"]-row["MEAN_NHANES_HT"])/row["SD_NHANES_HT"])
                         wt_z.append((mean_w-row["MEAN_NHANES_WT"])/row["SD_NHANES_WT"])
                         bmi_z.append(((mean_w/((row["Ht"]/100)**2))-row["MEAN_NHANES_BMI"])/row["SD_NHANES_BMI"])
-                print(i)
-                i = i + 1
 
             new_data = {'Date':date_arr, 'Age':age, 'HtZ':ht_z, 'WtZ':wt_z, 'BmiZ':bmi_z}
             newdf = pd.DataFrame(new_data)
-            print(newdf)
 
             newdf = newdf.dropna()
-            print(newdf)
 
             ax = self.figure.add_subplot(111)
             ax.grid(axis='y')
