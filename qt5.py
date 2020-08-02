@@ -3289,6 +3289,8 @@ class Test (QWidget):
 
     def loadpatients(self):
         self.allpatients = getAllPatients()
+        self.allpatients.remove("Demographics_Source.xlsx")
+        self.allpatients.remove("KGID_Translation_Test.xlsx")
         
         i = 0
         j = 0
@@ -3326,7 +3328,7 @@ class Test (QWidget):
     def openprofile(self):
       
         self.currentpatient = self.sender().text()[12:]      
-        self.currentpatienttext.setText("Selected Patient: " + self.currentpatient) 
+        self.currentpatienttext.setText("Status - Selected Patient: " + self.currentpatient) 
 
         self.patientname.setText(self.currentpatient)
 
