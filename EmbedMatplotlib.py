@@ -153,7 +153,7 @@ class Canvas(FigureCanvas):
         medRankings = pd.merge(medRankings, temp, on="MED_ID", how="inner")
 
         # set column to datetime and add column containing dates with only month and year
-        medTable["Date"] = pd.to_datetime(medTable["Date"], format="%m/%d/%y")
+        medTable["Date"] = pd.to_datetime(medTable["Date"])
         medTable["MonthDate"] = medTable["Date"].dt.to_period("M")
 
         # set column to datetime and add column containing dates with only month and year
