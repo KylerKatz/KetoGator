@@ -4,12 +4,16 @@ setup.cfg
 setup.py
 KetoGator/DataProcessing.py
 KetoGator/EmbedMatplotlib.py
+KetoGator/Home.png
 KetoGator/Icon.png
 KetoGator/Keto-Gator-V3.png
+KetoGator/Logout.png
+KetoGator/MED_RANKING_SOURCE.xlsx
 KetoGator/SpreadSheetAccess.py
 KetoGator/__init__.py
 KetoGator/db_connection.py
 KetoGator/main.py
+KetoGator/mysql.conf
 KetoGator/qt5.py
 KetoGator.egg-info/PKG-INFO
 KetoGator.egg-info/SOURCES.txt
@@ -24,6 +28,23 @@ KetoGator/.idea/vcs.xml
 KetoGator/.idea/workspace.xml
 KetoGator/.idea/inspectionProfiles/profiles_settings.xml
 KetoGator/.vscode/launch.json
+KetoGator/Current Patients/Demographics_Source.xlsx
+KetoGator/Current Patients/KGID_Translation_Test.xlsx
+KetoGator/Current Patients/TeSt1/DataBases/Data/TeSt1_Alertness_Source.xlsx
+KetoGator/Current Patients/TeSt1/DataBases/Data/TeSt1_Anthropometrics_Clinical.xlsx
 KetoGator/Current Patients/TeSt1/DataBases/Data/TeSt1_Anthropometrics_Source.xlsx
+KetoGator/Current Patients/TeSt1/DataBases/Data/TeSt1_Clinic_GI_Issues_Source.xlsx
+KetoGator/Current Patients/TeSt1/DataBases/Data/TeSt1_Clinical_Labs_Source.xlsx
+KetoGator/Current Patients/TeSt1/DataBases/Data/TeSt1_Daily_Intake_Source.xlsx
+KetoGator/Current Patients/TeSt1/DataBases/Data/TeSt1_Diet_RX_Source.xlsx
+KetoGator/Current Patients/TeSt1/DataBases/Data/TeSt1_Med_Data_Source.xlsx
+KetoGator/Current Patients/TeSt2/DataBases/Data/TeSt2_Alertness_Source.xlsx
 KetoGator/Current Patients/TeSt2/DataBases/Data/TeSt2_Anthropometrics_Source.xlsx
+KetoGator/Current Patients/TeSt2/DataBases/Data/TeSt2_Clinic_GI_Issues_Source.xlsx
+KetoGator/Current Patients/TeSt2/DataBases/Data/TeSt2_Clinical_Labs_Source.xlsx
+KetoGator/Current Patients/TeSt2/DataBases/Data/TeSt2_Daily_Intake_Source.xlsx
+KetoGator/Current Patients/TeSt2/DataBases/Data/TeSt2_Diet_RX_Source.xlsx
+KetoGator/Current Patients/TeSt2/DataBases/Data/TeSt2_Med_Data_Source.xlsx
+KetoGator/Current Patients/TeSt2/DataBases/Data/TeSt2_Menus_Source.xlsx
+KetoGator/Current Patients/TeSt2/DataBases/Data/TeSt2_Other_Med_Source.xlsx
 KetoGator/Current Patients/TeSt3/DataBases/Data/TeSt3_Anthropometrics_Source.xlsx

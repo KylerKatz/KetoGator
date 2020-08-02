@@ -37,7 +37,7 @@ setup(
     # For a discussion on single-sourcing the version across setup.py and the
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.0.11',  # Required
+    version='1.0.16',  # Required
 
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
@@ -123,7 +123,7 @@ setup(
     # If there are data files included in your packages that need to be
     # installed, specify them here.
     package_data={  # Optional
-        'KetoGator': ['*.png', '*.ui', '.idea/*.iml', '.idea/*.xml', '.idea/inspectionProfiles/*.xml', 'Current Patients/TeSt1/DataBases/Data/*.xlsx', 'Current Patients/TeSt2/DataBases/Data/*.xlsx', 'Current Patients/TeSt3/DataBases/Data/*.xlsx', '.vscode/*.json'], #Files/File ext for all of the UI setup. No raw data included.
+        'KetoGator': ['*.xlsx', '*.conf', '*.png', '*.ui', '.idea/*.iml', '.idea/*.xml', '.idea/inspectionProfiles/*.xml', 'Current Patients/TeSt1/DataBases/Data/*.xlsx', 'Current Patients/TeSt2/DataBases/Data/*.xlsx', 'Current Patients/TeSt3/DataBases/Data/*.xlsx', 'Current Patients/*.xlsx', '.vscode/*.json'], #Files/File ext for all of the UI setup. No raw data included.
     },
 
     # Although 'package_data' is the preferred approach, in some case you may
