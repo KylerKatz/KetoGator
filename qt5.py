@@ -693,7 +693,7 @@ class Test (QWidget):
         self.MedDataNDIDF = QLineEdit()
         self.MedDataNDIDF.setMaxLength(8)
         
-        self.MedDataMedIDL = QLabel("Medication ID")
+        self.MedDataMedIDL = QLabel("Medication ID (MIDXXXXX)")
         self.MedDataMedIDL.setFont(QtGui.QFont("Ariel", 13))
         self.MedDataMedIDL.setToolTip("ID number given to each generic or brand name AED, see med ranking sheet in G:\MySQL Database\Meds\Med Ranking for list of ID numbers")
         self.MedDataMedIDF = QLineEdit()
