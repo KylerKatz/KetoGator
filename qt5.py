@@ -2913,19 +2913,20 @@ class Test (QWidget):
         try: 
             if(self.anthropometricsGraph):
                 self.anthropometricsGraph.close()
+        except AttributeError:
+            print("Creating First Graph")
+        try:
             if(self.medloadGraph):
                 self.medloadGraph.close()
         except AttributeError:
-            print("Creating First Graph")
+            pass
 
         if("Anthropometrics" in item.text()):
             self.anthropometricsGraph = Canvas(self.currentpatient, plot = "Anthropometrics")
-            # self.anthropometricsGraph.move(0,0)
             self.anthropometricsGraph.close()
             self.middle.addWidget(self.anthropometricsGraph)
         if("Med Load" in item.text()):
             self.medloadGraph = Canvas(self.currentpatient, plot = "Med Load")
-            # self.medloadGraph.move(0,0)
             self.medloadGraph.close()
             self.middle.addWidget(self.medloadGraph)
 

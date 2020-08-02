@@ -2,31 +2,13 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
 import sys
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
+import matplotlib
 import numpy as np
 import pandas as pd
 from datetime import datetime
 from datetime import date
 from SpreadSheetAccess import *
-
-# class Window(QMainWindow):
-#     def __init__(self):
-#         super().__init__()
-
-#         title = "Matplotlib Embedding in PyQt5"
-#         top = 400
-#         left = 400
-#         width = 900
-#         height = 500
-
-#         self.setWindowTitle(title)
-#         self.setGeometry(top, left, width, height)
-
-#         self.MyUI()
-
-#     def MyUI(self):
-
-#         canvas = Canvas("TeSt2", self)
-#         canvas.move(0,0)
 
 class Canvas(FigureCanvas):
     def __init__(self, patient, parent = None, width = 15, height = 10, dpi = 100, plot=""):
@@ -178,8 +160,7 @@ class Canvas(FigureCanvas):
             newdf = newdf.dropna()
 
             ax = self.figure.add_subplot(111)
-            ax.grid(axis='y')
-            #ax.plot(date, age)
+            
             ax.plot('Date', 'HtZ', data=newdf, marker='D', markerfacecolor='orange', markersize=14, color='orange', linewidth=6)
             ax.plot('Date', 'WtZ', data=newdf, marker='s', markerfacecolor='purple', markersize=14, color='purple', linewidth=6)
             ax.plot('Date', 'BmiZ', data=newdf, marker='^',  markerfacecolor='green', markersize=14, color='green', linewidth=6)
@@ -188,11 +169,10 @@ class Canvas(FigureCanvas):
             ax.set_xlabel("Date")
             ax.set_ylabel("Z-score")
             ax.set_facecolor('#f0f0f0')
+            ax.grid(axis='y')
+            self.figure.autofmt_xdate()
             
-            ax.xaxis.pane.fill = False
-            ax.xaxis.pane.set_edgecolor('#f0f0f0')
-            
-            # ax.set_axis_bgcolor('#f0f0f0')
+            ax.set_axis_bgcolor('#f0f0f0')
         except:
             pass
 
@@ -256,7 +236,7 @@ class Canvas(FigureCanvas):
             total = medTable.groupby("Date").agg(sum).reset_index()
 
             ax = self.figure.add_subplot(111)
-
+            
             #add total plot
             ax.plot("Date", "MED_LOAD_PER_MED", data=total, marker = 's', markersize = 14, label = "Total", linewidth = 6)
 
@@ -267,12 +247,14 @@ class Canvas(FigureCanvas):
                     ax.plot("Date", "MED_LOAD_PER_MED", data=medTable.loc[medTable['Med_ID'] == x], marker='D', markersize = 14, label = (medRankings.loc[medRankings['Med_ID'] == x])["MED_GENERIC_NAME"].values[0], linewidth = 6)
                     items.append(x)
 
-            # Add lables
-            ax.set_xlabel("Date - (YYYY-MM)")
+            # Add lables and design
+            ax.set_xlabel("Date")
             ax.set_ylabel("Medication Load")
             ax.legend()
             ax.set_title(patient + " | Med Load")
             ax.set_facecolor('#f0f0f0')
             ax.grid(axis="y")
+            self.figure.autofmt_xdate()
+            plt.show()
         except:
             pass
