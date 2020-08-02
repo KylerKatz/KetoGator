@@ -36,12 +36,11 @@ def getPatientExcels(patient):
 def getPatientGraphs(patient):
     graphs = []
 
-    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Anthropometrics_Clinical.xlsx"
+    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Anthropometrics_Source.xlsx"
 
     if os.path.isfile(path):
         graphs.append("Anthropometrics")
-    
-    path = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Anthropometrics_Source.xlsx"
+        
     path2 = r"Current Patients\\" + patient + r"\\DataBases\\Data\\" + patient + r"_Med_Data_Source.xlsx"
 
     if os.path.isfile(path) and os.path.isfile(path2):
